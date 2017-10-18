@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyAreaMapper">
+	<resultMap type="com.mes.entity.control.FtyArea" id="ftyAreaResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="site_info_id" property="siteInfoId" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+		<result column="phone" property="phone" jdbcType="VARCHAR"/>
+		<result column="location" property="location" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="category" property="category" jdbcType="VARCHAR"/>
+		<result column="time_zone" property="timeZone" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyAreaResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyArea">
+		insert into mes_fty_area (id,site_info_id,name,phone,location,description,category,time_zone,create_date,update_date)
+		values (#{id},#{siteInfoId},#{name},#{phone},#{location},#{description},#{category},#{timeZone},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyArea">
+		update mes_fty_area s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_area where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_fty_area t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<select id="countUsage" parameterType="java.lang.String" resultType="int">
+		select count(1) from mes_fty_production_line fp where fp.area_id=#{areaId}
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyAreaResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyAreaResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyAreaResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,site_info_id,name,phone,location,description,category,time_zone,create_date,update_date from mes_fty_area s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (name like CONCAT('%', #{search}, '%')
+				or phone like CONCAT('%', #{search}, '%')
+				or location like CONCAT('%', #{search}, '%')
+				or category like CONCAT('%', #{search}, '%')
+				or time_zone like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="siteInfoId != null  and siteInfoId != '' ">
+				<![CDATA[
+					and site_info_id = #{siteInfoId}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="phone != null  and phone != '' ">
+				<![CDATA[
+					and phone = #{phone}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and category = #{category}
+				]]>
+			</if>
+			<if test="timeZone != null  and timeZone != '' ">
+				<![CDATA[
+					and time_zone = #{timeZone}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="siteInfoId != null  and siteInfoId != '' ">
+				<![CDATA[
+					or site_info_id = #{siteInfoId}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="phone != null  and phone != '' ">
+				<![CDATA[
+					or phone = #{phone}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or category = #{category}
+				]]>
+			</if>
+			<if test="timeZone != null  and timeZone != '' ">
+				<![CDATA[
+					or time_zone = #{timeZone}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="siteInfoId != null  and siteInfoId != '' ">
+				<![CDATA[
+					and site_info_id like CONCAT('%', #{siteInfoId}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="phone != null  and phone != '' ">
+				<![CDATA[
+					and phone like CONCAT('%', #{phone}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="timeZone != null  and timeZone != '' ">
+				<![CDATA[
+					and time_zone like CONCAT('%', #{timeZone}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="siteInfoId != null  and siteInfoId != '' ">
+				<![CDATA[
+					or site_info_id like CONCAT('%', #{siteInfoId}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="phone != null  and phone != '' ">
+				<![CDATA[
+					or phone like CONCAT('%', #{phone}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="timeZone != null  and timeZone != '' ">
+				<![CDATA[
+					or time_zone like CONCAT('%', #{timeZone}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="siteInfoId != null  and siteInfoId != '' ">
+				<![CDATA[
+					site_info_id = #{siteInfoId},
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="phone != null  and phone != '' ">
+				<![CDATA[
+					phone = #{phone},
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					location = #{location},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					category = #{category},
+				]]>
+			</if>
+			<if test="timeZone != null  and timeZone != '' ">
+				<![CDATA[
+					time_zone = #{timeZone},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

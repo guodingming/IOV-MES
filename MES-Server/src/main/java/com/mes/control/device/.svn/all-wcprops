@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/projectnew/IOV_PLATFORM/!svn/ver/16918/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device
+END
+TestResultInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/TestResultInfo.java
+END
+ChipOpListInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16061/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/ChipOpListInfo.java
+END
+RemoteConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/RemoteConfig.java
+END
+TaskInfoItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16918/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/TaskInfoItem.java
+END
+MaterialInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16061/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/MaterialInfo.java
+END
+SoftwareInjectionResult2.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/SoftwareInjectionResult2.java
+END
+DeviceTooling.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/DeviceTooling.java
+END
+SoftwareInjectionResult1.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/SoftwareInjectionResult1.java
+END
+ProdInfosIn.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/projectnew/IOV_PLATFORM/!svn/ver/16233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/ProdInfosIn.java
+END
+ChipOpTransformationResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/16918/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/ChipOpTransformationResult.java
+END
+ChipOperateData.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/16917/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/device/ChipOperateData.java
+END

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-产品明细-产品编码(历史) -->
+<mapper namespace="com.mes.control.mapper.PdProductInfoNumberHistoryMapper">
+	<resultMap type="com.mes.entity.control.PdProductInfoNumberHistory" id="pdProductInfoNumberHistoryResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="pd_product_info_id" property="pdProductInfoId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="number" property="number" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdProductInfoNumberHistoryResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdProductInfoNumberHistory">
+		insert into mes_pd_product_info_number_history (id,pd_product_info_id,create_date,number,type)
+		values (#{id},#{pdProductInfoId},#{createDate},#{number},#{type})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdProductInfoNumberHistory">
+		update mes_pd_product_info_number_history s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_product_info_number_history where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_product_info_number_history t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdProductInfoNumberHistoryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdProductInfoNumberHistoryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdProductInfoNumberHistoryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,pd_product_info_id,create_date,number,type from mes_pd_product_info_number_history s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (number like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+				<![CDATA[
+					and pd_product_info_id = #{pdProductInfoId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					and number = #{number}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type = #{type}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+				<![CDATA[
+					or pd_product_info_id = #{pdProductInfoId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					or number = #{number}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type = #{type}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+				<![CDATA[
+					and pd_product_info_id like CONCAT('%', #{pdProductInfoId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					and number like CONCAT('%', #{number}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+				<![CDATA[
+					or pd_product_info_id like CONCAT('%', #{pdProductInfoId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					or number like CONCAT('%', #{number}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+				<![CDATA[
+					pd_product_info_id = #{pdProductInfoId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					number = #{number},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					type = #{type},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

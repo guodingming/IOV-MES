@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-抽检管理 -->
+<mapper namespace="com.mes.control.mapper.DpSampleInspectionMapper">
+    <resultMap type="com.mes.entity.control.DpSampleInspection" id="dpSampleInspectionResultMap">
+        
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        
+        <result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+        
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        
+        <result column="work_order_id" property="workOrderId" jdbcType="VARCHAR"/>
+        
+        <result column="sample_num" property="sampleNum" jdbcType="BIGINT"/>
+        <result column="inspection_num" property="inspectionNum" jdbcType="BIGINT"/>
+
+        <result column="qualified_num" property="qualifiedNum" jdbcType="BIGINT"/>
+        
+        <result column="unqualied_num" property="unqualiedNum" jdbcType="BIGINT"/>
+        
+        <result column="result" property="result" jdbcType="VARCHAR"/>
+        
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="dpSampleInspectionResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--根据工单ID查询抽检信息-->
+    <select id="findByWorkOrder"  resultMap="dpSampleInspectionResultMap">
+        <include refid="sql_select"/>
+        where s.work_order_id = #{value}
+        order by s.create_date DESC
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpSampleInspection">
+        insert into mes_dp_sample_inspection
+        (`id`,`pd_line_id`,`pd_id`,`work_order_id`,`sample_num`,`qualified_num`,`unqualied_num`,`result`,`create_date`,`inspection_num`)
+        values
+        (#{id},#{pdLineId},#{pdId},#{workOrderId},#{sampleNum},#{qualifiedNum},#{unqualiedNum},#{result},#{createDate},#{inspectionNum})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpSampleInspection">
+        update mes_dp_sample_inspection s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_sample_inspection where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_sample_inspection t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="dpSampleInspectionResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="dpSampleInspectionResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="dpSampleInspectionResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`pd_line_id`,`pd_id`,`work_order_id`,`sample_num`,`qualified_num`,`unqualied_num`,`result`,`create_date`,`inspection_num` from mes_dp_sample_inspection  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `sample_num` like CONCAT('%', #{search}, '%')
+				or `qualified_num` like CONCAT('%', #{search}, '%')
+				or `unqualied_num` like CONCAT('%', #{search}, '%')
+				or `result` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                and `pd_line_id` = #{pdLineId}
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                and `pd_id` = #{pdId}
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                and `work_order_id` = #{workOrderId}
+            ]]>
+            </if>
+            
+            <if test="sampleNum != null  and sampleNum != '' ">
+            <![CDATA[
+                and `sample_num` = #{sampleNum}
+            ]]>
+            </if>
+            
+            <if test="qualifiedNum != null  and qualifiedNum != '' ">
+            <![CDATA[
+                and `qualified_num` = #{qualifiedNum}
+            ]]>
+            </if>
+            
+            <if test="unqualiedNum != null  and unqualiedNum != '' ">
+            <![CDATA[
+                and `unqualied_num` = #{unqualiedNum}
+            ]]>
+            </if>
+            
+            <if test="result != null  and result != '' ">
+            <![CDATA[
+                and `result` = #{result}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+
+            <if test="inspectionNum != null  and inspectionNum != '' ">
+            <![CDATA[
+                and `inspection_num` = #{inspectionNum}
+            ]]>
+            </if>
+
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `sample_num` like CONCAT('%', #{search}, '%')
+				or `qualified_num` like CONCAT('%', #{search}, '%')
+				or `unqualied_num` like CONCAT('%', #{search}, '%')
+				or `result` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                or `pd_line_id` = #{pdLineId}
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                or `pd_id` = #{pdId}
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                or `work_order_id` = #{workOrderId}
+            ]]>
+            </if>
+            
+            <if test="sampleNum != null  and sampleNum != '' ">
+            <![CDATA[
+                or `sample_num` = #{sampleNum}
+            ]]>
+            </if>
+            
+            <if test="qualifiedNum != null  and qualifiedNum != '' ">
+            <![CDATA[
+                or `qualified_num` = #{qualifiedNum}
+            ]]>
+            </if>
+            
+            <if test="unqualiedNum != null  and unqualiedNum != '' ">
+            <![CDATA[
+                or `unqualied_num` = #{unqualiedNum}
+            ]]>
+            </if>
+            
+            <if test="result != null  and result != '' ">
+            <![CDATA[
+                or `result` = #{result}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+
+            <if test="inspectionNum != null  and inspectionNum != '' ">
+                <![CDATA[
+                or `inspection_num` = #{inspectionNum}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `sample_num` like CONCAT('%', #{search}, '%')
+				or `qualified_num` like CONCAT('%', #{search}, '%')
+				or `unqualied_num` like CONCAT('%', #{search}, '%')
+				or `result` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                and `pd_line_id` CONCAT('%', #{pdLineId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                and `pd_id` CONCAT('%', #{pdId}, '%')
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                and `work_order_id` CONCAT('%', #{workOrderId}, '%')
+            ]]>
+            </if>
+            
+            <if test="sampleNum != null  and sampleNum != '' ">
+            <![CDATA[
+                and `sample_num` CONCAT('%', #{sampleNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="qualifiedNum != null  and qualifiedNum != '' ">
+            <![CDATA[
+                and `qualified_num` CONCAT('%', #{qualifiedNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="unqualiedNum != null  and unqualiedNum != '' ">
+            <![CDATA[
+                and `unqualied_num` CONCAT('%', #{unqualiedNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="result != null  and result != '' ">
+            <![CDATA[
+                and `result` CONCAT('%', #{result}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `sample_num` like CONCAT('%', #{search}, '%')
+				or `qualified_num` like CONCAT('%', #{search}, '%')
+				or `unqualied_num` like CONCAT('%', #{search}, '%')
+				or `result` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                or `pd_line_id` CONCAT('%', #{pdLineId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                or `pd_id` CONCAT('%', #{pdId}, '%')
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                or `work_order_id` CONCAT('%', #{workOrderId}, '%')
+            ]]>
+            </if>
+            
+            <if test="sampleNum != null  and sampleNum != '' ">
+            <![CDATA[
+                or `sample_num` CONCAT('%', #{sampleNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="qualifiedNum != null  and qualifiedNum != '' ">
+            <![CDATA[
+                or `qualified_num` CONCAT('%', #{qualifiedNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="unqualiedNum != null  and unqualiedNum != '' ">
+            <![CDATA[
+                or `unqualied_num` CONCAT('%', #{unqualiedNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="result != null  and result != '' ">
+            <![CDATA[
+                or `result` CONCAT('%', #{result}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                `pd_line_id` = #{pdLineId},
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                `pd_id` = #{pdId},
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                `work_order_id` = #{workOrderId},
+            ]]>
+            </if>
+            
+            <if test="sampleNum != null  and sampleNum != '' ">
+            <![CDATA[
+                `sample_num` = #{sampleNum},
+            ]]>
+            </if>
+            
+            <if test="qualifiedNum != null  and qualifiedNum != '' ">
+            <![CDATA[
+                `qualified_num` = #{qualifiedNum},
+            ]]>
+            </if>
+            
+            <if test="unqualiedNum != null  and unqualiedNum != '' ">
+            <![CDATA[
+                `unqualied_num` = #{unqualiedNum},
+            ]]>
+            </if>
+            
+            <if test="result != null  and result != '' ">
+            <![CDATA[
+                `result` = #{result},
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+            <if test="inspectionNum != null  and inspectionNum != '' ">
+                <![CDATA[
+                `inspection_num` = #{inspectionNum},
+            ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

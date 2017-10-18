@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-产品维修站-不良信息 -->
+<mapper namespace="com.mes.control.mapper.DpRepairStationBadInfoMapper">
+    <resultMap type="com.mes.entity.control.DpRepairStationBadInfo" id="dpRepairStationBadInfoResultMap">
+
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+
+        <result column="pd_product_info_id" property="pdProductInfoId" jdbcType="VARCHAR"/>
+
+        <result column="location" property="location" jdbcType="VARCHAR"/>
+
+        <result column="entry_user_id" property="entryUserId" jdbcType="VARCHAR"/>
+
+        <result column="entry_user_name" property="entryUserName" jdbcType="VARCHAR"/>
+
+        <result column="bad_description" property="badDescription" jdbcType="VARCHAR"/>
+
+        <result column="is_rework" property="isRework" jdbcType="VARCHAR"/>
+
+        <result column="repair_user_id" property="repairUserId" jdbcType="VARCHAR"/>
+
+        <result column="repair_user_name" property="repairUserName" jdbcType="VARCHAR"/>
+
+        <result column="repair_description" property="repairDescription" jdbcType="VARCHAR"/>
+
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="dpRepairStationBadInfoResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpRepairStationBadInfo">
+        insert into mes_dp_repair_station_bad_info
+        (`id`,`pd_product_info_id`,`location`,`entry_user_id`,`entry_user_name`,`bad_description`,`is_rework`,`repair_user_id`,`repair_user_name`,`repair_description`,`create_date`)
+        values
+        (#{id},#{pdProductInfoId},#{location},#{entryUserId},#{entryUserName},#{badDescription},#{isRework},#{repairUserId},#{repairUserName},#{repairDescription},#{createDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpRepairStationBadInfo">
+        update mes_dp_repair_station_bad_info s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_repair_station_bad_info where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_repair_station_bad_info t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="dpRepairStationBadInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="dpRepairStationBadInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="dpRepairStationBadInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`pd_product_info_id`,`location`,`entry_user_id`,`entry_user_name`,`bad_description`,`is_rework`,`repair_user_id`,`repair_user_name`,`repair_description`,`create_date` from mes_dp_repair_station_bad_info  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+                or `pd_product_info_id` like CONCAT('%', #{search}, '%')
+                or `location` like CONCAT('%', #{search}, '%')
+                or `entry_user_id` like CONCAT('%', #{search}, '%')
+                or `entry_user_name` like CONCAT('%', #{search}, '%')
+                or `bad_description` like CONCAT('%', #{search}, '%')
+                or `is_rework` like CONCAT('%', #{search}, '%')
+                or `repair_user_id` like CONCAT('%', #{search}, '%')
+                or `repair_user_name` like CONCAT('%', #{search}, '%')
+                or `repair_description` like CONCAT('%', #{search}, '%')
+                or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                and `pd_product_info_id` = #{pdProductInfoId}
+            ]]>
+            </if>
+
+            <if test="location != null  and location != '' ">
+                <![CDATA[
+                and `location` = #{location}
+            ]]>
+            </if>
+
+            <if test="entryUserId != null  and entryUserId != '' ">
+                <![CDATA[
+                and `entry_user_id` = #{entryUserId}
+            ]]>
+            </if>
+
+            <if test="entryUserName != null  and entryUserName != '' ">
+                <![CDATA[
+                and `entry_user_name` = #{entryUserName}
+            ]]>
+            </if>
+
+            <if test="badDescription != null  and badDescription != '' ">
+                <![CDATA[
+                and `bad_description` = #{badDescription}
+            ]]>
+            </if>
+
+            <if test="isRework != null  and isRework != '' ">
+                <![CDATA[
+                and `is_rework` = #{isRework}
+            ]]>
+            </if>
+
+            <if test="repairUserId != null  and repairUserId != '' ">
+                <![CDATA[
+                and `repair_user_id` = #{repairUserId}
+            ]]>
+            </if>
+
+            <if test="repairUserName != null  and repairUserName != '' ">
+                <![CDATA[
+                and `repair_user_name` = #{repairUserName}
+            ]]>
+            </if>
+
+            <if test="repairDescription != null  and repairDescription != '' ">
+                <![CDATA[
+                and `repair_description` = #{repairDescription}
+            ]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+                or `pd_product_info_id` like CONCAT('%', #{search}, '%')
+                or `location` like CONCAT('%', #{search}, '%')
+                or `entry_user_id` like CONCAT('%', #{search}, '%')
+                or `entry_user_name` like CONCAT('%', #{search}, '%')
+                or `bad_description` like CONCAT('%', #{search}, '%')
+                or `is_rework` like CONCAT('%', #{search}, '%')
+                or `repair_user_id` like CONCAT('%', #{search}, '%')
+                or `repair_user_name` like CONCAT('%', #{search}, '%')
+                or `repair_description` like CONCAT('%', #{search}, '%')
+                or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                or `pd_product_info_id` = #{pdProductInfoId}
+            ]]>
+            </if>
+
+            <if test="location != null  and location != '' ">
+                <![CDATA[
+                or `location` = #{location}
+            ]]>
+            </if>
+
+            <if test="entryUserId != null  and entryUserId != '' ">
+                <![CDATA[
+                or `entry_user_id` = #{entryUserId}
+            ]]>
+            </if>
+
+            <if test="entryUserName != null  and entryUserName != '' ">
+                <![CDATA[
+                or `entry_user_name` = #{entryUserName}
+            ]]>
+            </if>
+
+            <if test="badDescription != null  and badDescription != '' ">
+                <![CDATA[
+                or `bad_description` = #{badDescription}
+            ]]>
+            </if>
+
+            <if test="isRework != null  and isRework != '' ">
+                <![CDATA[
+                or `is_rework` = #{isRework}
+            ]]>
+            </if>
+
+            <if test="repairUserId != null  and repairUserId != '' ">
+                <![CDATA[
+                or `repair_user_id` = #{repairUserId}
+            ]]>
+            </if>
+
+            <if test="repairUserName != null  and repairUserName != '' ">
+                <![CDATA[
+                or `repair_user_name` = #{repairUserName}
+            ]]>
+            </if>
+
+            <if test="repairDescription != null  and repairDescription != '' ">
+                <![CDATA[
+                or `repair_description` = #{repairDescription}
+            ]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+                or `pd_product_info_id` like CONCAT('%', #{search}, '%')
+                or `location` like CONCAT('%', #{search}, '%')
+                or `entry_user_id` like CONCAT('%', #{search}, '%')
+                or `entry_user_name` like CONCAT('%', #{search}, '%')
+                or `bad_description` like CONCAT('%', #{search}, '%')
+                or `is_rework` like CONCAT('%', #{search}, '%')
+                or `repair_user_id` like CONCAT('%', #{search}, '%')
+                or `repair_user_name` like CONCAT('%', #{search}, '%')
+                or `repair_description` like CONCAT('%', #{search}, '%')
+                or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                and `pd_product_info_id` CONCAT('%', #{pdProductInfoId}, '%')
+            ]]>
+            </if>
+
+            <if test="location != null  and location != '' ">
+                <![CDATA[
+                and `location` CONCAT('%', #{location}, '%')
+            ]]>
+            </if>
+            <if test="entryUserId != null  and entryUserId != '' ">
+                <![CDATA[
+                and `entry_user_id` CONCAT('%', #{entryUserId}, '%')
+            ]]>
+            </if>
+
+            <if test="entryUserName != null  and entryUserName != '' ">
+                <![CDATA[
+                and `entry_user_name` CONCAT('%', #{entryUserName}, '%')
+            ]]>
+            </if>
+
+            <if test="badDescription != null  and badDescription != '' ">
+                <![CDATA[
+                and `bad_description` CONCAT('%', #{badDescription}, '%')
+            ]]>
+            </if>
+
+            <if test="isRework != null  and isRework != '' ">
+                <![CDATA[
+                and `is_rework` CONCAT('%', #{isRework}, '%')
+            ]]>
+            </if>
+
+            <if test="repairUserId != null  and repairUserId != '' ">
+                <![CDATA[
+                and `repair_user_id` CONCAT('%', #{repairUserId}, '%')
+            ]]>
+            </if>
+
+            <if test="repairUserName != null  and repairUserName != '' ">
+                <![CDATA[
+                and `repair_user_name` CONCAT('%', #{repairUserName}, '%')
+            ]]>
+            </if>
+
+            <if test="repairDescription != null  and repairDescription != '' ">
+                <![CDATA[
+                and `repair_description` CONCAT('%', #{repairDescription}, '%')
+            ]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+                or `pd_product_info_id` like CONCAT('%', #{search}, '%')
+                or `location` like CONCAT('%', #{search}, '%')
+                or `entry_user_id` like CONCAT('%', #{search}, '%')
+                or `entry_user_name` like CONCAT('%', #{search}, '%')
+                or `bad_description` like CONCAT('%', #{search}, '%')
+                or `is_rework` like CONCAT('%', #{search}, '%')
+                or `repair_user_id` like CONCAT('%', #{search}, '%')
+                or `repair_user_name` like CONCAT('%', #{search}, '%')
+                or `repair_description` like CONCAT('%', #{search}, '%')
+                or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                or `pd_product_info_id` CONCAT('%', #{pdProductInfoId}, '%')
+            ]]>
+            </if>
+
+            <if test="location != null  and location != '' ">
+                <![CDATA[
+                or `location` CONCAT('%', #{location}, '%')
+            ]]>
+            </if>
+            <if test="entryUserId != null  and entryUserId != '' ">
+                <![CDATA[
+                or `entry_user_id` CONCAT('%', #{entryUserId}, '%')
+            ]]>
+            </if>
+
+            <if test="entryUserName != null  and entryUserName != '' ">
+                <![CDATA[
+                or `entry_user_name` CONCAT('%', #{entryUserName}, '%')
+            ]]>
+            </if>
+
+            <if test="badDescription != null  and badDescription != '' ">
+                <![CDATA[
+                or `bad_description` CONCAT('%', #{badDescription}, '%')
+            ]]>
+            </if>
+
+            <if test="isRework != null  and isRework != '' ">
+                <![CDATA[
+                or `is_rework` CONCAT('%', #{isRework}, '%')
+            ]]>
+            </if>
+
+            <if test="repairUserId != null  and repairUserId != '' ">
+                <![CDATA[
+                or `repair_user_id` CONCAT('%', #{repairUserId}, '%')
+            ]]>
+            </if>
+
+            <if test="repairUserName != null  and repairUserName != '' ">
+                <![CDATA[
+                or `repair_user_name` CONCAT('%', #{repairUserName}, '%')
+            ]]>
+            </if>
+
+            <if test="repairDescription != null  and repairDescription != '' ">
+                <![CDATA[
+                or `repair_description` CONCAT('%', #{repairDescription}, '%')
+            ]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                `pd_product_info_id` = #{pdProductInfoId},
+            ]]>
+            </if>
+
+            <if test="location != null  and location != '' ">
+                <![CDATA[
+                `location` = #{location},
+            ]]>
+            </if>
+            <if test="entryUserId != null  and entryUserId != '' ">
+                <![CDATA[
+                `entry_user_id` = #{entryUserId},
+            ]]>
+            </if>
+
+            <if test="entryUserName != null  and entryUserName != '' ">
+                <![CDATA[
+                `entry_user_name` = #{entryUserName},
+            ]]>
+            </if>
+
+            <if test="badDescription != null  and badDescription != '' ">
+                <![CDATA[
+                `bad_description` = #{badDescription},
+            ]]>
+            </if>
+
+            <if test="isRework != null  and isRework != '' ">
+                <![CDATA[
+                `is_rework` = #{isRework},
+            ]]>
+            </if>
+
+            <if test="repairUserId != null  and repairUserId != '' ">
+                <![CDATA[
+                `repair_user_id` = #{repairUserId},
+            ]]>
+            </if>
+
+            <if test="repairUserName != null  and repairUserName != '' ">
+                <![CDATA[
+                `repair_user_name` = #{repairUserName},
+            ]]>
+            </if>
+
+            <if test="repairDescription != null  and repairDescription != '' ">
+                <![CDATA[
+                `repair_description` = #{repairDescription},
+            ]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+
+        </set>
+    </sql>
+</mapper>

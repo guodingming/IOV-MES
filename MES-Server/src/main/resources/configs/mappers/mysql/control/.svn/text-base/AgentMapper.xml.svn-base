@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 平台管理-工作站Agent管理 -->
+<mapper namespace="com.mes.control.mapper.AgentMapper">
+    <resultMap type="com.mes.entity.control.Agent" id="agentResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <!--<result column="workstation_id" property="workstationId" jdbcType="VARCHAR"/>-->
+        <!--<result column="workstation_name" property="workstationName" jdbcType="VARCHAR"/>-->
+        <result column="ip" property="ip" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="agentResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.Agent">
+        insert into mes_agent
+        (`id`,`ip`,`name`,`description`,`create_date`,`status`)
+        values
+        (#{id},#{ip},#{name},#{description},#{createDate},#{status})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.Agent">
+        update mes_agent s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <update id="updateStatusByIp" parameterType="com.mes.entity.control.Agent">
+        update mes_agent s set `status` = #{status} where s.ip = #{ip}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_agent where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_agent s
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="agentResultMap">
+        SELECT s.`id`,s.`ip`,s.`name`,s.`description`,s.`create_date`,s.`status`
+        from mes_agent s
+       /* left join mes_fty_workstation mfw on mfw.id=s.workstation_id*/
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="agentResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="agentResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`ip`,`name`,`description`,`create_date`,`status` from mes_agent  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                s.`ip` like CONCAT('%', #{search}, '%')
+                or s.`name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+            and `id` = #{id}
+            ]]>
+            </if>
+          <!--  <if test="workstationId != null  and workstationId != '' ">
+                <![CDATA[
+            and `workstation_id` = #{workstationId}
+            ]]>
+            </if>-->
+            <if test="ip != null  and ip != '' ">
+                <![CDATA[
+            and `ip` = #{ip}
+            ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+            and `name` = #{name}
+            ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+            and `description` = #{description}
+            ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+            and `create_date` = #{createDate}
+            ]]>
+            </if>
+            <if test="status != null  and status != '' ">
+                <![CDATA[
+            and `status` = #{status}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                s.`ip` like CONCAT('%', #{search}, '%')
+                or s.`name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+                ]]>
+            </if>
+           <!-- <if test="workstationId != null  and workstationId != '' ">
+                <![CDATA[
+                or `workstation_id` = #{workstationId}
+                ]]>
+            </if>-->
+            <if test="ip != null  and ip != '' ">
+                <![CDATA[
+                or `ip` = #{ip}
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                or `name` = #{name}
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                or `description` = #{description}
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+                ]]>
+            </if>
+            <if test="status != null  and status != '' ">
+                <![CDATA[
+                or `status` = #{status}
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                s.`ip` like CONCAT('%', #{search}, '%')
+                s.`name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <!--<if test="workstationId != null  and workstationId != '' ">
+                <![CDATA[
+                and `workstation_id` CONCAT('%', #{workstationId}, '%')
+                ]]>
+            </if>-->
+            <if test="ip != null  and ip != '' ">
+                <![CDATA[
+                and `ip` CONCAT('%', #{ip}, '%')
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                and `name` CONCAT('%', #{name}, '%')
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                and `description` CONCAT('%', #{description}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="status != null  and status != '' ">
+                <![CDATA[
+                and `status` CONCAT('%', #{status}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                s.`ip` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+           <!-- <if test="workstationId != null  and workstationId != '' ">
+                <![CDATA[
+                or `workstation_id` CONCAT('%', #{workstationId}, '%')
+                ]]>
+            </if>-->
+            <if test="ip != null  and ip != '' ">
+                <![CDATA[
+                or `ip` CONCAT('%', #{ip}, '%')
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                or `name` CONCAT('%', #{name}, '%')
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                or `description` CONCAT('%', #{description}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="status != null  and status != '' ">
+                <![CDATA[
+                or `status` CONCAT('%', #{status}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                    `id` = #{id},
+                    ]]>
+            </if>
+           <!-- <if test="workstationId != null  and workstationId != '' ">
+                <![CDATA[
+                    `workstation_id` = #{workstationId},
+                    ]]>
+            </if>-->
+            <if test="ip != null  and ip != '' ">
+                <![CDATA[
+                    `ip` = #{ip},
+                    ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                    `name` = #{name},
+                    ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                    `description` = #{description},
+                    ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                    `create_date` = #{createDate},
+                    ]]>
+            </if>
+            <if test="status != null  and status != '' ">
+                <![CDATA[
+                    `status` = #{status},
+                    ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

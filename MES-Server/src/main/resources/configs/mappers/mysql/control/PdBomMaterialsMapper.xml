@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-物料清单 -->
+<mapper namespace="com.mes.control.mapper.PdBomMaterialsMapper">
+	<resultMap type="com.mes.entity.control.PdBomMaterials" id="pdBomMaterialsResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<resultMap type="com.mes.entity.control.PdBomMaterialsVersion" id="pdBomMaterialsVersionResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="material_id" property="materialId" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="in_version" property="inVersion" jdbcType="VARCHAR"/>
+		<result column="out_version" property="outVersion" jdbcType="VARCHAR"/>
+		<result column="checksum" property="checksum" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBomMaterialsResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="findMaterial" resultMap="pdBomMaterialsResultMap">
+		SELECT m.*
+		FROM mes_pd_bom_work_amount a, mes_pd_bom_materials m, mes_pd_bom_materials_version v
+		WHERE a.`bom_work_id`=#{bomWorkId}
+		AND m.`code`=#{code}
+		AND a.`materials_version_id`=v.`id`
+		AND v.material_id=m.id
+		LIMIT 1
+	</select>
+
+	<select id="findVersion" resultMap="pdBomMaterialsVersionResultMap">
+		SELECT * FROM mes_pd_bom_materials_version v WHERE v.`code`=#{code} AND v.`in_version`=#{inVersion} AND v.`out_version`=#{outVersion}
+	</select>
+
+	<insert id="saveMaterialVersion" parameterType="com.mes.entity.control.PdBomMaterialsVersion">
+		INSERT INTO mes_pd_bom_materials_version (id, material_id, `name`, in_version, out_version, `code`, `type`, `checksum`) VALUES (#{id}, #{materialId}, #{name}, #{inVersion}, #{outVersion}, #{code}, #{type}, #{checksum})
+	</insert>
+
+	<update id="updateMaterialVersion" parameterType="com.mes.entity.control.PdBomMaterialsVersion">
+		update mes_pd_bom_materials_version s
+		<set>
+			<if test="materialId != null  and materialId != '' ">
+				<![CDATA[
+					material_id = #{materialId},
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					`name` = #{name},
+				]]>
+			</if>
+			<if test="inVersion != null  and inVersion != '' ">
+				<![CDATA[
+					in_version = #{inVersion},
+				]]>
+			</if>
+			<if test="outVersion != null  and outVersion != '' ">
+				<![CDATA[
+					out_version = #{outVersion},
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					code = #{code},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					`type` = #{type},
+				]]>
+			</if>
+			<if test="checksum != null  and checksum != '' ">
+				<![CDATA[
+					checksum = #{checksum},
+				]]>
+			</if>
+		</set>
+		where s.id = #{id}
+	</update>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBomMaterials">
+		insert into mes_pd_bom_materials (id,`name`,code,`type`,create_date,update_date) values (#{id},#{name},#{code},#{type},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBomMaterials">
+		update mes_pd_bom_materials s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_bom_materials where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_bom_materials t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBomMaterialsResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBomMaterialsResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBomMaterialsResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,`name`,code,`type`,create_date,update_date from mes_pd_bom_materials s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				`name` like CONCAT('%', #{search}, '%')
+				or code like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code = #{code}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type = #{type}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code = #{code}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type = #{type}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					code = #{code},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					type = #{type},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

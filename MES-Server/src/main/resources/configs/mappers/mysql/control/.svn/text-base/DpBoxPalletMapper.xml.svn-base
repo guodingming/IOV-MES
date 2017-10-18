@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-栈板管理 -->
+<mapper namespace="com.mes.control.mapper.DpBoxPalletMapper">
+    <resultMap type="com.mes.entity.control.DpBoxPallet" id="dpBoxPalletResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="pallet_key" property="palletKey" jdbcType="VARCHAR"/>
+        <result column="barcode_type_id" property="barcodeTypeId" jdbcType="VARCHAR"/>
+        <result column="barcode_id" property="barcodeId" jdbcType="VARCHAR"/>
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="capacity" property="capacity" jdbcType="BIGINT"/>
+        <result column="quantity" property="quantity" jdbcType="BIGINT"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="label_type_id" property="labelTypeId" jdbcType="VARCHAR"/>
+        <result column="label_id" property="labelId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="dpBoxPalletResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="findByPdId" resultMap="dpBoxPalletResultMap">
+        <include refid="sql_select"/>
+        WHERE s.pd_id = #{0} AND s.pallet_key=#{1}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpBoxPallet">
+        insert into mes_dp_box_pallet
+        (`id`,`pallet_key`,`barcode_type_id`,`barcode_id`,`pd_id`,`name`,`description`,`capacity`,`quantity`,`create_date`,`label_type_id`,`label_id`)
+        values
+        (#{id},#{palletKey},#{barcodeTypeId},#{barcodeId},#{pdId},#{name},#{description},#{capacity},#{quantity},#{createDate},#{labelTypeId},#{labelId})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpBoxPallet">
+        update mes_dp_box_pallet s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_box_pallet where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_box_pallet t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="dpBoxPalletResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="dpBoxPalletResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="dpBoxPalletResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`pallet_key`,`barcode_type_id`,`barcode_id`,`pd_id`,`name`,`description`,`capacity`,`quantity`,`create_date`,`label_type_id`,`label_id` from mes_dp_box_pallet  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`name` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+            and `id` = #{id}
+            ]]>
+            </if>
+            <if test="palletKey != null  and palletKey != '' ">
+                <![CDATA[
+            and `pallet_key` = #{palletKey}
+            ]]>
+            </if>
+            <if test="barcodeTypeId != null  and barcodeTypeId != '' ">
+                <![CDATA[
+            and `barcode_type_id` = #{barcodeTypeId}
+            ]]>
+            </if>
+            <if test="barcodeId != null  and barcodeId != '' ">
+                <![CDATA[
+            and `barcode_id` = #{barcodeId}
+            ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+            and `pd_id` = #{pdId}
+            ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+            and `name` = #{name}
+            ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+            and `description` = #{description}
+            ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+            and `capacity` = #{capacity}
+            ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+            and `quantity` = #{quantity}
+            ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+            and `create_date` = #{createDate}
+            ]]>
+            </if>
+            <if test="labelTypeId != null  and labelTypeId != '' ">
+                <![CDATA[
+            and `label_type_id` = #{labelTypeId}
+            ]]>
+            </if>
+            <if test="labelId != null  and labelId != '' ">
+                <![CDATA[
+            and `label_id` = #{labelId}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`name` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+                ]]>
+            </if>
+            <if test="palletKey != null  and palletKey != '' ">
+                <![CDATA[
+                or `pallet_key` = #{palletKey}
+                ]]>
+            </if>
+            <if test="barcodeTypeId != null  and barcodeTypeId != '' ">
+                <![CDATA[
+                or `barcode_type_id` = #{barcodeTypeId}
+                ]]>
+            </if>
+            <if test="barcodeId != null  and barcodeId != '' ">
+                <![CDATA[
+                or `barcode_id` = #{barcodeId}
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` = #{pdId}
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                or `name` = #{name}
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                or `description` = #{description}
+                ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                or `capacity` = #{capacity}
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                or `quantity` = #{quantity}
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+                ]]>
+            </if>
+            <if test="labelTypeId != null  and labelTypeId != '' ">
+                <![CDATA[
+                or `label_type_id` = #{labelTypeId}
+                ]]>
+            </if>
+            <if test="labelId != null  and labelId != '' ">
+                <![CDATA[
+                or `label_id` = #{labelId}
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`name` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="palletKey != null  and palletKey != '' ">
+                <![CDATA[
+                and `pallet_key` CONCAT('%', #{palletKey}, '%')
+                ]]>
+            </if>
+            <if test="barcodeTypeId != null  and barcodeTypeId != '' ">
+                <![CDATA[
+                and `barcode_type_id` CONCAT('%', #{barcodeTypeId}, '%')
+                ]]>
+            </if>
+            <if test="barcodeId != null  and barcodeId != '' ">
+                <![CDATA[
+                and `barcode_id` CONCAT('%', #{barcodeId}, '%')
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                and `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                and `name` CONCAT('%', #{name}, '%')
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                and `description` CONCAT('%', #{description}, '%')
+                ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                and `capacity` CONCAT('%', #{capacity}, '%')
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                and `quantity` CONCAT('%', #{quantity}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="labelTypeId != null  and labelTypeId != '' ">
+                <![CDATA[
+                and `label_type_id` CONCAT('%', #{labelTypeId}, '%')
+                ]]>
+            </if>
+            <if test="labelId != null  and labelId != '' ">
+                <![CDATA[
+                and `label_id` CONCAT('%', #{labelId}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`name` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="palletKey != null  and palletKey != '' ">
+                <![CDATA[
+                or `pallet_key` CONCAT('%', #{palletKey}, '%')
+                ]]>
+            </if>
+            <if test="barcodeTypeId != null  and barcodeTypeId != '' ">
+                <![CDATA[
+                or `barcode_type_id` CONCAT('%', #{barcodeTypeId}, '%')
+                ]]>
+            </if>
+            <if test="barcodeId != null  and barcodeId != '' ">
+                <![CDATA[
+                or `barcode_id` CONCAT('%', #{barcodeId}, '%')
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                or `name` CONCAT('%', #{name}, '%')
+                ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                or `description` CONCAT('%', #{description}, '%')
+                ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                or `capacity` CONCAT('%', #{capacity}, '%')
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                or `quantity` CONCAT('%', #{quantity}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="labelTypeId != null  and labelTypeId != '' ">
+                <![CDATA[
+                or `label_type_id` CONCAT('%', #{labelTypeId}, '%')
+                ]]>
+            </if>
+            <if test="labelId != null  and labelId != '' ">
+                <![CDATA[
+                or `label_id` CONCAT('%', #{labelId}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                    `id` = #{id},
+                    ]]>
+            </if>
+            <if test="palletKey != null  and palletKey != '' ">
+                <![CDATA[
+                    `pallet_key` = #{palletKey},
+                    ]]>
+            </if>
+            <if test="barcodeTypeId != null  and barcodeTypeId != '' ">
+                <![CDATA[
+                    `barcode_type_id` = #{barcodeTypeId},
+                    ]]>
+            </if>
+            <if test="barcodeId != null  and barcodeId != '' ">
+                <![CDATA[
+                    `barcode_id` = #{barcodeId},
+                    ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                    `pd_id` = #{pdId},
+                    ]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                    `name` = #{name},
+                    ]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+                    `description` = #{description},
+                    ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                    `capacity` = #{capacity},
+                    ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                    `quantity` = #{quantity},
+                    ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                    `create_date` = #{createDate},
+                    ]]>
+            </if>
+            <if test="labelTypeId != null  and labelTypeId != '' ">
+                <![CDATA[
+                    `label_type_id` = #{labelTypeId},
+                    ]]>
+            </if>
+            <if test="labelId != null  and labelId != '' ">
+                <![CDATA[
+                    `label_id` = #{labelId},
+                    ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

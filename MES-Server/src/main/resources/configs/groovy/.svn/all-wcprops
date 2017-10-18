@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/projectnew/IOV_PLATFORM/!svn/ver/17280/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy
+END
+get-demarcate-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-demarcate-info.groovy
+END
+check-product-bar.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/16962/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/check-product-bar.groovy
+END
+general-function.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/16584/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/general-function.groovy
+END
+get-software-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/16371/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-software-info.groovy
+END
+getDeviceIdByIp.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/getDeviceIdByIp.groovy
+END
+get-product-bar-code.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/16400/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-product-bar-code.groovy
+END
+get-task-Info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16915/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-task-Info.groovy
+END
+complete-task.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/complete-task.groovy
+END
+save-pro-result.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16945/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/save-pro-result.groovy
+END
+save-download-data.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/16945/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/save-download-data.groovy
+END
+get-app-file.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/projectnew/IOV_PLATFORM/!svn/ver/17127/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-app-file.groovy
+END
+load-chip-op-xml.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/17191/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/load-chip-op-xml.groovy
+END
+get-remote-config.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/17121/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-remote-config.groovy
+END
+get-task-complete-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/16978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-task-complete-info.groovy
+END
+save-terminal-data.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/16852/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/save-terminal-data.groovy
+END
+get-cur-content.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/17196/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-cur-content.groovy
+END
+get-relation-table.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-relation-table.groovy
+END
+get-tool-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/17121/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-tool-info.groovy
+END
+show-login.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/projectnew/IOV_PLATFORM/!svn/ver/16793/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/show-login.groovy
+END
+get-product-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-product-info.groovy
+END
+get-mission-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/16382/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-mission-info.groovy
+END
+save-app-down-data.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/16945/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/save-app-down-data.groovy
+END
+get-verify-code.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-verify-code.groovy
+END
+get-test-standard.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/17280/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/get-test-standard.groovy
+END

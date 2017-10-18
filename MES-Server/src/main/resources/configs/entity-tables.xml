@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-tables>
+    <!-- 是否已持久化到数据库中 -->
+    <persisted>true</persisted>
+    <type name="系统对象">
+        <entity-table>
+            <name>mes_dept</name>
+            <cn-name>部门</cn-name>
+            <entity-class>com.mes.entity.control.Dept</entity-class>
+        </entity-table>
+        <entity-table>
+            <name>mes_role</name>
+            <cn-name>角色</cn-name>
+            <entity-class>com.mes.entity.control.Role</entity-class>
+        </entity-table>
+        <entity-table>
+            <name>mes_user</name>
+            <cn-name>用户</cn-name>
+            <entity-class>com.mes.entity.control.User</entity-class>
+        </entity-table>
+        <entity-table>
+            <name>mes_user_group</name>
+            <cn-name>用户组</cn-name>
+            <entity-class>com.mes.entity.control.UserGroup</entity-class>
+        </entity-table>
+    </type>
+</entity-tables>

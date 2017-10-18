@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 用户管理-人员技能 -->
+<mapper namespace="com.mes.control.mapper.UserProcessMapper">
+    <resultMap type="com.mes.entity.control.UserProcess" id="userProcessResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="process_name" property="processName" jdbcType="VARCHAR"/>
+        <result column="process_code" property="processCode" jdbcType="VARCHAR"/>
+        <result column="process_status" property="processStatus" jdbcType="VARCHAR"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="process_id" property="processId" jdbcType="VARCHAR"/>
+        <result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findById" resultMap="userProcessResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.UserProcess">
+		insert into mes_user_process (id,user_id,process_id,create_date,start_time,end_time,process_status)
+		values (#{id},#{userId},#{processId},now(),#{startTime},#{endTime},#{processStatus})
+	</insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.UserProcess">
+        update mes_user_process s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_user_process where id =#{id}
+	</delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_user_process t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" parameterType="java.util.Map" resultMap="userProcessResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="userProcessResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--根据用户和工程查询生产工序-->
+    <select id="findByUserAndProject" parameterType="java.util.Map" resultMap="userProcessResultMap">
+		SELECT
+			mup.*
+		,mdpp.id as produce_process_id
+		,mfp.`name` as process_name
+		,mfp.`code` as process_code
+		FROM
+			mes_user_process mup
+		left join mes_dp_produce_process mdpp on mdpp.process_id=mup.process_id
+		left join mes_fty_process mfp on mfp.id=mup.process_id
+		WHERE
+		mup.user_id = #{userId}
+		and mup.process_status = #{processStatus}
+		and mup.end_time > now()
+		and mdpp.project_id=#{projectId}
+		and mdpp.form_id is not null
+		 order by mdpp.sort asc
+	</select>
+    <!--根据用户和工序查询已授权的有效工序-->
+    <select id="findAuthProcess" parameterType="java.util.Map" resultMap="userProcessResultMap">
+        SELECT
+			s.*
+		FROM
+			mes_user_process s
+		WHERE
+			s.user_id = #{userId}
+			and s.process_id = #{processId}
+			and s.process_status = #{processStatus}
+			and s.end_time > now()
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="userProcessResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+		SELECT s.id,s.user_id,s.process_id,s.create_date,s.start_time,s.end_time,s.process_status,mfp.name as process_name
+		from mes_user_process s
+		left join mes_fty_process mfp on s.process_id=mfp.id
+	</sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="userId != null  and userId != '' ">
+                <![CDATA[
+					and user_id = #{userId}
+				]]>
+            </if>
+            <if test="processId != null  and processId != '' ">
+                <![CDATA[
+					and process_id = #{processId}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date = #{createDate}
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="userId != null  and userId != '' ">
+                <![CDATA[
+					or user_id = #{userId}
+				]]>
+            </if>
+            <if test="processId != null  and processId != '' ">
+                <![CDATA[
+					or process_id = #{processId}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date = #{createDate}
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="userId != null  and userId != '' ">
+                <![CDATA[
+					and user_id like CONCAT('%', #{userId}, '%')
+				]]>
+            </if>
+            <if test="processId != null  and processId != '' ">
+                <![CDATA[
+					and process_id like CONCAT('%', #{processId}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="userId != null  and userId != '' ">
+                <![CDATA[
+					or user_id like CONCAT('%', #{userId}, '%')
+				]]>
+            </if>
+            <if test="processId != null  and processId != '' ">
+                <![CDATA[
+					or process_id like CONCAT('%', #{processId}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="userId != null  and userId != '' ">
+                <![CDATA[
+					user_id = #{userId},
+				]]>
+            </if>
+            <if test="processId != null  and processId != '' ">
+                <![CDATA[
+					process_id = #{processId},
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					create_date = #{createDate},
+				]]>
+            </if>
+            <if test="startTime != null">
+                <![CDATA[
+					start_time = #{startTime},
+				]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[
+					end_time = #{endTime},
+				]]>
+            </if>
+            <if test="processStatus != null">
+                <![CDATA[
+					process_status = #{processStatus},
+				]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

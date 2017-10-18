@@ -1,0 +1,114 @@
+#!/bin/sh
+#
+# dg-server service
+#
+# chkconfig:   - 99 02
+# description: dg-server service
+#
+### END INIT INFO
+
+. /etc/rc.d/init.d/functions
+
+prog=iov-restful
+export JAVA_HOME=/opt/jdk1.8.0_51
+export DEPLOY_PATH=/opt/iov/iov-restful
+export DEBUG_PORT=5181
+
+if [ ! -d $JAVA_HOME ];then
+    echo "please set right JAVA_HOME in the file /etc/init.d/$prog-server"
+    exit 0
+fi
+
+if [ ! -d $DEPLOY_PATH ];then
+    echo "please set right DEPLOY_PATH in the file /etc/init.d/$prog-server"
+    exit 0
+fi
+
+
+export JAVA_OPTIONS="-Xmx512m -Xms256m"
+export CLASSPATH=${CLASSPATH}:${DEPLOY_PATH}/lib/TrueCloud-StartUp-1.0.jar:${DEPLOY_PATH}/lib/javax.ws.rs-api-2.0.1.jar:${DEPLOY_PATH}/resources
+export JAVA_DEBUG="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=${DEBUG_PORT},server=y,suspend=n"
+
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+pidfile="/var/run/$prog/$prog.pid"
+lockfile=/var/lock/subsys/$prog-server
+mkdir -p /var/run/$prog 
+
+start() {
+    [ -x $exec ] || exit 5
+    [ -f $config ] || exit 6
+    echo -n $"Starting $prog: "
+    daemon --user root --pidfile $pidfile "${JAVA_HOME}/bin/java ${JAVA_OPTIONS} ${JAVA_DEBUG} \
+                                        -Dcom.dc.install_path=${DEPLOY_PATH}/resources \
+                                        -Dpaas.classpath=${DEPLOY_PATH}/lib com.tscloud.common.com.iov.common.main.StartUp &>/dev/null & echo \$! > $pidfile"
+
+    sleep 1
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc -p $pidfile $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    restart
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    status -p $pidfile $prog
+}
+
+rh_status_q() {
+    rh_status >/dev/null 2>&1
+}
+
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?

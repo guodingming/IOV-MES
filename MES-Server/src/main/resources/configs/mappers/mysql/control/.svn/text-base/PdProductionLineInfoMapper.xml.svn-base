@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.PdProductionLineInfoMapper">
+	<resultMap type="com.mes.entity.control.PdProductionLineInfo" id="PdProductionLineInfoResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="production_line_id" property="productionLineId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="name" property="name" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="PdProductionLineInfoResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdProductionLineInfo">
+		insert into mes_pd_production_lineInfo (id,production_line_id,pd_id,create_date)
+		values (#{id},#{productionLineId},#{pdId},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdProductionLineInfo">
+		update mes_pd_production_lineInfo s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_production_lineInfo where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_production_lineInfo s
+		<include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="PdProductionLineInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="PdProductionLineInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="PdProductionLineInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.production_line_id,s.pd_id,s.create_date,l.name from mes_pd_production_lineInfo s
+		left join mes_fty_production_line l on s.production_line_id=l.id
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1 = 1
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					and s.production_line_id = #{productionLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and s.pd_id = #{pdId}
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			1=1
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					or production_line_id = #{productionLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			1=1
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					and production_line_id like CONCAT('%', #{productionLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			1=1
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					or production_line_id like CONCAT('%', #{productionLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					s.production_line_id = #{productionLineId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					s.pd_id = #{pdId},
+				]]>
+			</if>
+
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					s.create_date = #{createDate},
+				]]>
+			</if>
+
+		</set>
+	</sql>
+</mapper>

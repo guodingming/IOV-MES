@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jdbcType>
+        <field  typeName="varchar"  intType="12" />
+        <field  typeName="nvarchar"  intType="-9" />
+        <field  typeName="varchar2"  intType="12" />
+        <field  typeName="nvarchar2"  intType="12" />
+        <field  typeName="tinytext"  intType="12" />
+        <field  typeName="char"  intType="1" />
+        <field  typeName="nchar"  intType="-15" />
+
+        <field  typeName="date"  intType="91" />
+        <field  typeName="year"  intType="91" />
+        <field  typeName="time"  intType="92" />
+        <field  typeName="timestamp"  intType="93" />
+        <field  typeName="smalldatetime"  intType="93" />
+        <field  typeName="datetime"  intType="93" />
+        <field  typeName="datetime2"  intType="93" />
+
+        <field  typeName="bit"  intType="-7" />
+
+        <field  typeName="int"  intType="-5" />
+        <field  typeName="tinyint"  intType="-6" />
+        <field  typeName="smallint"  intType="5" />
+        <field  typeName="mediumint"  intType="4" />
+        <field  typeName="integer"  intType="4" />
+        <field  typeName="bigint"  intType="-5" />
+        <field  typeName="real"  intType="8" />
+        <field  typeName="double"  intType="8" />
+        <field  typeName="float"  intType="6" />
+        <field  typeName="decimal"  intType="3" />
+        <field  typeName="numeric"  intType="3" />
+
+        <field  typeName="tinyblob"  intType="-3" />
+        <field  typeName="image"  intType="2004" />
+        <field  typeName="blob"  intType="2004" />
+        <field  typeName="mediumblob"  intType="-4" />
+        <field  typeName="binary"  intType="-2" />
+        <field  typeName="varbinary"  intType="-3" />
+
+        <field  typeName="longblob"  intType="-4" />
+        <field  typeName="clob"  intType="2005" />
+        <field  typeName="nclob"  intType="2005" />
+        <field  typeName="text"  intType="-1" />
+        <field  typeName="ntext"  intType="-16" />
+        <field  typeName="mediumtext"  intType="-1" />
+        <field  typeName="longtext"  intType="-1" />
+        <field  typeName="long"  intType="-1" />
+
+        <field  typeName="other"  intType="1111" />
+</jdbcType>

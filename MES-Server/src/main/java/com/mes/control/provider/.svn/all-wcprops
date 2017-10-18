@@ -1,0 +1,839 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider
+END
+PdProductInfoHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoHistoryProviderImpl.java
+END
+DpMaterialsInfoHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialsInfoHistoryProviderImpl.java
+END
+DpBoxRuleProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBoxRuleProviderImpl.java
+END
+DpProductTestLogProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProductTestLogProviderImpl.java
+END
+FtyDeviceFaultProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceFaultProviderImpl.java
+END
+UserOpLogProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/15754/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/UserOpLogProviderImpl.java
+END
+DpServiceTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16696/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpServiceTypeProviderImpl.java
+END
+DpServiceLogProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15787/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpServiceLogProviderImpl.java
+END
+FtyDeviceFixtureProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/14315/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceFixtureProviderImpl.java
+END
+SerialRuleDetailProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/SerialRuleDetailProviderImpl.java
+END
+PdWorkOrderProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/17287/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdWorkOrderProviderImpl.java
+END
+DpLabelProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/17056/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpLabelProviderImpl.java
+END
+DpProduceProcessDeviceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessDeviceProviderImpl.java
+END
+PdBomWorkProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17300/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomWorkProviderImpl.java
+END
+FtyDeviceProcessAnnexAssociationProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/projectnew/IOV_PLATFORM/!svn/ver/15112/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceProcessAnnexAssociationProviderImpl.java
+END
+FtyDeviceConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/14736/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceConfigProviderImpl.java
+END
+PdSchedulingProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15077/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdSchedulingProviderImpl.java
+END
+DpFunctionProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/16932/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpFunctionProviderImpl.java
+END
+PdBomAffiliatedProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16880/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomAffiliatedProviderImpl.java
+END
+PdBarcodeRuleTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15365/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBarcodeRuleTypeProviderImpl.java
+END
+MetadataProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/16051/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/MetadataProviderImpl.java
+END
+DpProduceProcessDateProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/16094/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessDateProviderImpl.java
+END
+PdBomProduceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17067/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomProduceProviderImpl.java
+END
+DpProduceProcessProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessProviderImpl.java
+END
+DpDataDictionaryTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/16696/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpDataDictionaryTypeProviderImpl.java
+END
+PdAttributeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/15421/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdAttributeProviderImpl.java
+END
+DpFormTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/16711/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpFormTypeProviderImpl.java
+END
+FtyDeviceFaultInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17271/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceFaultInfoProviderImpl.java
+END
+DpProduceProcessDeviceConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/15844/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessDeviceConfigProviderImpl.java
+END
+PdBomMaterialsReplaceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomMaterialsReplaceProviderImpl.java
+END
+DpTemplateTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16698/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpTemplateTypeProviderImpl.java
+END
+DpProduceStandardTestOrderProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/15832/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceStandardTestOrderProviderImpl.java
+END
+DpRoutesProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpRoutesProviderImpl.java
+END
+PdSchedulingWorkOrderProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/14753/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdSchedulingWorkOrderProviderImpl.java
+END
+DpRepairStationProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpRepairStationProviderImpl.java
+END
+FtyDeviceConfigTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/14709/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceConfigTypeProviderImpl.java
+END
+DpProduceProcessConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessConfigProviderImpl.java
+END
+DpSubassemblyProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpSubassemblyProviderImpl.java
+END
+UserProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/17248/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/UserProviderImpl.java
+END
+PdProductInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16888/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoProviderImpl.java
+END
+FtyProductionLineProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17264/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyProductionLineProviderImpl.java
+END
+FtyDeviceConfigInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17053/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceConfigInfoProviderImpl.java
+END
+DpBoxProductInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBoxProductInfoProviderImpl.java
+END
+DpProduceDemarcateProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16144/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceDemarcateProviderImpl.java
+END
+DpProduceProcessDeviceAnnexProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessDeviceAnnexProviderImpl.java
+END
+RoleProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/17329/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/RoleProviderImpl.java
+END
+FtySiteInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtySiteInfoProviderImpl.java
+END
+PdProductInfoNumberHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoNumberHistoryProviderImpl.java
+END
+DpBoxProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/16281/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBoxProviderImpl.java
+END
+FtyDeviceFaultProcessProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16586/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceFaultProcessProviderImpl.java
+END
+DpBoxPalletProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/15978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBoxPalletProviderImpl.java
+END
+DpProduceProcessAnnexProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessAnnexProviderImpl.java
+END
+DpMaterialsInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialsInfoProviderImpl.java
+END
+FtyDeviceProcessProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15115/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceProcessProviderImpl.java
+END
+DpProductInfoLogProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProductInfoLogProviderImpl.java
+END
+PdProductInfoMaterialsProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoMaterialsProviderImpl.java
+END
+PdProductPdLableProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductPdLableProviderImpl.java
+END
+FtyProcessConfigTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15748/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyProcessConfigTypeProviderImpl.java
+END
+TableTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/14787/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/TableTypeProviderImpl.java
+END
+DeptProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/17329/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DeptProviderImpl.java
+END
+AgentProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/17171/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/AgentProviderImpl.java
+END
+PdFileResourcesProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16671/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdFileResourcesProviderImpl.java
+END
+PdSchedulingPersonnelProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/15096/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdSchedulingPersonnelProviderImpl.java
+END
+PdWorkTestMainTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16788/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdWorkTestMainTbProviderImpl.java
+END
+DpProduceStandardTestProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceStandardTestProviderImpl.java
+END
+FtyWorkCenterProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17132/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyWorkCenterProviderImpl.java
+END
+SerialRuleProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/SerialRuleProviderImpl.java
+END
+PdBarcodeRuleProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBarcodeRuleProviderImpl.java
+END
+FtyDeviceAnnexProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceAnnexProviderImpl.java
+END
+FtyDeviceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17043/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceProviderImpl.java
+END
+DpMaterialProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialProviderImpl.java
+END
+DpProcessBaseConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15510/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProcessBaseConfigProviderImpl.java
+END
+DpDataDictionaryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17047/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpDataDictionaryProviderImpl.java
+END
+PdProductBarCodeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17213/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductBarCodeProviderImpl.java
+END
+DpBarcodeTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/14831/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBarcodeTypeProviderImpl.java
+END
+DpFormProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/projectnew/IOV_PLATFORM/!svn/ver/17165/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpFormProviderImpl.java
+END
+PdBomWorkAmountProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomWorkAmountProviderImpl.java
+END
+DpProcessConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/14852/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProcessConfigProviderImpl.java
+END
+DpProjectProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/15538/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProjectProviderImpl.java
+END
+DpBoxPalletInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/15978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBoxPalletInfoProviderImpl.java
+END
+MenuRestApiProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/14695/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/MenuRestApiProviderImpl.java
+END
+DpServiceMonitorProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15738/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpServiceMonitorProviderImpl.java
+END
+FtyProcessConfigTypeDictProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15748/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyProcessConfigTypeDictProviderImpl.java
+END
+PdBomProduceRulesProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/14825/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomProduceRulesProviderImpl.java
+END
+PdOrderProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/14763/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdOrderProviderImpl.java
+END
+DpTemplateProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpTemplateProviderImpl.java
+END
+FtyEnterpriseProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17117/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyEnterpriseProviderImpl.java
+END
+PdProductLabelProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductLabelProviderImpl.java
+END
+MenuProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/15974/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/MenuProviderImpl.java
+END
+PdPreCodeWildcardTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdPreCodeWildcardTbProviderImpl.java
+END
+DpMaterialsLoadProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialsLoadProviderImpl.java
+END
+FtyWorkstationProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/17043/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyWorkstationProviderImpl.java
+END
+DpProduceProcessConfigWorkorderProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceProcessConfigWorkorderProviderImpl.java
+END
+UserProcessProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/17032/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/UserProcessProviderImpl.java
+END
+ExpandTableConfigProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16051/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/ExpandTableConfigProviderImpl.java
+END
+FtyDeviceConsumablesProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/14315/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceConsumablesProviderImpl.java
+END
+FtyDeviceTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17138/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceTypeProviderImpl.java
+END
+DpMaterialTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16700/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialTypeProviderImpl.java
+END
+FtyDeviceAnnexInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceAnnexInfoProviderImpl.java
+END
+FtyAreaProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/17129/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyAreaProviderImpl.java
+END
+DpSampleInspectionProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpSampleInspectionProviderImpl.java
+END
+PdBomMaterialsProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16960/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomMaterialsProviderImpl.java
+END
+PdProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/17191/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProviderImpl.java
+END
+DpLabelTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/14831/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpLabelTypeProviderImpl.java
+END
+BaseProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/14115/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/BaseProviderImpl.java
+END
+DpFunctionTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/15954/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpFunctionTypeProviderImpl.java
+END
+FtyDeviceProcessAnnexProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17300/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceProcessAnnexProviderImpl.java
+END
+PdSchedulingTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdSchedulingTypeProviderImpl.java
+END
+PdLineProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/projectnew/IOV_PLATFORM/!svn/ver/17218/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdLineProviderImpl.java
+END
+PdWorkTestDeviceTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdWorkTestDeviceTbProviderImpl.java
+END
+PdExecSystemModuleCopyProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdExecSystemModuleCopyProviderImpl.java
+END
+PdBaseReplaceTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBaseReplaceTbProviderImpl.java
+END
+DpMaterialsAssembleProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpMaterialsAssembleProviderImpl.java
+END
+DpSampleInspectionDetailProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpSampleInspectionDetailProviderImpl.java
+END
+FileTransferProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/14759/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FileTransferProviderImpl.java
+END
+FtyWorkstationDeviceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyWorkstationDeviceProviderImpl.java
+END
+TableProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/16051/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/TableProviderImpl.java
+END
+PdSchedulingDeviceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15096/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdSchedulingDeviceProviderImpl.java
+END
+PdProductInfoNumberProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16529/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoNumberProviderImpl.java
+END
+DpRepairStationBadInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpRepairStationBadInfoProviderImpl.java
+END
+PdBarcodeWildcardProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBarcodeWildcardProviderImpl.java
+END
+PdProductionLineInfoProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/17021/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductionLineInfoProviderImpl.java
+END
+SerialRuleWorkOrderAssociationProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/SerialRuleWorkOrderAssociationProviderImpl.java
+END
+PdProductInfoMaterialsHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdProductInfoMaterialsHistoryProviderImpl.java
+END
+DpProductInfoLogHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProductInfoLogHistoryProviderImpl.java
+END
+PdWorkOrderBatchProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16121/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdWorkOrderBatchProviderImpl.java
+END
+PdFileTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/17116/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdFileTypeProviderImpl.java
+END
+PdBomProduceAmountProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdBomProduceAmountProviderImpl.java
+END
+FtyDeviceToolingProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/14315/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyDeviceToolingProviderImpl.java
+END
+DpSubassemblyTypeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16709/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpSubassemblyTypeProviderImpl.java
+END
+PdWorkTestDetailTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdWorkTestDetailTbProviderImpl.java
+END
+DpBarcodeProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpBarcodeProviderImpl.java
+END
+DpServiceProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpServiceProviderImpl.java
+END
+PdExecSoftinjectTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdExecSoftinjectTbProviderImpl.java
+END
+DpProductTestLogHistoryProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProductTestLogHistoryProviderImpl.java
+END
+DpProduceChipProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15832/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/DpProduceChipProviderImpl.java
+END
+UserGroupProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/16114/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/UserGroupProviderImpl.java
+END
+PdExecTransmitSetTbProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/PdExecTransmitSetTbProviderImpl.java
+END
+FtyProcessProviderImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/15837/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/provider/FtyProcessProviderImpl.java
+END

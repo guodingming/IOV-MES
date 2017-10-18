@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyDeviceFaultProcessMapper">
+	<resultMap type="com.mes.entity.control.FtyDeviceFaultProcess" id="ftyDeviceFaultProcessResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="responsible_persion" property="responsiblePersion" jdbcType="VARCHAR"/>
+		<result column="abnormal_problems" property="abnormalProblems" jdbcType="VARCHAR"/>
+		<result column="device_fault_info_id" property="deviceFaultInfoId" jdbcType="VARCHAR"/>
+		<result column="abnormal_code" property="abnormalCode" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyDeviceFaultProcessResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="findByDeviceFaultInfoId" resultMap="ftyDeviceFaultProcessResultMap">
+		<include refid="sql_select"/>
+		WHERE s.device_fault_info_id=#{deviceFaultInfoId}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyDeviceFaultProcess">
+		insert into mes_fty_device_fault_process (id,responsible_persion,abnormal_problems,device_fault_info_id,abnormal_code,create_date)
+		values (#{id},#{responsiblePersion},#{abnormalProblems},#{deviceFaultInfoId},#{abnormalCode},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyDeviceFaultProcess">
+		update mes_fty_device_fault_process s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_device_fault_process where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_fty_device_fault_process t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyDeviceFaultProcessResultMap">
+		SELECT s.id,s.responsible_persion,s.abnormal_problems,s.device_fault_info_id,s.abnormal_code,s.create_date from mes_fty_device_fault_process s
+		<include refid="sql_where_and_page"/>   ORDER BY s.create_date DESC limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyDeviceFaultProcessResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyDeviceFaultProcessResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,responsible_persion,abnormal_problems,device_fault_info_id,abnormal_code,create_date from mes_fty_device_fault_process s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				responsible_persion like CONCAT('%', #{search}, '%')
+				or abnormal_problems like CONCAT('%', #{search}, '%')
+				or abnormal_code like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					and responsible_persion = #{responsiblePersion}
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					and abnormal_problems = #{abnormalProblems}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					and abnormal_code = #{abnormalCode}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+	<sql id="sql_where_and_page">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				responsible_persion like CONCAT('%', #{search}, '%')
+				or abnormal_problems like CONCAT('%', #{search}, '%')
+				or abnormal_code like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					and s.responsible_persion = #{responsiblePersion}
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					and s.abnormal_problems = #{abnormalProblems}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and s.device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					and abnormal_code = #{abnormalCode}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					or responsible_persion = #{responsiblePersion}
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					or abnormal_problems = #{abnormalProblems}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					or device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					or abnormal_code = #{abnormalCode}
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					and responsible_persion like CONCAT('%', #{responsiblePersion}, '%')
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					and abnormal_problems like CONCAT('%', #{abnormalProblems}, '%')
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and device_fault_info_id like CONCAT('%', #{deviceFaultInfoId}, '%')
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					and abnormal_code like CONCAT('%', #{abnormalCode}, '%')
+				]]>
+			</if>
+			<if test="CreateDate != null  and CreateDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{CreateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					or responsible_persion like CONCAT('%', #{responsiblePersion}, '%')
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					or abnormal_problems like CONCAT('%', #{abnormalProblems}, '%')
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					or device_fault_info_id like CONCAT('%', #{deviceFaultInfoId}, '%')
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					or abnormal_code like CONCAT('%', #{abnormalCode}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="responsiblePersion != null  and responsiblePersion != '' ">
+				<![CDATA[
+					responsible_persion = #{responsiblePersion},
+				]]>
+			</if>
+			<if test="abnormalProblems != null  and abnormalProblems != '' ">
+				<![CDATA[
+					abnormal_problems = #{abnormalProblems},
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					device_fault_info_id = #{deviceFaultInfoId},
+				]]>
+			</if>
+			<if test="abnormalCode != null  and abnormalCode != '' ">
+				<![CDATA[
+					abnormal_code = #{abnormalCode},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

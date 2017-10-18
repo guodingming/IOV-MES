@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- com组件调用接口信息 -->
+<service-configs persisted="false">
+    <services>
+        <service name="GetRelationTable" code="100200" method-name="getRelationTable" description="GetRelationTable">
+            <fn name="GetRelationTable" script-path="configs/groovy/get-relation-table.groovy"
+                description="GetRelationTable"/>
+        </service>
+        <service name="GetProductInfo" code="100201" method-name="getProductInfo" description="产品生产信息XML">
+            <fn name="GetProductInfo" script-path="configs/groovy/get-product-info.groovy"
+                description="产品生产信息XML"/>
+        </service>
+        <service name="GetAppFile" code="100202" method-name="getAppFile" description="获取软件路径">
+            <fn name="GetAppFile" script-path="configs/groovy/get-app-file.groovy" description="获取软件路径"/>
+        </service>
+        <service name="LoadChipOpXml" code="100203" method-name="loadChipOpXml" description="获取芯片操作列表XML">
+            <fn name="LoadChipOpXml" script-path="configs/groovy/load-chip-op-xml.groovy" description="获取芯片操作列表XML"/>
+        </service>
+        <service name="GetSoftwareInfo" code="100204" method-name="getSoftwareInfo" description="获取硬件子料信息">
+            <fn name="GetSoftwareInfo" script-path="configs/groovy/get-software-info.groovy"
+                description="获取硬件子料信息"/>
+        </service>
+        <service name="GetRemoteConfig" code="100205" method-name="getRemoteConfig" description="远程配置xml">
+            <fn name="GetRemoteConfig" script-path="configs/groovy/get-remote-config.groovy"
+                description="远程配置xml"/>
+        </service>
+        <service name="GetToolInfo" code="100206" method-name="getToolInfo" description="工装信息XML">
+            <fn name="GetToolInfo" script-path="configs/groovy/get-tool-info.groovy" description="工装信息XML"/>
+        </service>
+        <service name="GetTestStandard" code="100207" method-name="getTestStandard" description="获取测试标准xml">
+            <fn name="GetTestStandard" script-path="configs/groovy/get-test-standard.groovy"
+                description="获取测试标准xml"/>
+        </service>
+        <service name="GetProductBarCode" code="100208" method-name="getProductBarCode" description="根据字节内容获取跟踪号">
+            <fn name="GetProductBarCode" script-path="configs/groovy/get-product-bar-code.groovy"
+                description="根据字节内容获取跟踪号"/>
+        </service>
+        <service name="SaveTerminalData" code="100209" method-name="saveTerminalData" description="终端测试工序产品数据保存">
+            <fn name="SaveTerminalData" script-path="configs/groovy/save-terminal-data.groovy"
+                description="终端测试工序产品数据保存"/>
+        </service>
+        <service name="SaveDownloadData" code="100210" method-name="saveDownloadData" description="保存芯片操作结果">
+            <fn name="SaveDownloadData" script-path="configs/groovy/save-download-data.groovy"
+                description="保存芯片操作结果"/>
+        </service>
+        <service name="SaveProResult" code="100211" method-name="saveProResult" description="测试和软注结果同时保存">
+            <fn name="SaveProResult" script-path="configs/groovy/save-pro-result.groovy" description="测试和软注结果同时保存"/>
+        </service>
+        <service name="GetDemarcateInfo" code="100212" method-name="getDemarcateInfo" description="获取标定信息">
+            <fn name="GetDemarcateInfo" script-path="configs/groovy/get-demarcate-info.groovy"
+                description="获取标定信息"/>
+        </service>
+        <service name="GetVerifyCode" code="100213" method-name="getVerifyCode" description="获取程序文件校验和">
+            <fn name="GetVerifyCode" script-path="configs/groovy/get-verify-code.groovy" description="获取程序文件校验和"/>
+        </service>
+        <service name="GetCurContent" code="100214" method-name="getCurContent" description="芯片操作内容转换">
+            <fn name="GetCurContent" script-path="configs/groovy/get-cur-content.groovy" description="芯片操作内容转换"/>
+        </service>
+        <service name="GetMissionInfo" code="100215" method-name="getMissionInfo" description="显示任务信息">
+            <fn name="GetMissionInfo" script-path="configs/groovy/get-mission-info.groovy" description="显示任务信息"/>
+        </service>
+        <service name="SaveAppDownData" code="100216" method-name="saveAppDownData" description="软件注入结果保存">
+            <fn name="SaveAppDownData" script-path="configs/groovy/save-app-down-data.groovy" description="软件注入结果保存"/>
+        </service>
+        <service name="CompleteTask" code="100217" method-name="completeTask" description="产品过站">
+            <fn name="CompleteTask" script-path="configs/groovy/complete-task.groovy" description="产品过站"/>
+        </service>
+        <service name="showlogin" code="313525" method-name="showlogin" description="用户登录权限校验">
+            <fn name="showlogin" script-path="configs/groovy/show-login.groovy" description="用户登录权限校验"/>
+        </service>
+        <service name="getTaskInfo" code="525313" method-name="getTaskInfo" description="获取任务信息">
+            <fn name="getTaskInfo" script-path="configs/groovy/get-task-Info.groovy" description="获取任务信息"/>
+        </service>
+        <service name="GetProcedureData" code="901314" method-name="getProcedureData" description="获取工序数据">
+            <fn name="GetProcedureData" script-path="configs/groovy/get-task-complete-info.groovy"
+                description="获取工序数据"/>
+        </service>
+        <service name="GetMachineConfig" code="900900" method-name="getMachineConfig" description="根据设备ip获取设备id">
+            <fn name="GetMachineConfig" script-path="configs/groovy/getDeviceIdByIp.groovy"
+                description="根据设备ip获取设备id"/>
+        </service>
+        <service name="CheckProductBar" code="120120" method-name="checkProductBar" description="产品条码合法性判断">
+            <fn name="CheckProductBar" script-path="configs/groovy/check-product-bar.groovy"
+                description="产品条码合法性判断"/>
+        </service>
+    </services>
+    <source-types>
+        <fns>
+            <fn name="identity" script-path="configs/groovy/byteop/byte-op-identity.groovy" description="固定值"/>
+            <fn name="transform-inner-version" script-path="configs/groovy/byteop/byte-op-inner-version.groovy" description="转换内部版本号"/>
+            <fn name="transform-inner-pcba-version" script-path="configs/groovy/byteop/byte-op-inner-pcba-version.groovy" description="转换主PCBA版本号"/>
+            <fn name="transform-outer-version" script-path="configs/groovy/byteop/byte-op-outer-version.groovy" description="转换外部版本号"/>
+            <fn name="transform-ERP-trace-no" script-path="configs/groovy/byteop/byte-op-erp-trace-no.groovy" description="ERP追踪号"/>
+            <fn name="transform-Inalfa-inner-part-no" script-path="configs/groovy/byteop/byte-op-inalfa-inner-part-no.groovy" description="Inalfa内部零件号"/>
+            <fn name="transform-Inalfa-client-trace-no" script-path="configs/groovy/byteop/byte-op-inalfa-client-trace-no.groovy" description="Inalfa客户TRACE_NO"/>
+            <fn name="transform-product-label-info" script-path="configs/groovy/byteop/byte-op-product-label-info.groovy" description="产品标签信息"/>
+            <fn name="transform-config-data-flag" script-path="configs/groovy/byteop/byte-op-config-data-flag.groovy" description="配置数据标志擦除后状态"/>
+        </fns>
+        <types>
+            <!-- 固定值 -->
+            <type name="1" handler="identity" handler-id="HC152E366DD1B4B6DB145AEB6837FC474"/>
+            <!-- 主BT版本 -->
+            <type name="7" handler="transform-inner-version" handler-id="HBD6C79E7A4E24A19A1F69AD498393ED5"/>
+            <!-- 从APP版本 -->
+            <type name="6" handler="transform-outer-version" handler-id="H037E787201A64BA6B5A592D558D142DA"/>
+            <!-- 主APP版本 -->
+            <type name="5" handler="transform-inner-version" handler-id="HBD6C79E7A4E24A19A1F69AD498393ED5"/>
+            <!-- 主CAL版本 -->
+            <type name="9" handler="transform-inner-version" handler-id="HBD6C79E7A4E24A19A1F69AD498393ED5"/>
+            <!-- Inalfa客户TRACE_NO -->
+            <type name="17" handler="transform-Inalfa-client-trace-no" handler-id="H8E34E57AAAC04373A405BC13AFD03FE0"/>
+            <!-- Inalfa内部零件号 -->
+            <type name="18" handler="transform-Inalfa-inner-part-no" handler-id="H91E289C8B62A4306A66B3F941C5DFE29"/>
+            <!-- Inalfa客户零件号 -->
+            <type name="19" handler="transform-Inalfa-inner-part-no" handler-id="H91E289C8B62A4306A66B3F941C5DFE29"/>
+            <!-- 产品标签信息 -->
+            <type name="38" handler="transform-product-label-info" handler-id="HE8E9A637B64D45519F27114D46361241"/>
+            <!-- ERP_TRACE_NO -->
+            <type name="44" handler="transform-ERP-trace-no" handler-id="H2DE480A24A3D434BA85786E2851467D7"/>
+            <!-- 主PCBA版本 -->
+            <type name="11" handler="transform-inner-pcba-version" handler-id="HC6B82BDC4EB4487B9CA240359148933F"/>
+            <!-- 配置数据标志擦除后状态 -->
+            <type name="20" handler="transform-config-data-flag" handler-id="H5022E9692D384EADBE70B7D20BB62F79"/>
+        </types>
+    </source-types>
+</service-configs>

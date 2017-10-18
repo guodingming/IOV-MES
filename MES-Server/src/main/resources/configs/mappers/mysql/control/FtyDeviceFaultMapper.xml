@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyDeviceFaultMapper">
+	<resultMap type="com.mes.entity.control.FtyDeviceFault" id="ftyDeviceFaultResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR"/>
+		<result column="is_run" property="isRun" jdbcType="VARCHAR"/>
+		<result column="device_fault_info_id" property="deviceFaultInfoId" jdbcType="VARCHAR"/>
+		<result column="device_fault_process_id" property="deviceFaultProcessId" jdbcType="VARCHAR"/>
+		<result column="email" property="email" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="device_name" property="deviceName" jdbcType="VARCHAR"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="maintenance_persion" property="maintenancePersion" jdbcType="VARCHAR"/>
+		<result column="maintenance_phone" property="maintenancePhone" jdbcType="VARCHAR"/>
+		<result column="operator" property="operator" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyDeviceFaultResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyDeviceFault">
+		insert into mes_fty_device_fault (id,device_id,is_run,device_fault_info_id,device_fault_process_id,email,status,description,maintenance_persion,maintenance_phone,operator,create_date,update_date)
+		values (#{id},#{deviceId},#{isRun},#{deviceFaultInfoId},#{deviceFaultProcessId},#{email},#{status},#{description},#{maintenancePersion},#{maintenancePhone},#{operator},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyDeviceFault">
+		update mes_fty_device_fault s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_device_fault where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_fty_device_fault t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyDeviceFaultResultMap">
+		SELECT s.id,s.device_id,s.is_run,s.device_fault_info_id,s.device_fault_process_id,s.email,s.status,s.description,s.maintenance_persion,s.maintenance_phone,s.operator,s.create_date,s.update_date,fi.name,fd.ip,fd.name as device_name
+		from mes_fty_device_fault s,mes_fty_device_fault_info fi,mes_fty_device fd
+		 <include refid="sql_where_and_page"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyDeviceFaultResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyDeviceFaultResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,device_id,is_run,device_fault_info_id,device_fault_process_id,email,status,description,maintenance_persion,maintenance_phone,operator,create_date,update_date from mes_fty_device_fault s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and ( email like CONCAT('%', #{search}, '%')
+				or maintenance_persion like CONCAT('%', #{search}, '%')
+				or maintenance_phone like CONCAT('%', #{search}, '%')
+				or operator like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					and device_id = #{deviceId}
+				]]>
+			</if>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					and is_run = #{deviceId}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					and device_fault_process_id = #{deviceFaultProcessId}
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					and email = #{email}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					and maintenance_persion = #{maintenancePersion}
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					and maintenance_phone = #{maintenancePhone}
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					and operator = #{operator}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<sql id="sql_where_and_page">
+		<where>
+			s.device_id = fd.id AND s.device_fault_info_id = fi.id
+			<if test="search != null and search != '' ">
+				and ( s.email like CONCAT('%', #{search}, '%')
+				or s.status like CONCAT('%', #{search}, '%')
+				or s.maintenance_persion like CONCAT('%', #{search}, '%')
+				or s.maintenance_phone like CONCAT('%', #{search}, '%')
+				or s.operator like CONCAT('%', #{search}, '%')
+				or fi.name like CONCAT('%', #{search}, '%')
+				or fd.name like CONCAT('%', #{search}, '%')
+				or fd.ip like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					and s.device_id = #{deviceId}
+				]]>
+			</if>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					and s.is_run = #{deviceId}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and s.device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					and s.device_fault_process_id = #{deviceFaultProcessId}
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					and s.email = #{email}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and s.status = #{status}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and s.description = #{description}
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					and s.maintenance_persion = #{maintenancePersion}
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					and s.maintenance_phone = #{maintenancePhone}
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					and s.operator = #{operator}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and fi.name = #{name}
+				]]>
+			</if>
+			<if test="deviceName != null  and deviceName != '' ">
+				<![CDATA[
+					and device_name = #{deviceName}
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					and fd.ip = #{ip}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and s.update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					or device_id = #{deviceId}
+				]]>
+			</if>
+			<if test="isRun != null  and isRun != '' ">
+				<![CDATA[
+					or is_run = #{isRun}
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					or device_fault_info_id = #{deviceFaultInfoId}
+				]]>
+			</if>
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					or device_fault_process_id = #{deviceFaultProcessId}
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					or email = #{email}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					or maintenance_persion = #{maintenancePersion}
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					or maintenance_phone = #{maintenancePhone}
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					or operator = #{operator}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					and device_id like CONCAT('%', #{deviceId}, '%')
+				]]>
+			</if>
+			<if test="isRun != null  and isRun != '' ">
+				<![CDATA[
+					and is_run like CONCAT('%', #{isRun}, '%')
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					and device_fault_info_id like CONCAT('%', #{deviceFaultInfoId}, '%')
+				]]>
+			</if>
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					and device_fault_process_id like CONCAT('%', #{deviceFaultProcessId}, '%')
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					and email like CONCAT('%', #{email}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					and maintenance_persion like CONCAT('%', #{maintenancePersion}, '%')
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					and maintenance_phone like CONCAT('%', #{maintenancePhone}, '%')
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					and operator like CONCAT('%', #{operator}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					or device_id like CONCAT('%', #{deviceId}, '%')
+				]]>
+			</if>
+			<if test="isRun != null  and isRun != '' ">
+				<![CDATA[
+					or is_run like CONCAT('%', #{isRun}, '%')
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					or device_fault_info_id like CONCAT('%', #{deviceFaultInfoId}, '%')
+				]]>
+			</if>
+
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					or device_fault_process_id like CONCAT('%', #{deviceFaultProcessId}, '%')
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					or email like CONCAT('%', #{email}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					or maintenance_persion like CONCAT('%', #{maintenancePersion}, '%')
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					or maintenance_phone like CONCAT('%', #{maintenancePhone}, '%')
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					or operator like CONCAT('%', #{operator}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="deviceId != null  and deviceId != '' ">
+				<![CDATA[
+					device_id = #{deviceId},
+				]]>
+			</if>
+			<if test="isRun != null  and isRun != '' ">
+				<![CDATA[
+					is_run = #{isRun},
+				]]>
+			</if>
+			<if test="deviceFaultInfoId != null  and deviceFaultInfoId != '' ">
+				<![CDATA[
+					device_fault_info_id = #{deviceFaultInfoId},
+				]]>
+			</if>
+
+			<if test="deviceFaultProcessId != null  and deviceFaultProcessId != '' ">
+				<![CDATA[
+					device_fault_process_id = #{deviceFaultProcessId},
+				]]>
+			</if>
+			<if test="email != null  and email != '' ">
+				<![CDATA[
+					email = #{email},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="maintenancePersion != null  and maintenancePersion != '' ">
+				<![CDATA[
+					maintenance_persion = #{maintenancePersion},
+				]]>
+			</if>
+			<if test="maintenancePhone != null  and maintenancePhone != '' ">
+				<![CDATA[
+					maintenance_phone = #{maintenancePhone},
+				]]>
+			</if>
+			<if test="operator != null  and operator != '' ">
+				<![CDATA[
+					operator = #{operator},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

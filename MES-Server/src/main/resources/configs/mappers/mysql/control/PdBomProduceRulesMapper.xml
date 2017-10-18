@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-生产BOM校验规则 -->
+<mapper namespace="com.mes.control.mapper.PdBomProduceRulesMapper">
+	<resultMap type="com.mes.entity.control.PdBomProduceRules" id="pdBomProduceRulesResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="bom_id" property="bomId" jdbcType="VARCHAR"/>
+		<result column="rule_regex" property="ruleRegex" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBomProduceRulesResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBomProduceRules">
+		insert into mes_pd_bom_produce_rules (id,name,bom_id,rule_regex,create_date,update_date)
+		values (#{id},#{name},#{bomId},#{ruleRegex},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBomProduceRules">
+		update mes_pd_bom_produce_rules s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_bom_produce_rules where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_bom_produce_rules t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBomProduceRulesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--获取数据条数-->
+	<select id="getCountByPd" parameterType="java.util.Map" resultType="int">
+		SELECT count(1)
+		FROM mes_pd_bom_produce p, mes_pd_bom_produce_rules r
+		WHERE p.`pd_id`=#{pdId}
+		AND p.`id`=r.`bom_id`
+		<if test="search != null and search != '' ">
+			and (
+			name like CONCAT('%', #{search}, '%')
+			or rule_regex like CONCAT('%', #{search}, '%')
+			)
+		</if>
+	</select>
+
+	<!--分页查询-->
+	<select id="getPageBypd" parameterType="java.util.Map" resultMap="pdBomProduceRulesResultMap">
+		SELECT r.*
+		FROM mes_pd_bom_produce p, mes_pd_bom_produce_rules r
+		WHERE p.`pd_id`=#{pdId}
+		AND p.`id`=r.`bom_id`
+		<if test="search != null and search != '' ">
+			and (
+			name like CONCAT('%', #{search}, '%')
+			or rule_regex like CONCAT('%', #{search}, '%')
+			)
+		</if>
+		ORDER BY r.`create_date` DESC
+		limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBomProduceRulesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBomProduceRulesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,bom_id,rule_regex,create_date,update_date from mes_pd_bom_produce_rules s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or rule_regex like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="bomId != null  and bomId != '' ">
+				<![CDATA[
+					and bom_id = #{bomId}
+				]]>
+			</if>
+			<if test="ruleRegex != null  and ruleRegex != '' ">
+				<![CDATA[
+					and rule_regex = #{ruleRegex}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="bomId != null  and bomId != '' ">
+				<![CDATA[
+					or bom_id = #{bomId}
+				]]>
+			</if>
+			<if test="ruleRegex != null  and ruleRegex != '' ">
+				<![CDATA[
+					or rule_regex = #{ruleRegex}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="bomId != null  and bomId != '' ">
+				<![CDATA[
+					and bom_id like CONCAT('%', #{bomId}, '%')
+				]]>
+			</if>
+			<if test="ruleRegex != null  and ruleRegex != '' ">
+				<![CDATA[
+					and rule_regex like CONCAT('%', #{ruleRegex}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="bomId != null  and bomId != '' ">
+				<![CDATA[
+					or bom_id like CONCAT('%', #{bomId}, '%')
+				]]>
+			</if>
+			<if test="ruleRegex != null  and ruleRegex != '' ">
+				<![CDATA[
+					or rule_regex like CONCAT('%', #{ruleRegex}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="bomId != null  and bomId != '' ">
+				<![CDATA[
+					bom_id = #{bomId},
+				]]>
+			</if>
+			<if test="ruleRegex != null  and ruleRegex != '' ">
+				<![CDATA[
+					rule_regex = #{ruleRegex},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

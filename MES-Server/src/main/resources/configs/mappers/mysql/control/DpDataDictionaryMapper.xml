@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-数据字典表 -->
+<mapper namespace="com.mes.control.mapper.DpDataDictionaryMapper">
+	<resultMap type="com.mes.entity.control.DpDataDictionary" id="dpDataDictionaryResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="mes_dp_data_dictionary_type_id" property="mesDpDataDictionaryTypeId" jdbcType="VARCHAR"/>
+		<result column="cn_name" property="cnName" jdbcType="VARCHAR"/>
+		<result column="key_k" property="keyk" jdbcType="VARCHAR"/>
+		<result column="value_v" property="valuev" jdbcType="VARCHAR"/>
+		<result column="sort" property="sort" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpDataDictionaryResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="findByTypeId" resultMap="dpDataDictionaryResultMap">
+		<include refid="sql_select"/>
+		where s.mes_dp_data_dictionary_type_id = #{typeId}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpDataDictionary">
+		insert into mes_dp_data_dictionary (id,mes_dp_data_dictionary_type_id,cn_name,key_k,value_v,sort,description,create_date)
+		values (#{id},#{mesDpDataDictionaryTypeId},#{cnName},#{keyk},#{valuev},#{sort},#{description},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpDataDictionary">
+		update mes_dp_data_dictionary s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_data_dictionary where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_data_dictionary t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpDataDictionaryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date DESC limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpDataDictionaryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpDataDictionaryResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,mes_dp_data_dictionary_type_id,cn_name,key_k,value_v,sort,description,create_date from mes_dp_data_dictionary s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				cn_name like CONCAT('%', #{search}, '%')
+				or key_k like CONCAT('%', #{search}, '%')
+				or value_v like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="mesDpDataDictionaryTypeId != null  and mesDpDataDictionaryTypeId != '' ">
+				<![CDATA[
+					and mes_dp_data_dictionary_type_id = #{mesDpDataDictionaryTypeId}
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					and cn_name = #{cnName}
+				]]>
+			</if>
+			<if test="keyk != null  and keyk != '' ">
+				<![CDATA[
+					and key_k = #{keyk}
+				]]>
+			</if>
+			<if test="valuev != null  and valuev != '' ">
+				<![CDATA[
+					and value_v = #{valuev}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="mesDpDataDictionaryTypeId != null  and mesDpDataDictionaryTypeId != '' ">
+				<![CDATA[
+					or mes_dp_data_dictionary_type_id = #{mesDpDataDictionaryTypeId}
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					or cn_name = #{cnName}
+				]]>
+			</if>
+			<if test="keyk != null  and keyk != '' ">
+				<![CDATA[
+					or key_k = #{keyk}
+				]]>
+			</if>
+			<if test="valuev != null  and valuev != '' ">
+				<![CDATA[
+					or value_v = #{valuev}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="mesDpDataDictionaryTypeId != null  and mesDpDataDictionaryTypeId != '' ">
+				<![CDATA[
+					and mes_dp_data_dictionary_type_id like CONCAT('%', #{mesDpDataDictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					and cn_name like CONCAT('%', #{cnName}, '%')
+				]]>
+			</if>
+			<if test="keyk != null  and keyk != '' ">
+				<![CDATA[
+					and key_k like CONCAT('%', #{keyk}, '%')
+				]]>
+			</if>
+			<if test="valuev != null  and valuev != '' ">
+				<![CDATA[
+					and value_v like CONCAT('%', #{valuev}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like binary CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="mesDpDataDictionaryTypeId != null  and mesDpDataDictionaryTypeId != '' ">
+				<![CDATA[
+					or mes_dp_data_dictionary_type_id like CONCAT('%', #{mesDpDataDictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					or cn_name like CONCAT('%', #{cnName}, '%')
+				]]>
+			</if>
+			<if test="keyk != null  and keyk != '' ">
+				<![CDATA[
+					or key_k like CONCAT('%', #{keyk}, '%')
+				]]>
+			</if>
+			<if test="valuev != null  and valuev != '' ">
+				<![CDATA[
+					or value_v like CONCAT('%', #{valuev}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like binary CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="mesDpDataDictionaryTypeId != null  and mesDpDataDictionaryTypeId != '' ">
+				<![CDATA[
+					mes_dp_data_dictionary_type_id = #{mesDpDataDictionaryTypeId},
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					cn_name = #{cnName},
+				]]>
+			</if>
+			<if test="keyk != null  and keyk != '' ">
+				<![CDATA[
+					key_k = #{keyk},
+				]]>
+			</if>
+			<if test="valuev != null  and valuev != '' ">
+				<![CDATA[
+					value_v = #{valuev},
+				]]>
+			</if>
+			<if test="sort != null  and sort != '' ">
+				<![CDATA[
+					sort = #{sort},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

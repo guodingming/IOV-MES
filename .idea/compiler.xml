@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MES-Agent" />
+        <module name="MES-Common" />
+        <module name="MES-Domain" />
+        <module name="MES-ES" />
+        <module name="MES-Function" />
+        <module name="MES-Restful" />
+        <module name="MES-Server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="IOV-MES" target="1.8" />
+      <module name="MES-Agent" target="1.8" />
+      <module name="MES-Base" target="1.8" />
+      <module name="MES-Common" target="1.8" />
+      <module name="MES-Domain" target="1.8" />
+      <module name="MES-ES" target="1.8" />
+      <module name="MES-Function" target="1.8" />
+      <module name="MES-Restful" target="1.8" />
+      <module name="MES-Server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

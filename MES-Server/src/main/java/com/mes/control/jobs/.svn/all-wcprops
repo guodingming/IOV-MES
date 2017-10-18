@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/projectnew/IOV_PLATFORM/!svn/ver/15745/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/jobs
+END
+ServiceInvocationDailyStatJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15745/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/jobs/ServiceInvocationDailyStatJob.java
+END
+ServiceInvocationMonthlyStatJob.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/15745/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/jobs/ServiceInvocationMonthlyStatJob.java
+END

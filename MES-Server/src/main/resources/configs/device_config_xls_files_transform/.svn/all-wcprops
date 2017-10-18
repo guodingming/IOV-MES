@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/16964/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform
+END
+env-terminal.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16964/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/env-terminal.groovy
+END
+remote-software-injection.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/projectnew/IOV_PLATFORM/!svn/ver/16884/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/remote-software-injection.groovy
+END
+Hconfig-software-injection.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/projectnew/IOV_PLATFORM/!svn/ver/16964/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/Hconfig-software-injection.groovy
+END
+selfIS-terminal.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/16884/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/selfIS-terminal.groovy
+END
+remote-gp12.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16884/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/remote-gp12.groovy
+END
+Hconfig-terminal.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/16964/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device_config_xls_files_transform/Hconfig-terminal.groovy
+END

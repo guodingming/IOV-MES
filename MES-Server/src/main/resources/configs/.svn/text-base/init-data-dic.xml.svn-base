@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 系统内置字典 -->
+<dic>
+    <type key="oper_code" name="芯片操作码">
+        <item name="文件下载" key="oper_code_1" value="1" sort="1"/>
+        <item name="按地址读（存储）" key="oper_code_2" value="2" sort="1"/>
+        <item name="擦除芯片" key="oper_code_3" value="3" sort="1"/>
+        <item name="虚拟写" key="oper_code_4" value="4" sort="1"/>
+        <item name="可变Hex文件下载" key="oper_code_5" value="5" sort="1"/>
+        <item name="固定Hex文件下载" key="oper_code_6" value="6" sort="1"/>
+        <item name="调试模式可变Hex文件下载" key="oper_code_7" value="7" sort="1"/>
+        <item name="连接文件下载" key="oper_code_8" value="8" sort="1"/>
+        <item name="读编程TRIM值" key="oper_code_9" value="9" sort="1"/>
+        <item name="写原始TRIM值" key="oper_code_10" value="10" sort="1"/>
+        <item name="切换通道" key="oper_code_11" value="12" sort="1"/>
+        <item name="计算K值（左向）" key="oper_code_12" value="13" sort="1"/>
+        <item name="计算B值（左向）" key="oper_code_13" value="14" sort="1"/>
+        <item name="计算K值（右向）" key="oper_code_14" value="15" sort="1"/>
+        <item name="计算B值（右向）" key="oper_code_15" value="16" sort="1"/>
+        <item name="按地址读（校验）" key="oper_code_16" value="20" sort="1"/>
+        <item name="指定格式读配置版本" key="oper_code_17" value="21" sort="1"/>
+        <item name="按地址写" key="oper_code_18" value="22" sort="1"/>
+        <item name="指定格式读本地服务" key="oper_code_19" value="23" sort="1"/>
+        <item name="指定格式读原始配置数据版本" key="oper_code_20" value="24" sort="1"/>
+        <item name="遥控器学习按地址读（校验）" key="oper_code_21" value="31" sort="1"/>
+        <item name="Rollo_CAL版本" key="oper_code_22" value="48" sort="1"/>
+        <item name="向控制器中写遥控器SN信息" key="oper_code_23" value="71" sort="1"/>
+        <item name="向控制器中写遥控器KEY信息" key="oper_code_24" value="72" sort="1"/>
+        <item name="校验和" key="oper_code_25" value="73" sort="1"/>
+        <item name="计算K值（左灯泡）" key="oper_code_26" value="74" sort="1"/>
+        <item name="计算B值（左灯泡）" key="oper_code_27" value="75" sort="1"/>
+        <item name="计算K值（右灯泡）" key="oper_code_28" value="76" sort="1"/>
+        <item name="计算B值（右灯泡）" key="oper_code_29" value="77" sort="1"/>
+        <item name="计算K值（制动）" key="oper_code_30" value="78" sort="1"/>
+        <item name="计算B值（制动）" key="oper_code_31" value="79" sort="1"/>
+    </type>
+
+    <type key="programmer_type" name="芯片操作编程器类型">
+        <item name="无编程器" key="programmer_type_1" value="0" sort="1"/>
+        <item name="Cyclone" key="programmer_type_2" value="1" sort="1"/>
+        <item name="CycloneRed" key="programmer_type_3" value="2" sort="1"/>
+        <item name="NEC" key="programmer_type_4" value="3" sort="1"/>
+        <item name="PIC" key="programmer_type_5" value="4" sort="1"/>
+        <item name="AVR" key="programmer_type_6" value="6" sort="1"/>
+        <item name="SF6" key="programmer_type_7" value="7" sort="1"/>
+        <item name="ToLink" key="programmer_type_8" value="8" sort="1"/>
+        <item name="Infineon" key="programmer_type_9" value="9" sort="1"/>
+        <item name="HCS301" key="programmer_type_10" value="10" sort="1"/>
+        <item name="Infineon-Memtool" key="programmer_type_11" value="11" sort="1"/>
+        <item name="OpteeQ" key="programmer_type_12" value="66" sort="1"/>
+        <item name="FlashRunner" key="programmer_type_13" value="91" sort="1"/>
+        <item name="WriteNow" key="programmer_type_14" value="92" sort="1"/>
+    </type>
+
+    <type key="material_type" name="物料类型">
+        <item name="产品逻辑总成" key="material_type_1" value="0" sort="1"/>
+        <item name="产品" key="material_type_2" value="1" sort="1"/>
+        <item name="半成品" key="material_type_3" value="2" sort="1"/>
+        <item name="虚拟料" key="material_type_4" value="3" sort="1"/>
+        <item name="元器件" key="material_type_5" value="4" sort="1"/>
+        <item name="一般结构件" key="material_type_6" value="5" sort="1"/>
+        <item name="软件" key="material_type_7" value="6" sort="1"/>
+        <item name="软件组件" key="material_type_8" value="7" sort="1"/>
+        <item name="工艺辅料" key="material_type_9" value="8" sort="1"/>
+        <item name="半成品(PCBA)" key="material_type_10" value="9" sort="1"/>
+        <item name="PCB" key="material_type_11" value="10" sort="1"/>
+        <item name="半成品(有单独BOM)" key="material_type_12" value="11" sort="1"/>
+        <item name="电气结构件" key="material_type_13" value="12" sort="1"/>
+        <item name="包材" key="material_type_14" value="13" sort="1"/>
+    </type>
+
+    <type key="file_type" name="设备配置文件类型" sort="1">
+        <!--远程配置-->
+        <item name="remote" key="file_type_1" value="1" sort="1"/>
+        <!--硬件配置-->
+        <item name="Hconfig" key="file_type_2" value="2" sort="1"/>
+        <!--自检标准-->
+        <item name="selfIS" key="file_type_3" value="4" sort="1"/>
+        <!--环境参数-->
+        <item name="env" key="file_type_4" value="5" sort="1"/>
+        <!--通用配置-->
+        <item name="general" key="file_type_5" value="6" sort="1"/>
+        <!--设备标定-->
+        <item name="device_demarcate" key="file_type_6" value="7" sort="1"/>
+        <!--工序时间配置-->
+        <item name="process_time_config" key="file_type_7" value="8" sort="1"/>
+        <!--设备标定配置-->
+        <!--<item name="device_demarcate_info" key="file_type" value="9" sort="1"/>-->
+    </type>
+
+    <type key="source_type" name="芯片操作数据类型" sort="1">
+        <item name="标准表" key="source_type_1" value="1" sort="1"/>
+        <item name="数据表" key="source_type_2" value="2" sort="1"/>
+        <item name="XML" key="source_type_3" value="3" sort="1"/>
+        <item name="固定值" key="source_type_4" value="1" sort="1"/>
+        <item name="通用TRACE_NO(已废除)" key="source_type_5" value="2" sort="1"/>
+        <item name="地址回写" key="source_type_6" value="3" sort="1"/>
+        <item name="主APP版本" key="source_type_7" value="5" sort="1"/>
+        <item name="从APP版本" key="source_type_8" value="6" sort="1"/>
+        <item name="主BT版本" key="source_type_9" value="7" sort="1"/>
+        <item name="从BT版本" key="source_type_10" value="8" sort="1"/>
+        <item name="主CAL版本" key="source_type_11" value="9" sort="1"/>
+        <item name="从CAL版本" key="source_type_12" value="10" sort="1"/>
+        <item name="主PCBA版本" key="source_type_13" value="11" sort="1"/>
+        <item name="从PCBA版本" key="source_type_14" value="12" sort="1"/>
+        <item name="主PCB版本" key="source_type_15" value="13" sort="1"/>
+        <item name="从PCB版本" key="source_type_16" value="14" sort="1"/>
+        <item name="原理图主版本" key="source_type_17" value="15" sort="1"/>
+        <item name="原理图从版本" key="source_type_18" value="16" sort="1"/>
+        <item name="Inalfa客户TRACE_NO" key="source_type_19" value="17" sort="1"/>
+        <item name="Inalfa内部零件号" key="source_type_20" value="18" sort="1"/>
+        <item name="Inalfa客户零件号" key="source_type_21" value="19" sort="1"/>
+        <item name="配置数据标志擦除后状态" key="source_type_22" value="20" sort="1"/>
+        <item name="批次时间" key="source_type_23" value="21" sort="1"/>
+        <item name="软硬件版本" key="source_type_24" value="22" sort="1"/>
+        <item name="ScoutNumber" key="source_type_25" value="23" sort="1"/>
+        <item name="软件版本" key="source_type_26" value="24" sort="1"/>
+        <item name="硬件版本" key="source_type_27" value="25" sort="1"/>
+        <item name="产品流水号" key="source_type_28" value="26" sort="1"/>
+        <item name="VID" key="source_type_29" value="27" sort="1"/>
+        <item name="Stuff" key="source_type_30" value="28" sort="1"/>
+        <item name="PSW" key="source_type_31" value="29" sort="1"/>
+        <item name="SK" key="source_type_32" value="30" sort="1"/>
+        <item name="C131基站日期" key="source_type_33" value="32" sort="1"/>
+        <item name="4字节批次时间(20130613)" key="source_type_34" value="33" sort="1"/>
+        <item name="广汽ECU序列号" key="source_type_35" value="34" sort="1"/>
+        <item name="广汽含批次固定值" key="source_type_36" value="35" sort="1"/>
+        <item name="轴高产品序列号" key="source_type_37" value="36" sort="1"/>
+        <item name="Inalfa 14位条码" key="source_type_38" value="37" sort="1"/>
+        <item name="产品标签信息" key="source_type_39" value="38" sort="1"/>
+        <item name="硬件版本（ASCII）" key="source_type_40" value="39" sort="1"/>
+        <item name="主版本(补零)" key="source_type_41" value="40" sort="1"/>
+        <item name="主版本(不补零)" key="source_type_42" value="41" sort="1"/>
+        <item name="从版本(补零)" key="source_type_43" value="42" sort="1"/>
+        <item name="从版本(不补零)" key="source_type_44" value="43" sort="1"/>
+        <item name="ERP_TRACE_NO" key="source_type_45" value="44" sort="1"/>
+        <item name="配置数据标志擦除后状态(ERP)" key="source_type_46" value="45" sort="1"/>
+        <item name="按条码获取K/B值" key="source_type_47" value="46" sort="1"/>
+        <item name="按批次获取K/B值" key="source_type_48" value="47" sort="1"/>
+        <item name="CGM_SEED_0" key="source_type_49" value="54" sort="1"/>
+        <item name="CGM_SEED_1" key="source_type_50" value="55" sort="1"/>
+        <item name="CGM_KEY_0" key="source_type_51" value="56" sort="1"/>
+        <item name="CGM_KEY_1" key="source_type_52" value="57" sort="1"/>
+        <item name="CGM_AC0_0" key="source_type_53" value="58" sort="1"/>
+        <item name="CGM_AC0_1" key="source_type_54" value="59" sort="1"/>
+        <item name="泛亚网关产品追溯码" key="source_type_55" value="98" sort="1"/>
+        <item name="泛亚网关产品随机码" key="source_type_56" value="99" sort="1"/>
+        <item name="校验软件版本" key="source_type_57" value="101" sort="1"/>
+        <item name="校验硬件版本" key="source_type_58" value="102" sort="1"/>
+        <item name="校验产品跟踪号" key="source_type_59" value="103" sort="1"/>
+        <item name="校验通用校验" key="source_type_60" value="104" sort="1"/>
+        <item name="RESERVED_0" key="source_type_61" value="201" sort="1"/>
+        <item name="SEED_0" key="source_type_62" value="202" sort="1"/>
+        <item name="RESERVED_1" key="source_type_63" value="203" sort="1"/>
+        <item name="SEED_1" key="source_type_64" value="204" sort="1"/>
+        <item name="SYNC" key="source_type_65" value="205" sort="1"/>
+        <item name="MANUFACTUR" key="source_type_66" value="206" sort="1"/>
+        <item name="主版本(ASCII)" key="source_type_67" value="301" sort="1"/>
+        <item name="ERP_TRACE_NO_ASCII" key="source_type_68" value="324" sort="1"/>
+        <item name="CGM_ECU_ID" key="source_type_69" value="327" sort="1"/>
+        <item name="外购" key="source_type_70" value="1" sort="1"/>
+        <item name="自制" key="source_type_71" value="2" sort="1"/>
+        <item name="委外" key="source_type_72" value="3" sort="1"/>
+        <item name="虚拟件" key="source_type_73" value="4" sort="1"/>
+    </type>
+
+    <type key="store_type" name="芯片操作存储类型" sort="1">
+        <item name="不存储" key="store_type_1" value="0" sort="1"/>
+        <item name="一般存储" key="store_type_2" value="1" sort="1"/>
+    </type>
+    <type key="task_mode" name="任务模式" sort="1">
+        <item name="正常模式" key="task_mode" value="0" sort="1"/>
+        <item name="重工模式" key="task_mode" value="1" sort="1"/>
+        <item name="MSA模式" key="task_mode" value="2" sort="1"/>
+        <item name="调试模式" key="task_mode" value="3" sort="1"/>
+        <item name="标准件模式" key="task_mode" value="4" sort="1"/>
+    </type>
+    <type key="bar_code_type" name="产品相关条码类型" sort="1">
+        <item name="PCBA条码" key="bar_code_type_1" value="SN" sort="1"/>
+        <item name="产品条码" key="bar_code_type_2" value="PD" sort="1"/>
+        <item name="产品追踪号" key="bar_code_type_3" value="ETN" sort="1"/>
+    </type>
+    <type key="label_type" name="产品相关标签类型" sort="1">
+        <item name="箱标签" key="label_type_1" value="1" sort="1"/>
+        <item name="箱码标签" key="label_type_2" value="2" sort="1"/>
+        <item name="产品标签" key="label_type_3" value="3" sort="1"/>
+    </type>
+    <type key="process_config_type" name="工序配置类型" sort="1">
+        <item name="产品标定" key="process_config_type_1" value="1" sort="1"/>
+        <item name="工装配置" key="process_config_type_2" value="2" sort="2"/>
+        <item name="测试标准" key="process_config_type_3" value="3" sort="3"/>
+        <item name="时间设置" key="process_config_type_4" value="4" sort="4"/>
+        <item name="产品芯片" key="process_config_type_5" value="5" sort="5"/>
+        <item name="测试顺序" key="process_config_type_6" value="6" sort="6"/>
+        <item name="物料配置" key="process_config_type_7" value="7" sort="7"/>
+        <item name="设备配置" key="process_config_type_8" value="8" sort="8"/>
+    </type>
+    <type key="process_extend_attr" name="工序扩展属性" sort="1">
+    </type>
+    <type key="workstations_type" name="工作站类型" sort="1">
+        <item name="上料工作站" key="workstations_type_1" value="1" sort="1"/>
+        <item name="组装工作站" key="workstations_type_2" value="1" sort="2"/>
+        <item name="包装工作站" key="workstations_type_3" value="1" sort="3"/>
+        <item name="EOL测试工作站" key="workstations_type_4" value="1" sort="4"/>
+        <item name="标签打印工作站" key="workstations_type_5" value="1" sort="5"/>
+    </type>
+    <type key="product_single_config_attr" name="产品单项配置属性" sort="1">
+        <item name="实现方式" key="implement_mode" value="1" sort="1"/>
+        <item name="客户零件号" key="pl_client_number" value="1" sort="2"/>
+    </type>
+</dic>

@@ -1,0 +1,26 @@
+#duboo 192.168.10.67:2181
+zookeeper.dubbo.provider=127.0.0.1:2181
+# shared file system dir
+shared.fs.dir=/opt/shared-fs
+# user op log thread pool size
+user.op.log.threadpool.size=50
+# service monitor thread pool size
+service.monitor.threadpool.size=10
+
+#dictionary type
+process.dic.type=process_config_type
+device.dic.type=file_type
+barCode.dic.type=bar_code_type
+label.dic.type=label_type
+processEA.dic.type=process_extend_attr
+materialType.dic.type=material_type
+operateCode.dic.type=oper_code
+source.dic.type=source_type
+store.dic.type=store_type
+taskMode.dic.type=task_mode
+programmer.dic.type=programmer_type
+workstationType.dic.type=workstations_type
+productSingleAttr.dic.type=product_single_config_attr
+
+#box.print.agent.id
+box.print.agent.id=H51FEAF0C454645DCB1B48EC2BFF56D5E

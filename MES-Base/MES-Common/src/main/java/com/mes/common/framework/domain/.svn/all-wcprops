@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/14483/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/domain
+END
+BeanValidationGroups.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/13930/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/domain/BeanValidationGroups.java
+END
+TrackableEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/14483/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/domain/TrackableEntity.java
+END
+ParentGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/domain/ParentGroup.java
+END
+SelectItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/domain/SelectItem.java
+END

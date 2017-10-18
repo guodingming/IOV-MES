@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-工艺路径管理（Routes） -->
+<mapper namespace="com.mes.control.mapper.DpRoutesMapper">
+	<resultMap type="com.mes.entity.control.DpRoutes" id="dpRoutesResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="version" property="version" jdbcType="VARCHAR"/>
+		<result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+		<result column="work_order_id" property="workOrderId" jdbcType="VARCHAR"/>
+		<result column="wf_code" property="wfCode" jdbcType="VARCHAR"/>
+		<result column="workflow_run_xml" property="workflowRunXml" jdbcType="VARCHAR"/>
+		<result column="workflow_show_json" property="workflowShowJson" jdbcType="VARCHAR"/>
+		<result column="deploy_id" property="deployId" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpRoutesResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!-- 根据开发工程id查询生产工序及工序基本信息 -->
+	<select id="getProcesses" resultType="java.util.Map">
+		SELECT pp.`id`, p.`name`, p.`id` AS `processId`, p.`code`, p.`icon`
+		FROM mes_dp_produce_process pp, mes_fty_process p
+		WHERE pp.`process_id`=p.`id`
+		AND pp.`project_id`=#{value}
+		 order by pp.sort asc
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpRoutes">
+		insert into mes_dp_routes (id,name,version,pd_line_id,pd_id,project_id,work_order_id,wf_code,workflow_run_xml,workflow_show_json,deploy_id,status,create_date,description)
+		values (#{id},#{name},#{version},#{pdLineId},#{pdId},#{projectId},#{workOrderId},#{wfCode},#{workflowRunXml},#{workflowShowJson},#{deployId},#{status},#{createDate},#{description})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpRoutes">
+		update mes_dp_routes s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_routes where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_routes t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpRoutesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpRoutesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpRoutesResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,version,pd_line_id,pd_id,project_id,wf_code,workflow_run_xml,workflow_show_json,deploy_id,status,create_date,description from mes_dp_routes s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or version like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version = #{version}
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and project_id = #{projectId}
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					and work_order_id = #{workOrderId}
+				]]>
+			</if>
+
+
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					and wf_code = #{wfCode}
+				]]>
+			</if>
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					and workflow_run_xml = #{workflowRunXml}
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					and workflow_show_json = #{workflowShowJson}
+				]]>
+			</if>
+			<if test="deployId != null  and deployId != '' ">
+				<![CDATA[
+					and deploy_id = #{deployId}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version = #{version}
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id = #{projectId}
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					or work_order_id = #{workOrderId}
+				]]>
+			</if>
+
+
+
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					or wf_code = #{wfCode}
+				]]>
+			</if>
+
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					or workflow_run_xml = #{workflowRunXml}
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					or workflow_show_json = #{workflowShowJson}
+				]]>
+			</if>
+			<if test="deployId != null  and deployId != '' ">
+				<![CDATA[
+					or deploy_id = #{deployId}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					and work_order_id like CONCAT('%', #{workOrderId}, '%')
+				]]>
+			</if>
+
+
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					and wf_code like CONCAT('%', #{wfCode}, '%')
+				]]>
+			</if>
+
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					and workflow_run_xml like CONCAT('%', #{workflowRunXml}, '%')
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					and workflow_show_json like CONCAT('%', #{workflowShowJson}, '%')
+				]]>
+			</if>
+			<if test="deployId != null  and deployId != '' ">
+				<![CDATA[
+					and deploy_id like CONCAT('%', #{deployId}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					or work_order_id like CONCAT('%', #{workOrderId}, '%')
+				]]>
+			</if>
+
+
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					or wf_code like CONCAT('%', #{wfCode}, '%')
+				]]>
+			</if>
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					or workflow_run_xml like CONCAT('%', #{workflowRunXml}, '%')
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					or workflow_show_json like CONCAT('%', #{workflowShowJson}, '%')
+				]]>
+			</if>
+			<if test="deployId != null  and deployId != '' ">
+				<![CDATA[
+					or deploy_id like CONCAT('%', #{deployId}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					version = #{version},
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					pd_line_id = #{pdLineId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					project_id = #{projectId},
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					work_order_id = #{workOrderId},
+				]]>
+			</if>
+
+
+
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					wf_code = #{wfCode},
+				]]>
+			</if>
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					workflow_run_xml = #{workflowRunXml},
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					workflow_show_json = #{workflowShowJson},
+				]]>
+			</if>
+			<if test="deployId != null  and deployId != '' ">
+				<![CDATA[
+					deploy_id = #{deployId},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

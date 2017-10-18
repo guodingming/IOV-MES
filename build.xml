@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="IOV-MES" default="IOV-MES" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+    <property name="compiler.debug" value="on"/>
+
+    <!--<property name="mvn.home" value="D:/tools/apache-maven-3.3.9"/>-->
+    <!--<property name="mvn.repos" value="D:/tools/repository"/>-->
+
+    <property name="mvn.home" value="/home/ci/apache-maven-3.3.9"/>
+    <property name="mvn.repos" value="/root/.m2/repository"/>
+
+    <property name="build.home" value="./MES5.0"/>
+    <property name="jdkpath" value="${JAVA_HOME}"/>
+    <echo message="java version = ${ant.java.version}"/>
+
+    <path id="maven-ant-tasks.classpath" path="./lib/maven-ant-tasks-2.1.3.jar"/>
+    <typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant"
+             classpathref="maven-ant-tasks.classpath"/>
+
+    <target name="IOV-MES"
+            depends="clean,installDeps,createStartUp,MES-Restful,MES-Agent,MES-Server,deleteStartUp"></target>
+
+    <!-- install common, domain etc...-->
+    <target name="installDeps">
+        <artifact:mvn pom="./pom.xml" mavenHome="${mvn.home}" fork="true">
+            <jvmarg value="-Dmaven.multiModuleProjectDirectory=./"/>
+            <arg value="clean"/>
+            <arg value="install"/>
+            <arg value="-DskipTests"/>
+        </artifact:mvn>
+    </target>
+
+    <!-- create StartUp jar -->
+    <target name="createStartUp">
+        <property name="StartUp.jar" value="MES-StartUp-1.0.jar"/>
+        <property name="StartUp" value="${basedir}/${build.home}/StartUp"/>
+        <mkdir dir="${StartUp}/src"/>
+        <mkdir dir="${StartUp}/classes"/>
+        <copy todir="${StartUp}/src">
+            <fileset dir="./MES-Base/MES-Common/src/main/java" includes="**/StartUp.*"/>
+        </copy>
+        <javac srcdir="${StartUp}/src" destdir="${StartUp}/classes" debug="true">
+            <compilerarg line="-encoding UTF-8"/>
+        </javac>
+
+        <jar destfile="${StartUp}/${StartUp.jar}">
+            <fileset dir="${StartUp}/classes" includes="com/**/*.*"/>
+        </jar>
+
+        <delete dir="${StartUp}/src"/>
+        <delete dir="${StartUp}/classes"/>
+    </target>
+
+    <!-- delete StartUp -->
+    <target name="deleteStartUp">
+        <delete dir="${StartUp}"/>
+    </target>
+
+    <!-- MES-Restful -->
+    <target name="MES-Restful">
+        <property name="MES-Restful.resources" value="./MES-Restful/src/main/resources/"/>
+        <property name="MES-Restful.webapp" value="./MES-Restful/src/main/webapp"/>
+        <property name="MES-Restful.pom.file" value="./MES-Restful/pom.xml"/>
+        <property name="MES-Restful.target.classes" value="./MES-Restful/target/classes"/>
+        <property name="MES-Restful.src" value="./MES-Restful/src/main/java"/>
+        <property name="MES-Restful.jar" value="MES-Restful-1.0.jar"/>
+        <property name="MES-Restful.scripts" value="./MES-Restful/src/main/resources/bin"/>
+
+
+        <property name="MES-Restful" value="${basedir}/${build.home}/MES-Restful"/>
+        <property name="MES-Restful.bin" value="${MES-Restful}/bin/"/>
+        <property name="MES-Restful.classes" value="${MES-Restful}/classes"/>
+        <property name="MES-Restful.lib" value="${MES-Restful}/lib/"/>
+        <property name="MES-Restful.dest.resources" value="${MES-Restful}/resources/"/>
+        <property name="MES-Restful.dest.webapp" value="${MES-Restful}/webapp/"/>
+
+        <mkdir dir="${MES-Restful}"/>
+        <mkdir dir="${MES-Restful.classes}"/>
+        <mkdir dir="${MES-Restful.lib}"/>
+        <mkdir dir="${MES-Restful.bin}"/>
+
+        <copy todir="${MES-Restful.bin}">
+            <fileset dir="${MES-Restful.scripts}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <copy todir="${MES-Restful.dest.resources}">
+            <fileset dir="${MES-Restful.resources}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <copy todir="${MES-Restful.dest.webapp}">
+            <fileset dir="${MES-Restful.webapp}" excludes="**/.svn/**/*.*"/>
+        </copy>
+
+        <artifact:pom id="MES-Restful.pom" file="${MES-Restful.pom.file}"/>
+        <artifact:dependencies filesetId="MES-Restful.fileset" useScope="compile">
+            <localrepository path="${mvn.repos}"/>
+            <pom refid="MES-Restful.pom"/>
+        </artifact:dependencies>
+
+        <copy todir="${MES-Restful.lib}">
+            <fileset refid="MES-Restful.fileset"></fileset>
+            <mapper type="flatten"></mapper>
+        </copy>
+
+        <copy todir="${MES-Restful.lib}">
+            <fileset file="${StartUp}/${StartUp.jar}"></fileset>
+        </copy>
+
+        <path id="restful-classpath">
+            <fileset dir="${MES-Restful.lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <javac srcdir="${MES-Restful.src}" destdir="${MES-Restful.classes}" debug="true">
+            <compilerarg line="-encoding UTF-8"/>
+            <classpath refid="restful-classpath"/>
+        </javac>
+
+        <jar destfile="${MES-Restful.lib}/${MES-Restful.jar}">
+            <fileset dir="${MES-Restful.classes}" includes="com/**/*.*"/>
+        </jar>
+
+        <delete dir="${MES-Restful.dest.resources}bin"/>
+        <delete dir="${MES-Restful.classes}"/>
+        <echo message="########  MES-Restful  package successful ################"/>
+    </target>
+
+    <!-- MES-Server -->
+    <target name="MES-Server">
+        <property name="MES-Server.resources" value="./MES-Server/src/main/resources/"/>
+        <property name="MES-Server.webapp" value="./MES-Server/src/main/webapp"/>
+        <property name="MES-Server.pom.file" value="./MES-Server/pom.xml"/>
+        <property name="MES-Server.target.classes" value="./MES-Server/target/classes"/>
+        <property name="MES-Server.src" value="./MES-Server/src/main/java"/>
+        <property name="MES-Server.jar" value="MES-Server-1.0.jar"/>
+        <property name="MES-Server.scripts" value="./MES-Server/src/main/resources/bin"/>
+
+
+        <property name="MES-Server" value="${basedir}/${build.home}/MES-Server"/>
+        <property name="MES-Server.bin" value="${MES-Server}/bin/"/>
+        <property name="MES-Server.classes" value="./MES-Server/classes"/>
+        <property name="MES-Server.lib" value="${MES-Server}/lib/"/>
+        <property name="MES-Server.dest.resources" value="${MES-Server}/resources/"/>
+        <property name="MES-Server.dest.webapp" value="${MES-Server}/webapp/"/>
+
+        <mkdir dir="${MES-Server}"/>
+        <mkdir dir="${MES-Server.classes}"/>
+        <mkdir dir="${MES-Server.lib}"/>
+        <mkdir dir="${MES-Server.bin}"/>
+
+        <copy todir="${MES-Server.bin}">
+            <fileset dir="${MES-Server.scripts}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <copy todir="${MES-Server.dest.resources}">
+            <fileset dir="${MES-Server.resources}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <copy todir="${MES-Server.dest.webapp}">
+            <fileset dir="${MES-Server.webapp}" excludes="**/.svn/**/*.*"/>
+        </copy>
+
+        <artifact:pom id="MES-Server.pom" file="${MES-Server.pom.file}"/>
+        <artifact:dependencies filesetId="MES-Server.fileset" useScope="compile">
+            <localrepository path="${mvn.repos}"/>
+            <pom refid="MES-Server.pom"/>
+        </artifact:dependencies>
+
+        <copy todir="${MES-Server.lib}">
+            <fileset refid="MES-Server.fileset"></fileset>
+            <mapper type="flatten"></mapper>
+        </copy>
+
+        <copy todir="${MES-Server.lib}">
+            <fileset file="${StartUp}/${StartUp.jar}"></fileset>
+        </copy>
+
+        <path id="server-classpath">
+            <fileset dir="${MES-Server.lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <javac srcdir="${MES-Server.src}" destdir="${MES-Server.classes}" debug="true">
+            <compilerarg line="-encoding UTF-8"/>
+            <classpath refid="server-classpath"/>
+        </javac>
+
+        <jar destfile="${MES-Server.lib}/${MES-Server.jar}">
+            <fileset dir="${MES-Server.classes}" includes="com/**/*.*"/>
+        </jar>
+
+        <delete dir="${MES-Server.dest.resources}bin"/>
+        <delete dir="${MES-Server.classes}"/>
+        <echo message="########  MES-Server  package successful ################"/>
+    </target>
+
+    <!-- MES-Agent -->
+    <target name="MES-Agent">
+        <property name="MES-Agent.resources" value="./MES-Agent/src/main/resources/"/>
+        <property name="MES-Agent.webapp" value="./MES-Agent/src/main/webapp"/>
+        <property name="MES-Agent.pom.file" value="./MES-Agent/pom.xml"/>
+        <property name="MES-Agent.target.classes" value="./MES-Agent/target/classes"/>
+        <property name="MES-Agent.src" value="./MES-Agent/src/main/java"/>
+        <property name="MES-Agent.jar" value="MES-Agent-1.0.jar"/>
+        <property name="MES-Agent.scripts" value="./MES-Agent/src/main/resources/bin"/>
+
+
+        <property name="MES-Agent" value="${basedir}/${build.home}/MES-Agent"/>
+        <property name="MES-Agent.bin" value="${MES-Agent}/bin/"/>
+        <property name="MES-Agent.classes" value="${MES-Agent}/classes/"/>
+        <property name="MES-Agent.lib" value="${MES-Agent}/lib/"/>
+        <property name="MES-Agent.dest.resources" value="${MES-Agent}/resources/"/>
+        <property name="MES-Agent.dest.webapp" value="${MES-Agent}/webapp/"/>
+
+        <mkdir dir="${MES-Agent}"/>
+        <mkdir dir="${MES-Agent.classes}"/>
+        <mkdir dir="${MES-Agent.lib}"/>
+        <mkdir dir="${MES-Agent.bin}"/>
+
+        <copy todir="${MES-Agent.bin}">
+            <fileset dir="${MES-Agent.scripts}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <copy todir="${MES-Agent.dest.resources}">
+            <fileset dir="${MES-Agent.resources}" excludes="**/.svn/**/*.*"/>
+        </copy>
+        <!--<copy todir="${MES-Agent.dest.webapp}">
+            <fileset dir="${MES-Agent.webapp}" excludes="**/.svn/**/*.*"/>
+        </copy>-->
+
+        <artifact:pom id="MES-Agent.pom" file="${MES-Agent.pom.file}"/>
+        <artifact:dependencies filesetId="MES-Agent.fileset" useScope="compile">
+            <localrepository path="${mvn.repos}"/>
+            <pom refid="MES-Agent.pom"/>
+        </artifact:dependencies>
+
+        <copy todir="${MES-Agent.lib}">
+            <fileset refid="MES-Agent.fileset"></fileset>
+            <mapper type="flatten"></mapper>
+        </copy>
+
+        <copy todir="${MES-Agent.lib}">
+            <fileset file="${StartUp}/${StartUp.jar}"></fileset>
+        </copy>
+
+        <path id="agent-classpath">
+            <fileset dir="${MES-Agent.lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <javac srcdir="${MES-Agent.src}" destdir="${MES-Agent.classes}" debug="true">
+            <compilerarg line="-encoding UTF-8"/>
+            <classpath refid="agent-classpath"/>
+        </javac>
+
+        <jar destfile="${MES-Agent.lib}/${MES-Agent.jar}">
+            <fileset dir="${MES-Agent.classes}" includes="com/**/*.*"/>
+        </jar>
+
+        <delete dir="${MES-Agent.dest.resources}bin"/>
+        <delete dir="${MES-Agent.classes}"/>
+        <echo message="########  MES-Agent  package successful ################"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.home}"/>
+        <mkdir dir="${build.home}"/>
+    </target>
+
+</project>

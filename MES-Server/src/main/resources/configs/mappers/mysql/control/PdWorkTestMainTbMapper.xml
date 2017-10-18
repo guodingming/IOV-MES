@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 终端测试结果 -->
+<mapper namespace="com.mes.control.mapper.PdWorkTestMainTbMapper">
+    <resultMap type="com.mes.entity.control.PdWorkTestMainTb" id="pdWorkTestMainTbResultMap">
+        
+        <result column="work_procedure_id" property="workProcedureId" jdbcType="VARCHAR"/>
+        
+        <result column="channel_no" property="channelNo" jdbcType="VARCHAR"/>
+        
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        
+        <result column="test_version" property="testVersion" jdbcType="VARCHAR"/>
+        
+        <result column="test_flag" property="testFlag" jdbcType="VARCHAR"/>
+
+        <result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+
+        <result column="product_info_id" property="productInfoId" jdbcType="VARCHAR"/>
+
+        <result column="order" property="order" jdbcType="BIGINT"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdWorkTestMainTbResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdWorkTestMainTb">
+        insert into mes_pd_work_test_main_tb
+        (`work_procedure_id`,`channel_no`,`version`,`test_version`,`test_flag`,`produce_process_id`,`product_info_id`,`order`)
+        values
+        (#{workProcedureId},#{channelNo},#{version},#{testVersion},#{testFlag},#{produceProcessId},#{productInfoId},#{order})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdWorkTestMainTb">
+        update mes_pd_work_test_main_tb s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_work_test_main_tb where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_work_test_main_tb t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdWorkTestMainTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdWorkTestMainTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdWorkTestMainTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `work_procedure_id`,`channel_no`,`version`,`test_version`,`test_flag`,`produce_process_id`,`product_info_id`,`order` from mes_pd_work_test_main_tb  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `channel_no` like CONCAT('%', #{search}, '%')
+				or `version` like CONCAT('%', #{search}, '%')
+				or `test_version` like CONCAT('%', #{search}, '%')
+				or `test_flag` like CONCAT('%', #{search}, '%')
+                or `produce_process_id` like CONCAT('%', #{search}, '%')
+                or `product_info_id` like CONCAT('%', #{search}, '%')
+                or `order` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                and `work_procedure_id` = #{workProcedureId}
+            ]]>
+            </if>
+            
+            <if test="channelNo != null  and channelNo != '' ">
+            <![CDATA[
+                and `channel_no` = #{channelNo}
+            ]]>
+            </if>
+            
+            <if test="version != null  and version != '' ">
+            <![CDATA[
+                and `version` = #{version}
+            ]]>
+            </if>
+            
+            <if test="testVersion != null  and testVersion != '' ">
+            <![CDATA[
+                and `test_version` = #{testVersion}
+            ]]>
+            </if>
+            
+            <if test="testFlag != null  and testFlag != '' ">
+            <![CDATA[
+                and `test_flag` = #{testFlag}
+            ]]>
+            </if>
+
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                and `produce_process_id` = #{produceProcessId}
+            ]]>
+            </if>
+
+            <if test="productInfoId != null  and productInfoId != '' ">
+                <![CDATA[
+                and `product_info_id` = #{productInfoId}
+            ]]>
+            </if>
+
+            <if test="order != null  and order != '' ">
+                <![CDATA[
+                and `order` = #{order}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `channel_no` like CONCAT('%', #{search}, '%')
+				or `version` like CONCAT('%', #{search}, '%')
+				or `test_version` like CONCAT('%', #{search}, '%')
+				or `test_flag` like CONCAT('%', #{search}, '%')
+                or `produce_process_id` like CONCAT('%', #{search}, '%')
+                or `product_info_id` like CONCAT('%', #{search}, '%')
+                or `order` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                or `work_procedure_id` = #{workProcedureId}
+            ]]>
+            </if>
+            
+            <if test="channelNo != null  and channelNo != '' ">
+            <![CDATA[
+                or `channel_no` = #{channelNo}
+            ]]>
+            </if>
+            
+            <if test="version != null  and version != '' ">
+            <![CDATA[
+                or `version` = #{version}
+            ]]>
+            </if>
+            
+            <if test="testVersion != null  and testVersion != '' ">
+            <![CDATA[
+                or `test_version` = #{testVersion}
+            ]]>
+            </if>
+            
+            <if test="testFlag != null  and testFlag != '' ">
+            <![CDATA[
+                or `test_flag` = #{testFlag}
+            ]]>
+            </if>
+
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                and `produce_process_id` = #{produceProcessId}
+            ]]>
+            </if>
+
+            <if test="productInfoId != null  and productInfoId != '' ">
+                <![CDATA[
+                and `product_info_id` = #{productInfoId}
+            ]]>
+            </if>
+
+            <if test="order != null  and order != '' ">
+                <![CDATA[
+                and `order` = #{order}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `channel_no` like CONCAT('%', #{search}, '%')
+				or `version` like CONCAT('%', #{search}, '%')
+				or `test_version` like CONCAT('%', #{search}, '%')
+				or `test_flag` like CONCAT('%', #{search}, '%')
+                or `produce_process_id` like CONCAT('%', #{search}, '%')
+                or `product_info_id` like CONCAT('%', #{search}, '%')
+                or `order` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                and `work_procedure_id` like CONCAT('%', #{workProcedureId}, '%')
+            ]]>
+            </if>
+            
+            <if test="channelNo != null  and channelNo != '' ">
+            <![CDATA[
+                and `channel_no` like CONCAT('%', #{channelNo}, '%')
+            ]]>
+            </if>
+            
+            <if test="version != null  and version != '' ">
+            <![CDATA[
+                and `version` like CONCAT('%', #{version}, '%')
+            ]]>
+            </if>
+            
+            <if test="testVersion != null  and testVersion != '' ">
+            <![CDATA[
+                and `test_version` like CONCAT('%', #{testVersion}, '%')
+            ]]>
+            </if>
+            
+            <if test="testFlag != null  and testFlag != '' ">
+            <![CDATA[
+                and `test_flag` like CONCAT('%', #{testFlag}, '%')
+            ]]>
+            </if>
+
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                and `produce_process_id` like CONCAT('%', #{produceProcessId}, '%')
+            ]]>
+            </if>
+
+            <if test="productInfoId != null  and productInfoId != '' ">
+                <![CDATA[
+                and `product_info_id` like CONCAT('%', #{productInfoId}, '%')
+            ]]>
+            </if>
+
+            <if test="order != null  and order != '' ">
+                <![CDATA[
+                and `order` like CONCAT('%', #{order}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `channel_no` like CONCAT('%', #{search}, '%')
+				or `version` like CONCAT('%', #{search}, '%')
+				or `test_version` like CONCAT('%', #{search}, '%')
+				or `test_flag` like CONCAT('%', #{search}, '%')
+                or `produce_process_id` like CONCAT('%', #{search}, '%')
+                or `product_info_id` like CONCAT('%', #{search}, '%')
+                or `order` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                or `work_procedure_id` like CONCAT('%', #{workProcedureId}, '%')
+            ]]>
+            </if>
+            
+            <if test="channelNo != null  and channelNo != '' ">
+            <![CDATA[
+                or `channel_no` like CONCAT('%', #{channelNo}, '%')
+            ]]>
+            </if>
+            
+            <if test="version != null  and version != '' ">
+            <![CDATA[
+                or `version` like CONCAT('%', #{version}, '%')
+            ]]>
+            </if>
+            
+            <if test="testVersion != null  and testVersion != '' ">
+            <![CDATA[
+                or `test_version` like CONCAT('%', #{testVersion}, '%')
+            ]]>
+            </if>
+            
+            <if test="testFlag != null  and testFlag != '' ">
+            <![CDATA[
+                or `test_flag` like CONCAT('%', #{testFlag}, '%')
+            ]]>
+            </if>
+
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                or `produce_process_id` like CONCAT('%', #{produceProcessId}, '%')
+            ]]>
+            </if>
+
+            <if test="productInfoId != null  and productInfoId != '' ">
+                <![CDATA[
+                or `product_info_id` like CONCAT('%', #{productInfoId}, '%')
+            ]]>
+            </if>
+
+            <if test="order != null  and order != '' ">
+                <![CDATA[
+                or `order` like CONCAT('%', #{order}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                `work_procedure_id` = #{workProcedureId},
+            ]]>
+            </if>
+            
+            <if test="channelNo != null  and channelNo != '' ">
+            <![CDATA[
+                `channel_no` = #{channelNo},
+            ]]>
+            </if>
+            
+            <if test="version != null  and version != '' ">
+            <![CDATA[
+                `version` = #{version},
+            ]]>
+            </if>
+            
+            <if test="testVersion != null  and testVersion != '' ">
+            <![CDATA[
+                `test_version` = #{testVersion},
+            ]]>
+            </if>
+            
+            <if test="testFlag != null  and testFlag != '' ">
+            <![CDATA[
+                `test_flag` = #{testFlag},
+            ]]>
+            </if>
+
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                `produce_process_id` = #{produceProcessId},
+            ]]>
+            </if>
+
+            <if test="productInfoId != null  and productInfoId != '' ">
+                <![CDATA[
+                `product_info_id` = #{productInfoId},
+            ]]>
+            </if>
+
+            <if test="order != null  and order != '' ">
+                <![CDATA[
+                `order` = #{order},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

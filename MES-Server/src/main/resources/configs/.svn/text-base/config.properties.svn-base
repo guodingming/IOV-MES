@@ -1,0 +1,77 @@
+# netty server port
+netty.server.port=8000
+# thread pool size
+netty.server.threadpool.size=20
+# load menu data from menu.json to db
+load.menu.to.db=false
+# shared file system dir
+shared.fs.dir=/opt/shared-fs
+
+# ldap configs
+# 是否加载ldap数据
+ldap.load.data=false
+# 是否使用ldap进行用户验证
+ldap.user.auth=true
+ldap.load.data.quartz=0 0 0 * * ?
+ldap.url=ldap://10.10.0.63
+ldap.root=dc=hirain,dc=com
+ldap.user=ldapuser@hirain.com
+ldap.user.passwd=HirainLDAP12#
+ldap.user.sys.default.passwd=000000
+ldap.user.default.role.id=1
+# 导入的部门分支，从组织结构根开始，为ldap中部门的name属性值
+ldap.dept.branches=AE>AETJ_*
+
+# log kafka
+log.kafka.url=192.168.5.3:9092
+log.user.op.topic=mes_user_op
+log.sys.log.topic=mes_sys_log
+log.service.invocation.topic=mes_service
+
+# es config
+es.cluster.name=mes-es
+es.addresses=192.168.5.3:9300
+es.user.op.index=mes_user_op
+es.user.op.type=user_op
+es.sys.log.index=mes_sys_log
+es.sys.log.type=sys_log
+es.service.invocation.index=mes_service
+es.service.invocation.type=service
+
+# period to check agent status(ms)
+agent.monitor.check.period=5000
+# max delay for agent heartbeat(ms)
+agent.heartbeat.max.delay=10000
+
+# process plugin class
+process.plugin.class=com.mes.control.workflow.TaskListenerImpl
+
+# service invocation daily stat cron
+service.invocation.daily.stat=0 */5 * * * ?
+# service invocation monthly stat cron
+service.invocation.monthly.stat=59 59 * * * ?
+
+#user process auth due time, default 90d
+user.process.auth.time=90
+
+#first process code, is used for set product status when save unqualified info
+first.process.code=006
+
+#初始化字典开关 y|n
+is_init_DictionData=n
+#dictionary type
+process.dic.type=process_config_type
+device.dic.type=file_type
+barCode.dic.type=bar_code_type
+label.dic.type=label_type
+processEA.dic.type=process_extend_attr
+materialType.dic.type=material_type
+operateCode.dic.type=oper_code
+source.dic.type=source_type
+store.dic.type=store_type
+taskMode.dic.type=task_mode
+programmer.dic.type=programmer_type
+workstationType.dic.type=workstations_type
+
+#调试模式值
+taskMode.type=3

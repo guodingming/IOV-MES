@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-设备配置信息-工单 -->
+<mapper namespace="com.mes.control.mapper.DpProduceProcessConfigWorkorderMapper">
+	<resultMap type="com.mes.entity.control.DpProduceProcessConfigWorkorder" id="dpProduceProcessConfigWorkorderResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+		<result column="工单ID" property="工单ID" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="cn_name" property="cnName" jdbcType="VARCHAR"/>
+		<result column="key" property="key" jdbcType="VARCHAR"/>
+		<result column="value" property="value" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpProduceProcessConfigWorkorderResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpProduceProcessConfigWorkorder">
+		insert into mes_dp_produce_process_config_workorder (id,produce_process_id,工单ID,`type`,cn_name,`key`,`value`,description,create_date)
+		values (#{id},#{produceProcessId},#{工单ID},#{type},#{cnName},#{key},#{value},#{description},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpProduceProcessConfigWorkorder">
+		update mes_dp_produce_process_config_workorder s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_produce_process_config_workorder where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_produce_process_config_workorder t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpProduceProcessConfigWorkorderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpProduceProcessConfigWorkorderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpProduceProcessConfigWorkorderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,produce_process_id,工单ID,`type`,cn_name,`key`,`value`,description,create_date from mes_dp_produce_process_config_workorder s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (`type` like CONCAT('%', #{search}, '%')
+				or cn_name like CONCAT('%', #{search}, '%')
+				or `key` like CONCAT('%', #{search}, '%')
+				or `value` like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					and produce_process_id = #{produceProcessId}
+				]]>
+			</if>
+			<if test="工单ID != null  and 工单ID != '' ">
+				<![CDATA[
+					and 工单ID = #{工单ID}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` = #{type}
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					and cn_name = #{cnName}
+				]]>
+			</if>
+			<if test="key != null  and key != '' ">
+				<![CDATA[
+					and `key` = #{key}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and `value` = #{value}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					or produce_process_id = #{produceProcessId}
+				]]>
+			</if>
+			<if test="工单ID != null  and 工单ID != '' ">
+				<![CDATA[
+					or 工单ID = #{工单ID}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` = #{type}
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					or cn_name = #{cnName}
+				]]>
+			</if>
+			<if test="key != null  and key != '' ">
+				<![CDATA[
+					or `key` = #{key}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or `value` = #{value}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					and produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+			</if>
+			<if test="工单ID != null  and 工单ID != '' ">
+				<![CDATA[
+					and 工单ID like CONCAT('%', #{工单ID}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					and cn_name like CONCAT('%', #{cnName}, '%')
+				]]>
+			</if>
+			<if test="key != null  and key != '' ">
+				<![CDATA[
+					and `key` like CONCAT('%', #{key}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and `value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					or produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+			</if>
+			<if test="工单ID != null  and 工单ID != '' ">
+				<![CDATA[
+					or 工单ID like CONCAT('%', #{工单ID}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					or cn_name like CONCAT('%', #{cnName}, '%')
+				]]>
+			</if>
+			<if test="key != null  and key != '' ">
+				<![CDATA[
+					or `key` like CONCAT('%', #{key}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or `value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					produce_process_id = #{produceProcessId},
+				]]>
+			</if>
+			<if test="工单ID != null  and 工单ID != '' ">
+				<![CDATA[
+					工单ID = #{工单ID},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					`type` = #{type},
+				]]>
+			</if>
+			<if test="cnName != null  and cnName != '' ">
+				<![CDATA[
+					cn_name = #{cnName},
+				]]>
+			</if>
+			<if test="key != null  and key != '' ">
+				<![CDATA[
+					`key` = #{key},
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					`value` = #{value},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

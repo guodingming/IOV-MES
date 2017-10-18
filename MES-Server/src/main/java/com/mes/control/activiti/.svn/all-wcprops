@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti
+END
+ActivitiAbstractFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti/ActivitiAbstractFactory.java
+END
+IWorkFlowAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/15478/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti/IWorkFlowAdapter.java
+END
+IHistoricAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti/IHistoricAdapter.java
+END
+IVariablesAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti/IVariablesAdapter.java
+END
+ITaskAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/java/com/mes/control/activiti/ITaskAdapter.java
+END

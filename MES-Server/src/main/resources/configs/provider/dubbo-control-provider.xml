@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 文件传输，采用hessian协议 -->
+    <bean id="fileTransferProvider" class="com.mes.control.provider.FileTransferProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFileTransferProvider" ref="fileTransferProvider" retries="0" protocol="hessian"/>
+
+    <!-- 平台管理-工作站Agent管理 -->
+    <bean id="agentProvider" class="com.mes.control.provider.AgentProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IAgentProvider" ref="agentProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 用户操作日志 -->
+    <bean id="userOpLogProvider" class="com.mes.control.provider.UserOpLogProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IUserOpLogProvider" ref="userOpLogProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 用户管理 -->
+    <bean id="userProvider" class="com.mes.control.provider.UserProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IUserProvider" ref="userProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 用户管理-人员技能 -->
+    <bean id="userProcessProvider" class="com.mes.control.provider.UserProcessProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IUserProcessProvider" ref="userProcessProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 角色管理 -->
+    <bean id="roleProvider" class="com.mes.control.provider.RoleProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IRoleProvider" ref="roleProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 菜单管理 -->
+    <bean id="menuProvider" class="com.mes.control.provider.MenuProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IMenuProvider" ref="menuProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 用户组管理 -->
+    <bean id="userGroupProvider" class="com.mes.control.provider.UserGroupProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IUserGroupProvider" ref="userGroupProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 部门管理 -->
+    <bean id="deptProvider" class="com.mes.control.provider.DeptProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDeptProvider" ref="deptProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 菜单rest接口 -->
+    <bean id="menuRestApiProvider" class="com.mes.control.provider.MenuRestApiProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IMenuRestApiProvider" ref="menuRestApiProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-企业登记 -->
+    <bean id="ftyEnterpriseProvider" class="com.mes.control.provider.FtyEnterpriseProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyEnterpriseProvider" ref="ftyEnterpriseProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工厂信息 -->
+    <bean id="ftySiteInfoProvider" class="com.mes.control.provider.FtySiteInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtySiteInfoProvider" ref="ftySiteInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-车间管理 -->
+    <bean id="ftyAreaProvider" class="com.mes.control.provider.FtyAreaProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyAreaProvider" ref="ftyAreaProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工作中心管理-（Work center） -->
+    <bean id="ftyWorkCenterProvider" class="com.mes.control.provider.FtyWorkCenterProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyWorkCenterProvider" ref="ftyWorkCenterProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备管理 -->
+    <bean id="ftyDeviceProvider" class="com.mes.control.provider.FtyDeviceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceProvider" ref="ftyDeviceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 生产线管理-Production Line -->
+    <bean id="ftyProductionLineProvider" class="com.mes.control.provider.FtyProductionLineProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyProductionLineProvider" ref="ftyProductionLineProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品 -->
+    <bean id="pdProvider" class="com.mes.control.provider.PdProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProvider" ref="pdProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细（按工单移） -->
+    <bean id="pdProductInfoProvider" class="com.mes.control.provider.PdProductInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoProvider" ref="pdProductInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-表单类型管理 -->
+    <bean id="dpFormTypeProvider" class="com.mes.control.provider.DpFormTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpFormTypeProvider" ref="dpFormTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 元数据 -->
+    <bean id="metadataProvider" class="com.mes.control.provider.MetadataProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IMetadataProvider" ref="metadataProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-服务管理 -->
+    <bean id="dpServiceProvider" class="com.mes.control.provider.DpServiceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpServiceProvider" ref="dpServiceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-条码规则分类 -->
+    <bean id="pdBarcodeRuleTypeProvider" class="com.mes.control.provider.PdBarcodeRuleTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBarcodeRuleTypeProvider" ref="pdBarcodeRuleTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-条码规则设置 -->
+    <bean id="pdBarcodeRuleProvider" class="com.mes.control.provider.PdBarcodeRuleProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBarcodeRuleProvider" ref="pdBarcodeRuleProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工作站管理-（workstation ） -->
+    <bean id="ftyWorkstationProvider" class="com.mes.control.provider.FtyWorkstationProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyWorkstationProvider" ref="ftyWorkstationProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备附件 -->
+    <bean id="ftyDeviceAnnexProvider" class="com.mes.control.provider.FtyDeviceAnnexProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceAnnexProvider" ref="ftyDeviceAnnexProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 设备管理-设备-工序-附件 -->
+    <bean id="ftyDeviceProcessAnnexAssociationProvider" class="com.mes.control.provider.FtyDeviceProcessAnnexAssociationProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessAnnexAssociationProvider" ref="ftyDeviceProcessAnnexAssociationProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-（治具/工装/其他） -->
+    <bean id="ftyDeviceAnnexInfoProvider" class="com.mes.control.provider.FtyDeviceAnnexInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceAnnexInfoProvider" ref="ftyDeviceAnnexInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备耗品 -->
+    <bean id="ftyDeviceConsumablesProvider" class="com.mes.control.provider.FtyDeviceConsumablesProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceConsumablesProvider" ref="ftyDeviceConsumablesProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工序-设备 -->
+    <bean id="ftyDeviceProcessProvider" class="com.mes.control.provider.FtyDeviceProcessProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessProvider" ref="ftyDeviceProcessProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 扩展表配置 -->
+    <bean id="expandTableConfigProvider" class="com.mes.control.provider.ExpandTableConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IExpandTableConfigProvider" ref="expandTableConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 主表 -->
+    <bean id="tableProvider" class="com.mes.control.provider.TableProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.ITableProvider" ref="tableProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品线 -->
+    <bean id="pdLineProvider" class="com.mes.control.provider.PdLineProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdLineProvider" ref="pdLineProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品订单管理 -->
+    <bean id="pdOrderProvider" class="com.mes.control.provider.PdOrderProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdOrderProvider" ref="pdOrderProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-班次类型 -->
+    <bean id="pdSchedulingTypeProvider" class="com.mes.control.provider.PdSchedulingTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdSchedulingTypeProvider" ref="pdSchedulingTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-排班-人员 -->
+    <bean id="pdSchedulingProvider" class="com.mes.control.provider.PdSchedulingProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdSchedulingProvider" ref="pdSchedulingProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-工单管理 -->
+    <bean id="pdWorkOrderProvider" class="com.mes.control.provider.PdWorkOrderProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdWorkOrderProvider" ref="pdWorkOrderProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-工单BOM管理用量 -->
+    <bean id="pdBomWorkAmountProvider" class="com.mes.control.provider.PdBomWorkAmountProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomWorkAmountProvider" ref="pdBomWorkAmountProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-BOM替换料 -->
+    <bean id="pdBomMaterialsReplaceProvider" class="com.mes.control.provider.PdBomMaterialsReplaceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomMaterialsReplaceProvider" ref="pdBomMaterialsReplaceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品生产工序 -->
+    <bean id="dpProduceProcessProvider" class="com.mes.control.provider.DpProduceProcessProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessProvider" ref="dpProduceProcessProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-工艺路径管理（Routes） -->
+    <bean id="dpRoutesProvider" class="com.mes.control.provider.DpRoutesProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpRoutesProvider" ref="dpRoutesProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-表单 -->
+    <bean id="dpFormProvider" class="com.mes.control.provider.DpFormProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpFormProvider" ref="dpFormProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-生产工序配置属性 -->
+    <bean id="dpProduceProcessConfigProvider" class="com.mes.control.provider.DpProduceProcessConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessConfigProvider" ref="dpProduceProcessConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品测试项 -->
+    <bean id="dpProductTestLogProvider" class="com.mes.control.provider.DpProductTestLogProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProductTestLogProvider" ref="dpProductTestLogProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品生产工序记录 -->
+    <bean id="dpProductInfoLogProvider" class="com.mes.control.provider.DpProductInfoLogProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProductInfoLogProvider" ref="dpProductInfoLogProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-上料管理 -->
+    <bean id="dpMaterialsInfoProvider" class="com.mes.control.provider.DpMaterialsInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialsInfoProvider" ref="dpMaterialsInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-生产BOM管理用量 -->
+    <bean id="pdBomProduceAmountProvider" class="com.mes.control.provider.PdBomProduceAmountProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomProduceAmountProvider" ref="pdBomProduceAmountProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 排班管理-班次人员 -->
+    <bean id="pdSchedulingPersonnelProvider" class="com.mes.control.provider.PdSchedulingPersonnelProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdSchedulingPersonnelProvider" ref="pdSchedulingPersonnelProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 文件分类管理 -->
+    <bean id="pdFileTypeProvider" class="com.mes.control.provider.PdFileTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdFileTypeProvider" ref="pdFileTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 资源文件管理 -->
+    <bean id="pdFileResourcesProvider" class="com.mes.control.provider.PdFileResourcesProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdFileResourcesProvider" ref="pdFileResourcesProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工序 -->
+    <bean id="ftyProcessProvider" class="com.mes.control.provider.FtyProcessProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyProcessProvider" ref="ftyProcessProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工序-设备-附件 -->
+    <bean id="ftyDeviceProcessAnnexProvider" class="com.mes.control.provider.FtyDeviceProcessAnnexProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessAnnexProvider" ref="ftyDeviceProcessAnnexProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备配置-字典分类 -->
+    <bean id="ftyDeviceConfigTypeProvider" class="com.mes.control.provider.FtyDeviceConfigTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigTypeProvider" ref="ftyDeviceConfigTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备配置信息详情 -->
+    <bean id="ftyDeviceConfigInfoProvider" class="com.mes.control.provider.FtyDeviceConfigInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigInfoProvider" ref="ftyDeviceConfigInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备配置设置 -->
+    <bean id="ftyDeviceConfigProvider" class="com.mes.control.provider.FtyDeviceConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigProvider" ref="ftyDeviceConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备异常管理 -->
+    <bean id="ftyDeviceFaultProvider" class="com.mes.control.provider.FtyDeviceFaultProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultProvider" ref="ftyDeviceFaultProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备异常管理-故障字典 -->
+    <bean id="ftyDeviceFaultInfoProvider" class="com.mes.control.provider.FtyDeviceFaultInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultInfoProvider" ref="ftyDeviceFaultInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-故障影响-工序 -->
+    <bean id="ftyDeviceFaultProcessProvider" class="com.mes.control.provider.FtyDeviceFaultProcessProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultProcessProvider" ref="ftyDeviceFaultProcessProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-工序基础配置 -->
+    <bean id="dpProcessBaseConfigProvider" class="com.mes.control.provider.DpProcessBaseConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProcessBaseConfigProvider" ref="dpProcessBaseConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-设备配置-工序-设备附件 -->
+    <bean id="dpProduceProcessDeviceAnnexProvider" class="com.mes.control.provider.DpProduceProcessDeviceAnnexProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceAnnexProvider" ref="dpProduceProcessDeviceAnnexProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-设备配置信息 -->
+    <bean id="dpProduceProcessDeviceConfigProvider" class="com.mes.control.provider.DpProduceProcessDeviceConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceConfigProvider" ref="dpProduceProcessDeviceConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-设备配置信息-工单 -->
+    <bean id="dpProduceProcessConfigWorkorderProvider" class="com.mes.control.provider.DpProduceProcessConfigWorkorderProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessConfigWorkorderProvider" ref="dpProduceProcessConfigWorkorderProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-服务分类 -->
+    <bean id="dpServiceTypeProvider" class="com.mes.control.provider.DpServiceTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpServiceTypeProvider" ref="dpServiceTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-服务日志 -->
+    <bean id="dpServiceLogProvider" class="com.mes.control.provider.DpServiceLogProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpServiceLogProvider" ref="dpServiceLogProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-函数分类 -->
+    <bean id="dpFunctionTypeProvider" class="com.mes.control.provider.DpFunctionTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpFunctionTypeProvider" ref="dpFunctionTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-脚本 -->
+    <bean id="dpFunctionProvider" class="com.mes.control.provider.DpFunctionProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpFunctionProvider" ref="dpFunctionProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备-工作站 -->
+    <bean id="ftyWorkstationDeviceProvider" class="com.mes.control.provider.FtyWorkstationDeviceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyWorkstationDeviceProvider" ref="ftyWorkstationDeviceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-物料清单 -->
+    <bean id="pdBomMaterialsProvider" class="com.mes.control.provider.PdBomMaterialsProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomMaterialsProvider" ref="pdBomMaterialsProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-设备分类 -->
+    <bean id="ftyDeviceTypeProvider" class="com.mes.control.provider.FtyDeviceTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyDeviceTypeProvider" ref="ftyDeviceTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-BOM-附属信息 -->
+    <bean id="pdBomAffiliatedProvider" class="com.mes.control.provider.PdBomAffiliatedProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomAffiliatedProvider" ref="pdBomAffiliatedProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-生产BOM管理 -->
+    <bean id="pdBomProduceProvider" class="com.mes.control.provider.PdBomProduceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomProduceProvider" ref="pdBomProduceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-工单BOM管理 -->
+    <bean id="pdBomWorkProvider" class="com.mes.control.provider.PdBomWorkProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomWorkProvider" ref="pdBomWorkProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-工单批次 -->
+    <bean id="pdWorkOrderBatchProvider" class="com.mes.control.provider.PdWorkOrderBatchProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdWorkOrderBatchProvider" ref="pdWorkOrderBatchProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-排班-设备 -->
+    <bean id="pdSchedulingDeviceProvider" class="com.mes.control.provider.PdSchedulingDeviceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdSchedulingDeviceProvider" ref="pdSchedulingDeviceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-开发工程 -->
+    <bean id="dpProjectProvider" class="com.mes.control.provider.DpProjectProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProjectProvider" ref="dpProjectProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 生产工序-设备 -->
+    <bean id="dpProduceProcessDeviceProvider" class="com.mes.control.provider.DpProduceProcessDeviceProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceProvider" ref="dpProduceProcessDeviceProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-工序基础配置属性 -->
+    <bean id="dpProcessConfigProvider" class="com.mes.control.provider.DpProcessConfigProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProcessConfigProvider" ref="dpProcessConfigProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-数据字典类型 -->
+    <bean id="dpDataDictionaryTypeProvider" class="com.mes.control.provider.DpDataDictionaryTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpDataDictionaryTypeProvider" ref="dpDataDictionaryTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-数据字典表 -->
+    <bean id="dpDataDictionaryProvider" class="com.mes.control.provider.DpDataDictionaryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpDataDictionaryProvider" ref="dpDataDictionaryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品生产工序记录-历史表 -->
+    <bean id="dpProductInfoLogHistoryProvider" class="com.mes.control.provider.DpProductInfoLogHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProductInfoLogHistoryProvider" ref="dpProductInfoLogHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细（按工单移）历史表 -->
+    <bean id="pdProductInfoHistoryProvider" class="com.mes.control.provider.PdProductInfoHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoHistoryProvider" ref="pdProductInfoHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品测试项-历史表 -->
+    <bean id="dpProductTestLogHistoryProvider" class="com.mes.control.provider.DpProductTestLogHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProductTestLogHistoryProvider" ref="dpProductTestLogHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-上料管理-历史包 -->
+    <bean id="dpMaterialsInfoHistoryProvider" class="com.mes.control.provider.DpMaterialsInfoHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialsInfoHistoryProvider" ref="dpMaterialsInfoHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-工单班次 -->
+    <bean id="pdSchedulingWorkOrderProvider" class="com.mes.control.provider.PdSchedulingWorkOrderProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdSchedulingWorkOrderProvider" ref="pdSchedulingWorkOrderProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-对象分类 -->
+    <bean id="tableTypeProvider" class="com.mes.control.provider.TableTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.ITableTypeProvider" ref="tableTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-生产BOM校验规则 -->
+    <bean id="pdBomProduceRulesProvider" class="com.mes.control.provider.PdBomProduceRulesProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBomProduceRulesProvider" ref="pdBomProduceRulesProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-条码 -->
+    <bean id="dpBarcodeProvider" class="com.mes.control.provider.DpBarcodeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBarcodeProvider" ref="dpBarcodeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-条码类别 -->
+    <bean id="dpBarcodeTypeProvider" class="com.mes.control.provider.DpBarcodeTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBarcodeTypeProvider" ref="dpBarcodeTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-标签类别 -->
+    <bean id="dpLabelTypeProvider" class="com.mes.control.provider.DpLabelTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpLabelTypeProvider" ref="dpLabelTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-标签管理 -->
+    <bean id="dpLabelProvider" class="com.mes.control.provider.DpLabelProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpLabelProvider" ref="dpLabelProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-素材管理 -->
+    <bean id="dpMaterialProvider" class="com.mes.control.provider.DpMaterialProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialProvider" ref="dpMaterialProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-组件管理 -->
+    <bean id="dpSubassemblyProvider" class="com.mes.control.provider.DpSubassemblyProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpSubassemblyProvider" ref="dpSubassemblyProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-模板管理 -->
+    <bean id="dpTemplateProvider" class="com.mes.control.provider.DpTemplateProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpTemplateProvider" ref="dpTemplateProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-组件分类 -->
+    <bean id="dpSubassemblyTypeProvider" class="com.mes.control.provider.DpSubassemblyTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpSubassemblyTypeProvider" ref="dpSubassemblyTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-模板分类 -->
+    <bean id="dpTemplateTypeProvider" class="com.mes.control.provider.DpTemplateTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpTemplateTypeProvider" ref="dpTemplateTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-素材分类 -->
+    <bean id="dpMaterialTypeProvider" class="com.mes.control.provider.DpMaterialTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialTypeProvider" ref="dpMaterialTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细-产品编码 -->
+    <bean id="pdProductInfoNumberProvider" class="com.mes.control.provider.PdProductInfoNumberProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoNumberProvider" ref="pdProductInfoNumberProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细-产品编码(历史) -->
+    <bean id="pdProductInfoNumberHistoryProvider" class="com.mes.control.provider.PdProductInfoNumberHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoNumberHistoryProvider" ref="pdProductInfoNumberHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细-物料 -->
+    <bean id="pdProductInfoMaterialsProvider" class="com.mes.control.provider.PdProductInfoMaterialsProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoMaterialsProvider" ref="pdProductInfoMaterialsProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细-物料-历史 -->
+    <bean id="pdProductInfoMaterialsHistoryProvider" class="com.mes.control.provider.PdProductInfoMaterialsHistoryProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductInfoMaterialsHistoryProvider" ref="pdProductInfoMaterialsHistoryProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品属性管理 -->
+    <bean id="pdAttributeProvider" class="com.mes.control.provider.PdAttributeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdAttributeProvider" ref="pdAttributeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 服务调用监控 -->
+    <bean id="dpServiceMonitorProvider" class="com.mes.control.provider.DpServiceMonitorProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpServiceMonitorProvider" ref="dpServiceMonitorProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品测试标准 -->
+    <bean id="dpProduceStandardTestProvider" class="com.mes.control.provider.DpProduceStandardTestProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceStandardTestProvider" ref="dpProduceStandardTestProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品测试标准-测试顺序 -->
+    <bean id="dpProduceStandardTestOrderProvider" class="com.mes.control.provider.DpProduceStandardTestOrderProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceStandardTestOrderProvider" ref="dpProduceStandardTestOrderProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品芯片 -->
+    <bean id="dpProduceChipProvider" class="com.mes.control.provider.DpProduceChipProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceChipProvider" ref="dpProduceChipProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工序配置类型 -->
+    <bean id="ftyProcessConfigTypeProvider" class="com.mes.control.provider.FtyProcessConfigTypeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyProcessConfigTypeProvider" ref="ftyProcessConfigTypeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 工厂管理-工序配置类型字典 -->
+    <bean id="ftyProcessConfigTypeDictProvider" class="com.mes.control.provider.FtyProcessConfigTypeDictProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IFtyProcessConfigTypeDictProvider" ref="ftyProcessConfigTypeDictProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-栈板管理 -->
+    <bean id="dpBoxPalletProvider" class="com.mes.control.provider.DpBoxPalletProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBoxPalletProvider" ref="dpBoxPalletProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-包装箱管理 -->
+    <bean id="dpBoxProvider" class="com.mes.control.provider.DpBoxProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBoxProvider" ref="dpBoxProvider" retries="0" protocol="dubbo"/>
+
+    <bean id="dpBoxRuleProvider" class="com.mes.control.provider.DpBoxRuleProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBoxRuleProvider" ref="dpBoxRuleProvider" retries="0" protocol="dubbo"/>
+
+
+
+    <!-- 开发平台-包装箱-产品 -->
+    <bean id="dpBoxProductInfoProvider" class="com.mes.control.provider.DpBoxProductInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBoxProductInfoProvider" ref="dpBoxProductInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-栈板管理-包装箱 -->
+    <bean id="dpBoxPalletInfoProvider" class="com.mes.control.provider.DpBoxPalletInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpBoxPalletInfoProvider" ref="dpBoxPalletInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品维修站 -->
+    <bean id="dpRepairStationProvider" class="com.mes.control.provider.DpRepairStationProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpRepairStationProvider" ref="dpRepairStationProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品维修站-不良信息 -->
+    <bean id="dpRepairStationBadInfoProvider" class="com.mes.control.provider.DpRepairStationBadInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpRepairStationBadInfoProvider" ref="dpRepairStationBadInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 软件注入结果记录 -->
+    <bean id="pdExecSoftinjectTbProvider" class="com.mes.control.provider.PdExecSoftinjectTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdExecSoftinjectTbProvider" ref="pdExecSoftinjectTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 终端测试项结果 -->
+    <bean id="pdWorkTestDetailTbProvider" class="com.mes.control.provider.PdWorkTestDetailTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdWorkTestDetailTbProvider" ref="pdWorkTestDetailTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 终端测试项设备状态 -->
+    <bean id="pdWorkTestDeviceTbProvider" class="com.mes.control.provider.PdWorkTestDeviceTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdWorkTestDeviceTbProvider" ref="pdWorkTestDeviceTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 终端测试结果 -->
+    <bean id="pdWorkTestMainTbProvider" class="com.mes.control.provider.PdWorkTestMainTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdWorkTestMainTbProvider" ref="pdWorkTestMainTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- $table.description -->
+    <bean id="pdExecSystemModuleCopyProvider" class="com.mes.control.provider.PdExecSystemModuleCopyProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdExecSystemModuleCopyProvider" ref="pdExecSystemModuleCopyProvider" retries="0" protocol="dubbo"/>
+
+    <!-- $table.description -->
+    <bean id="pdExecTransmitSetTbProvider" class="com.mes.control.provider.PdExecTransmitSetTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdExecTransmitSetTbProvider" ref="pdExecTransmitSetTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-生产工序配置-工序执行时间 -->
+    <bean id="dpProduceProcessDateProvider" class="com.mes.control.provider.DpProduceProcessDateProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDateProvider" ref="dpProduceProcessDateProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品标定 -->
+    <bean id="dpProduceDemarcateProvider" class="com.mes.control.provider.DpProduceDemarcateProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceDemarcateProvider" ref="dpProduceDemarcateProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-抽检管理 -->
+    <bean id="dpSampleInspectionProvider" class="com.mes.control.provider.DpSampleInspectionProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpSampleInspectionProvider" ref="dpSampleInspectionProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-抽检管理-抽检详细 -->
+    <bean id="dpSampleInspectionDetailProvider" class="com.mes.control.provider.DpSampleInspectionDetailProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpSampleInspectionDetailProvider" ref="dpSampleInspectionDetailProvider" retries="0" protocol="dubbo"/>
+
+
+    <!-- 开发平台-上料管理-组装 -->
+    <bean id="dpMaterialsAssembleProvider" class="com.mes.control.provider.DpMaterialsAssembleProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialsAssembleProvider" ref="dpMaterialsAssembleProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-上料管理-上料 -->
+    <bean id="dpMaterialsLoadProvider" class="com.mes.control.provider.DpMaterialsLoadProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpMaterialsLoadProvider" ref="dpMaterialsLoadProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-生产工序-工装配置信息 -->
+    <bean id="dpProduceProcessAnnexProvider" class="com.mes.control.provider.DpProduceProcessAnnexProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IDpProduceProcessAnnexProvider" ref="dpProduceProcessAnnexProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-产品明细-产品标签 -->
+    <bean id="pdProductPdLableProvider" class="com.mes.control.provider.PdProductPdLableProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductPdLableProvider"
+                   ref="pdProductPdLableProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品条码 -->
+    <bean id="pdProductBarCodeProvider" class="com.mes.control.provider.PdProductBarCodeProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductBarCodeProvider"
+                   ref="pdProductBarCodeProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-产品标签 -->
+    <bean id="pdProductLabelProvider" class="com.mes.control.provider.PdProductLabelProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductLabelProvider" ref="pdProductLabelProvider"
+                   retries="0" protocol="dubbo"/>
+    <!-- 产品管理-生产线 -->
+    <bean id="pdProductionLineInfoProvider" class="com.mes.control.provider.PdProductionLineInfoProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdProductionLineInfoProvider"
+                   ref="pdProductionLineInfoProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-条码通配符列表 -->
+    <bean id="pdBarcodeWildcardProvider" class="com.mes.control.provider.PdBarcodeWildcardProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBarcodeWildcardProvider" ref="pdBarcodeWildcardProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-条码通配符日期替换 -->
+    <bean id="pdBaseReplaceTbProvider" class="com.mes.control.provider.PdBaseReplaceTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdBaseReplaceTbProvider" ref="pdBaseReplaceTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 产品管理-条码扩展通配符 -->
+    <bean id="pdPreCodeWildcardTbProvider" class="com.mes.control.provider.PdPreCodeWildcardTbProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.IPdPreCodeWildcardTbProvider" ref="pdPreCodeWildcardTbProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-流水规则-规则 -->
+    <bean id="serialRuleProvider" class="com.mes.control.provider.SerialRuleProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.ISerialRuleProvider" ref="serialRuleProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-流水规则-规则工单关联 -->
+    <bean id="serialRuleWorkOrderAssociationProvider" class="com.mes.control.provider.SerialRuleWorkOrderAssociationProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.ISerialRuleWorkOrderAssociationProvider" ref="serialRuleWorkOrderAssociationProvider" retries="0" protocol="dubbo"/>
+
+    <!-- 开发平台-流水规则-明细 -->
+    <bean id="serialRuleDetailProvider" class="com.mes.control.provider.SerialRuleDetailProviderImpl"/>
+    <dubbo:service interface="com.mes.dubbo.interprovider.control.ISerialRuleDetailProvider" ref="serialRuleDetailProvider" retries="0" protocol="dubbo"/>
+</beans>

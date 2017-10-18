@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- $table.description -->
+<mapper namespace="com.mes.control.mapper.PdExecSystemModuleCopyMapper">
+    <resultMap type="com.mes.entity.control.PdExecSystemModuleCopy" id="pdExecSystemModuleCopyResultMap">
+        
+        <result column="system_id" property="systemId" jdbcType="VARCHAR"/>
+        
+        <result column="module_id" property="moduleId" jdbcType="VARCHAR"/>
+        
+        <result column="sub_module_id" property="subModuleId" jdbcType="VARCHAR"/>
+        
+        <result column="system_name" property="systemName" jdbcType="VARCHAR"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdExecSystemModuleCopyResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="getRelationTables" resultType="java.util.Map">
+        SELECT
+          send_module,
+          send_message,
+          receive_module,
+          receive_message
+        FROM
+          mes_pd_exec_transmit_set_tb
+        WHERE CONCAT(
+            CONCAT(send_module),
+            CONCAT(send_sub_module)
+          ) IN
+          (SELECT
+            k
+          FROM
+            (SELECT
+              CONCAT(
+                CONCAT(module_id),
+                CONCAT(sub_module_id)
+              ) k
+            FROM
+              mes_pd_exec_system_module_copy
+            WHERE system_name = #{value}) g)
+          AND CONCAT(
+            CONCAT(receive_module),
+            CONCAT(receive_sub_module)
+          ) IN
+          (SELECT
+            k
+          FROM
+            (SELECT
+              CONCAT(
+                CONCAT(module_id),
+                CONCAT(sub_module_id)
+              ) k
+            FROM
+              mes_pd_exec_system_module_copy
+            WHERE system_name = #{value}) f)
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdExecSystemModuleCopy">
+        insert into mes_pd_exec_system_module_copy
+        (`system_id`,`module_id`,`sub_module_id`,`system_name`)
+        values
+        (#{systemId},#{moduleId},#{subModuleId},#{systemName})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdExecSystemModuleCopy">
+        update mes_pd_exec_system_module_copy s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_exec_system_module_copy where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_exec_system_module_copy t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdExecSystemModuleCopyResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdExecSystemModuleCopyResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdExecSystemModuleCopyResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `system_id`,`module_id`,`sub_module_id`,`system_name` from mes_pd_exec_system_module_copy  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `system_id` like CONCAT('%', #{search}, '%')
+				or `module_id` like CONCAT('%', #{search}, '%')
+				or `sub_module_id` like CONCAT('%', #{search}, '%')
+				or `system_name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="systemId != null  and systemId != '' ">
+            <![CDATA[
+                and `system_id` = #{systemId}
+            ]]>
+            </if>
+            
+            <if test="moduleId != null  and moduleId != '' ">
+            <![CDATA[
+                and `module_id` = #{moduleId}
+            ]]>
+            </if>
+            
+            <if test="subModuleId != null  and subModuleId != '' ">
+            <![CDATA[
+                and `sub_module_id` = #{subModuleId}
+            ]]>
+            </if>
+            
+            <if test="systemName != null  and systemName != '' ">
+            <![CDATA[
+                and `system_name` = #{systemName}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `system_id` like CONCAT('%', #{search}, '%')
+				or `module_id` like CONCAT('%', #{search}, '%')
+				or `sub_module_id` like CONCAT('%', #{search}, '%')
+				or `system_name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="systemId != null  and systemId != '' ">
+            <![CDATA[
+                or `system_id` = #{systemId}
+            ]]>
+            </if>
+            
+            <if test="moduleId != null  and moduleId != '' ">
+            <![CDATA[
+                or `module_id` = #{moduleId}
+            ]]>
+            </if>
+            
+            <if test="subModuleId != null  and subModuleId != '' ">
+            <![CDATA[
+                or `sub_module_id` = #{subModuleId}
+            ]]>
+            </if>
+            
+            <if test="systemName != null  and systemName != '' ">
+            <![CDATA[
+                or `system_name` = #{systemName}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `system_id` like CONCAT('%', #{search}, '%')
+				or `module_id` like CONCAT('%', #{search}, '%')
+				or `sub_module_id` like CONCAT('%', #{search}, '%')
+				or `system_name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="systemId != null  and systemId != '' ">
+            <![CDATA[
+                and `system_id` CONCAT('%', #{systemId}, '%')
+            ]]>
+            </if>
+            
+            <if test="moduleId != null  and moduleId != '' ">
+            <![CDATA[
+                and `module_id` CONCAT('%', #{moduleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="subModuleId != null  and subModuleId != '' ">
+            <![CDATA[
+                and `sub_module_id` CONCAT('%', #{subModuleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="systemName != null  and systemName != '' ">
+            <![CDATA[
+                and `system_name` CONCAT('%', #{systemName}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `system_id` like CONCAT('%', #{search}, '%')
+				or `module_id` like CONCAT('%', #{search}, '%')
+				or `sub_module_id` like CONCAT('%', #{search}, '%')
+				or `system_name` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="systemId != null  and systemId != '' ">
+            <![CDATA[
+                or `system_id` CONCAT('%', #{systemId}, '%')
+            ]]>
+            </if>
+            
+            <if test="moduleId != null  and moduleId != '' ">
+            <![CDATA[
+                or `module_id` CONCAT('%', #{moduleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="subModuleId != null  and subModuleId != '' ">
+            <![CDATA[
+                or `sub_module_id` CONCAT('%', #{subModuleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="systemName != null  and systemName != '' ">
+            <![CDATA[
+                or `system_name` CONCAT('%', #{systemName}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="systemId != null  and systemId != '' ">
+            <![CDATA[
+                `system_id` = #{systemId},
+            ]]>
+            </if>
+            
+            <if test="moduleId != null  and moduleId != '' ">
+            <![CDATA[
+                `module_id` = #{moduleId},
+            ]]>
+            </if>
+            
+            <if test="subModuleId != null  and subModuleId != '' ">
+            <![CDATA[
+                `sub_module_id` = #{subModuleId},
+            ]]>
+            </if>
+            
+            <if test="systemName != null  and systemName != '' ">
+            <![CDATA[
+                `system_name` = #{systemName},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.UserMapper">
+
+
+    <resultMap type="com.mes.entity.control.User" id="userResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="job_number" property="jobNumber" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="is_delete" property="isDelete" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <association column="role_id" property="roleName" select="getRoleName" javaType="java.lang.String"/>
+        <association column="id" property="deptName" select="getDeptName" javaType="java.lang.String"/>
+    </resultMap>
+
+
+    <!--校验用户名密码-->
+    <select id="validateUserInfo" parameterType="java.util.Map" resultMap="userResultMap">
+        SELECT id,username,password,name,job_number,title,role_id,sex,phone,mobile_phone,email,create_date,update_date,is_delete
+        from
+        mes_user s
+        where s.username=#{username} and s.password=#{password} and s.is_delete='0'
+    </select>
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="userResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id} AND s.is_delete='0'
+    </select>
+
+    <select id="getUsersByWorkOrder" resultMap="userResultMap">
+        SELECT u.*
+        FROM mes_pd_scheduling_work_order o, mes_pd_scheduling s, mes_user_group_auth a, mes_user u
+        WHERE o.`work_order_id`=#{value}
+        AND o.`scheduling_id`=s.`id`
+        AND s.`usergroup_id`=a.`user_group_id`
+        AND a.`user_id`=u.`id`
+        AND u.is_delete = '0'
+        ORDER BY u.`create_date` DESC
+    </select>
+
+    <select id="getRoleName" resultType="java.lang.String">
+        select s.name from mes_role s where s.id=#{value}
+    </select>
+
+    <select id="getDeptName" resultType="java.lang.String">
+        SELECT d.`name`
+        FROM mes_dept d, mes_user_dept_auth a
+        WHERE d.`id`=a.`dept_id`
+        AND a.`user_id`=#{value}
+    </select>
+
+    <select id="checkName" resultType="int">
+        select count(1) from mes_user t
+        <where>
+            is_delete='0'
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+                        name = #{name}
+                    ]]>
+            </if>
+        </where>
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.User">
+        insert into mes_user
+            (id,username,password,name,job_number,title,role_id,sex,phone,mobile_phone,email,create_date,update_date,is_delete)
+        values
+            (#{id},#{username},#{password},#{name},#{jobNumber},#{title},#{roleId},#{sex},#{phone},#{mobilePhone},#{email},#{createDate},#{updateDate},'0')
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.User">
+        update mes_user s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        update mes_user s set s.is_delete ='1'
+         where id =#{id}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from mes_user
+    </delete>
+
+    <delete id="deleteAllUserDept">
+        delete from mes_user_dept_auth
+    </delete>
+
+    <!--根据Id删除mes_user_group_auth-->
+    <delete id="deleteByGroupIdAndUserIds" parameterType="java.util.Map">
+        DELETE FROM mes_user_group_auth where user_id=#{userId} AND user_group_id = #{groupId}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_user t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="userResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <select id="getCountByDeptId" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_user s JOIN mes_user_dept_auth a
+        ON s.`id`=a.`user_id`
+        JOIN mes_role r ON s.role_id=r.id
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findPageByDeptId" parameterType="java.util.Map" resultMap="userResultMap">
+        SELECT s.*,r.name as roleName
+        FROM mes_user s JOIN mes_user_dept_auth a
+        ON s.`id`=a.`user_id`
+        JOIN mes_role r ON s.role_id=r.id
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <select id="getCountByUserGroupId" parameterType="java.util.Map" resultType="int">
+        SELECT count(1) FROM mes_user s
+        JOIN mes_user_group_auth a
+        ON s.`id` = a.`user_id`
+        JOIN mes_user_dept_auth da
+        ON s.`id` = da.`user_id`
+        JOIN mes_dept d
+        ON da.`dept_id` = d.`id`
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findPageByUserGroupId" parameterType="java.util.Map" resultMap="userResultMap">
+        SELECT s.* FROM mes_user s
+        JOIN mes_user_group_auth a
+        ON s.`id` = a.`user_id`
+        JOIN mes_user_dept_auth da
+        ON s.`id` = da.`user_id`
+        JOIN mes_dept d
+        ON da.`dept_id` = d.`id`
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <select id="getAssignableUsers" parameterType="com.mes.entity.control.User" resultMap="userResultMap">
+        SELECT u.*
+        FROM mes_user u, mes_user_dept_auth da
+        WHERE u.`id`=da.`user_id`
+        AND da.`dept_id`=#{deptId}
+        AND NOT EXISTS (SELECT * FROM mes_user_group_auth ga WHERE ga.`user_group_id`=#{userGroupId} AND ga.`user_id`=u.`id`)
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="userResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--用户登录-->
+    <select id="getLoginInfo" parameterType="com.mes.entity.control.UserLogin" resultMap="userResultMap">
+        <include refid="sql_select"/>
+        where username=#{username}
+        <if test="adAuth != null and adAuth == false">
+            and password=#{password}
+        </if>
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="userResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT id,username,password,name,job_number,title,role_id,sex,phone,mobile_phone,email,create_date,update_date,is_delete
+        from
+            mes_user  s
+    </sql>
+
+    <!-- 分配用户到部门 -->
+    <insert id="saveDeptAuth" parameterType="java.util.Map">
+        insert into mes_user_dept_auth (id,user_id,dept_id) values(#{id},#{userId},#{deptId})
+    </insert>
+
+    <!-- 删除用户和部门的关联关系 -->
+    <delete id="deleteDeptAuth">
+        delete from mes_user_dept_auth where user_id=#{value}
+    </delete>
+
+    <!-- 删除用户和用户组的关联关系 -->
+    <delete id="deleteUserGroupAuth">
+        delete from mes_user_group_auth where user_id=#{value}
+    </delete>
+
+    <!-- 分配用户到组 -->
+    <insert id="saveGroupAuth" parameterType="java.util.Map">
+        insert into mes_user_group_auth (id,user_id,user_group_id) values(#{id},#{userId},#{userGroupId})
+    </insert>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            1=1
+            <if test="deptId != null  and deptId != '' ">
+                <![CDATA[
+					and a.dept_id = #{deptId}
+					and a.user_id = s.id
+				]]>
+            </if>
+            <if test="userGroupId != null  and userGroupId != '' ">
+                <![CDATA[
+                    and s.`id`=da.`user_id`
+                    and da.`dept_id`=d.`id`
+					and a.user_group_id = #{userGroupId}
+					and a.user_id = s.id
+				]]>
+            </if>
+            <if test="search != null and search != '' ">
+					and (username like CONCAT('%', #{search}, '%')
+					or s.name like CONCAT('%', #{search}, '%')
+					or job_number like CONCAT('%', #{search}, '%')
+                    or r.name like CONCAT('%', #{search}, '%')
+					or title like CONCAT('%', #{search}, '%')
+					or phone like CONCAT('%', #{search}, '%')
+					or mobile_phone like CONCAT('%', #{search}, '%')
+                    <if test="userGroupId != null  and userGroupId != '' ">
+                        or d.`name` LIKE CONCAT('%', #{search}, '%')
+                    </if>
+					)
+            </if>
+            <if test="username != null  and username != '' ">
+                <![CDATA[
+					and username = #{username}
+                   ]]>
+            </if>
+            <if test="name != null  and name != ''">
+                <![CDATA[
+					and name = #{name}
+				]]>
+            </if>
+
+            <if test="jobNumber != null  and jobNumber != '' ">
+                <![CDATA[
+					and job_number = #{jobNumber}
+				]]>
+            </if>
+            <if test="title != null  and title != '' ">
+                <![CDATA[
+					and title = #{title}
+				]]>
+            </if>
+            <if test="sex != null  and sex != '' ">
+                <![CDATA[
+					and sex = #{sex}
+				]]>
+            </if>
+            <if test="phone != null  and phone != '' ">
+                <![CDATA[
+					and phone = #{phone}
+				]]>
+            </if>
+            <if test="mobilePhone != null  and mobilePhone != '' ">
+                <![CDATA[
+					and mobile_phone = #{mobilePhone}
+				]]>
+            </if>
+            <if test="email != null  and email != '' ">
+                <![CDATA[
+					and email = #{email}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date = #{createDate}
+				]]>
+            </if>
+            <if test="updateDate != null  and updateDate != '' ">
+                <![CDATA[
+					and update_date = #{updateDate}
+				]]>
+            </if>
+
+
+        </where>
+
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            1=1
+            <if test="username != null  and username != '' ">
+                <![CDATA[
+					or username = #{username}
+				]]>
+            </if>
+            <if test="password != null  and password != '' ">
+                <![CDATA[
+					or password = #{password}
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name = #{name}
+				]]>
+            </if>
+            <if test="jobNumber != null  and jobNumber != '' ">
+                <![CDATA[
+					or job_number = #{jobNumber}
+				]]>
+            </if>
+            <if test="title != null  and title != '' ">
+                <![CDATA[
+					or title = #{title}
+				]]>
+            </if>
+            <if test="roleId != null  and roleId != '' ">
+                <![CDATA[
+					or role_id = #{roleId}
+				]]>
+            </if>
+            <if test="sex != null  and sex != '' ">
+                <![CDATA[
+					or sex = #{sex}
+				]]>
+            </if>
+            <if test="phone != null  and phone != '' ">
+                <![CDATA[
+					or phone = #{phone}
+				]]>
+            </if>
+            <if test="mobilePhone != null  and mobilePhone != '' ">
+                <![CDATA[
+					or mobile_phone = #{mobilePhone}
+				]]>
+            </if>
+            <if test="email != null  and email != '' ">
+                <![CDATA[
+					or email = #{email}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date = #{createDate}
+				]]>
+            </if>
+            <if test="updateDate != null  and updateDate != '' ">
+                <![CDATA[
+					or update_date = #{updateDate}
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+           1=1
+            <if test="username != null  and username != '' ">
+                <![CDATA[
+					and username like CONCAT('%', #{username}, '%')
+				]]>
+            </if>
+            <if test="password != null  and password != '' ">
+                <![CDATA[
+					and password like CONCAT('%', #{password}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="jobNumber != null  and jobNumber != '' ">
+                <![CDATA[
+					and job_number like CONCAT('%', #{jobNumber}, '%')
+				]]>
+            </if>
+            <if test="title != null  and title != '' ">
+                <![CDATA[
+					and title like CONCAT('%', #{title}, '%')
+				]]>
+            </if>
+            <if test="roleId != null  and roleId != '' ">
+                <![CDATA[
+					and role_id like CONCAT('%', #{roleId}, '%')
+				]]>
+            </if>
+            <if test="sex != null  and sex != '' ">
+                <![CDATA[
+					and sex like CONCAT('%', #{sex}, '%')
+				]]>
+            </if>
+            <if test="phone != null  and phone != '' ">
+                <![CDATA[
+					and phone like CONCAT('%', #{phone}, '%')
+				]]>
+            </if>
+            <if test="mobilePhone != null  and mobilePhone != '' ">
+                <![CDATA[
+					and mobile_phone like CONCAT('%', #{mobilePhone}, '%')
+				]]>
+            </if>
+            <if test="email != null  and email != '' ">
+                <![CDATA[
+					and email like CONCAT('%', #{email}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+            <if test="updateDate != null  and updateDate != '' ">
+                <![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+          1=1
+            <if test="username != null  and username != '' ">
+                <![CDATA[
+					or username like CONCAT('%', #{username}, '%')
+				]]>
+            </if>
+            <if test="password != null  and password != '' ">
+                <![CDATA[
+					or password like CONCAT('%', #{password}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="jobNumber != null  and jobNumber != '' ">
+                <![CDATA[
+					or job_number like CONCAT('%', #{jobNumber}, '%')
+				]]>
+            </if>
+            <if test="title != null  and title != '' ">
+                <![CDATA[
+					or title like CONCAT('%', #{title}, '%')
+				]]>
+            </if>
+            <if test="roleId != null  and roleId != '' ">
+                <![CDATA[
+					or role_id like CONCAT('%', #{roleId}, '%')
+				]]>
+            </if>
+            <if test="sex != null  and sex != '' ">
+                <![CDATA[
+					or sex like CONCAT('%', #{sex}, '%')
+				]]>
+            </if>
+            <if test="phone != null  and phone != '' ">
+                <![CDATA[
+					or phone like CONCAT('%', #{phone}, '%')
+				]]>
+            </if>
+            <if test="mobilePhone != null  and mobilePhone != '' ">
+                <![CDATA[
+					or mobile_phone like CONCAT('%', #{mobilePhone}, '%')
+				]]>
+            </if>
+            <if test="email != null  and email != '' ">
+                <![CDATA[
+					or email like CONCAT('%', #{email}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+            <if test="updateDate != null  and updateDate != '' ">
+                <![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+    <!--更新操作-->
+    <sql id="sql_update">
+
+        <set>
+            <if test="username != null  and username != '' ">
+                <![CDATA[
+					 username = #{username},
+                ]]>
+            </if>
+            <if test="password != null  and password != '' ">
+                <![CDATA[
+					 password = #{password},
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					 name = #{name},
+				]]>
+            </if>
+            <if test="jobNumber != null  and jobNumber != '' ">
+                <![CDATA[
+					 job_number = #{jobNumber},
+				]]>
+            </if>
+            <if test="title != null  and title != '' ">
+                <![CDATA[
+					title = #{title},
+				]]>
+            </if>
+            <if test="roleId != null  and roleId != '' ">
+                <![CDATA[
+					 role_id = #{roleId},
+				]]>
+            </if>
+            <if test="sex != null  and sex != '' ">
+                <![CDATA[
+					 sex = #{sex},
+				]]>
+            </if>
+            <if test="phone != null  and phone != '' ">
+                <![CDATA[
+					 phone = #{phone},
+				]]>
+            </if>
+            <if test="mobilePhone != null  and mobilePhone != '' ">
+                <![CDATA[
+					 mobile_phone = #{mobilePhone},
+				]]>
+            </if>
+            <if test="email != null  and email != '' ">
+                <![CDATA[
+					 email = #{email},
+				]]>
+            </if>
+            <if test="isDelete != null  and isDelete != '' ">
+                <![CDATA[
+					 is_delete = #{isDelete},
+				]]>
+            </if>
+
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					 create_date = #{createDate},
+				]]>
+            </if>
+            <if test="updateDate != null  and updateDate != '' ">
+                <![CDATA[
+					 update_date = #{updateDate},
+				]]>
+            </if>
+
+        </set>
+    </sql>
+
+</mapper>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-流水规则-明细 -->
+<mapper namespace="com.mes.control.mapper.SerialRuleDetailMapper">
+    <resultMap type="com.mes.entity.control.SerialRuleDetail" id="serialRuleDetailResultMap">
+        
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        
+        <result column="rule_id" property="ruleId" jdbcType="VARCHAR"/>
+        
+        <result column="current_value" property="currentValue" jdbcType="BIGINT"/>
+
+        <result column="use_up" property="useUp" jdbcType="TINYINT"/>
+        
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="serialRuleDetailResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.SerialRuleDetail">
+        insert into mes_serial_rule_detail
+        (`id`,`rule_id`,`current_value`,`use_up`,`create_date`,`update_date`)
+        values
+        (#{id},#{ruleId},#{currentValue},#{useUp},#{createDate},#{updateDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.SerialRuleDetail">
+        update mes_serial_rule_detail s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <update id="updateDetail" parameterType="com.mes.entity.control.SerialRuleDetail">
+        update mes_serial_rule_detail s
+        set current_value=#{currentValue}
+        where s.id = #{id}
+        and s.version=#{version}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_serial_rule_detail where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_serial_rule_detail t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="serialRuleDetailResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="serialRuleDetailResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="serialRuleDetailResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`rule_id`,`current_value`,`create_date`,`update_date` from mes_serial_rule_detail  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `rule_id` like CONCAT('%', #{search}, '%')
+				or `current_value` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="ruleId != null  and ruleId != '' ">
+            <![CDATA[
+                and `rule_id` = #{ruleId}
+            ]]>
+            </if>
+            
+            <if test="currentValue != null  and currentValue != '' ">
+            <![CDATA[
+                and `current_value` = #{currentValue}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                and `update_date` = #{updateDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `rule_id` like CONCAT('%', #{search}, '%')
+				or `current_value` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="ruleId != null  and ruleId != '' ">
+            <![CDATA[
+                or `rule_id` = #{ruleId}
+            ]]>
+            </if>
+            
+            <if test="currentValue != null  and currentValue != '' ">
+            <![CDATA[
+                or `current_value` = #{currentValue}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                or `update_date` = #{updateDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `rule_id` like CONCAT('%', #{search}, '%')
+				or `current_value` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="ruleId != null  and ruleId != '' ">
+            <![CDATA[
+                and `rule_id` like CONCAT('%', #{ruleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="currentValue != null  and currentValue != '' ">
+            <![CDATA[
+                and `current_value` like CONCAT('%', #{currentValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                and `update_date` like CONCAT('%', #{updateDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `rule_id` like CONCAT('%', #{search}, '%')
+				or `current_value` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="ruleId != null  and ruleId != '' ">
+            <![CDATA[
+                or `rule_id` like CONCAT('%', #{ruleId}, '%')
+            ]]>
+            </if>
+            
+            <if test="currentValue != null  and currentValue != '' ">
+            <![CDATA[
+                or `current_value` like CONCAT('%', #{currentValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                or `update_date` like CONCAT('%', #{updateDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+            
+            <if test="ruleId != null  and ruleId != '' ">
+            <![CDATA[
+                `rule_id` = #{ruleId},
+            ]]>
+            </if>
+            
+            <if test="currentValue != null  and currentValue != '' ">
+            <![CDATA[
+                `current_value` = #{currentValue},
+            ]]>
+            </if>
+
+            <if test="useUp != null  and useUp != '' ">
+                <![CDATA[
+                `use_up` = #{useUp},
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                `update_date` = #{updateDate},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

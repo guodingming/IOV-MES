@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/projectnew/IOV_PLATFORM/!svn/ver/17352/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful
+END
+ApiConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/ApiConfig.java
+END
+RestApplication.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/RestApplication.java
+END
+RestConstraint.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/RestConstraint.java
+END
+RestJsonMapperProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/14973/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/RestJsonMapperProvider.java
+END
+UserOpLogRequestFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/16366/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/UserOpLogRequestFilter.java
+END

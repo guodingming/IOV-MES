@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-BOM-附属信息 -->
+<mapper namespace="com.mes.control.mapper.PdBomAffiliatedMapper">
+	<resultMap type="com.mes.entity.control.PdBomAffiliated" id="pdBomAffiliatedResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="attribute_id" property="attributeId" jdbcType="VARCHAR"/>
+		<result column="value" property="value" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="key" property="enName" jdbcType="VARCHAR"/>
+		<result column="bom_produce_id" property="bomProduceId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBomAffiliatedResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="getByAttrKey" resultMap="pdBomAffiliatedResultMap">
+		SELECT
+			f.*
+		FROM
+			mes_pd_bom_affiliated f,
+			mes_dp_data_dictionary a
+		WHERE
+			a.key_k = #{attrKey}
+		AND f.`bom_produce_id` = #{bomProduceId}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBomAffiliated">
+		insert into mes_pd_bom_affiliated (id,attribute_id,value,bom_produce_id,create_date)
+		values (#{id},#{attributeId},#{value},#{bomProduceId},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBomAffiliated">
+		update mes_pd_bom_affiliated s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_bom_affiliated where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_bom_affiliated s <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBomAffiliatedResultMap">
+		SELECT s.id,s.attribute_id,s.value,s.bom_produce_id,s.create_date,mpa.cn_name as name,mpa.key_k as enName
+		from mes_pd_bom_affiliated s
+		left join mes_dp_data_dictionary mpa on mpa.id = s.attribute_id
+		<include refid="sql_where_and_equal"/>order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<select id="downLoad" parameterType="java.util.Map"  resultMap="pdBomAffiliatedResultMap">
+		SELECT s.id,s.attribute_id,s.value,s.bom_produce_id,s.create_date,mpa.cn_name as name,mpa.key_k as enName
+		from mes_pd_bom_affiliated s
+		left join mes_dp_data_dictionary mpa on mpa.id = s.attribute_id
+		<include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBomAffiliatedResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBomAffiliatedResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.attribute_id,s.value,s.bom_produce_id,s.create_date,mpa.cn_name as name,mpa.key_k as enName from mes_pd_bom_affiliated s left join mes_dp_data_dictionary mpa on s.attribute_id=mpa.id
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="attributeId != null  and attributeId != '' ">
+				<![CDATA[
+					and s.attribute_id = #{attributeId}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and s.`value` = #{value}
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					and s.bom_produce_id = #{bomProduceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="attributeId != null  and attributeId != '' ">
+				<![CDATA[
+					or s.attribute_id = #{attributeId}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or s.`value` = #{value}
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					or s.bom_produce_id = #{bomProduceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or s.create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="attributeId != null  and attributeId != '' ">
+				<![CDATA[
+					and s.attribute_id like CONCAT('%', #{attributeId}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and s.`value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					and s.bom_produce_id like CONCAT('%', #{bomProduceId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="attributeId != null  and attributeId != '' ">
+				<![CDATA[
+					or s.attribute_id like CONCAT('%', #{attributeId}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or s.`value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					or s.bom_produce_id like CONCAT('%', #{bomProduceId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or s.create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="attributeId != null  and attributeId != '' ">
+				<![CDATA[
+					s.attribute_id = #{attributeId},
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					s.`value` = #{value},
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					s.bom_produce_id = #{bomProduceId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					s.create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

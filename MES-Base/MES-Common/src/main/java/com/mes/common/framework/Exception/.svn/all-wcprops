@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception
+END
+ServiceException.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/ServiceException.java
+END
+FileSystemUseException.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/FileSystemUseException.java
+END
+DaoException.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/DaoException.java
+END
+RestServiceNotSupportedException.java
+K 25
+svn:wc:ra_dav:version-url
+V 178
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/RestServiceNotSupportedException.java
+END
+DubboProviderException.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/DubboProviderException.java
+END
+JobException.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/JobException.java
+END
+SlaveException.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/SlaveException.java
+END
+WorkFlowException.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/WorkFlowException.java
+END
+RestException.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/Exception/RestException.java
+END

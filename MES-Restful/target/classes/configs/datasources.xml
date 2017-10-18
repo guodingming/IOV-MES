@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+    <!-- 数据类型，分为结构化数据和非结构化数据 -->
+    <dataStructureTypes>
+        <dataStructureType name="结构化数据" code="0"/>
+        <dataStructureType name="非结构化数据" code="1"/>
+    </dataStructureTypes>
+    <!-- 文件类型 -->
+    <fileTypes>
+        <fileType name="CSV" code="0"/>
+    </fileTypes>
+    <!-- 页面树形结构中，code即树节点id。show为true表示在页面中显示 -->
+    <filesystems name="文件系统" code="0" show="true">
+        <datasource name="CloudFile" code="00000100" parent="0" show="true"/>
+        <datasource name="FTP Server" code="00000102" parent="0" show="true"/>
+        <datasource name="Windows远程共享" code="00000103" parent="0" show="true"/>
+        <datasource name="Linux远程共享" code="00000104" parent="0" show="true"/>
+        <datasource name="本地文件系统" code="00000105" parent="0" show="true"/>
+        <datasource name="IGFS" code="00000106" parent="0" show="true"/>
+    </filesystems>
+
+    <!-- 数据库类型 -->
+    <databases name="数据库" code="0" show="true">
+        <datasource name="MYSQL" code="00000000" parent="0" show="true">
+            <!-- 数据类型列表，每个类型默认都在页面中显示，可设置dataType的show属性为false，来隐藏该数据类型，show属性默认值为true -->
+            <!-- esType表示该字段类型在ES中对应的类型，其中所有字符串类型对应到keyword，即不分词类型字符串。binary类型在插入文档到ES中时，需要编码为Base64字符串 -->
+            <dataType name="INT" withLength="true" show="true" esType="integer"/>
+            <dataType name="BIGINT" withLength="true" esType="long"/>
+            <dataType name="FLOAT" withLength="true" esType="float"/>
+            <dataType name="DOUBLE" withLength="true" esType="double"/>
+            <dataType name="CHAR" withLength="true" esType="keyword"/>
+            <dataType name="VARCHAR" withLength="true" esType="keyword"/>
+            <dataType name="TEXT" withLength="true" esType="keyword"/>
+            <dataType name="LONGTEXT" withLength="true" esType="keyword"/>
+            <dataType name="TIMESTAMP" withLength="true" esType="date"/>
+            <dataType name="DATETIME" esType="date"/>
+            <dataType name="DATE" esType="date"/>
+        </datasource>
+        <datasource name="ORACLE" code="00000001" parent="0" show="true">
+            <dataType name="CHAR" withLength="true" esType="keyword"/>
+            <dataType name="VARCHAR2" withLength="true" esType="keyword"/>
+            <dataType name="DATE" esType="date"/>
+            <dataType name="LONG" esType="long"/>
+            <dataType name="BLOB" esType="binary"/>
+            <dataType name="NUMBER" withLength="true" esType="double"/>
+            <dataType name="INTEGER" esType="integer"/>
+            <dataType name="FLOAT" withLength="true" esType="float"/>
+        </datasource>
+        <datasource name="SQLSERVER" code="00000002" parent="0" show="true">
+            <dataType name="BIT" withLength="true" esType="byte"/>
+            <dataType name="INT" withLength="true" esType="integer"/>
+            <dataType name="TINYINT" withLength="true" esType="integer"/>
+            <dataType name="NUMERIC" withLength="true" esType="double"/>
+            <dataType name="FLOAT" withLength="true" esType="float"/>
+            <dataType name="DATETIME" withLength="true" esType="date"/>
+            <dataType name="CHAR" withLength="true" esType="keyword"/>
+            <dataType name="VARCHAR" withLength="true" esType="keyword"/>
+            <dataType name="TEXT" withLength="true" esType="keyword"/>
+            <dataType name="NCHAR" withLength="true" esType="keyword"/>
+            <dataType name="NVARCHAR" withLength="true" esType="keyword"/>
+            <dataType name="NTEXT" withLength="true" esType="keyword"/>
+        </datasource>
+        <datasource name="Presto" code="00000003" parent="0" show="false">
+            <dataType name="INT" withLength="true" esType="integer"/>
+            <dataType name="BIGINT" withLength="true" esType="long"/>
+            <dataType name="FLOAT" withLength="true" esType="float"/>
+            <dataType name="DOUBLE" withLength="true" esType="double"/>
+            <dataType name="CHAR" withLength="true" esType="keyword"/>
+            <dataType name="VARCHAR" withLength="true" esType="keyword"/>
+            <dataType name="TEXT" withLength="true" esType="keyword"/>
+            <dataType name="LONGTEXT" withLength="true" esType="keyword"/>
+            <dataType name="TIMESTAMP" withLength="true" esType="date"/>
+            <dataType name="DATETIME" esType="date"/>
+            <dataType name="DATE" esType="date"/>
+        </datasource>
+        <datasource name="DB2" code="00000004" parent="0" show="false">
+            <dataType name="CHAR" withLength="true" esType="keyword"/>
+            <dataType name="VARCHAR" withLength="true" esType="keyword"/>
+            <dataType name="TIMESTAMP" esType="date"/>
+            <dataType name="INTEGER" withLength="true" esType="integer"/>
+            <dataType name="DOUBLE" withLength="true" esType="double"/>
+            <dataType name="FLOAT" withLength="true" esType="float"/>
+            <dataType name="BLOG" esType="binary"/>
+        </datasource>
+        <datasource name="CLOUDDB" code="00000200" parent="0" show="true">
+            <dataType name="STRING" esType="keyword"/>
+            <dataType name="BYTE" esType="byte"/>
+            <dataType name="SHORT" esType="short"/>
+            <dataType name="INTEGER" esType="integer"/>
+            <dataType name="LONG" esType="long"/>
+            <dataType name="FLOAT" esType="float"/>
+            <dataType name="DOUBLE" esType="double"/>
+            <dataType name="BOOLEAN" esType="boolean"/>
+            <dataType name="DATE" esType="date"/>
+            <dataType name="GEO_POINT" esType="geo_point"/>
+        </datasource>
+    </databases>
+</datasources>

@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-流水规则-规则 -->
+<mapper namespace="com.mes.control.mapper.SerialRuleMapper">
+    <resultMap type="com.mes.entity.control.SerialRule" id="serialRuleResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="step" property="step" jdbcType="BIGINT"/>
+        <result column="start_value" property="startValue" jdbcType="BIGINT"/>
+        <result column="max_value" property="maxValue" jdbcType="BIGINT"/>
+        <result column="digt" property="digt" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="radix_type" property="radixType" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="com.mes.entity.control.SerialRule" id="serialRuleResultMap1">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="detail_id" property="detailId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="step" property="step" jdbcType="BIGINT"/>
+        <result column="start_value" property="startValue" jdbcType="BIGINT"/>
+        <result column="max_value" property="maxValue" jdbcType="BIGINT"/>
+        <result column="digt" property="digt" jdbcType="INTEGER"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="radix_type" property="radixType" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="serialRuleResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="getByPdId" resultMap="serialRuleResultMap1">
+        SELECT r.*, d.`id` AS `detail_id`
+        FROM mes_serial_rule r, mes_serial_rule_detail d, mes_serial_rule_work_order_association a
+        WHERE r.`id`=d.`rule_id`
+        AND d.`id`=a.`rule_detail_id`
+        AND d.`use_up`=0
+        AND a.`pd_id`=#{value}
+        LIMIT 1
+    </select>
+
+    <select id="getByDate" resultMap="serialRuleResultMap1">
+        SELECT r.*, d.`id` AS `detail_id`
+        FROM mes_serial_rule r, mes_serial_rule_detail d, mes_serial_rule_work_order_association a
+        WHERE r.`id`=d.`rule_id`
+        AND d.`id`=a.`rule_detail_id`
+        AND d.`use_up`=0
+        AND a.`create_date` BETWEEN #{start} AND #{end}
+        LIMIT 1
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.SerialRule">
+        insert into mes_serial_rule
+        (`id`,`name`,`step`,`start_value`,`max_value`,`digt`,`create_date`,`update_date`,`type`,`radix_type`,`code`)
+        values
+        (#{id},#{name},#{step},#{startValue},#{maxValue},#{digt},#{createDate},#{updateDate},#{type},#{radixType},#{code})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.SerialRule">
+        update mes_serial_rule s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_serial_rule where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_serial_rule t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="serialRuleResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="serialRuleResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="serialRuleResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`name`,`step`,`start_value`,`max_value`,`digt`,`create_date`,`update_date`,`type`,`radix_type`,`code` from mes_serial_rule  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `step` like CONCAT('%', #{search}, '%')
+				or `start_value` like CONCAT('%', #{search}, '%')
+				or `max_value` like CONCAT('%', #{search}, '%')
+				or `digt` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `radix_type` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                and `name` = #{name}
+            ]]>
+            </if>
+            
+            <if test="step != null  and step != '' ">
+            <![CDATA[
+                and `step` = #{step}
+            ]]>
+            </if>
+            
+            <if test="startValue != null  and startValue != '' ">
+            <![CDATA[
+                and `start_value` = #{startValue}
+            ]]>
+            </if>
+            
+            <if test="maxValue != null  and maxValue != '' ">
+            <![CDATA[
+                and `max_value` = #{maxValue}
+            ]]>
+            </if>
+            
+            <if test="digt != null  and digt != '' ">
+            <![CDATA[
+                and `digt` = #{digt}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                and `update_date` = #{updateDate}
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                and `type` = #{type}
+            ]]>
+            </if>
+            
+            <if test="radixType != null  and radixType != '' ">
+            <![CDATA[
+                and `radix_type` = #{radixType}
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                and `code` = #{code}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `step` like CONCAT('%', #{search}, '%')
+				or `start_value` like CONCAT('%', #{search}, '%')
+				or `max_value` like CONCAT('%', #{search}, '%')
+				or `digt` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `radix_type` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                or `name` = #{name}
+            ]]>
+            </if>
+            
+            <if test="step != null  and step != '' ">
+            <![CDATA[
+                or `step` = #{step}
+            ]]>
+            </if>
+            
+            <if test="startValue != null  and startValue != '' ">
+            <![CDATA[
+                or `start_value` = #{startValue}
+            ]]>
+            </if>
+            
+            <if test="maxValue != null  and maxValue != '' ">
+            <![CDATA[
+                or `max_value` = #{maxValue}
+            ]]>
+            </if>
+            
+            <if test="digt != null  and digt != '' ">
+            <![CDATA[
+                or `digt` = #{digt}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                or `update_date` = #{updateDate}
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                or `type` = #{type}
+            ]]>
+            </if>
+            
+            <if test="radixType != null  and radixType != '' ">
+            <![CDATA[
+                or `radix_type` = #{radixType}
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                or `code` = #{code}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `step` like CONCAT('%', #{search}, '%')
+				or `start_value` like CONCAT('%', #{search}, '%')
+				or `max_value` like CONCAT('%', #{search}, '%')
+				or `digt` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `radix_type` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                and `name` like CONCAT('%', #{name}, '%')
+            ]]>
+            </if>
+            
+            <if test="step != null  and step != '' ">
+            <![CDATA[
+                and `step` like CONCAT('%', #{step}, '%')
+            ]]>
+            </if>
+            
+            <if test="startValue != null  and startValue != '' ">
+            <![CDATA[
+                and `start_value` like CONCAT('%', #{startValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="maxValue != null  and maxValue != '' ">
+            <![CDATA[
+                and `max_value` like CONCAT('%', #{maxValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="digt != null  and digt != '' ">
+            <![CDATA[
+                and `digt` like CONCAT('%', #{digt}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                and `update_date` like CONCAT('%', #{updateDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                and `type` like CONCAT('%', #{type}, '%')
+            ]]>
+            </if>
+            
+            <if test="radixType != null  and radixType != '' ">
+            <![CDATA[
+                and `radix_type` like CONCAT('%', #{radixType}, '%')
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                and `code` like CONCAT('%', #{code}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `step` like CONCAT('%', #{search}, '%')
+				or `start_value` like CONCAT('%', #{search}, '%')
+				or `max_value` like CONCAT('%', #{search}, '%')
+				or `digt` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+				or `update_date` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `radix_type` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                or `name` like CONCAT('%', #{name}, '%')
+            ]]>
+            </if>
+            
+            <if test="step != null  and step != '' ">
+            <![CDATA[
+                or `step` like CONCAT('%', #{step}, '%')
+            ]]>
+            </if>
+            
+            <if test="startValue != null  and startValue != '' ">
+            <![CDATA[
+                or `start_value` like CONCAT('%', #{startValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="maxValue != null  and maxValue != '' ">
+            <![CDATA[
+                or `max_value` like CONCAT('%', #{maxValue}, '%')
+            ]]>
+            </if>
+            
+            <if test="digt != null  and digt != '' ">
+            <![CDATA[
+                or `digt` like CONCAT('%', #{digt}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                or `update_date` like CONCAT('%', #{updateDate}, '%')
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                or `type` like CONCAT('%', #{type}, '%')
+            ]]>
+            </if>
+            
+            <if test="radixType != null  and radixType != '' ">
+            <![CDATA[
+                or `radix_type` like CONCAT('%', #{radixType}, '%')
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                or `code` like CONCAT('%', #{code}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                `name` = #{name},
+            ]]>
+            </if>
+            
+            <if test="step != null  and step != '' ">
+            <![CDATA[
+                `step` = #{step},
+            ]]>
+            </if>
+            
+            <if test="startValue != null  and startValue != '' ">
+            <![CDATA[
+                `start_value` = #{startValue},
+            ]]>
+            </if>
+            
+            <if test="maxValue != null  and maxValue != '' ">
+            <![CDATA[
+                `max_value` = #{maxValue},
+            ]]>
+            </if>
+            
+            <if test="digt != null  and digt != '' ">
+            <![CDATA[
+                `digt` = #{digt},
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+            
+            <if test="updateDate != null  and updateDate != '' ">
+            <![CDATA[
+                `update_date` = #{updateDate},
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                `type` = #{type},
+            ]]>
+            </if>
+            
+            <if test="radixType != null  and radixType != '' ">
+            <![CDATA[
+                `radix_type` = #{radixType},
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                `code` = #{code},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

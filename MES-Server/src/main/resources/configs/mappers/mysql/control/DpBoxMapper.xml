@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-包装箱管理 -->
+<mapper namespace="com.mes.control.mapper.DpBoxMapper">
+    <resultMap type="com.mes.entity.control.DpBox" id="dpBoxResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="box_key" property="boxKey" jdbcType="VARCHAR"/>
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        <result column="dp_box_rule_id" property="dpBoxRuleId" jdbcType="VARCHAR"/>
+        <result column="capacity" property="capacity" jdbcType="BIGINT"/>
+        <result column="quantity" property="quantity" jdbcType="BIGINT"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="is_forced_pack" property="isForcedPack" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="findByPdId"  resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        WHERE s.pd_id = #{0} AND s.box_key = #{1}
+    </select>
+    <select id="findByBoxKey" resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        WHERE s.box_key = #{boxKey}
+    </select>
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpBox">
+        insert into mes_dp_box
+        (`id`,`parent_id`,`box_key`,`pd_id`,`dp_box_rule_id`,`capacity`,`quantity`,`create_date`,`is_forced_pack`)
+        values
+        (#{id},#{parentId},#{boxKey},#{pdId},#{dpBoxRuleId},#{capacity},#{quantity},#{createDate},#{isForcedPack})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpBox">
+        update mes_dp_box s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_box where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_box t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="dpBoxResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`parent_id`,`box_key`,`pd_id`,`dp_box_rule_id`,`capacity`,`quantity`,`create_date`,`is_forced_pack` from mes_dp_box  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            1=1
+            <if test="search != null and search != '' ">
+                and (`box_key` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+            and `id` = #{id}
+            ]]>
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+            and `parent_id` = #{parentId}
+            ]]>
+            </if>
+
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+            and `box_key` = #{boxKey}
+            ]]>
+            </if>
+
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+            and `pd_id` = #{pdId}
+            ]]>
+            </if>
+            <if test="dpBoxRuleId != null  and dpBoxRuleId != '' ">
+                <![CDATA[
+            and `dp_box_rule_id` = #{dpBoxRuleId}
+            ]]>
+            </if>
+
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+            and `capacity` = #{capacity}
+            ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+            and `quantity` = #{quantity}
+            ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+            and `create_date` = #{createDate}
+            ]]>
+            </if>
+            <if test="isForcedPack != null  and isForcedPack != '' ">
+                <![CDATA[
+            and `is_forced_pack` = #{isForcedPack}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`box_key` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+                ]]>
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+                or `parent_id` = #{parentId}
+                ]]>
+            </if>
+
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+                or `box_key` = #{boxKey}
+                ]]>
+            </if>
+
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` = #{pdId}
+                ]]>
+            </if>
+            <if test="dpBoxRuleId != null  and dpBoxRuleId != '' ">
+                <![CDATA[
+                or `dp_box_rule_id` = #{dpBoxRuleId}
+                ]]>
+            </if>
+
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                or `capacity` = #{capacity}
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                or `quantity` = #{quantity}
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+                ]]>
+            </if>
+            <if test="isForcedPack != null  and isForcedPack != '' ">
+                <![CDATA[
+                or `is_forced_pack` = #{isForcedPack}
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`box_key` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+                and `parent_id` CONCAT('%', #{parentId}, '%')
+                ]]>
+            </if>
+
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+                and `box_key` CONCAT('%', #{boxKey}, '%')
+                ]]>
+            </if>
+
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                and `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="dpBoxRuleId != null  and dpBoxRuleId != '' ">
+                <![CDATA[
+                and `dp_box_rule_id` CONCAT('%', #{dpBoxRuleId}, '%')
+                ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                and `capacity` CONCAT('%', #{capacity}, '%')
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                and `quantity` CONCAT('%', #{quantity}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="isForcedPack != null  and isForcedPack != '' ">
+                <![CDATA[
+                and `is_forced_pack` CONCAT('%', #{isForcedPack}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`box_key` like CONCAT('%', #{search}, '%')
+                or `capacity` like CONCAT('%', #{search}, '%')
+                or `quantity` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+                or `parent_id` CONCAT('%', #{parentId}, '%')
+                ]]>
+            </if>
+
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+                or `box_key` CONCAT('%', #{boxKey}, '%')
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="dpBoxRuleId != null  and dpBoxRuleId != '' ">
+                <![CDATA[
+                or `dp_box_rule_id` CONCAT('%', #{dpBoxRuleId}, '%')
+                ]]>
+            </if>
+            <if test="capacity != null  and capacity != '' ">
+                <![CDATA[
+                or `capacity` CONCAT('%', #{capacity}, '%')
+                ]]>
+            </if>
+            <if test="quantity != null  and quantity != '' ">
+                <![CDATA[
+                or `quantity` CONCAT('%', #{quantity}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+            <if test="isForcedPack != null  and isForcedPack != '' ">
+                <![CDATA[
+                or `is_forced_pack` CONCAT('%', #{isForcedPack}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                    `id` = #{id},
+                    ]]>
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+                    `parent_id` = #{parentId},
+                    ]]>
+            </if>
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+                    `box_key` = #{boxKey},
+                    ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                    `pd_id` = #{pdId},
+                    ]]>
+            </if>
+            <if test="dpBoxRuleId != null  and dpBoxRuleId != '' ">
+                <![CDATA[
+                    `dp_box_rule_id` = #{dpBoxRuleId},
+                    ]]>
+            </if>
+
+            <if test="capacity != null">
+                <![CDATA[
+                    `capacity` = #{capacity},
+                    ]]>
+            </if>
+            <if test="quantity != null">
+                <![CDATA[
+                    `quantity` = #{quantity},
+                    ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                    `create_date` = #{createDate},
+                    ]]>
+            </if>
+            <if test="isForcedPack != null  and isForcedPack != '' ">
+                <![CDATA[
+                    `is_forced_pack` = #{isForcedPack},
+                    ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

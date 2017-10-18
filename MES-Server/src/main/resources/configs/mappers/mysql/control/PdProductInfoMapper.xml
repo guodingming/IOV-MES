@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-产品明细（按工单移） -->
+<mapper namespace="com.mes.control.mapper.PdProductInfoMapper">
+	<resultMap type="com.mes.entity.control.PdProductInfo" id="pdProductInfoResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="pd_num" property="pdNum" jdbcType="VARCHAR"/>
+		<result column="pd_name" property="pdName" jdbcType="VARCHAR"/>
+		<result column="soft_version" property="softVersion" jdbcType="VARCHAR"/>
+		<result column="hard_version" property="hardVersion" jdbcType="VARCHAR"/>
+		<result column="work_order_id" property="workOrderId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="work_order_batch_num" property="workOrderBatchNum" jdbcType="VARCHAR"/>
+		<result column="number" property="sN" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+		<result column="instance_id" property="instanceId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdProductInfoResultMap">
+		SELECT s.*,pin.number from mes_pd_product_info s
+		left join mes_pd_product_info_number pin on pin.pd_product_info_id=s.id and pin.type='SN'
+		where s.id = #{id}
+	</select>
+
+	<select id="findByPdId" resultMap="pdProductInfoResultMap">
+		<include refid="sql_select"/>
+		WHERE s.pd_id=#{pdId}
+	</select>
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdProductInfo">
+		insert into mes_pd_product_info (id,pd_num,pd_name,soft_version,hard_version,work_order_id,pd_id,work_order_batch_num,pd_line_id,instance_id,status,create_date)
+		values (#{id},#{pdNum},#{pdName},#{softVersion},#{hardVersion},#{workOrderId},#{pdId},#{workOrderBatchNum},#{pdLineId},#{instanceId},#{status},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdProductInfo">
+		update mes_pd_product_info s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_product_info where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_product_info t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdProductInfoResultMap">
+		SELECT s.id,s.pd_num,s.pd_name,s.soft_version,s.hard_version,s.work_order_id,s.pd_id,s.work_order_batch_num,s.create_date,pin.number,s.status from mes_pd_product_info s
+		left join mes_pd_product_info_number pin on pin.pd_product_info_id=s.id and pin.type='SN'
+		<include refid="sql_where_and_equal"/>
+		order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdProductInfoResultMap">
+		SELECT s.id,s.pd_num,s.pd_name,s.soft_version,s.hard_version,s.work_order_id,s.pd_id,s.work_order_batch_num,s.create_date,pin.number,s.status from mes_pd_product_info s
+		left join mes_pd_product_info_number pin on pin.pd_product_info_id=s.id and pin.type='SN'
+		<include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdProductInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,pd_num,pd_name,soft_version,hard_version,work_order_id,pd_id,work_order_batch_num,instance_id,create_date,status from mes_pd_product_info s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				pd_num like CONCAT('%', #{search}, '%')
+				or pd_name like CONCAT('%', #{search}, '%')
+				or soft_version like CONCAT('%', #{search}, '%')
+				or hard_version like CONCAT('%', #{search}, '%')
+				or work_order_batch_num like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					and pd_num = #{pdNum}
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					and pd_name = #{pdName}
+				]]>
+			</if>
+			<if test="softVersion != null  and softVersion != '' ">
+				<![CDATA[
+					and soft_version = #{softVersion}
+				]]>
+			</if>
+			<if test="hardVersion != null  and hardVersion != '' ">
+				<![CDATA[
+					and hard_version = #{hardVersion}
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					and work_order_id = #{workOrderId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+				<![CDATA[
+					and work_order_batch_num = #{workOrderBatchNum}
+				]]>
+			</if>
+
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+
+			<if test="instanceId != null  and instanceId != '' ">
+				<![CDATA[
+					and instance_id = #{instanceId}
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					or pd_num = #{pdNum}
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					or pd_name = #{pdName}
+				]]>
+			</if>
+			<if test="softVersion != null  and softVersion != '' ">
+				<![CDATA[
+					or soft_version = #{softVersion}
+				]]>
+			</if>
+			<if test="hardVersion != null  and hardVersion != '' ">
+				<![CDATA[
+					or hard_version = #{hardVersion}
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					or work_order_id = #{workOrderId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+				<![CDATA[
+					or work_order_batch_num = #{workOrderBatchNum}
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+
+			<if test="instanceId != null  and instanceId != '' ">
+				<![CDATA[
+					and instance_id = #{instanceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					and pd_num like CONCAT('%', #{pdNum}, '%')
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					and pd_name like CONCAT('%', #{pdName}, '%')
+				]]>
+			</if>
+			<if test="softVersion != null  and softVersion != '' ">
+				<![CDATA[
+					and soft_version like CONCAT('%', #{softVersion}, '%')
+				]]>
+			</if>
+			<if test="hardVersion != null  and hardVersion != '' ">
+				<![CDATA[
+					and hard_version like CONCAT('%', #{hardVersion}, '%')
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					and work_order_id like CONCAT('%', #{workOrderId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+				<![CDATA[
+					and work_order_batch_num like CONCAT('%', #{workOrderBatchNum}, '%')
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+
+			<if test="instanceId != null  and instanceId != '' ">
+				<![CDATA[
+					and instance_id = #{instanceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					or pd_num like CONCAT('%', #{pdNum}, '%')
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					or pd_name like CONCAT('%', #{pdName}, '%')
+				]]>
+			</if>
+			<if test="softVersion != null  and softVersion != '' ">
+				<![CDATA[
+					or soft_version like CONCAT('%', #{softVersion}, '%')
+				]]>
+			</if>
+			<if test="hardVersion != null  and hardVersion != '' ">
+				<![CDATA[
+					or hard_version like CONCAT('%', #{hardVersion}, '%')
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					or work_order_id like CONCAT('%', #{workOrderId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+				<![CDATA[
+					or work_order_batch_num like CONCAT('%', #{workOrderBatchNum}, '%')
+				]]>
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+
+			<if test="instanceId != null  and instanceId != '' ">
+				<![CDATA[
+					and instance_id = #{instanceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					pd_num = #{pdNum},
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					pd_name = #{pdName},
+				]]>
+			</if>
+			<if test="softVersion != null  and softVersion != '' ">
+				<![CDATA[
+					soft_version = #{softVersion},
+				]]>
+			</if>
+			<if test="hardVersion != null  and hardVersion != '' ">
+				<![CDATA[
+					hard_version = #{hardVersion},
+				]]>
+			</if>
+			<if test="workOrderId != null  and workOrderId != '' ">
+				<![CDATA[
+					work_order_id = #{workOrderId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+				<![CDATA[
+					work_order_batch_num = #{workOrderBatchNum},
+				]]>
+			</if>
+
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					pd_line_id = #{pdLineId},
+				]]>
+			</if>
+
+			<if test="instanceId != null  and instanceId != '' ">
+				<![CDATA[
+					instance_id = #{instanceId},
+				]]>
+			</if>
+
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

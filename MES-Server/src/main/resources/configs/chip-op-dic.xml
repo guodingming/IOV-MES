@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 系统内置字典 -->
+<dic>
+    <!--<type name="print_rule">-->
+    <!--<item name="PCBA上料条码" key="print_rule" value="0"/>-->
+    <!--<item name="20位产品条码" key="print_rule" value="1"/>-->
+    <!--<item name="产品标签" key="print_rule" value="2"/>-->
+    <!--<item name="22位带硬件版本" key="print_rule" value="4"/>-->
+    <!--<item name="14位" key="print_rule" value="5"/>-->
+    <!--<item name="电动踏步车标签" key="print_rule" value="6"/>-->
+    <!--<item name="包装箱标签" key="print_rule" value="7"/>-->
+    <!--<item name="20位产品标签(含零件号)" key="print_rule" value="8"/>-->
+    <!--<item name="15位产品标签" key="print_rule" value="9"/>-->
+    <!--<item name="10位包装标签" key="print_rule" value="10"/>-->
+    <!--<item name="16位产品标签" key="print_rule" value="13"/>-->
+    <!--<item name="北汽产品标签" key="print_rule" value="14"/>-->
+    <!--<item name="轴高产品标签" key="print_rule" value="15"/>-->
+    <!--<item name="长安V5产品标签" key="print_rule" value="16"/>-->
+    <!--<item name="无" key="print_rule" value="-1"/>-->
+    <!--</type>-->
+    <type name="oper_code" description="芯片操作码">
+        <item name="文件下载" key="oper_code" value="1"/>
+        <item name="按地址读（存储）" key="oper_code" value="2"/>
+        <item name="擦除芯片" key="oper_code" value="3"/>
+        <item name="虚拟写" key="oper_code" value="4"/>
+        <item name="可变Hex文件下载" key="oper_code" value="5"/>
+        <item name="固定Hex文件下载" key="oper_code" value="6"/>
+        <item name="调试模式可变Hex文件下载" key="oper_code" value="7"/>
+        <item name="连接文件下载" key="oper_code" value="8"/>
+        <item name="读编程TRIM值" key="oper_code" value="9"/>
+        <item name="写原始TRIM值" key="oper_code" value="10"/>
+        <item name="切换通道" key="oper_code" value="12"/>
+        <item name="计算K值（左向）" key="oper_code" value="13"/>
+        <item name="计算B值（左向）" key="oper_code" value="14"/>
+        <item name="计算K值（右向）" key="oper_code" value="15"/>
+        <item name="计算B值（右向）" key="oper_code" value="16"/>
+        <item name="按地址读（校验）" key="oper_code" value="20"/>
+        <item name="指定格式读配置版本" key="oper_code" value="21"/>
+        <item name="按地址写" key="oper_code" value="22"/>
+        <item name="指定格式读本地服务" key="oper_code" value="23"/>
+        <item name="指定格式读原始配置数据版本" key="oper_code" value="24"/>
+        <item name="遥控器学习按地址读（校验）" key="oper_code" value="31"/>
+        <item name="Rollo_CAL版本" key="oper_code" value="48"/>
+        <item name="向控制器中写遥控器SN信息" key="oper_code" value="71"/>
+        <item name="向控制器中写遥控器KEY信息" key="oper_code" value="72"/>
+        <item name="校验和" key="oper_code" value="73"/>
+        <item name="计算K值（左灯泡）" key="oper_code" value="74"/>
+        <item name="计算B值（左灯泡）" key="oper_code" value="75"/>
+        <item name="计算K值（右灯泡）" key="oper_code" value="76"/>
+        <item name="计算B值（右灯泡）" key="oper_code" value="77"/>
+        <item name="计算K值（制动）" key="oper_code" value="78"/>
+        <item name="计算B值（制动）" key="oper_code" value="79"/>
+    </type>
+    <!--<type name="product_status">-->
+    <!--<item name="当前不生产的产品" key="product_status" value="0"/>-->
+    <!--<item name="当前生产" key="product_status" value="1"/>-->
+    <!--</type>-->
+    <!--<type name="alter_type">-->
+    <!--<item name="客户工程变更" key="alter_type" value="1"/>-->
+    <!--<item name="缺料_紧急订单" key="alter_type" value="3"/>-->
+    <!--<item name="缺料_采购" key="alter_type" value="5"/>-->
+    <!--<item name="缺料_物管" key="alter_type" value="7"/>-->
+    <!--<item name="缺料_来料异常" key="alter_type" value="9"/>-->
+    <!--<item name="ECN、TPD发布错误" key="alter_type" value="11"/>-->
+    <!--<item name="ECN、TPD发布不及时_采购" key="alter_type" value="13"/>-->
+    <!--<item name="ECN、TPD实施不到位_生产" key="alter_type" value="15"/>-->
+    <!--<item name="ECN、TPD实施不到位_设计工艺" key="alter_type" value="17"/>-->
+    <!--<item name="ECN、TPD实施不到位_生产工艺" key="alter_type" value="19"/>-->
+    <!--<item name="材料质量_原材不良" key="alter_type" value="21"/>-->
+    <!--<item name="软件设计" key="alter_type" value="23"/>-->
+    <!--<item name="硬件设计" key="alter_type" value="25"/>-->
+    <!--<item name="结构设计" key="alter_type" value="27"/>-->
+    <!--<item name="产品性能" key="alter_type" value="29"/>-->
+    <!--<item name="过程设计" key="alter_type" value="31"/>-->
+    <!--<item name="设备/工装开发" key="alter_type" value="33"/>-->
+    <!--<item name="设备/工装维护" key="alter_type" value="35"/>-->
+    <!--<item name="信息系统设计" key="alter_type" value="37"/>-->
+    <!--<item name="信息系统维护" key="alter_type" value="39"/>-->
+    <!--<item name="现场管理" key="alter_type" value="41"/>-->
+    <!--<item name="人员作业" key="alter_type" value="43"/>-->
+    <!--<item name="人力不足_生产人力" key="alter_type" value="45"/>-->
+    <!--<item name="外包交期" key="alter_type" value="47"/>-->
+    <!--</type>-->
+    <type name="programmer_type" description="芯片操作编程器类型">
+        <item name="无编程器" key="programmer_type" value="0"/>
+        <item name="Cyclone" key="programmer_type" value="1"/>
+        <item name="CycloneRed" key="programmer_type" value="2"/>
+        <item name="NEC" key="programmer_type" value="3"/>
+        <item name="PIC" key="programmer_type" value="4"/>
+        <item name="AVR" key="programmer_type" value="6"/>
+        <item name="SF6" key="programmer_type" value="7"/>
+        <item name="ToLink" key="programmer_type" value="8"/>
+        <item name="Infineon" key="programmer_type" value="9"/>
+        <item name="HCS301" key="programmer_type" value="10"/>
+        <item name="Infineon-Memtool" key="programmer_type" value="11"/>
+        <item name="OpteeQ" key="programmer_type" value="66"/>
+        <item name="FlashRunner" key="programmer_type" value="91"/>
+        <item name="WriteNow" key="programmer_type" value="92"/>
+    </type>
+    <!--<type name="scan_rule">-->
+    <!--<item name="PCBA上料条码" key="scan_rule" value="0"/>-->
+    <!--<item name="20位产品条码" key="scan_rule" value="1"/>-->
+    <!--<item name="产品标签" key="scan_rule" value="2"/>-->
+    <!--<item name="内部标签" key="scan_rule" value="3"/>-->
+    <!--<item name="22位带硬件版本" key="scan_rule" value="4"/>-->
+    <!--<item name="14位" key="scan_rule" value="5"/>-->
+    <!--<item name="无" key="scan_rule" value="-1"/>-->
+    <!--<item name="PCBA上料条码" key="scan_rule" value="0"/>-->
+    <!--<item name="20位产品条码" key="scan_rule" value="1"/>-->
+    <!--<item name="产品标签" key="scan_rule" value="2"/>-->
+    <!--<item name="内部标签" key="scan_rule" value="3"/>-->
+    <!--<item name="22位带硬件版本" key="scan_rule" value="4"/>-->
+    <!--<item name="14位" key="scan_rule" value="5"/>-->
+    <!--<item name="电动踏步车标签" key="scan_rule" value="6"/>-->
+    <!--<item name="15位产品标签" key="scan_rule" value="9"/>-->
+    <!--<item name="16位产品标签" key="scan_rule" value="13"/>-->
+    <!--<item name="北汽产品标签" key="scan_rule" value="14"/>-->
+    <!--<item name="轴高产品标签" key="scan_rule" value="15"/>-->
+    <!--<item name="长安V5产品标签" key="scan_rule" value="16"/>-->
+    <!--<item name="CGM_ECU_ID" key="scan_rule" value="61"/>-->
+    <!--</type>-->
+    <!--<type name="mend_flag">-->
+    <!--<item name="未处理" key="mend_flag" value="0"/>-->
+    <!--<item name="正在处理" key="mend_flag" value="1"/>-->
+    <!--<item name="已处理" key="mend_flag" value="2"/>-->
+    <!--</type>-->
+    <type name="material_type" description="物料类型">
+        <item name="产品逻辑总成" key="material_type" value="0"/>
+        <item name="产品" key="material_type" value="1"/>
+        <item name="半成品" key="material_type" value="2"/>
+        <item name="虚拟料" key="material_type" value="3"/>
+        <item name="元器件" key="material_type" value="4"/>
+        <item name="一般结构件" key="material_type" value="5"/>
+        <item name="软件" key="material_type" value="6"/>
+        <item name="软件组件" key="material_type" value="7"/>
+        <item name="工艺辅料" key="material_type" value="8"/>
+        <item name="半成品(PCBA)" key="material_type" value="9"/>
+        <item name="PCB" key="material_type" value="10"/>
+        <item name="半成品(有单独BOM)" key="material_type" value="11"/>
+        <item name="电气结构件" key="material_type" value="12"/>
+        <item name="包材" key="material_type" value="13"/>
+    </type>
+    <!--<type name="sub_rule">-->
+    <!--<item name="全部截取" key="sub_rule" value="0"/>-->
+    <!--<item name="从第19位截取到第32位" key="sub_rule" value="3219"/>-->
+    <!--<item name="无" key="sub_rule" value="-1"/>-->
+    <!--<item name="全部截取" key="sub_rule" value="0"/>-->
+    <!--<item name="从第19位截取到第32位" key="sub_rule" value="3219"/>-->
+    <!--<item name="从第16位截取到第34位" key="sub_rule" value="3416"/>-->
+    <!--<item name="从第27位截取到第41位" key="sub_rule" value="4127"/>-->
+    <!--<item name="从第30位截取到第46位" key="sub_rule" value="4630"/>-->
+    <!--</type>-->
+    <!--<type name="trace_type">-->
+    <!--<item name="按条码" key="trace_type" value="1"/>-->
+    <!--<item name="按批次" key="trace_type" value="2"/>-->
+    <!--</type>-->
+    <type name="file_type" description="设备配置文件类型">
+        <!--远程配置-->
+        <item name="remote" key="file_type" value="1"/>
+        <!--硬件配置-->
+        <item name="Hconfig" key="file_type" value="2"/>
+        <!--自检标准-->
+        <item name="selfIS" key="file_type" value="4"/>
+        <!--环境参数-->
+        <item name="env" key="file_type" value="5"/>
+        <!--通用配置-->
+        <item name="general" key="file_type" value="6"/>
+        <!--设备标定-->
+        <item name="device_demarcate" key="file_type" value="7"/>
+        <!--工序时间配置-->
+        <item name="process_time_config" key="file_type" value="8"/>
+        <!--设备标定配置-->
+        <!--<item name="device_demarcate_info" key="file_type" value="9"/>-->
+    </type>
+    <!--<type name="route_type">-->
+    <!--<item name="正式生产" key="route_type" value="1"/>-->
+    <!--<item name="订单生产" key="route_type" value="2"/>-->
+    <!--<item name="样件生产" key="route_type" value="3"/>-->
+    <!--<item name="返工" key="route_type" value="5"/>-->
+    <!--</type>-->
+    <!--<type name="task_mode">-->
+    <!--<item name="正常模式" key="task_mode" value="0"/>-->
+    <!--<item name="重工模式" key="task_mode" value="1"/>-->
+    <!--<item name="MSA模式" key="task_mode" value="2"/>-->
+    <!--<item name="调试模式" key="task_mode" value="3"/>-->
+    <!--<item name="标准件模式" key="task_mode" value="4"/>-->
+    <!--</type>-->
+    <!--<type name="bill_type">-->
+    <!--<item name="正式生产" key="bill_type" value="1"/>-->
+    <!--<item name="订单生产" key="bill_type" value="2"/>-->
+    <!--<item name="样件生产" key="bill_type" value="3"/>-->
+    <!--<item name="返工" key="bill_type" value="5"/>-->
+    <!--</type>-->
+    <!--<type name="mend_result">-->
+    <!--<item name="下道工序" key="mend_result" value="1"/>-->
+    <!--<item name="分析区" key="mend_result" value="2"/>-->
+    <!--<item name="项目组" key="mend_result" value="3"/>-->
+    <!--<item name="不良隔离区" key="mend_result" value="4"/>-->
+    <!--<item name="不合格品区" key="mend_result" value="5"/>-->
+    <!--<item name="产成品库" key="mend_result" value="6"/>-->
+    <!--<item name="报废品库" key="mend_result" value="7"/>-->
+    <!--<item name="其他" key="mend_result" value="8"/>-->
+    <!--</type>-->
+    <!--<type name="model">-->
+    <!--<item name="不区分模式" key="model" value="0"/>-->
+    <!--<item name="正常模式" key="model" value="1"/>-->
+    <!--<item name="返工模式" key="model" value="2"/>-->
+    <!--<item name="调试模式" key="model" value="3"/>-->
+    <!--</type>-->
+    <!--<type name="code_rule">-->
+    <!--<item name="无" key="code_rule" value="-1"/>-->
+    <!--<item name="20位产品条码" key="code_rule" value="1"/>-->
+    <!--<item name="产品标签" key="code_rule" value="2"/>-->
+    <!--<item name="22位带硬件版本" key="code_rule" value="4"/>-->
+    <!--<item name="14位" key="code_rule" value="5"/>-->
+    <!--<item name="电动踏步车标签" key="code_rule" value="6"/>-->
+    <!--<item name="包装箱标签" key="code_rule" value="7"/>-->
+    <!--<item name="20位产品标签(含零件号)" key="code_rule" value="8"/>-->
+    <!--<item name="15位产品标签" key="code_rule" value="9"/>-->
+    <!--<item name="10位包装标签" key="code_rule" value="10"/>-->
+    <!--<item name="16位产品标签" key="code_rule" value="13"/>-->
+    <!--<item name="北汽产品标签" key="code_rule" value="14"/>-->
+    <!--<item name="轴高产品标签" key="code_rule" value="15"/>-->
+    <!--<item name="长安V5产品标签" key="code_rule" value="16"/>-->
+    <!--<item name="无" key="code_rule" value="-1"/>-->
+    <!--</type>-->
+    <!--<type name="machine_source">-->
+    <!--<item name="自制" key="machine_source" value="1"/>-->
+    <!--<item name="外购" key="machine_source" value="2"/>-->
+    <!--<item name="其他" key="machine_source" value="3"/>-->
+    <!--</type>-->
+    <!--<type name="code_type">-->
+    <!--<item name="PCBA上料条码" key="code_type" value="0"/>-->
+    <!--<item name="20位产品条码" key="code_type" value="1"/>-->
+    <!--<item name="产品标签" key="code_type" value="2"/>-->
+    <!--<item name="内部标签" key="code_type" value="3"/>-->
+    <!--<item name="22位带硬件版本" key="code_type" value="4"/>-->
+    <!--<item name="14位" key="code_type" value="5"/>-->
+    <!--<item name="泛亚网关产品追溯码信息" key="code_type" value="40"/>-->
+    <!--</type>-->
+    <!--<type name="machine_type">-->
+    <!--<item name="工序设备" key="machine_type" value="1"/>-->
+    <!--<item name="非工序设备" key="machine_type" value="2"/>-->
+    <!--<item name="工装" key="machine_type" value="3"/>-->
+    <!--</type>-->
+    <!--<type name="machine_status">-->
+    <!--<item name="正常" key="machine_status" value="1"/>-->
+    <!--<item name="调试中" key="machine_status" value="2"/>-->
+    <!--<item name="暂停使用" key="machine_status" value="3"/>-->
+    <!--</type>-->
+    <!--<type name="task_status">-->
+    <!--<item name="未开始" key="task_status" value="0"/>-->
+    <!--<item name="开始" key="task_status" value="1"/>-->
+    <!--<item name="暂停" key="task_status" value="2"/>-->
+    <!--<item name="完成" key="task_status" value="6"/>-->
+    <!--</type>-->
+    <!--<type name="is_hold">-->
+    <!--<item name="未开始" key="is_hold" value="0"/>-->
+    <!--<item name="开始" key="is_hold" value="1"/>-->
+    <!--<item name="暂停" key="is_hold" value="2"/>-->
+    <!--<item name="完成" key="is_hold" value="6"/>-->
+    <!--</type>-->
+    <!--<type name="cause_type">-->
+    <!--<item name="未界定" key="cause_type" value="1"/>-->
+    <!--<item name="焊接问题" key="cause_type" value="2"/>-->
+    <!--<item name="器件问题" key="cause_type" value="3"/>-->
+    <!--<item name="设备问题" key="cause_type" value="4"/>-->
+    <!--<item name="材料质量" key="cause_type" value="5"/>-->
+    <!--<item name="工艺问题" key="cause_type" value="6"/>-->
+    <!--<item name="作业手法" key="cause_type" value="7"/>-->
+    <!--<item name="产品问题" key="cause_type" value="8"/>-->
+    <!--<item name="产品设计问题" key="cause_type" value="9"/>-->
+    <!--<item name="误判" key="cause_type" value="10"/>-->
+    <!--<item name="SMT外包厂商问题" key="cause_type" value="11"/>-->
+    <!--<item name="人员管理问题" key="cause_type" value="12"/>-->
+    <!--<item name="信息系统问题" key="cause_type" value="13"/>-->
+    <!--<item name="操作员操作问题" key="cause_type" value="14"/>-->
+    <!--<item name="工装接触问题" key="cause_type" value="15"/>-->
+    <!--<item name="生产过程问题" key="cause_type" value="16"/>-->
+    <!--<item name="软件问题" key="cause_type" value="17"/>-->
+    <!--<item name="来料问题" key="cause_type" value="18"/>-->
+    <!--</type>-->
+    <type name="source_type" description="芯片操作数据类型">
+        <item name="标准表" key="source_type" value="1"/>
+        <item name="数据表" key="source_type" value="2"/>
+        <item name="XML" key="source_type" value="3"/>
+        <item name="固定值" key="source_type" value="1"/>
+        <item name="通用TRACE_NO(已废除)" key="source_type" value="2"/>
+        <item name="地址回写" key="source_type" value="3"/>
+        <item name="主APP版本" key="source_type" value="5"/>
+        <item name="从APP版本" key="source_type" value="6"/>
+        <item name="主BT版本" key="source_type" value="7"/>
+        <item name="从BT版本" key="source_type" value="8"/>
+        <item name="主CAL版本" key="source_type" value="9"/>
+        <item name="从CAL版本" key="source_type" value="10"/>
+        <item name="主PCBA版本" key="source_type" value="11"/>
+        <item name="从PCBA版本" key="source_type" value="12"/>
+        <item name="主PCB版本" key="source_type" value="13"/>
+        <item name="从PCB版本" key="source_type" value="14"/>
+        <item name="原理图主版本" key="source_type" value="15"/>
+        <item name="原理图从版本" key="source_type" value="16"/>
+        <item name="Inalfa客户TRACE_NO" key="source_type" value="17"/>
+        <item name="Inalfa内部零件号" key="source_type" value="18"/>
+        <item name="Inalfa客户零件号" key="source_type" value="19"/>
+        <item name="配置数据标志擦除后状态" key="source_type" value="20"/>
+        <item name="批次时间" key="source_type" value="21"/>
+        <item name="软硬件版本" key="source_type" value="22"/>
+        <item name="ScoutNumber" key="source_type" value="23"/>
+        <item name="软件版本" key="source_type" value="24"/>
+        <item name="硬件版本" key="source_type" value="25"/>
+        <item name="产品流水号" key="source_type" value="26"/>
+        <item name="VID" key="source_type" value="27"/>
+        <item name="Stuff" key="source_type" value="28"/>
+        <item name="PSW" key="source_type" value="29"/>
+        <item name="SK" key="source_type" value="30"/>
+        <item name="C131基站日期" key="source_type" value="32"/>
+        <item name="4字节批次时间(20130613)" key="source_type" value="33"/>
+        <item name="广汽ECU序列号" key="source_type" value="34"/>
+        <item name="广汽含批次固定值" key="source_type" value="35"/>
+        <item name="轴高产品序列号" key="source_type" value="36"/>
+        <item name="Inalfa 14位条码" key="source_type" value="37"/>
+        <item name="产品标签信息" key="source_type" value="38"/>
+        <item name="硬件版本（ASCII）" key="source_type" value="39"/>
+        <item name="主版本(补零)" key="source_type" value="40"/>
+        <item name="主版本(不补零)" key="source_type" value="41"/>
+        <item name="从版本(补零)" key="source_type" value="42"/>
+        <item name="从版本(不补零)" key="source_type" value="43"/>
+        <item name="ERP_TRACE_NO" key="source_type" value="44"/>
+        <item name="配置数据标志擦除后状态(ERP)" key="source_type" value="45"/>
+        <item name="按条码获取K/B值" key="source_type" value="46"/>
+        <item name="按批次获取K/B值" key="source_type" value="47"/>
+        <item name="CGM_SEED_0" key="source_type" value="54"/>
+        <item name="CGM_SEED_1" key="source_type" value="55"/>
+        <item name="CGM_KEY_0" key="source_type" value="56"/>
+        <item name="CGM_KEY_1" key="source_type" value="57"/>
+        <item name="CGM_AC0_0" key="source_type" value="58"/>
+        <item name="CGM_AC0_1" key="source_type" value="59"/>
+        <item name="泛亚网关产品追溯码" key="source_type" value="98"/>
+        <item name="泛亚网关产品随机码" key="source_type" value="99"/>
+        <item name="校验软件版本" key="source_type" value="101"/>
+        <item name="校验硬件版本" key="source_type" value="102"/>
+        <item name="校验产品跟踪号" key="source_type" value="103"/>
+        <item name="校验通用校验" key="source_type" value="104"/>
+        <item name="RESERVED_0" key="source_type" value="201"/>
+        <item name="SEED_0" key="source_type" value="202"/>
+        <item name="RESERVED_1" key="source_type" value="203"/>
+        <item name="SEED_1" key="source_type" value="204"/>
+        <item name="SYNC" key="source_type" value="205"/>
+        <item name="MANUFACTUR" key="source_type" value="206"/>
+        <item name="主版本(ASCII)" key="source_type" value="301"/>
+        <item name="ERP_TRACE_NO_ASCII" key="source_type" value="324"/>
+        <item name="CGM_ECU_ID" key="source_type" value="327"/>
+        <item name="外购" key="source_type" value="1"/>
+        <item name="自制" key="source_type" value="2"/>
+        <item name="委外" key="source_type" value="3"/>
+        <item name="虚拟件" key="source_type" value="4"/>
+    </type>
+    <!--<type name="worktype_id">-->
+    <!--<item name="组装" key="worktype_id" value="1"/>-->
+    <!--<item name="焊接" key="worktype_id" value="2"/>-->
+    <!--<item name="清理" key="worktype_id" value="3"/>-->
+    <!--<item name="操作" key="worktype_id" value="4"/>-->
+    <!--</type>-->
+    <!--<type name="deal_result">-->
+    <!--<item name="下道工序" key="deal_result" value="1"/>-->
+    <!--<item name="分析修理" key="deal_result" value="2"/>-->
+    <!--<item name="项目组" key="deal_result" value="3"/>-->
+    <!--<item name="不良隔离区" key="deal_result" value="4"/>-->
+    <!--<item name="不合格品库" key="deal_result" value="5"/>-->
+    <!--<item name="产成品库" key="deal_result" value="6"/>-->
+    <!--<item name="其他" key="deal_result" value="7"/>-->
+    <!--</type>-->
+    <type name="store_type" description="芯片操作存储类型">
+        <item name="不存储" key="store_type" value="0"/>
+        <item name="一般存储" key="store_type" value="1"/>
+    </type>
+    <!--<type name="bill_status">-->
+    <!--<item name="未开始" key="bill_status" value="0"/>-->
+    <!--<item name="开始" key="bill_status" value="1"/>-->
+    <!--<item name="暂停" key="bill_status" value="2"/>-->
+    <!--<item name="关结" key="bill_status" value="9"/>-->
+    <!--</type>-->
+    <!--<type name="procedure_type">-->
+    <!--<item name="组装工序" key="procedure_type" value="1"/>-->
+    <!--<item name="检验类工序" key="procedure_type" value="2"/>-->
+    <!--<item name="常温测试" key="procedure_type" value="3"/>-->
+    <!--<item name="高温测试" key="procedure_type" value="4"/>-->
+    <!--<item name="低温测试" key="procedure_type" value="5"/>-->
+    <!--<item name="生成条码" key="procedure_type" value="6"/>-->
+    <!--</type>-->
+    <!--<type name="show_type">-->
+    <!--<item name="text" key="show_type" value="2"/>-->
+    <!--<item name="dropdownlist" key="show_type" value="5"/>-->
+    <!--</type>-->
+    <!--<type name="finish_type">-->
+    <!--<item name="入产品库" key="finish_type" value="1"/>-->
+    <!--<item name="提交给客户" key="finish_type" value="2"/>-->
+    <!--<item name="入样件库" key="finish_type" value="3"/>-->
+    <!--</type>-->
+    <!--<type name="data_type">-->
+    <!--<item name="数字" key="data_type" value="0"/>-->
+    <!--<item name="字符串" key="data_type" value="2"/>-->
+    <!--</type>-->
+    <!--<type name="is_check">-->
+    <!--<item name="未审核" key="is_check" value="0"/>-->
+    <!--<item name="已审核" key="is_check" value="1"/>-->
+    <!--<item name="审核中" key="is_check" value="2"/>-->
+    <!--<item name="审核不通过" key="is_check" value="3"/>-->
+    <!--</type>-->
+    <type name="bar_code_type" description="产品相关条码类型">
+        <item name="PCBA条码" key="bar_code_type" value="SN"/>
+        <item name="产品条码" key="bar_code_type" value="PD"/>
+        <item name="产品追踪号" key="bar_code_type" value="ETN"/>
+    </type>
+    <type name="label_type" description="产品相关标签类型">
+        <item name="箱标签" key="label_type" value="1"/>
+        <item name="箱码标签" key="label_type" value="2"/>
+        <item name="产品标签" key="label_type" value="3"/>
+    </type>
+</dic>

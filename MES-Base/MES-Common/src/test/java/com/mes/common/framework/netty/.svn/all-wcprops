@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/test/java/com/mes/common/framework/netty
+END
+TestMessageClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/test/java/com/mes/common/framework/netty/TestMessageClient.java
+END
+TestMessageServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/test/java/com/mes/common/framework/netty/TestMessageServer.java
+END

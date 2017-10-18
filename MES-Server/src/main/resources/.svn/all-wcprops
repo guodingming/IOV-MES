@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources
+END
+activiti.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/activiti.cfg.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/projectnew/IOV_PLATFORM/!svn/ver/16714/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/log4j.properties
+END

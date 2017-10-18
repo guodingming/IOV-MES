@@ -1,0 +1,833 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control
+END
+IUserProcessProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17032/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IUserProcessProvider.java
+END
+IFtyDeviceFaultProcessProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/16586/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceFaultProcessProvider.java
+END
+IPdExecSystemModuleCopyProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdExecSystemModuleCopyProvider.java
+END
+IDpSubassemblyTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/16709/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpSubassemblyTypeProvider.java
+END
+IDpBarcodeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBarcodeProvider.java
+END
+IPdProductBarCodeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductBarCodeProvider.java
+END
+IDpServiceLogProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15787/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpServiceLogProvider.java
+END
+IFtyDeviceFixtureProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/14268/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceFixtureProvider.java
+END
+IPdSchedulingDeviceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/15096/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdSchedulingDeviceProvider.java
+END
+IUserGroupProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/14115/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IUserGroupProvider.java
+END
+IDpServiceMonitorProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15738/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpServiceMonitorProvider.java
+END
+IPdSchedulingPersonnelProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/15096/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdSchedulingPersonnelProvider.java
+END
+IPdFileTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17116/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdFileTypeProvider.java
+END
+IDpLabelTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/14831/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpLabelTypeProvider.java
+END
+IPdBomProduceAmountProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16241/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomProduceAmountProvider.java
+END
+IFtyDeviceConfigTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/14664/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceConfigTypeProvider.java
+END
+IPdBarcodeRuleProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBarcodeRuleProvider.java
+END
+IUserOpLogProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15091/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IUserOpLogProvider.java
+END
+IPdWorkTestDetailTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdWorkTestDetailTbProvider.java
+END
+IPdBaseReplaceTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBaseReplaceTbProvider.java
+END
+IDpMaterialsAssembleProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialsAssembleProvider.java
+END
+IDpProduceProcessDateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/16094/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessDateProvider.java
+END
+IFtyDeviceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16021/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceProvider.java
+END
+IFtyDeviceConfigInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/17053/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceConfigInfoProvider.java
+END
+IDpBarcodeTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/14831/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBarcodeTypeProvider.java
+END
+IDpServiceTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16696/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpServiceTypeProvider.java
+END
+IPdExecSoftinjectTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdExecSoftinjectTbProvider.java
+END
+IPdProductInfoNumberProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/16529/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoNumberProvider.java
+END
+IDpProjectProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15538/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProjectProvider.java
+END
+IDpProduceProcessDeviceConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/projectnew/IOV_PLATFORM/!svn/ver/15844/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessDeviceConfigProvider.java
+END
+IPdBomProduceRulesProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/14825/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomProduceRulesProvider.java
+END
+IDpProduceProcessDeviceAnnexProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessDeviceAnnexProvider.java
+END
+IFtyProcessProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyProcessProvider.java
+END
+IFtyEnterpriseProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17117/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyEnterpriseProvider.java
+END
+IDpProductInfoLogHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProductInfoLogHistoryProvider.java
+END
+IDpRoutesProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17324/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpRoutesProvider.java
+END
+IPdBarcodeRuleTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15365/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBarcodeRuleTypeProvider.java
+END
+IUserProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IUserProvider.java
+END
+IDpBoxPalletProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBoxPalletProvider.java
+END
+IFtyDeviceFaultProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceFaultProvider.java
+END
+IDpMaterialsInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialsInfoProvider.java
+END
+IDpMaterialProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialProvider.java
+END
+IDpSampleInspectionDetailProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/projectnew/IOV_PLATFORM/!svn/ver/16484/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpSampleInspectionDetailProvider.java
+END
+IFtyWorkstationDeviceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyWorkstationDeviceProvider.java
+END
+IDpFormProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/17165/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpFormProvider.java
+END
+IDpProductTestLogHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProductTestLogHistoryProvider.java
+END
+IDpBoxProductInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBoxProductInfoProvider.java
+END
+IDpProduceProcessDeviceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessDeviceProvider.java
+END
+IPdWorkOrderBatchProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16121/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdWorkOrderBatchProvider.java
+END
+IFtyWorkstationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/15046/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyWorkstationProvider.java
+END
+IPdSchedulingWorkOrderProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/14753/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdSchedulingWorkOrderProvider.java
+END
+IDpFunctionProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpFunctionProvider.java
+END
+IFtyDeviceProcessAnnexProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/17300/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceProcessAnnexProvider.java
+END
+IFtyDeviceToolingProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/14268/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceToolingProvider.java
+END
+IPdProductInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16888/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoProvider.java
+END
+IFtyDeviceProcessProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15110/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceProcessProvider.java
+END
+IFtyProductionLineProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/17264/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyProductionLineProvider.java
+END
+ITableProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16051/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/ITableProvider.java
+END
+IFtyDeviceAnnexInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceAnnexInfoProvider.java
+END
+IDpFormTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16711/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpFormTypeProvider.java
+END
+IMenuRestApiProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/14695/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IMenuRestApiProvider.java
+END
+IDeptProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17329/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDeptProvider.java
+END
+IPdOrderProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/14763/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdOrderProvider.java
+END
+IPdWorkTestMainTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16788/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdWorkTestMainTbProvider.java
+END
+IPdBomMaterialsProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16739/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomMaterialsProvider.java
+END
+IDpMaterialsLoadProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialsLoadProvider.java
+END
+IDpProductTestLogProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProductTestLogProvider.java
+END
+IFtyDeviceConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/14709/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceConfigProvider.java
+END
+IDpProduceProcessConfigWorkorderProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 178
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessConfigWorkorderProvider.java
+END
+IDpProduceProcessConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessConfigProvider.java
+END
+IPdBomAffiliatedProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16880/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomAffiliatedProvider.java
+END
+IPdLineProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/17218/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdLineProvider.java
+END
+IDpFunctionTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/15954/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpFunctionTypeProvider.java
+END
+IDpBoxProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16281/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBoxProvider.java
+END
+IPdWorkTestDeviceTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdWorkTestDeviceTbProvider.java
+END
+IDpProduceProcessAnnexProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/16708/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessAnnexProvider.java
+END
+IDpDataDictionaryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/17047/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpDataDictionaryProvider.java
+END
+IDpServiceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15645/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpServiceProvider.java
+END
+IPdAttributeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15421/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdAttributeProvider.java
+END
+IDpProduceChipProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/15832/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceChipProvider.java
+END
+ITableTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/14787/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/ITableTypeProvider.java
+END
+ISerialRuleDetailProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/ISerialRuleDetailProvider.java
+END
+IDpRepairStationBadInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/16512/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpRepairStationBadInfoProvider.java
+END
+IDpProduceDemarcateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16104/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceDemarcateProvider.java
+END
+IFtyAreaProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/17129/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyAreaProvider.java
+END
+IFtyProcessConfigTypeDictProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/projectnew/IOV_PLATFORM/!svn/ver/15748/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyProcessConfigTypeDictProvider.java
+END
+IAgentProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17171/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IAgentProvider.java
+END
+ISerialRuleWorkOrderAssociationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 177
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/ISerialRuleWorkOrderAssociationProvider.java
+END
+IMenuProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15974/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IMenuProvider.java
+END
+IDpBoxRuleProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17078/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBoxRuleProvider.java
+END
+IFtyWorkCenterProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17132/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyWorkCenterProvider.java
+END
+IDpProduceStandardTestProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/15832/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceStandardTestProvider.java
+END
+IDpRepairStationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpRepairStationProvider.java
+END
+IFtyDeviceProcessAnnexAssociationProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/projectnew/IOV_PLATFORM/!svn/ver/15112/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceProcessAnnexAssociationProvider.java
+END
+IPdSchedulingProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15067/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdSchedulingProvider.java
+END
+IPdProductInfoNumberHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoNumberHistoryProvider.java
+END
+IFtyDeviceConsumablesProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/14268/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceConsumablesProvider.java
+END
+IMetadataProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15497/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IMetadataProvider.java
+END
+IPdProductInfoMaterialsProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoMaterialsProvider.java
+END
+IPdBomProduceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/17067/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomProduceProvider.java
+END
+IDpProduceProcessProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15627/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceProcessProvider.java
+END
+IDpDataDictionaryTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/16696/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpDataDictionaryTypeProvider.java
+END
+IDpMaterialsInfoHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialsInfoHistoryProvider.java
+END
+IFtySiteInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17119/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtySiteInfoProvider.java
+END
+IPdBomWorkProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17067/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomWorkProvider.java
+END
+ISerialRuleProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/ISerialRuleProvider.java
+END
+IPdSchedulingTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdSchedulingTypeProvider.java
+END
+IFtyDeviceAnnexProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/14592/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceAnnexProvider.java
+END
+IExpandTableConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15363/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IExpandTableConfigProvider.java
+END
+IFtyDeviceTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17138/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceTypeProvider.java
+END
+IFileTransferProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/14759/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFileTransferProvider.java
+END
+IPdExecTransmitSetTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdExecTransmitSetTbProvider.java
+END
+IPdFileResourcesProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16671/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdFileResourcesProvider.java
+END
+IPdProductionLineInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/17049/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductionLineInfoProvider.java
+END
+IPdBomMaterialsReplaceProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomMaterialsReplaceProvider.java
+END
+IDpTemplateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpTemplateProvider.java
+END
+IRoleProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17329/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IRoleProvider.java
+END
+IPdProductLabelProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductLabelProvider.java
+END
+IDpSubassemblyProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/15233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpSubassemblyProvider.java
+END
+IDpProductInfoLogProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProductInfoLogProvider.java
+END
+IDpProcessBaseConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/15190/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProcessBaseConfigProvider.java
+END
+IDpMaterialTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16700/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpMaterialTypeProvider.java
+END
+IPdBomWorkAmountProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16233/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBomWorkAmountProvider.java
+END
+IDpProcessConfigProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/14852/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProcessConfigProvider.java
+END
+IPdProductPdLableProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductPdLableProvider.java
+END
+IFtyProcessConfigTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/15748/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyProcessConfigTypeProvider.java
+END
+IDpBoxPalletInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/15978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpBoxPalletInfoProvider.java
+END
+IFtyDeviceFaultInfoProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/17271/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IFtyDeviceFaultInfoProvider.java
+END
+IPdBarcodeWildcardProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdBarcodeWildcardProvider.java
+END
+IDpTemplateTypeProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16698/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpTemplateTypeProvider.java
+END
+IDpSampleInspectionProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/16666/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpSampleInspectionProvider.java
+END
+IDpProduceStandardTestOrderProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/projectnew/IOV_PLATFORM/!svn/ver/15832/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpProduceStandardTestOrderProvider.java
+END
+IPdProductInfoHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/14688/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoHistoryProvider.java
+END
+IPdWorkOrderProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17271/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdWorkOrderProvider.java
+END
+IPdProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/17191/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProvider.java
+END
+IDpLabelProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/17056/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IDpLabelProvider.java
+END
+IPdProductInfoMaterialsHistoryProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/projectnew/IOV_PLATFORM/!svn/ver/15403/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdProductInfoMaterialsHistoryProvider.java
+END
+IPdPreCodeWildcardTbProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Domain/src/main/java/com/mes/dubbo/interprovider/control/IPdPreCodeWildcardTbProvider.java
+END

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-条码 -->
+<mapper namespace="com.mes.control.mapper.DpBarcodeMapper">
+	<resultMap type="com.mes.entity.control.DpBarcode" id="dpBarcodeResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="generation" property="generation" jdbcType="VARCHAR"/>
+		<result column="function_type_id" property="functionTypeId" jdbcType="VARCHAR"/>
+		<result column="function_id" property="functionId" jdbcType="VARCHAR"/>
+		<result column="template_order" property="templateOrder" jdbcType="VARCHAR"/>
+		<result column="rule_type_id" property="ruleTypeId" jdbcType="VARCHAR"/>
+		<result column="rule_id" property="ruleId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="type_id" property="typeId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+		<association column="function_type_id" property="functionTypeName" select="getFunctionTypeName" javaType="java.lang.String"/>
+		<association column="function_id" property="functionName" select="getFunctionName" javaType="java.lang.String"/>
+		<association column="rule_type_id" property="ruleTypeName" select="getRuleTypeName" javaType="java.lang.String"/>
+		<association column="rule_id" property="ruleDescription" select="getRuleDescription" javaType="java.lang.String"/>
+		<association column="pd_id" property="pdName" select="getPdName" javaType="java.lang.String"/>
+		<association column="type_id" property="typeName" select="getTypeName" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpBarcodeResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="getBaseReplace" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT t.new_value
+		FROM mes_pd_base_replace_tb t
+		WHERE t.`table_name`=#{tableName}
+		AND t.`original_value`=#{originalValue}
+		LIMIT 1
+	</select>
+
+	<select id="findByTypeId" resultMap="dpBarcodeResultMap">
+		<include refid="sql_select"/>
+		WHERE s.type_id=#{typeId}
+	</select>
+	<!--getFunctionTypeName-->
+	<select id="getFunctionTypeName" resultType="java.lang.String">
+		SELECT t.`name` FROM mes_dp_function_type t where t.id = #{value}
+	</select>
+	
+	<!--getFunctionName-->
+	<select id="getFunctionName" resultType="java.lang.String">
+		SELECT t.`name` FROM mes_dp_function t where t.id = #{value}
+	</select>
+
+	<!--getRuleTypeName-->
+	<select id="getRuleTypeName" resultType="java.lang.String">
+		SELECT t.`name` FROM mes_pd_barcode_rule_type t where t.id = #{value}
+	</select>
+
+	<!--getRuleDescription-->
+	<select id="getRuleDescription" resultType="java.lang.String">
+		SELECT t.description FROM mes_pd_barcode_rule t where t.id = #{value}
+	</select>
+
+	<!--查询产品名称-->
+	<select id="getPdName" resultType="java.lang.String">
+		SELECT p.`name` FROM mes_pd p  where p.id = #{value}
+	</select>
+
+	<!--getTypeName-->
+	<select id="getTypeName" resultType="java.lang.String">
+		SELECT t.`name` FROM mes_dp_barcode_type t where t.id = #{value}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpBarcode">
+        insert into mes_dp_barcode
+        (id,name,code,description,generation,function_type_id,function_id,template_order,rule_type_id,rule_id,pd_id,type_id,create_date,update_date)
+        values
+        (#{id},#{name},#{code},#{description},#{generation},#{functionTypeId},#{functionId},#{templateOrder},#{ruleTypeId},#{ruleId},#{pdId},#{typeId},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpBarcode">
+		update mes_dp_barcode s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_barcode where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_barcode t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpBarcodeResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpBarcodeResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpBarcodeResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+        SELECT
+        id,name,code,description,generation,function_type_id,function_id,template_order,rule_type_id,rule_id,pd_id,type_id,create_date,update_date
+        from mes_dp_barcode s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or generation like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+            </if>
+            <if test="code != null  and code != '' ">
+                <![CDATA[
+					and code = #{code}
+				]]>
+            </if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="generation != null  and generation != '' ">
+				<![CDATA[
+					and generation = #{generation}
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					and function_type_id = #{functionTypeId}
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					and function_id = #{functionId}
+				]]>
+			</if>
+			<if test="templateOrder != null  and templateOrder != '' ">
+				<![CDATA[
+					and template_order = #{templateOrder}
+				]]>
+			</if>
+			<if test="ruleTypeId != null  and ruleTypeId != '' ">
+				<![CDATA[
+					and rule_type_id = #{ruleTypeId}
+				]]>
+			</if>
+			<if test="ruleId != null  and ruleId != '' ">
+				<![CDATA[
+					and rule_id = #{ruleId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="typeId != null  and typeId != '' ">
+				<![CDATA[
+					and type_id = #{typeId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="generation != null  and generation != '' ">
+				<![CDATA[
+					or generation = #{generation}
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					or function_type_id = #{functionTypeId}
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					or function_id = #{functionId}
+				]]>
+			</if>
+			<if test="ruleTypeId != null  and ruleTypeId != '' ">
+				<![CDATA[
+					or rule_type_id = #{ruleTypeId}
+				]]>
+			</if>
+			<if test="ruleId != null  and ruleId != '' ">
+				<![CDATA[
+					or rule_id = #{ruleId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="typeId != null  and typeId != '' ">
+				<![CDATA[
+					or type_id = #{typeId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="generation != null  and generation != '' ">
+				<![CDATA[
+					and generation like CONCAT('%', #{generation}, '%')
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					and function_type_id like CONCAT('%', #{functionTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					and function_id like CONCAT('%', #{functionId}, '%')
+				]]>
+			</if>
+			<if test="ruleTypeId != null  and ruleTypeId != '' ">
+				<![CDATA[
+					and rule_type_id like CONCAT('%', #{ruleTypeId}, '%')
+				]]>
+			</if>
+			<if test="ruleId != null  and ruleId != '' ">
+				<![CDATA[
+					and rule_id like CONCAT('%', #{ruleId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="typeId != null  and typeId != '' ">
+				<![CDATA[
+					and type_id like CONCAT('%', #{typeId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="generation != null  and generation != '' ">
+				<![CDATA[
+					or generation like CONCAT('%', #{generation}, '%')
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					or function_type_id like CONCAT('%', #{functionTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					or function_id like CONCAT('%', #{functionId}, '%')
+				]]>
+			</if>
+			<if test="ruleTypeId != null  and ruleTypeId != '' ">
+				<![CDATA[
+					or rule_type_id like CONCAT('%', #{ruleTypeId}, '%')
+				]]>
+			</if>
+			<if test="ruleId != null  and ruleId != '' ">
+				<![CDATA[
+					or rule_id like CONCAT('%', #{ruleId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="typeId != null  and typeId != '' ">
+				<![CDATA[
+					or type_id like CONCAT('%', #{typeId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+            </if>
+            <if test="code != null  and code != '' ">
+                <![CDATA[
+					code = #{code},
+				]]>
+            </if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="generation != null  and generation != '' ">
+				<![CDATA[
+					generation = #{generation},
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					function_type_id = #{functionTypeId},
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					function_id = #{functionId},
+				]]>
+			</if>
+			<if test="templateOrder != null  and templateOrder != '' ">
+				<![CDATA[
+					template_order = #{templateOrder},
+				]]>
+			</if>
+			<if test="ruleTypeId != null  and ruleTypeId != '' ">
+				<![CDATA[
+					rule_type_id = #{ruleTypeId},
+				]]>
+			</if>
+			<if test="ruleId != null  and ruleId != '' ">
+				<![CDATA[
+					rule_id = #{ruleId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="typeId != null  and typeId != '' ">
+				<![CDATA[
+					type_id = #{typeId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-开发工程 -->
+<mapper namespace="com.mes.control.mapper.DpProjectMapper">
+	<resultMap type="com.mes.entity.control.DpProject" id="dpProjectResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="version" property="version" jdbcType="VARCHAR"/>
+		<result column="is_enabled" property="isEnabled" jdbcType="INTEGER"/>
+		<result column="is_release" property="isRelease" jdbcType="INTEGER"/>
+		<result column="is_config_process" property="isConfigProcess" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="release_time" property="releaseTime" jdbcType="TIMESTAMP"/>
+		<result column="enabled_time" property="enabledTime" jdbcType="TIMESTAMP"/>
+		<result column="wf_code" property="wfCode" jdbcType="VARCHAR"/>
+		<result column="workflow_run_xml" property="workflowRunXml" jdbcType="VARCHAR"/>
+		<result column="workflow_show_json" property="workflowShowJson" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpProjectResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpProject">
+		insert into mes_dp_project (id,pd_line_id,pd_id,name,version,is_enabled,is_release,create_date,release_time,enabled_time,wf_code,workflow_run_xml,workflow_show_json,is_config_process)
+		values (#{id},#{pdLineId},#{pdId},#{name},#{version},#{isEnabled},#{isRelease},#{createDate},#{releaseTime},#{enabledTime},#{wfCode},#{workflowRunXml},#{workflowShowJson},#{isConfigProcess})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpProject">
+		update mes_dp_project s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_project where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_project t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpProjectResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpProjectResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpProjectResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,pd_line_id,pd_id,name,version,is_enabled,is_release,create_date,release_time,enabled_time,wf_code,workflow_run_xml,workflow_show_json,is_config_process from mes_dp_project s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (name like CONCAT('%', #{search}, '%')
+				or version like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version = #{version}
+				]]>
+			</if>
+			<if test="isEnabled != null">
+				<![CDATA[
+					and is_enabled = #{isEnabled}
+				]]>
+			</if>
+			<if test="isRelease != null">
+				<![CDATA[
+					and is_release = #{isRelease}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="releaseTime != null  and releaseTime != '' ">
+				<![CDATA[
+					and release_time = #{releaseTime}
+				]]>
+			</if>
+			<if test="enabledTime != null  and enabledTime != '' ">
+				<![CDATA[
+					and enabled_time = #{enabledTime}
+				]]>
+			</if>
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					and workflow_run_xml = #{workflowRunXml}
+				]]>
+			</if>
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					and wf_code = #{wfCode}
+				]]>
+			</if>
+
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					and workflow_show_json = #{workflowShowJson}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version = #{version}
+				]]>
+			</if>
+			<if test="isEnabled != null">
+				<![CDATA[
+					or is_enabled = #{isEnabled}
+				]]>
+			</if>
+			<if test="isRelease != null">
+				<![CDATA[
+					or is_release = #{isRelease}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="releaseTime != null  and releaseTime != '' ">
+				<![CDATA[
+					or release_time = #{releaseTime}
+				]]>
+			</if>
+			<if test="enabledTime != null  and enabledTime != '' ">
+				<![CDATA[
+					or enabled_time = #{enabledTime}
+				]]>
+			</if>
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					or wf_code = #{wfCode}
+				]]>
+			</if>
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					or workflow_run_xml = #{workflowRunXml}
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					or workflow_show_json = #{workflowShowJson}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="isEnabled != null">
+				<![CDATA[
+					and is_enabled like CONCAT('%', #{isEnabled}, '%')
+				]]>
+			</if>
+			<if test="isRelease != null">
+				<![CDATA[
+					and is_release like CONCAT('%', #{isRelease}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="releaseTime != null  and releaseTime != '' ">
+				<![CDATA[
+					and release_time like CONCAT('%', #{releaseTime}, '%')
+				]]>
+			</if>
+			<if test="enabledTime != null  and enabledTime != '' ">
+				<![CDATA[
+					and enabled_time like CONCAT('%', #{enabledTime}, '%')
+				]]>
+			</if>
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					and wf_code like CONCAT('%', #{wfCode}, '%')
+				]]>
+			</if>
+
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					and workflow_run_xml like CONCAT('%', #{workflowRunXml}, '%')
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					and workflow_show_json like CONCAT('%', #{workflowShowJson}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="isEnabled != null">
+				<![CDATA[
+					or is_enabled like CONCAT('%', #{isEnabled}, '%')
+				]]>
+			</if>
+			<if test="isRelease != null">
+				<![CDATA[
+					or is_release like CONCAT('%', #{isRelease}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="releaseTime != null  and releaseTime != '' ">
+				<![CDATA[
+					or release_time like CONCAT('%', #{releaseTime}, '%')
+				]]>
+			</if>
+			<if test="enabledTime != null  and enabledTime != '' ">
+				<![CDATA[
+					or enabled_time like CONCAT('%', #{enabledTime}, '%')
+				]]>
+			</if>
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					or wf_code like CONCAT('%', #{wfCode}, '%')
+				]]>
+			</if>
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					or workflow_run_xml like CONCAT('%', #{workflowRunXml}, '%')
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					or workflow_show_json like CONCAT('%', #{workflowShowJson}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					pd_line_id = #{pdLineId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					version = #{version},
+				]]>
+			</if>
+			<if test="isEnabled != null">
+				<![CDATA[
+					is_enabled = #{isEnabled},
+				]]>
+			</if>
+			<if test="isRelease != null">
+				<![CDATA[
+					is_release = #{isRelease},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="releaseTime != null  and releaseTime != '' ">
+				<![CDATA[
+					release_time = #{releaseTime},
+				]]>
+			</if>
+			<if test="enabledTime != null  and enabledTime != '' ">
+				<![CDATA[
+					enabled_time = #{enabledTime},
+				]]>
+			</if>
+			<if test="wfCode != null  and wfCode != '' ">
+				<![CDATA[
+					 wf_code = #{wfCode},
+				]]>
+			</if>
+			<if test="workflowRunXml != null  and workflowRunXml != '' ">
+				<![CDATA[
+					workflow_run_xml = #{workflowRunXml},
+				]]>
+			</if>
+			<if test="workflowShowJson != null  and workflowShowJson != '' ">
+				<![CDATA[
+					workflow_show_json = #{workflowShowJson},
+				]]>
+			</if>
+			<if test="isConfigProcess != null  and isConfigProcess != '' ">
+				<![CDATA[
+					is_config_process = #{isConfigProcess},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

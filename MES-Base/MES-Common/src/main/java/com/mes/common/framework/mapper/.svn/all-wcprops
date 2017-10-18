@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/14307/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/mapper
+END
+BaseInterfaceMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/14307/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/mapper/BaseInterfaceMapper.java
+END
+BaseSQLInterfaceMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/13750/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/mapper/BaseSQLInterfaceMapper.java
+END
+SQLVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/13750/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/mapper/SQLVO.java
+END
+BeanMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/13725/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/mapper/BeanMapper.java
+END

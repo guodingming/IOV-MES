@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- $table.description -->
+<mapper namespace="com.mes.control.mapper.PdExecTransmitSetTbMapper">
+    <resultMap type="com.mes.entity.control.PdExecTransmitSetTb" id="pdExecTransmitSetTbResultMap">
+        
+        <result column="send_module" property="sendModule" jdbcType="VARCHAR"/>
+        
+        <result column="send_sub_module" property="sendSubModule" jdbcType="VARCHAR"/>
+        
+        <result column="send_message" property="sendMessage" jdbcType="VARCHAR"/>
+        
+        <result column="receive_module" property="receiveModule" jdbcType="VARCHAR"/>
+        
+        <result column="receive_sub_module" property="receiveSubModule" jdbcType="VARCHAR"/>
+        
+        <result column="receive_message" property="receiveMessage" jdbcType="VARCHAR"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdExecTransmitSetTbResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdExecTransmitSetTb">
+        insert into mes_pd_exec_transmit_set_tb
+        (`send_module`,`send_sub_module`,`send_message`,`receive_module`,`receive_sub_module`,`receive_message`)
+        values
+        (#{sendModule},#{sendSubModule},#{sendMessage},#{receiveModule},#{receiveSubModule},#{receiveMessage})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdExecTransmitSetTb">
+        update mes_pd_exec_transmit_set_tb s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_exec_transmit_set_tb where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_exec_transmit_set_tb t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdExecTransmitSetTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdExecTransmitSetTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdExecTransmitSetTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `send_module`,`send_sub_module`,`send_message`,`receive_module`,`receive_sub_module`,`receive_message` from mes_pd_exec_transmit_set_tb  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `send_module` like CONCAT('%', #{search}, '%')
+				or `send_sub_module` like CONCAT('%', #{search}, '%')
+				or `send_message` like CONCAT('%', #{search}, '%')
+				or `receive_module` like CONCAT('%', #{search}, '%')
+				or `receive_sub_module` like CONCAT('%', #{search}, '%')
+				or `receive_message` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="sendModule != null  and sendModule != '' ">
+            <![CDATA[
+                and `send_module` = #{sendModule}
+            ]]>
+            </if>
+            
+            <if test="sendSubModule != null  and sendSubModule != '' ">
+            <![CDATA[
+                and `send_sub_module` = #{sendSubModule}
+            ]]>
+            </if>
+            
+            <if test="sendMessage != null  and sendMessage != '' ">
+            <![CDATA[
+                and `send_message` = #{sendMessage}
+            ]]>
+            </if>
+            
+            <if test="receiveModule != null  and receiveModule != '' ">
+            <![CDATA[
+                and `receive_module` = #{receiveModule}
+            ]]>
+            </if>
+            
+            <if test="receiveSubModule != null  and receiveSubModule != '' ">
+            <![CDATA[
+                and `receive_sub_module` = #{receiveSubModule}
+            ]]>
+            </if>
+            
+            <if test="receiveMessage != null  and receiveMessage != '' ">
+            <![CDATA[
+                and `receive_message` = #{receiveMessage}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `send_module` like CONCAT('%', #{search}, '%')
+				or `send_sub_module` like CONCAT('%', #{search}, '%')
+				or `send_message` like CONCAT('%', #{search}, '%')
+				or `receive_module` like CONCAT('%', #{search}, '%')
+				or `receive_sub_module` like CONCAT('%', #{search}, '%')
+				or `receive_message` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="sendModule != null  and sendModule != '' ">
+            <![CDATA[
+                or `send_module` = #{sendModule}
+            ]]>
+            </if>
+            
+            <if test="sendSubModule != null  and sendSubModule != '' ">
+            <![CDATA[
+                or `send_sub_module` = #{sendSubModule}
+            ]]>
+            </if>
+            
+            <if test="sendMessage != null  and sendMessage != '' ">
+            <![CDATA[
+                or `send_message` = #{sendMessage}
+            ]]>
+            </if>
+            
+            <if test="receiveModule != null  and receiveModule != '' ">
+            <![CDATA[
+                or `receive_module` = #{receiveModule}
+            ]]>
+            </if>
+            
+            <if test="receiveSubModule != null  and receiveSubModule != '' ">
+            <![CDATA[
+                or `receive_sub_module` = #{receiveSubModule}
+            ]]>
+            </if>
+            
+            <if test="receiveMessage != null  and receiveMessage != '' ">
+            <![CDATA[
+                or `receive_message` = #{receiveMessage}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `send_module` like CONCAT('%', #{search}, '%')
+				or `send_sub_module` like CONCAT('%', #{search}, '%')
+				or `send_message` like CONCAT('%', #{search}, '%')
+				or `receive_module` like CONCAT('%', #{search}, '%')
+				or `receive_sub_module` like CONCAT('%', #{search}, '%')
+				or `receive_message` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="sendModule != null  and sendModule != '' ">
+            <![CDATA[
+                and `send_module` CONCAT('%', #{sendModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="sendSubModule != null  and sendSubModule != '' ">
+            <![CDATA[
+                and `send_sub_module` CONCAT('%', #{sendSubModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="sendMessage != null  and sendMessage != '' ">
+            <![CDATA[
+                and `send_message` CONCAT('%', #{sendMessage}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveModule != null  and receiveModule != '' ">
+            <![CDATA[
+                and `receive_module` CONCAT('%', #{receiveModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveSubModule != null  and receiveSubModule != '' ">
+            <![CDATA[
+                and `receive_sub_module` CONCAT('%', #{receiveSubModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveMessage != null  and receiveMessage != '' ">
+            <![CDATA[
+                and `receive_message` CONCAT('%', #{receiveMessage}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `send_module` like CONCAT('%', #{search}, '%')
+				or `send_sub_module` like CONCAT('%', #{search}, '%')
+				or `send_message` like CONCAT('%', #{search}, '%')
+				or `receive_module` like CONCAT('%', #{search}, '%')
+				or `receive_sub_module` like CONCAT('%', #{search}, '%')
+				or `receive_message` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="sendModule != null  and sendModule != '' ">
+            <![CDATA[
+                or `send_module` CONCAT('%', #{sendModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="sendSubModule != null  and sendSubModule != '' ">
+            <![CDATA[
+                or `send_sub_module` CONCAT('%', #{sendSubModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="sendMessage != null  and sendMessage != '' ">
+            <![CDATA[
+                or `send_message` CONCAT('%', #{sendMessage}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveModule != null  and receiveModule != '' ">
+            <![CDATA[
+                or `receive_module` CONCAT('%', #{receiveModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveSubModule != null  and receiveSubModule != '' ">
+            <![CDATA[
+                or `receive_sub_module` CONCAT('%', #{receiveSubModule}, '%')
+            ]]>
+            </if>
+            
+            <if test="receiveMessage != null  and receiveMessage != '' ">
+            <![CDATA[
+                or `receive_message` CONCAT('%', #{receiveMessage}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="sendModule != null  and sendModule != '' ">
+            <![CDATA[
+                `send_module` = #{sendModule},
+            ]]>
+            </if>
+            
+            <if test="sendSubModule != null  and sendSubModule != '' ">
+            <![CDATA[
+                `send_sub_module` = #{sendSubModule},
+            ]]>
+            </if>
+            
+            <if test="sendMessage != null  and sendMessage != '' ">
+            <![CDATA[
+                `send_message` = #{sendMessage},
+            ]]>
+            </if>
+            
+            <if test="receiveModule != null  and receiveModule != '' ">
+            <![CDATA[
+                `receive_module` = #{receiveModule},
+            ]]>
+            </if>
+            
+            <if test="receiveSubModule != null  and receiveSubModule != '' ">
+            <![CDATA[
+                `receive_sub_module` = #{receiveSubModule},
+            ]]>
+            </if>
+            
+            <if test="receiveMessage != null  and receiveMessage != '' ">
+            <![CDATA[
+                `receive_message` = #{receiveMessage},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

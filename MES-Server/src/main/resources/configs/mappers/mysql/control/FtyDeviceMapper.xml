@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyDeviceMapper">
+	<resultMap type="com.mes.entity.control.FtyDevice" id="ftyDeviceResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="ip" property="ip" jdbcType="VARCHAR"/>
+		<result column="location" property="location" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="capacity" property="capacity" jdbcType="INTEGER"/>
+		<result column="priority" property="priority" jdbcType="INTEGER"/>
+		<result column="category" property="category" jdbcType="VARCHAR"/>
+		<result column="asset_code" property="assetCode" jdbcType="VARCHAR"/>
+		<result column="sn_num" property="snNum" jdbcType="VARCHAR"/>
+		<result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+		<result column="device_type_id" property="deviceTypeId" jdbcType="VARCHAR"/>
+		<result column="process_id" property="processId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyDeviceResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="findByIp" resultMap="ftyDeviceResultMap">
+		SELECT id from mes_fty_device WHERE ip = #{ip}
+	</select>
+
+	<!-- 根据工单id查询对应的设备列表 -->
+	<select id="getDevicesByWorkOrder" resultMap="ftyDeviceResultMap">
+		SELECT fd.*
+		FROM mes_pd_scheduling_work_order o, mes_pd_scheduling_device d, mes_fty_workstation_device fwd, mes_fty_device fd
+		WHERE o.`work_order_id`=#{value}
+		AND o.`scheduling_id`=d.`scheduling_id`
+		AND d.`workstation_id`=fwd.`workstation_id`
+		AND fwd.`device_id`=fd.`id`
+		ORDER BY fd.`create_date` DESC
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyDevice">
+		insert into mes_fty_device (id,name,ip,location,description,capacity,priority,category,asset_code,sn_num,area_id,device_type_id,create_date,update_date)
+		values (#{id},#{name},#{ip},#{location},#{description},#{capacity},#{priority},#{category},#{assetCode},#{snNum},#{areaId},#{deviceTypeId},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyDevice">
+		update mes_fty_device s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_device where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_fty_device t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--根据工序ID查询设备信息-->
+	<select id="findDevicesByProcess" resultMap="ftyDeviceResultMap">
+		SELECT p.process_id,s.id,concat(s.ip,'|',s.name) as name,s.ip,s.location,s.description,s.capacity,s.priority,s.category,s.asset_code,s.sn_num,s.area_id,s.device_type_id,s.create_date,s.update_date
+        from mes_fty_device_process p
+        left join mes_fty_device s on s.id = p.device_id
+        where p.process_id=#{processId}
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,ip,location,description,capacity,priority,category,asset_code,sn_num,area_id,device_type_id,create_date,update_date from mes_fty_device s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1 = 1
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or ip like CONCAT('%', #{search}, '%')
+				or asset_code like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					and ip = #{ip}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="capacity != null">
+				<![CDATA[
+					and capacity = #{capacity}
+				]]>
+			</if>
+			<if test="priority != null">
+				<![CDATA[
+					and priority = #{priority}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and category = #{category}
+				]]>
+			</if>
+			<if test="assetCode != null  and assetCode != '' ">
+				<![CDATA[
+					and asset_code = #{assetCode}
+				]]>
+			</if>
+			<if test="snNum != null  and snNum != '' ">
+				<![CDATA[
+					and sn_num = #{snNum}
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					and area_id = #{areaId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					and device_type_id = #{deviceTypeId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					or ip = #{ip}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="capacity != null">
+				<![CDATA[
+					or capacity = #{capacity}
+				]]>
+			</if>
+			<if test="priority != null">
+				<![CDATA[
+					or priority = #{priority}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or category = #{category}
+				]]>
+			</if>
+			<if test="assetCode != null  and assetCode != '' ">
+				<![CDATA[
+					or asset_code = #{assetCode}
+				]]>
+			</if>
+			<if test="snNum != null  and snNum != '' ">
+				<![CDATA[
+					or sn_num = #{snNum}
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					or area_id = #{areaId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					or device_type_id = #{deviceTypeId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					and ip like CONCAT('%', #{ip}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="capacity != null">
+				<![CDATA[
+					and capacity like CONCAT('%', #{capacity}, '%')
+				]]>
+			</if>
+			<if test="priority != null">
+				<![CDATA[
+					and priority like CONCAT('%', #{priority}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="assetCode != null  and assetCode != '' ">
+				<![CDATA[
+					and asset_code like CONCAT('%', #{assetCode}, '%')
+				]]>
+			</if>
+			<if test="snNum != null  and snNum != '' ">
+				<![CDATA[
+					and sn_num like CONCAT('%', #{snNum}, '%')
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					and area_id like CONCAT('%', #{areaId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					and device_type_id like CONCAT('%', #{deviceTypeId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					or ip like CONCAT('%', #{ip}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="capacity != null">
+				<![CDATA[
+					or capacity like CONCAT('%', #{capacity}, '%')
+				]]>
+			</if>
+			<if test="priority != null">
+				<![CDATA[
+					or priority like CONCAT('%', #{priority}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="assetCode != null  and assetCode != '' ">
+				<![CDATA[
+					or asset_code like CONCAT('%', #{assetCode}, '%')
+				]]>
+			</if>
+			<if test="snNum != null  and snNum != '' ">
+				<![CDATA[
+					or sn_num like CONCAT('%', #{snNum}, '%')
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					or area_id like CONCAT('%', #{areaId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					or device_type_id like CONCAT('%', #{deviceTypeId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="ip != null  and ip != '' ">
+				<![CDATA[
+					ip = #{ip},
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					location = #{location},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="capacity != null">
+				<![CDATA[
+					capacity = #{capacity},
+				]]>
+			</if>
+			<if test="priority != null">
+				<![CDATA[
+					priority = #{priority},
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					category = #{category},
+				]]>
+			</if>
+			<if test="assetCode != null  and assetCode != '' ">
+				<![CDATA[
+					asset_code = #{assetCode},
+				]]>
+			</if>
+			<if test="snNum != null  and snNum != '' ">
+				<![CDATA[
+					sn_num = #{snNum},
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					area_id = #{areaId},
+				]]>
+			</if>
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					device_type_id = #{deviceTypeId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+			<if test="deviceTypeId != null  and deviceTypeId != '' ">
+				<![CDATA[
+					device_type_id = #{deviceTypeId},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

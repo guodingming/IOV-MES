@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-设备配置信息 -->
+<mapper namespace="com.mes.control.mapper.DpProduceProcessDeviceConfigMapper">
+    <resultMap type="com.mes.entity.control.DpProduceProcessDeviceConfig" id="dpProduceProcessDeviceConfigResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+        <result column="device_id" property="deviceId" jdbcType="VARCHAR"/>
+        <result column="device_config_type_id" property="deviceConfigTypeId" jdbcType="VARCHAR"/>
+        <result column="device_config_id" property="deviceConfigId" jdbcType="VARCHAR"/>
+        <result column="data_type" property="dataType" jdbcType="VARCHAR"/>
+        <result column="file_name" property="fileName" jdbcType="VARCHAR"/>
+        <result column="file_another_name" property="fileAnotherName" jdbcType="VARCHAR"/>
+        <result column="file_path" property="filePath" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findById" resultMap="dpProduceProcessDeviceConfigResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpProduceProcessDeviceConfig">
+		insert into mes_dp_produce_process_device_config (id,produce_process_id,device_config_type_id,data_type,file_name,file_another_name,file_path,content,create_date,device_id,name,version,device_config_id)
+		values (#{id},#{produceProcessId},#{deviceConfigTypeId},#{dataType},#{fileName},#{fileAnotherName},#{filePath},#{content},#{createDate},#{deviceId},#{name},#{version},#{deviceConfigId})
+	</insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpProduceProcessDeviceConfig">
+        update mes_dp_produce_process_device_config s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_produce_process_device_config where id =#{id}
+	</delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_produce_process_device_config t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询-->
+    <select id="findByPage" parameterType="java.util.Map" resultMap="dpProduceProcessDeviceConfigResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="dpProduceProcessDeviceConfigResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="dpProduceProcessDeviceConfigResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+		SELECT id,produce_process_id,device_config_type_id,data_type,file_name,file_another_name,file_path,content,create_date,device_id,name,version,device_config_id from mes_dp_produce_process_device_config s
+	</sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                data_type like CONCAT('%', #{search}, '%')
+                or file_name like CONCAT('%', #{search}, '%')
+                or content like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+					and produce_process_id = #{produceProcessId}
+				]]>
+            </if>
+            <if test="deviceConfigTypeId != null  and deviceConfigTypeId != '' ">
+                <![CDATA[
+					and device_config_type_id = #{deviceConfigTypeId}
+				]]>
+            </if>
+            <if test="dataType != null  and dataType != '' ">
+                <![CDATA[
+					and data_type = #{dataType}
+				]]>
+            </if>
+            <if test="fileName != null  and fileName != '' ">
+                <![CDATA[
+					and file_name = #{fileName}
+				]]>
+            </if>
+            <if test="fileAnotherName != null  and fileAnotherName != '' ">
+                <![CDATA[
+					and file_another_name = #{fileAnotherName}
+				]]>
+            </if>
+            <if test="filePath != null  and filePath != '' ">
+                <![CDATA[
+					and file_path = #{filePath}
+				]]>
+            </if>
+            <if test="content != null  and content != '' ">
+                <![CDATA[
+					and content = #{content}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date = #{createDate}
+				]]>
+            </if>
+            <if test="deviceId != null  and deviceId != '' ">
+                <![CDATA[
+					and device_id = #{deviceId}
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					and name = #{name}
+				]]>
+            </if>
+            <if test="version != null  and version != '' ">
+                <![CDATA[
+					and version = #{version}
+				]]>
+            </if>
+            <if test="deviceConfigId != null  and deviceConfigId != '' ">
+                <![CDATA[
+					and device_config_id = #{deviceConfigId}
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+					or produce_process_id = #{produceProcessId}
+				]]>
+            </if>
+            <if test="deviceConfigTypeId != null  and deviceConfigTypeId != '' ">
+                <![CDATA[
+					or device_config_type_id = #{deviceConfigTypeId}
+				]]>
+            </if>
+            <if test="dataType != null  and dataType != '' ">
+                <![CDATA[
+					or data_type = #{dataType}
+				]]>
+            </if>
+            <if test="fileName != null  and fileName != '' ">
+                <![CDATA[
+					or file_name = #{fileName}
+				]]>
+            </if>
+            <if test="fileAnotherName != null  and fileAnotherName != '' ">
+                <![CDATA[
+					or file_another_name = #{fileAnotherName}
+				]]>
+            </if>
+            <if test="filePath != null  and filePath != '' ">
+                <![CDATA[
+					or file_path = #{filePath}
+				]]>
+            </if>
+            <if test="content != null  and content != '' ">
+                <![CDATA[
+					or content = #{content}
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date = #{createDate}
+				]]>
+            </if>
+            <if test="deviceId != null  and deviceId != '' ">
+                <![CDATA[
+					or device_id = #{deviceId}
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name = #{name}
+				]]>
+            </if>
+            <if test="version != null  and version != '' ">
+                <![CDATA[
+					or version = #{version}
+				]]>
+            </if>
+            <if test="deviceConfigId != null  and deviceConfigId != '' ">
+                <![CDATA[
+					or device_config_id = #{deviceConfigId}
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+					and produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+            </if>
+            <if test="deviceConfigTypeId != null  and deviceConfigTypeId != '' ">
+                <![CDATA[
+					and device_config_type_id like CONCAT('%', #{deviceConfigTypeId}, '%')
+				]]>
+            </if>
+            <if test="dataType != null  and dataType != '' ">
+                <![CDATA[
+					and data_type like CONCAT('%', #{dataType}, '%')
+				]]>
+            </if>
+            <if test="fileName != null  and fileName != '' ">
+                <![CDATA[
+					and file_name like CONCAT('%', #{fileName}, '%')
+				]]>
+            </if>
+            <if test="fileAnotherName != null  and fileAnotherName != '' ">
+                <![CDATA[
+					and file_another_name like CONCAT('%', #{fileAnotherName}, '%')
+				]]>
+            </if>
+            <if test="filePath != null  and filePath != '' ">
+                <![CDATA[
+					and file_path like CONCAT('%', #{filePath}, '%')
+				]]>
+            </if>
+            <if test="content != null  and content != '' ">
+                <![CDATA[
+					and content like CONCAT('%', #{content}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+            <if test="deviceId != null  and deviceId != '' ">
+                <![CDATA[
+					and device_id like CONCAT('%', #{deviceId}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="version != null  and version != '' ">
+                <![CDATA[
+					and version like CONCAT('%', #{version}, '%')
+				]]>
+            </if>
+            <if test="deviceConfigId != null  and deviceConfigId != '' ">
+                <![CDATA[
+					and device_config_id like CONCAT('%', #{deviceConfigId}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+					or produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+            </if>
+            <if test="deviceConfigTypeId != null  and deviceConfigTypeId != '' ">
+                <![CDATA[
+					or device_config_type_id like CONCAT('%', #{deviceConfigTypeId}, '%')
+				]]>
+            </if>
+            <if test="dataType != null  and dataType != '' ">
+                <![CDATA[
+					or data_type like CONCAT('%', #{dataType}, '%')
+				]]>
+            </if>
+            <if test="fileName != null  and fileName != '' ">
+                <![CDATA[
+					or file_name like CONCAT('%', #{fileName}, '%')
+				]]>
+            </if>
+            <if test="fileAnotherName != null  and fileAnotherName != '' ">
+                <![CDATA[
+					or file_another_name like CONCAT('%', #{fileAnotherName}, '%')
+				]]>
+            </if>
+            <if test="filePath != null  and filePath != '' ">
+                <![CDATA[
+					or file_path like CONCAT('%', #{filePath}, '%')
+				]]>
+            </if>
+            <if test="content != null  and content != '' ">
+                <![CDATA[
+					or content like CONCAT('%', #{content}, '%')
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+            </if>
+            <if test="deviceId != null  and deviceId != '' ">
+                <![CDATA[
+					or device_id like CONCAT('%', #{deviceId}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="version != null  and version != '' ">
+                <![CDATA[
+					or version like CONCAT('%', #{version}, '%')
+				]]>
+            </if>
+            <if test="deviceConfigId != null  and deviceConfigId != '' ">
+                <![CDATA[
+					or device_config_id like CONCAT('%', #{deviceConfigId}, '%')
+				]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+					produce_process_id = #{produceProcessId},
+				]]>
+            </if>
+            <if test="deviceConfigTypeId != null  and deviceConfigTypeId != '' ">
+                <![CDATA[
+					device_config_type_id = #{deviceConfigTypeId},
+				]]>
+            </if>
+            <if test="dataType != null  and dataType != '' ">
+                <![CDATA[
+					data_type = #{dataType},
+				]]>
+            </if>
+            <if test="fileName != null  and fileName != '' ">
+                <![CDATA[
+					file_name = #{fileName},
+				]]>
+            </if>
+            <if test="fileAnotherName != null  and fileAnotherName != '' ">
+                <![CDATA[
+					file_another_name = #{fileAnotherName},
+				]]>
+            </if>
+            <if test="filePath != null  and filePath != '' ">
+                <![CDATA[
+					file_path = #{filePath},
+				]]>
+            </if>
+            <if test="content != null  and content != '' ">
+                <![CDATA[
+					content = #{content},
+				]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+					create_date = #{createDate},
+				]]>
+            </if>
+            <if test="deviceId != null  and deviceId != '' ">
+                <![CDATA[
+					device_id = #{deviceId},
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					name = #{name},
+				]]>
+            </if>
+            <if test="version != null  and version != '' ">
+                <![CDATA[
+					version = #{version},
+				]]>
+            </if>
+            <if test="deviceConfigId != null  and deviceConfigId != '' ">
+                <![CDATA[
+					device_config_id = #{deviceConfigId},
+				]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IOV-MES.iml" filepath="$PROJECT_DIR$/IOV-MES.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Agent/MES-Agent.iml" filepath="$PROJECT_DIR$/MES-Agent/MES-Agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Base/MES-Base.iml" filepath="$PROJECT_DIR$/MES-Base/MES-Base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Base/MES-Common/MES-Common.iml" filepath="$PROJECT_DIR$/MES-Base/MES-Common/MES-Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Domain/MES-Domain.iml" filepath="$PROJECT_DIR$/MES-Domain/MES-Domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Base/MES-ES/MES-ES.iml" filepath="$PROJECT_DIR$/MES-Base/MES-ES/MES-ES.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Function/MES-Function.iml" filepath="$PROJECT_DIR$/MES-Function/MES-Function.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Restful/MES-Restful.iml" filepath="$PROJECT_DIR$/MES-Restful/MES-Restful.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MES-Server/MES-Server.iml" filepath="$PROJECT_DIR$/MES-Server/MES-Server.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-产品测试标准 -->
+<mapper namespace="com.mes.control.mapper.DpProduceStandardTestMapper">
+    <resultMap type="com.mes.entity.control.DpProduceStandardTest" id="dpProduceStandardTestResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+        <result column="ti_id" property="tiId" jdbcType="VARCHAR"/>
+        <result column="ti_name" property="tiName" jdbcType="VARCHAR"/>
+        <result column="ti_standard" property="tiStandard" jdbcType="VARCHAR"/>
+        <result column="ti_upper" property="tiUpper" jdbcType="VARCHAR"/>
+        <result column="ti_lower" property="tiLower" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="dpProduceStandardTestResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpProduceStandardTest">
+        insert into mes_dp_produce_standard_test
+        (`id`,`produce_process_id`,`ti_id`,`ti_name`,`ti_standard`,`ti_upper`,`ti_lower`,`create_date`,`order`)
+        values
+        (#{id},#{produceProcessId},#{tiId},#{tiName},#{tiStandard},#{tiUpper},#{tiLower},#{createDate},#{order})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpProduceStandardTest">
+        update mes_dp_produce_standard_test s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_produce_standard_test where id =#{id}
+    </delete>
+
+    <delete id="deleteByProduceProcessId" parameterType="java.lang.String">
+        delete from mes_dp_produce_standard_test where produce_process_id =#{value}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_produce_standard_test t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="dpProduceStandardTestResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by `order`
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="dpProduceStandardTestResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <select id="findByProduceProcessId" resultMap="dpProduceStandardTestResultMap">
+        <include refid="sql_select"/>
+        where s.produce_process_id=#{value}
+        order by s.order
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="dpProduceStandardTestResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`produce_process_id`,`ti_id`,`ti_name`,`ti_standard`,`ti_upper`,`ti_lower`,`create_date` from mes_dp_produce_standard_test  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`ti_name` like CONCAT('%', #{search}, '%')
+                or `ti_standard` like CONCAT('%', #{search}, '%')
+                or `ti_upper` like CONCAT('%', #{search}, '%')
+                or `ti_lower` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+            and `id` = #{id}
+            ]]>
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+            and `produce_process_id` = #{produceProcessId}
+            ]]>
+            </if>
+            <if test="tiId != null  and tiId != '' ">
+                <![CDATA[
+            and `ti_id` = #{tiId}
+            ]]>
+            </if>
+            <if test="tiName != null  and tiName != '' ">
+                <![CDATA[
+            and `ti_name` = #{tiName}
+            ]]>
+            </if>
+            <if test="tiStandard != null  and tiStandard != '' ">
+                <![CDATA[
+            and `ti_standard` = #{tiStandard}
+            ]]>
+            </if>
+            <if test="tiUpper != null  and tiUpper != '' ">
+                <![CDATA[
+            and `ti_upper` = #{tiUpper}
+            ]]>
+            </if>
+            <if test="tiLower != null  and tiLower != '' ">
+                <![CDATA[
+            and `ti_lower` = #{tiLower}
+            ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+            and `create_date` = #{createDate}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (`ti_name` like CONCAT('%', #{search}, '%')
+                or `ti_standard` like CONCAT('%', #{search}, '%')
+                or `ti_upper` like CONCAT('%', #{search}, '%')
+                or `ti_lower` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+                ]]>
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                or `produce_process_id` = #{produceProcessId}
+                ]]>
+            </if>
+            <if test="tiId != null  and tiId != '' ">
+                <![CDATA[
+                or `ti_id` = #{tiId}
+                ]]>
+            </if>
+            <if test="tiName != null  and tiName != '' ">
+                <![CDATA[
+                or `ti_name` = #{tiName}
+                ]]>
+            </if>
+            <if test="tiStandard != null  and tiStandard != '' ">
+                <![CDATA[
+                or `ti_standard` = #{tiStandard}
+                ]]>
+            </if>
+            <if test="tiUpper != null  and tiUpper != '' ">
+                <![CDATA[
+                or `ti_upper` = #{tiUpper}
+                ]]>
+            </if>
+            <if test="tiLower != null  and tiLower != '' ">
+                <![CDATA[
+                or `ti_lower` = #{tiLower}
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`ti_name` like CONCAT('%', #{search}, '%')
+                or `ti_standard` like CONCAT('%', #{search}, '%')
+                or `ti_upper` like CONCAT('%', #{search}, '%')
+                or `ti_lower` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                and `produce_process_id` CONCAT('%', #{produceProcessId}, '%')
+                ]]>
+            </if>
+            <if test="tiId != null  and tiId != '' ">
+                <![CDATA[
+                and `ti_id` CONCAT('%', #{tiId}, '%')
+                ]]>
+            </if>
+            <if test="tiName != null  and tiName != '' ">
+                <![CDATA[
+                and `ti_name` CONCAT('%', #{tiName}, '%')
+                ]]>
+            </if>
+            <if test="tiStandard != null  and tiStandard != '' ">
+                <![CDATA[
+                and `ti_standard` CONCAT('%', #{tiStandard}, '%')
+                ]]>
+            </if>
+            <if test="tiUpper != null  and tiUpper != '' ">
+                <![CDATA[
+                and `ti_upper` CONCAT('%', #{tiUpper}, '%')
+                ]]>
+            </if>
+            <if test="tiLower != null  and tiLower != '' ">
+                <![CDATA[
+                and `ti_lower` CONCAT('%', #{tiLower}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (`ti_name` like CONCAT('%', #{search}, '%')
+                or `ti_standard` like CONCAT('%', #{search}, '%')
+                or `ti_upper` like CONCAT('%', #{search}, '%')
+                or `ti_lower` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                or `produce_process_id` CONCAT('%', #{produceProcessId}, '%')
+                ]]>
+            </if>
+            <if test="tiId != null  and tiId != '' ">
+                <![CDATA[
+                or `ti_id` CONCAT('%', #{tiId}, '%')
+                ]]>
+            </if>
+            <if test="tiName != null  and tiName != '' ">
+                <![CDATA[
+                or `ti_name` CONCAT('%', #{tiName}, '%')
+                ]]>
+            </if>
+            <if test="tiStandard != null  and tiStandard != '' ">
+                <![CDATA[
+                or `ti_standard` CONCAT('%', #{tiStandard}, '%')
+                ]]>
+            </if>
+            <if test="tiUpper != null  and tiUpper != '' ">
+                <![CDATA[
+                or `ti_upper` CONCAT('%', #{tiUpper}, '%')
+                ]]>
+            </if>
+            <if test="tiLower != null  and tiLower != '' ">
+                <![CDATA[
+                or `ti_lower` CONCAT('%', #{tiLower}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                    `id` = #{id},
+                    ]]>
+            </if>
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+                <![CDATA[
+                    `produce_process_id` = #{produceProcessId},
+                    ]]>
+            </if>
+            <if test="tiId != null  and tiId != '' ">
+                <![CDATA[
+                    `ti_id` = #{tiId},
+                    ]]>
+            </if>
+            <if test="tiName != null  and tiName != '' ">
+                <![CDATA[
+                    `ti_name` = #{tiName},
+                    ]]>
+            </if>
+            <if test="tiStandard != null  and tiStandard != '' ">
+                <![CDATA[
+                    `ti_standard` = #{tiStandard},
+                    ]]>
+            </if>
+            <if test="tiUpper != null  and tiUpper != '' ">
+                <![CDATA[
+                    `ti_upper` = #{tiUpper},
+                    ]]>
+            </if>
+            <if test="tiLower != null  and tiLower != '' ">
+                <![CDATA[
+                    `ti_lower` = #{tiLower},
+                    ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                    `create_date` = #{createDate},
+                    ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/projectnew/IOV_PLATFORM/!svn/ver/16612/source/IOV-Mes5.0/trunk/IOV-MES/MES-Agent/src/main/java/com/mes/agent/transport
+END
+FileMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/14887/source/IOV-Mes5.0/trunk/IOV-MES/MES-Agent/src/main/java/com/mes/agent/transport/FileMessageHandler.java
+END
+NettyClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/projectnew/IOV_PLATFORM/!svn/ver/16612/source/IOV-Mes5.0/trunk/IOV-MES/MES-Agent/src/main/java/com/mes/agent/transport/NettyClient.java
+END

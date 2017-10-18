@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 排班管理-班次人员 -->
+<mapper namespace="com.mes.control.mapper.PdSchedulingPersonnelMapper">
+	<resultMap type="com.mes.entity.control.PdSchedulingPersonnel" id="pdSchedulingPersonnelResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="user_id" property="userId" jdbcType="VARCHAR"/>
+		<result column="user_group_id" property="userGroupId" jdbcType="VARCHAR"/>
+		<result column="scheduling_id" property="schedulingId" jdbcType="VARCHAR"/>
+		<result column="user_ids" property="userIds" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<association column="user_id" property="userName" select="getUserName" javaType="java.lang.String"/>
+		<association column="user_group_id" property="groupName" select="getGroupName" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdSchedulingPersonnelResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--查询group下剩余的人员-->
+	<select id="getRestUser" parameterType="java.util.Map" resultMap="pdSchedulingPersonnelResultMap">
+		SELECT
+		a.user_id as user_id
+		FROM
+		mes_user_group_auth a
+		WHERE
+		a.user_group_id = #{userGroupId}
+		AND a.user_id NOT IN (
+		SELECT
+		p.user_id
+		FROM
+		mes_pd_scheduling_personnel p
+		WHERE
+		p.user_group_id = #{userGroupId} AND p.scheduling_id = #{schedulingId}
+		)
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdSchedulingPersonnel">
+		insert into mes_pd_scheduling_personnel (id,user_id,user_group_id,scheduling_id,create_date)
+		values (#{id},#{userId},#{userGroupId},#{schedulingId},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdSchedulingPersonnel">
+		update mes_pd_scheduling_personnel s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_scheduling_personnel where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_scheduling_personnel s <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdSchedulingPersonnelResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdSchedulingPersonnelResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdSchedulingPersonnelResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.user_id,s.user_group_id,s.scheduling_id,s.create_date  from mes_pd_scheduling_personnel s
+
+	</sql>
+
+	<!--查询用户名称-->
+	<select id="getUserName" resultType="java.lang.String">
+		SELECT u.`name` FROM mes_user u where u.id = #{value}
+	</select>
+
+	<!--查询用户组名称-->
+	<select id="getGroupName" resultType="java.lang.String">
+		SELECT g.`name` FROM mes_user_group g where g.id = #{value}
+	</select>
+
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1=1
+			<if test="userId != null  and userId != '' ">
+				<![CDATA[
+					and s.user_id = #{userId}
+				]]>
+			</if>
+			<if test="userGroupId != null  and userGroupId != '' ">
+				<![CDATA[
+					and s.user_group_id = #{userGroupId}
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					and s.scheduling_id = #{schedulingId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="userId != null  and userId != '' ">
+				<![CDATA[
+					or user_id = #{userId}
+				]]>
+			</if>
+			<if test="userGroupId != null  and userGroupId != '' ">
+				<![CDATA[
+					or user_group_id = #{userGroupId}
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					or scheduling_id = #{schedulingId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="userId != null  and userId != '' ">
+				<![CDATA[
+					and user_id like CONCAT('%', #{userId}, '%')
+				]]>
+			</if>
+			<if test="userGroupId != null  and userGroupId != '' ">
+				<![CDATA[
+					and user_group_id like CONCAT('%', #{userGroupId}, '%')
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					and scheduling_id like CONCAT('%', #{schedulingId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="userId != null  and userId != '' ">
+				<![CDATA[
+					or user_id like CONCAT('%', #{userId}, '%')
+				]]>
+			</if>
+			<if test="userGroupId != null  and userGroupId != '' ">
+				<![CDATA[
+					or user_group_id like CONCAT('%', #{userGroupId}, '%')
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					or scheduling_id like CONCAT('%', #{schedulingId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="userId != null  and userId != '' ">
+				<![CDATA[
+					user_id = #{userId},
+				]]>
+			</if>
+			<if test="userGroupId != null  and userGroupId != '' ">
+				<![CDATA[
+					user_group_id = #{userGroupId},
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					scheduling_id = #{schedulingId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

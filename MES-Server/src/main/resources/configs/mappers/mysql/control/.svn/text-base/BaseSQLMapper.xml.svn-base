@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.BaseSQLMapper">
+
+    <select id="findToSql" parameterType="com.mes.common.framework.mapper.SQLVO" resultType="java.util.LinkedHashMap">
+        ${sql }
+    </select>
+
+    <select id="getCountToSql" parameterType="com.mes.common.framework.mapper.SQLVO" resultType="int">
+        ${sql}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="saveToSql" parameterType="com.mes.common.framework.mapper.SQLVO">
+          ${sql}
+    </insert>
+
+    <!--更新操作-->
+    <update id="updateToSql" parameterType="com.mes.common.framework.mapper.SQLVO">
+        ${sql}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteToSql" parameterType="com.mes.common.framework.mapper.SQLVO">
+        ${sql}
+    </delete>
+
+
+    <select id="findByPageToSql" parameterType="com.mes.common.framework.mapper.SQLVO" resultType="java.util.LinkedHashMap">
+        ${sql}
+    </select>
+
+</mapper>

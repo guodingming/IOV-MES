@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs
+END
+jettyServer.properties
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/jettyServer.properties
+END
+entity-tables.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/projectnew/IOV_PLATFORM/!svn/ver/14268/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/entity-tables.xml
+END
+route-base-plugins.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/projectnew/IOV_PLATFORM/!svn/ver/17191/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/route-base-plugins.xml
+END
+dubbo.properties
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/projectnew/IOV_PLATFORM/!svn/ver/16319/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/dubbo.properties
+END
+com-interfaces-bak.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/projectnew/IOV_PLATFORM/!svn/ver/16873/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/com-interfaces-bak.xml
+END
+chip-op-dic.xml
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/projectnew/IOV_PLATFORM/!svn/ver/16998/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/chip-op-dic.xml
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/projectnew/IOV_PLATFORM/!svn/ver/17080/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/jdbc.properties
+END
+com-interfaces.xml
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/projectnew/IOV_PLATFORM/!svn/ver/17196/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/com-interfaces.xml
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/projectnew/IOV_PLATFORM/!svn/ver/17248/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/config.properties
+END
+device-config-xls-files.xml
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/17220/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/device-config-xls-files.xml
+END
+init-data-dic.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/projectnew/IOV_PLATFORM/!svn/ver/17208/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/init-data-dic.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/projectnew/IOV_PLATFORM/!svn/ver/17165/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/applicationContext.xml
+END
+workflow.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/workflow.cfg.xml
+END
+barcode-wildcards.xml
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/barcode-wildcards.xml
+END
+mybatis-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/projectnew/IOV_PLATFORM/!svn/ver/13725/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mybatis-config.xml
+END
+menu.json
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/projectnew/IOV_PLATFORM/!svn/ver/14483/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/menu.json
+END

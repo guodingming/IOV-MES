@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyDeviceAnnexInfoMapper">
+	<resultMap type="com.mes.entity.control.FtyDeviceAnnexInfo" id="ftyDeviceAnnexInfoResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="number" property="number" jdbcType="VARCHAR"/>
+		<result column="use_count" property="useCount" jdbcType="INTEGER"/>
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+		<result column="device_annex_id" property="deviceAnnexId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyDeviceAnnexInfoResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyDeviceAnnexInfo">
+		insert into mes_fty_device_annex_info (id,name,description,number,use_count,start_time,end_time,device_annex_id,create_date,update_date)
+		values (#{id},#{name},#{description},#{number},#{useCount},#{startTime},#{endTime},#{deviceAnnexId},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyDeviceAnnexInfo">
+		update mes_fty_device_annex_info s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_device_annex_info where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_fty_device_annex_info t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyDeviceAnnexInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyDeviceAnnexInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyDeviceAnnexInfoResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,description,number,use_count,start_time,end_time,device_annex_id,create_date,update_date from mes_fty_device_annex_info s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or number like CONCAT('%', #{search}, '%')
+				or use_count like CONCAT('%', #{search}, '%')
+
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					and number = #{number}
+				]]>
+			</if>
+			<if test="useCount != null">
+				<![CDATA[
+					and use_count = #{useCount}
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					and start_time = #{startTime}
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					and end_time = #{endTime}
+				]]>
+			</if>
+			<if test="deviceAnnexId != null  and deviceAnnexId != '' ">
+				<![CDATA[
+					and device_annex_id = #{deviceAnnexId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					or number = #{number}
+				]]>
+			</if>
+			<if test="useCount != null">
+				<![CDATA[
+					or use_count = #{useCount}
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					or start_time = #{startTime}
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					or end_time = #{endTime}
+				]]>
+			</if>
+			<if test="deviceAnnexId != null  and deviceAnnexId != '' ">
+				<![CDATA[
+					or device_annex_id = #{deviceAnnexId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					and number like CONCAT('%', #{number}, '%')
+				]]>
+			</if>
+			<if test="useCount != null">
+				<![CDATA[
+					and use_count like CONCAT('%', #{useCount}, '%')
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					and start_time like CONCAT('%', #{startTime}, '%')
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					and end_time like CONCAT('%', #{endTime}, '%')
+				]]>
+			</if>
+			<if test="deviceAnnexId != null  and deviceAnnexId != '' ">
+				<![CDATA[
+					and device_annex_id like CONCAT('%', #{deviceAnnexId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					or number like CONCAT('%', #{number}, '%')
+				]]>
+			</if>
+			<if test="useCount != null">
+				<![CDATA[
+					or use_count like CONCAT('%', #{useCount}, '%')
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					or start_time like CONCAT('%', #{startTime}, '%')
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					or end_time like CONCAT('%', #{endTime}, '%')
+				]]>
+			</if>
+			<if test="deviceAnnexId != null  and deviceAnnexId != '' ">
+				<![CDATA[
+					or device_annex_id like CONCAT('%', #{deviceAnnexId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="number != null  and number != '' ">
+				<![CDATA[
+					number = #{number},
+				]]>
+			</if>
+			<if test="useCount != null">
+				<![CDATA[
+					use_count = #{useCount},
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					start_time = #{startTime},
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					end_time = #{endTime},
+				]]>
+			</if>
+			<if test="deviceAnnexId != null  and deviceAnnexId != '' ">
+				<![CDATA[
+					device_annex_id = #{deviceAnnexId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

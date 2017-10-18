@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-工序基础配置 -->
+<mapper namespace="com.mes.control.mapper.DpProcessBaseConfigMapper">
+	<resultMap type="com.mes.entity.control.DpProcessBaseConfig" id="dpProcessBaseConfigResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="process_id" property="processId" jdbcType="VARCHAR"/>
+		<result column="is_auto" property="isAuto" jdbcType="VARCHAR"/>
+		<result column="data_dictionary_type_id" property="dataDictionaryTypeId" jdbcType="VARCHAR"/>
+		<result column="data_dictionary_id" property="dataDictionaryId" jdbcType="VARCHAR"/>
+		<result column="form_type_id" property="formTypeId" jdbcType="VARCHAR"/>
+		<result column="form_id" property="formId" jdbcType="VARCHAR"/>
+		<result column="form_name" property="formName" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpProcessBaseConfigResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpProcessBaseConfig">
+		insert into mes_dp_process_base_config (id,process_id,data_dictionary_type_id,data_dictionary_id,form_type_id,form_id,create_date,is_auto)
+		values (#{id},#{processId},#{dataDictionaryTypeId},#{dataDictionaryId},#{formTypeId},#{formId},#{createDate},#{isAuto})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpProcessBaseConfig">
+		update mes_dp_process_base_config s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_process_base_config where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_process_base_config t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpProcessBaseConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpProcessBaseConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpProcessBaseConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT
+		T1. NAME AS form_name,
+		s.id,
+		s.process_id,
+		s.data_dictionary_type_id,
+		s.data_dictionary_id,
+		s.form_type_id,
+		s.form_id,
+		s.create_date,
+		s.is_auto
+		FROM
+		mes_dp_process_base_config s
+		LEFT JOIN mes_dp_form T1 ON s.form_id = T1.id
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					and process_id = #{processId}
+				]]>
+			</if>
+			<if test="dataDictionaryTypeId != null  and dataDictionaryTypeId != '' ">
+				<![CDATA[
+					and data_dictionary_type_id = #{dataDictionaryTypeId}
+				]]>
+			</if>
+			<if test="dataDictionaryId != null  and dataDictionaryId != '' ">
+				<![CDATA[
+					and data_dictionary_id = #{dataDictionaryId}
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					and form_type_id = #{formTypeId}
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					and is_auto = #{isAuto}
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					and form_id = #{formId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					or process_id = #{processId}
+				]]>
+			</if>
+			<if test="dataDictionaryTypeId != null  and dataDictionaryTypeId != '' ">
+				<![CDATA[
+					or data_dictionary_type_id = #{dataDictionaryTypeId}
+				]]>
+			</if>
+			<if test="dataDictionaryId != null  and dataDictionaryId != '' ">
+				<![CDATA[
+					or data_dictionary_id = #{dataDictionaryId}
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					or is_auto = #{isAuto}
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					or form_type_id = #{formTypeId}
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					or form_id = #{formId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					and process_id like CONCAT('%', #{processId}, '%')
+				]]>
+			</if>
+			<if test="dataDictionaryTypeId != null  and dataDictionaryTypeId != '' ">
+				<![CDATA[
+					and data_dictionary_type_id like CONCAT('%', #{dataDictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="dataDictionaryId != null  and dataDictionaryId != '' ">
+				<![CDATA[
+					and data_dictionary_id like CONCAT('%', #{dataDictionaryId}, '%')
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					and form_type_id like CONCAT('%', #{formTypeId}, '%')
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					and is_auto like concat('%',#{isAuto},'')
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					and form_id like CONCAT('%', #{formId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					or process_id like CONCAT('%', #{processId}, '%')
+				]]>
+			</if>
+			<if test="dataDictionaryTypeId != null  and dataDictionaryTypeId != '' ">
+				<![CDATA[
+					or data_dictionary_type_id like CONCAT('%', #{dataDictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="dataDictionaryId != null  and dataDictionaryId != '' ">
+				<![CDATA[
+					or data_dictionary_id like CONCAT('%', #{dataDictionaryId}, '%')
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					or is_auto like concat('%',#{isAuto},'')
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					or form_type_id like CONCAT('%', #{formTypeId}, '%')
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					or form_id like CONCAT('%', #{formId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					process_id = #{processId},
+				]]>
+			</if>
+			<if test="dataDictionaryTypeId != null  and dataDictionaryTypeId != '' ">
+				<![CDATA[
+					data_dictionary_type_id = #{dataDictionaryTypeId},
+				]]>
+			</if>
+			<if test="dataDictionaryId != null  and dataDictionaryId != '' ">
+				<![CDATA[
+					data_dictionary_id = #{dataDictionaryId},
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					form_type_id = #{formTypeId},
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					is_auto = #{isAuto},
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					form_id = #{formId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

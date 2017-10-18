@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-条码规则设置 -->
+<mapper namespace="com.mes.control.mapper.PdBarcodeRuleMapper">
+	<resultMap type="com.mes.entity.control.PdBarcodeRule" id="pdBarcodeRuleResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="barcode_rule_type_id" property="barcodeRuleTypeId" jdbcType="VARCHAR"/>
+		<result column="function_type_id" property="functionTypeId" jdbcType="VARCHAR"/>
+		<result column="function_id" property="functionId" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBarcodeRuleResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBarcodeRule">
+		insert into mes_pd_barcode_rule (id,barcode_rule_type_id,function_type_id,function_id,description,create_date)
+		values (#{id},#{barcodeRuleTypeId},#{functionTypeId},#{functionId},#{description},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBarcodeRule">
+		update mes_pd_barcode_rule s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_barcode_rule where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_barcode_rule t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBarcodeRuleResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBarcodeRuleResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBarcodeRuleResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,barcode_rule_type_id,function_type_id,function_id,description,create_date from mes_pd_barcode_rule s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="barcodeRuleTypeId != null  and barcodeRuleTypeId != '' ">
+				<![CDATA[
+					and barcode_rule_type_id = #{barcodeRuleTypeId}
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					and function_type_id = #{functionTypeId}
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					and function_id = #{functionId}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="barcodeRuleTypeId != null  and barcodeRuleTypeId != '' ">
+				<![CDATA[
+					or barcode_rule_type_id = #{barcodeRuleTypeId}
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					or function_type_id = #{functionTypeId}
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					or function_id = #{functionId}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="barcodeRuleTypeId != null  and barcodeRuleTypeId != '' ">
+				<![CDATA[
+					and barcode_rule_type_id like CONCAT('%', #{barcodeRuleTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					and function_type_id like CONCAT('%', #{functionTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					and function_id like CONCAT('%', #{functionId}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="barcodeRuleTypeId != null  and barcodeRuleTypeId != '' ">
+				<![CDATA[
+					or barcode_rule_type_id like CONCAT('%', #{barcodeRuleTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					or function_type_id like CONCAT('%', #{functionTypeId}, '%')
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					or function_id like CONCAT('%', #{functionId}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="barcodeRuleTypeId != null  and barcodeRuleTypeId != '' ">
+				<![CDATA[
+					barcode_rule_type_id = #{barcodeRuleTypeId},
+				]]>
+			</if>
+			<if test="functionTypeId != null  and functionTypeId != '' ">
+				<![CDATA[
+					function_type_id = #{functionTypeId},
+				]]>
+			</if>
+			<if test="functionId != null  and functionId != '' ">
+				<![CDATA[
+					function_id = #{functionId},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

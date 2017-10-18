@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 条码通配符替换脚本 -->
+<wildcards fn-type-id="1" persisted="false">
+    <fn name="@022" script-path="configs/barcodes/@022.groovy" description="两位年"/>
+    <fn name="@023" script-path="configs/barcodes/@023.groovy" description="两位月"/>
+    <fn name="@024" script-path="configs/barcodes/@024.groovy" description="两位日"/>
+    <fn name="@036" script-path="configs/barcodes/@036.groovy" description="9位产品ERP编码"/>
+    <fn name="@049" script-path="configs/barcodes/@049.groovy" description="按批次计算出三位天，即从批次号中得到日期对应的一年中的多少天"/>
+    <fn name="@053" script-path="configs/barcodes/@053.groovy" description="批次信息，倒数第1位,例如：A"/>
+    <fn name="@054" script-path="configs/barcodes/@054.groovy" description="批次信息，倒数第2位,例如：A"/>
+    <fn name="@055" script-path="configs/barcodes/@055.groovy" description="物理线别"/>
+    <fn name="@800" script-path="configs/barcodes/@800.groovy" description="4位流水号"/>
+    <fn name="@901" script-path="configs/barcodes/@901.groovy" description="获取ERP编码对应的版本信息"/>
+    <fn name="@903" script-path="configs/barcodes/@903.groovy" description="通配函数，获取产品配置中对应的配置值"/>
+    <fn name="@904" script-path="configs/barcodes/@904.groovy" description="通过条码类型取条码,当该类型当前产品版本的条码不存在时，根据条码配置生成"/>
+    <fn name="fn1" script-path="configs/barcodes/fn1.groovy" description="按表替换，查询mes_pd_base_replace_tb"/>
+    <fn name="fn2" script-path="configs/barcodes/fn2.groovy" description="按位转换为ASCII码，第二个参数未使用，只是表意"/>
+    <fn name="fn3" script-path="configs/barcodes/fn3.groovy" description="转换为8位16进制数，第二个参数是转换位数；"/>
+    <fn name="fn4" script-path="configs/barcodes/fn4.groovy" description="左截取5位，不足右补F。例如1234，转为1234F；123456，转为12345"/>
+    <fn name="fn5" script-path="configs/barcodes/fn5.groovy" description="右截取5位，不足左补F。例如1234，转为F1234；123456，转为23456"/>
+    <fn name="fn6" script-path="configs/barcodes/fn6.groovy" description="~(6:./)，替换函数，将“.”替换为“”，即将“.”剔除。 ~(6:a/b) ，将“a”t替换为“b”"/>
+    <fn name="fn7" script-path="configs/barcodes/fn7.groovy" description="一汽条码加密，第二个参数未使用，只是表意"/>
+    <fn name="fn8" script-path="configs/barcodes/fn8.groovy" description="获取前面通配内容长度，第二个参数未使用，只是表意；"/>
+</wildcards>

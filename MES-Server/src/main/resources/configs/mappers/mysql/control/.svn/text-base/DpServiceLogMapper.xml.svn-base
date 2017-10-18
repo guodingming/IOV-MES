@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-服务日志 -->
+<mapper namespace="com.mes.control.mapper.DpServiceLogMapper">
+	<resultMap type="com.mes.entity.control.DpServiceLog" id="dpServiceLogResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="service_id" property="serviceId" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="invoke_time" property="invokeTime" jdbcType="VARCHAR"/>
+		<result column="time_taken" property="timeTaken" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpServiceLogResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpServiceLog">
+		insert into mes_dp_service_log (id,service_id,status,invoke_time,time_taken,create_date)
+		values (#{id},#{serviceId},#{status},#{invokeTime},#{timeTaken},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpServiceLog">
+		update mes_dp_service_log s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_service_log where id =#{id}
+	</delete>
+
+	<select id="query" resultType="java.util.Map">
+		SELECT m.`period_start`, m.`count`
+		FROM mes_dp_service_monitor m
+		WHERE m.`service_id`=#{serviceId}
+		AND m.`period_start` BETWEEN #{start} AND #{end}
+		AND m.`period_type`=#{periodType}
+		AND m.`status`=#{status}
+		ORDER BY m.`period_start`
+	</select>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_service_log t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpServiceLogResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpServiceLogResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpServiceLogResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,service_id,status,invoke_time,time_taken,create_date from mes_dp_service_log s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="serviceId != null  and 服务ID != '' ">
+				<![CDATA[
+					and service_id = #{serviceId}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="invokeTime != null  and invokeTime != '' ">
+				<![CDATA[
+					and invoke_time = #{invokeTime}
+				]]>
+			</if>
+			<if test="timeTaken != null  and timeTaken != '' ">
+				<![CDATA[
+					and time_taken = #{timeTaken}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="serviceId != null  and serviceId != '' ">
+				<![CDATA[
+					or service_id = #{serviceId}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="invokeTime != null  and invokeTime != '' ">
+				<![CDATA[
+					or invoke_time = #{invokeTime}
+				]]>
+			</if>
+			<if test="timeTaken != null  and timeTaken != '' ">
+				<![CDATA[
+					or time_taken = #{timeTaken}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="serviceId != null  and serviceId != '' ">
+				<![CDATA[
+					and service_id like CONCAT('%', #{serviceId}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="invokeTime != null  and invokeTime != '' ">
+				<![CDATA[
+					and invoke_time like CONCAT('%', #{invokeTime}, '%')
+				]]>
+			</if>
+			<if test="timeTaken != null  and timeTaken != '' ">
+				<![CDATA[
+					and time_taken like CONCAT('%', #{timeTaken}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="serviceId != null  and serviceId != '' ">
+				<![CDATA[
+					or service_id like CONCAT('%', #{serviceId}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="invokeTime != null  and invokeTime != '' ">
+				<![CDATA[
+					or invoke_time like CONCAT('%', #{invokeTime}, '%')
+				]]>
+			</if>
+			<if test="timeTaken != null  and timeTaken != '' ">
+				<![CDATA[
+					or time_taken like CONCAT('%', #{timeTaken}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="serviceId != null  and serviceId != '' ">
+				<![CDATA[
+					service_id = #{serviceId},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="invokeTime != null  and invokeTime != '' ">
+				<![CDATA[
+					invoke_time = #{invokeTime},
+				]]>
+			</if>
+			<if test="timeTaken != null  and timeTaken != '' ">
+				<![CDATA[
+					time_taken = #{timeTaken},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

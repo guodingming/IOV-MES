@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex
+END
+ICloudIndexManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/ICloudIndexManager.java
+END
+CloudIndexClientConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/CloudIndexClientConfig.java
+END
+ICloudIndexClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/ICloudIndexClient.java
+END
+CloudIndexManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/CloudIndexManager.java
+END
+CloudIndexClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/CloudIndexClient.java
+END
+ScrollResult.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/main/java/com/mes/es/cloudindex/ScrollResult.java
+END

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-工单BOM管理用量 -->
+<mapper namespace="com.mes.control.mapper.PdBomWorkAmountMapper">
+	<resultMap type="com.mes.entity.control.PdBomWorkAmount" id="pdBomWorkAmountResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+		<result column="amount_num" property="amountNum" jdbcType="VARCHAR"/>
+		<result column="attrition_rate" property="attritionRate" jdbcType="VARCHAR"/>
+		<result column="is_replace" property="isReplace" jdbcType="VARCHAR"/>
+		<result column="materials_version_id" property="materialsVersionId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+		<result column="bom_work_id" property="bomWorkId" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<resultMap type="com.mes.entity.control.PdBomMaterials" id="pdBomMaterialsResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="in_version" property="inVeraion" jdbcType="VARCHAR"/>
+		<result column="out_version" property="outVeaion" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBomWorkAmountResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="getVersions" resultType="java.util.Map">
+		SELECT v.`in_version` as `inVersion`, v.`out_version` as `outVersion`
+		FROM mes_pd_bom_materials_version v, mes_pd_bom_work_amount a
+		WHERE v.`code`=#{code}
+		AND a.`bom_work_id`=#{bomWorkId}
+		AND v.`id`=a.`materials_version_id`
+		order by a.create_date DESC
+		limit 1
+	</select>
+
+	<select id="findBomMaterials" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT s.`code`,s.`name`, p.id
+		FROM (SELECT m.code, m.name, m.id AS `versionId`
+			FROM mes_pd_bom_work_amount a, mes_pd_bom_materials_version m
+			WHERE a.`bom_work_id`=#{bomWorkId}
+			AND a.`materials_version_id`=m.`id`
+			AND a.`parent_id`=#{parentId}) s, mes_pd_bom_work_amount p
+		WHERE s.`versionId`=p.`materials_version_id`
+		AND p.`bom_work_id`=#{bomWorkId}
+	</select>
+
+	<select id="getMaterialAmount" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT m.code,m.`type`,m.`in_version`,m.`out_version`,a.`amount_num`,a.`attrition_rate`,a.id
+		FROM mes_pd_bom_materials_version m, mes_pd_bom_work_amount a
+		<include refid="selectMaterialAmount"/>
+	</select>
+	<sql id="selectMaterialAmount" >
+		<where>
+			m.`id`=a.`materials_version_id`
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					and a.`bom_work_id` = #{bomWorkId}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and m.`code` = #{code}
+				]]>
+			</if>
+		</where>
+	</sql>
+	<select id="getBomMaterialsByType" resultMap="pdBomMaterialsResultMap">
+		SELECT m.*
+		FROM mes_pd_bom_materials_version m, mes_pd_bom_work_amount a
+		WHERE a.`bom_work_id`=#{bomWorkId}
+		AND a.`materials_version_id`=m.`id`
+		AND m.`type`=#{type}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBomWorkAmount">
+		insert into mes_pd_bom_work_amount (id,parent_id,amount_num,attrition_rate,is_replace,materials_version_id,create_date,update_date,bom_work_id)
+		values (#{id},#{parentId},#{amountNum},#{attritionRate},#{isReplace},#{materialsVersionId},#{createDate},#{updateDate},#{bomWorkId})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBomWorkAmount">
+		update mes_pd_bom_work_amount s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_bom_work_amount where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_bom_work_amount t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBomWorkAmountResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBomWorkAmountResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBomWorkAmountResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,parent_id,amount_num,attrition_rate,is_replace,materials_version_id,create_date,update_date,bom_work_id from mes_pd_bom_work_amount s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (amount_num like CONCAT('%', #{search}, '%')
+				or attrition_rate like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					and parent_id = #{parentId}
+				]]>
+			</if>
+			<if test="amountNum != null  and amountNum != '' ">
+				<![CDATA[
+					and amount_num = #{amountNum}
+				]]>
+			</if>
+			<if test="attritionRate != null  and attritionRate != '' ">
+				<![CDATA[
+					and attrition_rate = #{attritionRate}
+				]]>
+			</if>
+			<if test="isReplace != null  and isReplace != '' ">
+				<![CDATA[
+					and is_replace = #{isReplace}
+				]]>
+			</if>
+			<if test="materialsVersionId != null  and materialsVersionId != '' ">
+				<![CDATA[
+					and materials_version_id = #{materialsVersionId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					and bom_work_id = #{bomWorkId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					or parent_id = #{parentId}
+				]]>
+			</if>
+			<if test="amountNum != null  and amountNum != '' ">
+				<![CDATA[
+					or amount_num = #{amountNum}
+				]]>
+			</if>
+			<if test="attritionRate != null  and attritionRate != '' ">
+				<![CDATA[
+					or attrition_rate = #{attritionRate}
+				]]>
+			</if>
+			<if test="isReplace != null  and isReplace != '' ">
+				<![CDATA[
+					or is_replace = #{isReplace}
+				]]>
+			</if>
+			<if test="materialsVersionId != null  and materialsVersionId != '' ">
+				<![CDATA[
+					or materials_version_id = #{materialsVersionId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					or bom_work_id = #{bomWorkId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					and parent_id like CONCAT('%', #{parentId}, '%')
+				]]>
+			</if>
+			<if test="amountNum != null  and amountNum != '' ">
+				<![CDATA[
+					and amount_num like CONCAT('%', #{amountNum}, '%')
+				]]>
+			</if>
+			<if test="attritionRate != null  and attritionRate != '' ">
+				<![CDATA[
+					and attrition_rate like CONCAT('%', #{attritionRate}, '%')
+				]]>
+			</if>
+			<if test="isReplace != null  and isReplace != '' ">
+				<![CDATA[
+					and is_replace like CONCAT('%', #{isReplace}, '%')
+				]]>
+			</if>
+			<if test="materialsVersionId != null  and materialsVersionId != '' ">
+				<![CDATA[
+					and materials_version_id like CONCAT('%', #{materialsVersionId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					and bom_work_id like CONCAT('%', #{bomWorkId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					or parent_id like CONCAT('%', #{parentId}, '%')
+				]]>
+			</if>
+			<if test="amountNum != null  and amountNum != '' ">
+				<![CDATA[
+					or amount_num like CONCAT('%', #{amountNum}, '%')
+				]]>
+			</if>
+			<if test="attritionRate != null  and attritionRate != '' ">
+				<![CDATA[
+					or attrition_rate like CONCAT('%', #{attritionRate}, '%')
+				]]>
+			</if>
+			<if test="isReplace != null  and isReplace != '' ">
+				<![CDATA[
+					or is_replace like CONCAT('%', #{isReplace}, '%')
+				]]>
+			</if>
+			<if test="materialsVersionId != null  and materialsVersionId != '' ">
+				<![CDATA[
+					or materials_version_id like CONCAT('%', #{materialsVersionId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					or bom_work_id like CONCAT('%', #{bomWorkId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					parent_id = #{parentId},
+				]]>
+			</if>
+			<if test="amountNum != null  and amountNum != '' ">
+				<![CDATA[
+					amount_num = #{amountNum},
+				]]>
+			</if>
+			<if test="attritionRate != null  and attritionRate != '' ">
+				<![CDATA[
+					attrition_rate = #{attritionRate},
+				]]>
+			</if>
+			<if test="isReplace != null  and isReplace != '' ">
+				<![CDATA[
+					is_replace = #{isReplace},
+				]]>
+			</if>
+			<if test="materialsVersionId != null  and materialsVersionId != '' ">
+				<![CDATA[
+					materials_version_id = #{materialsVersionId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					bom_work_id = #{bomWorkId},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

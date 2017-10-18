@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs
+END
+config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs/config.properties
+END
+jettyServer.properties
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs/jettyServer.properties
+END
+jdbcType.xml
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs/jdbcType.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs/applicationContext.xml
+END
+datasources.xml
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/configs/datasources.xml
+END

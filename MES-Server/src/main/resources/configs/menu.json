@@ -1,0 +1,478 @@
+[ {
+  "id" : "1000",
+  "parentId" : "0",
+  "level" : 1,
+  "name" : "系统管理",
+  "url" : "/sysManage",
+  "description" : "系统管理",
+  "subMenus" : [ {
+    "id" : "1100",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "仪表盘",
+    "url" : "/dashBoard",
+    "description" : "仪表盘"
+  }, {
+    "id" : "1200",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "系统管理",
+    "url" : "/systemManage",
+    "description" : "系统管理",
+    "subMenus" : [ {
+      "id" : "1210",
+      "parentId" : "1200",
+      "level" : 3,
+      "name" : "用户管理",
+      "url" : "/userManage",
+      "description" : "用户管理"
+    }, {
+      "id" : "1220",
+      "parentId" : "1200",
+      "level" : 3,
+      "name" : "角色管理",
+      "url" : "/roleManage",
+      "description" : "角色管理"
+    }, {
+      "id" : "1230",
+      "parentId" : "1200",
+      "level" : 3,
+      "name" : "用户组",
+      "url" : "/userGroup",
+      "description" : "用户组"
+    }, {
+      "id" : "1240",
+      "parentId" : "1200",
+      "level" : 3,
+      "name" : "菜单授权",
+      "url" : "/menuAuth",
+      "description" : "菜单授权"
+    } ]
+  }, {
+    "id" : "1300",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "工厂管理",
+    "url" : "/factoryManage",
+    "description" : "工厂管理",
+    "subMenus" : [ {
+      "id" : "1310",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "工厂",
+      "url" : "/siteManage",
+      "description" : "工厂"
+    }, {
+      "id" : "1320",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "车间管理",
+      "url" : "/areaManage",
+      "description" : "车间管理"
+    }, {
+      "id" : "1330",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "设备信息",
+      "url" : "/deviceManage",
+      "description" : "设备信息"
+    }, {
+      "id" : "1340",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "生产线",
+      "url" : "/productLineManage",
+      "description" : "生产线"
+    }, {
+      "id" : "1350",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "工作中心",
+      "url" : "/workCenterManage",
+      "description" : "工作中心"
+    }, {
+      "id" : "1360",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "设备附件",
+      "url" : "/deviceAccessory",
+      "description" : "设备附件"
+    }, {
+      "id" : "1370",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "设备配置",
+      "url" : "/deviceConfig",
+      "description" : "设备配置"
+    }, {
+      "id" : "1380",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "设备异常",
+      "url" : "/deviceAbnormality",
+      "description" : "设备异常"
+    }, {
+      "id" : "1390",
+      "parentId" : "1300",
+      "level" : 3,
+      "name" : "工序定义",
+      "url" : "/deviceConfig",
+      "description" : "工序定义"
+    } ]
+  }, {
+    "id" : "1400",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "产品管理",
+    "url" : "/productManage",
+    "description" : "产品管理",
+    "subMenus" : [ {
+      "id" : "1410",
+      "parentId" : "1400",
+      "level" : 3,
+      "name" : "产品线管理",
+      "url" : "/productLine",
+      "description" : "产品线管理"
+    }, {
+      "id" : "1420",
+      "parentId" : "1400",
+      "level" : 3,
+      "name" : "订单管理",
+      "url" : "/orderManage",
+      "description" : "订单管理"
+    } ]
+  }, {
+    "id" : "1500",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "BOM管理",
+    "url" : "/bomManage",
+    "description" : "BOM管理",
+    "subMenus" : [ {
+      "id" : "1510",
+      "parentId" : "1500",
+      "level" : 3,
+      "name" : "生产BOM",
+      "url" : "/productBom",
+      "description" : "生产BOM"
+    }, {
+      "id" : "1520",
+      "parentId" : "1500",
+      "level" : 3,
+      "name" : "工单BOM",
+      "url" : "/orderBom",
+      "description" : "工单BOM"
+    }, {
+      "id" : "1530",
+      "parentId" : "1500",
+      "level" : 3,
+      "name" : "BOM规则校验",
+      "url" : "/bomValidation",
+      "description" : "BOM规则校验"
+    } ]
+  }, {
+    "id" : "1600",
+    "parentId" : "1000",
+    "level" : 2,
+    "name" : "生产管理",
+    "url" : "/productionManage",
+    "description" : "不良产品记录",
+    "subMenus" : [ {
+        "id" : "1610",
+        "parentId" : "1600",
+        "level" : 3,
+        "name" : "工单管理",
+        "url" : "/workOrderManage",
+        "description" : "工单管理"
+      }, {
+        "id" : "1620",
+        "parentId" : "1600",
+        "level" : 3,
+        "name" : "任务管理",
+        "url" : "/taskManage",
+        "description" : "任务管理"
+      }, {
+        "id" : "1630",
+        "parentId" : "1600",
+        "level" : 3,
+        "name" : "资源文件管理",
+        "url" : "/resourceFiles",
+        "description" : "资源文件管理"
+      }, {
+      "id" : "1640",
+      "parentId" : "1600",
+      "level" : 3,
+      "name" : "工艺文件管理",
+      "url" : "/craftFiles",
+      "description" : "工艺文件管理"
+    } ]
+  } ]
+}, {
+  "id" : "2000",
+  "parentId" : "0",
+  "level" : 1,
+  "name" : "开发平台",
+  "url" : "/devPlatform",
+  "description" : "开发平台",
+  "subMenus" : [ {
+    "id" : "2100",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "工序基础配置",
+    "url" : "/procedureBaseConfig",
+    "description" : "工序基础配置"
+  }, {
+    "id" : "2200",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "产品工艺设置",
+    "url" : "/productCraft",
+    "description" : "产品工艺设置",
+    "subMenus" : [ {
+      "id" : "2210",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "产品产线",
+      "url" : "/prodLine",
+      "description" : "产品产线"
+    }, {
+      "id" : "2220",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "工序配置",
+      "url" : "/procedureConfig",
+      "description" : "工序配置"
+    }, {
+      "id" : "2230",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "工艺路径",
+      "url" : "/craftRoute",
+      "description" : "工艺路径"
+    }, {
+      "id" : "2240",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "包装设置",
+      "url" : "/packConfig",
+      "description" : "包装设置"
+    }, {
+      "id" : "2250",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "表单设计器",
+      "url" : "/formDesigner",
+      "description" : "表单设计器"
+    }, {
+      "id" : "2260",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "条码管理",
+      "url" : "/barCode",
+      "description" : "条码管理"
+    }, {
+      "id" : "2270",
+      "parentId" : "2200",
+      "level" : 3,
+      "name" : "标签管理",
+      "url" : "/barCode",
+      "description" : "标签管理"
+    } ]
+  }, {
+    "id" : "2300",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "服务管理",
+    "url" : "/service",
+    "description" : "服务管理",
+    "subMenus" : [ {
+      "id" : "2310",
+      "parentId" : "2300",
+      "level" : 3,
+      "name" : "服务定义",
+      "url" : "/serviceDefinition",
+      "description" : "服务定义"
+    }, {
+      "id" : "2320",
+      "parentId" : "2300",
+      "level" : 3,
+      "name" : "服务监控",
+      "url" : "/serviceMonitor",
+      "description" : "服务监控"
+    } ]
+  }, {
+    "id" : "2400",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "函数",
+    "url" : "/function",
+    "description" : "函数",
+    "subMenus" : [ {
+      "id" : "2410",
+      "parentId" : "2400",
+      "level" : 3,
+      "name" : "Groovy管理",
+      "url" : "/groovyManage",
+      "description" : "Groovy管理"
+    }, {
+      "id" : "2420",
+      "parentId" : "2400",
+      "level" : 3,
+      "name" : "Java管理",
+      "url" : "/javaManage",
+      "description" : "Java管理"
+    } ]
+  }, {
+    "id" : "2500",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "对象管理",
+    "url" : "/object",
+    "description" : "对象管理"
+  }, {
+    "id" : "2600",
+    "parentId" : "2000",
+    "level" : 2,
+    "name" : "平台管理",
+    "url" : "/platform",
+    "description" : "平台管理",
+    "subMenus" : [ {
+      "id" : "2610",
+      "parentId" : "2600",
+      "level" : 3,
+      "name" : "数据字典",
+      "url" : "/dictionary",
+      "description" : "数据字典"
+    }, {
+      "id" : "2620",
+      "parentId" : "2600",
+      "level" : 3,
+      "name" : "日志管理",
+      "url" : "/logManage",
+      "description" : "日志管理"
+    } ]
+  } ]
+}, {
+  "id" : "3000",
+  "parentId" : "0",
+  "level" : 1,
+  "name" : "查询系统",
+  "url" : "/querySys",
+  "description" : "查询系统",
+  "subMenus" : [ {
+    "id" : "3100",
+    "parentId" : "3000",
+    "level" : 2,
+    "name" : "产品查询",
+    "url" : "/prodQuery",
+    "description" : "产品查询",
+    "subMenus" : [ {
+      "id" : "3110",
+      "parentId" : "3100",
+      "level" : 3,
+      "name" : "产品生产日报",
+      "url" : "/prodDailyReport",
+      "description" : "产品生产日报"
+    }, {
+      "id" : "3120",
+      "parentId" : "3100",
+      "level" : 3,
+      "name" : "产品条码查询",
+      "url" : "/prodBarCode",
+      "description" : "产品条码查询"
+    }, {
+      "id" : "3130",
+      "parentId" : "3100",
+      "level" : 3,
+      "name" : "产品不良信息查询",
+      "url" : "/prodDefectiveInfo",
+      "description" : "产品不良信息查询"
+    }, {
+      "id" : "3140",
+      "parentId" : "3100",
+      "level" : 3,
+      "name" : "产品测试结果查询",
+      "url" : "/prodTestQuery",
+      "description" : "产品测试结果查询"
+    } ]
+  }, {
+    "id" : "3200",
+    "parentId" : "3000",
+    "level" : 2,
+    "name" : "设备信息查询",
+    "url" : "/deviceInfo",
+    "description" : "设备信息查询",
+    "subMenus" : [ {
+      "id" : "3210",
+      "parentId" : "3200",
+      "level" : 3,
+      "name" : "设备总台账",
+      "url" : "/deviceLedger",
+      "description" : "设备总台账"
+    }, {
+      "id" : "3220",
+      "parentId" : "3200",
+      "level" : 3,
+      "name" : "工装总台账",
+      "url" : "/frockLedger",
+      "description" : "工装总台账"
+    }, {
+      "id" : "3230",
+      "parentId" : "3200",
+      "level" : 3,
+      "name" : "设备使用情况",
+      "url" : "/deviceUsage",
+      "description" : "设备使用情况"
+    }, {
+      "id" : "3240",
+      "parentId" : "3200",
+      "level" : 3,
+      "name" : "工装使用情况",
+      "url" : "/frockUsage",
+      "description" : "工装使用情况"
+    } ]
+  }, {
+    "id" : "3300",
+    "parentId" : "3000",
+    "level" : 2,
+    "name" : "工单查询",
+    "url" : "/workOrder",
+    "description" : "工单查询",
+    "subMenus" : [ {
+      "id" : "3310",
+      "parentId" : "3300",
+      "level" : 3,
+      "name" : "工单生产信息",
+      "url" : "/workOrderProduct",
+      "description" : "工单生产信息"
+    }, {
+      "id" : "3320",
+      "parentId" : "3300",
+      "level" : 3,
+      "name" : "未关结工单查询",
+      "url" : "/nonFinishedWorkOrder",
+      "description" : "未关结工单查询"
+    }, {
+      "id" : "3330",
+      "parentId" : "3300",
+      "level" : 3,
+      "name" : "关结工单查询",
+      "url" : "/finishedWorkOrder",
+      "description" : "关结工单查询"
+    }, {
+      "id" : "3340",
+      "parentId" : "3300",
+      "level" : 3,
+      "name" : "工单合格率查询",
+      "url" : "/passedWorkOrder",
+      "description" : "工单合格率查询"
+    } ]
+  } ]
+}, {
+  "id" : "4000",
+  "parentId" : "0",
+  "level" : 1,
+  "name" : "数据分析",
+  "url" : "/dataAnalysis",
+  "description" : "数据分析"
+} ]

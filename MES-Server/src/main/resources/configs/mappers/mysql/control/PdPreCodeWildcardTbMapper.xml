@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-条码扩展通配符 -->
+<mapper namespace="com.mes.control.mapper.PdPreCodeWildcardTbMapper">
+    <resultMap type="com.mes.entity.control.PdPreCodeWildcardTb" id="pdPreCodeWildcardTbResultMap">
+        
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        
+        <result column="wildcard" property="wildcard" jdbcType="VARCHAR"/>
+        
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        
+        <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP"/>
+        
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdPreCodeWildcardTbResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdPreCodeWildcardTb">
+        insert into mes_pd_pre_code_wildcard_tb
+        (`id`,`wildcard`,`remark`,`operator_time`,`create_date`)
+        values
+        (#{id},#{wildcard},#{remark},#{operatorTime},#{createDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdPreCodeWildcardTb">
+        update mes_pd_pre_code_wildcard_tb s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_pre_code_wildcard_tb where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_pre_code_wildcard_tb t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdPreCodeWildcardTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdPreCodeWildcardTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdPreCodeWildcardTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`wildcard`,`remark`,`operator_time`,`create_date` from mes_pd_pre_code_wildcard_tb  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `wildcard` like CONCAT('%', #{search}, '%')
+				or `remark` like CONCAT('%', #{search}, '%')
+				or `operator_time` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="wildcard != null  and wildcard != '' ">
+            <![CDATA[
+                and `wildcard` = #{wildcard}
+            ]]>
+            </if>
+            
+            <if test="remark != null  and remark != '' ">
+            <![CDATA[
+                and `remark` = #{remark}
+            ]]>
+            </if>
+            
+            <if test="operatorTime != null  and operatorTime != '' ">
+            <![CDATA[
+                and `operator_time` = #{operatorTime}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `wildcard` like CONCAT('%', #{search}, '%')
+				or `remark` like CONCAT('%', #{search}, '%')
+				or `operator_time` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="wildcard != null  and wildcard != '' ">
+            <![CDATA[
+                or `wildcard` = #{wildcard}
+            ]]>
+            </if>
+            
+            <if test="remark != null  and remark != '' ">
+            <![CDATA[
+                or `remark` = #{remark}
+            ]]>
+            </if>
+            
+            <if test="operatorTime != null  and operatorTime != '' ">
+            <![CDATA[
+                or `operator_time` = #{operatorTime}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `wildcard` like CONCAT('%', #{search}, '%')
+				or `remark` like CONCAT('%', #{search}, '%')
+				or `operator_time` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="wildcard != null  and wildcard != '' ">
+            <![CDATA[
+                and `wildcard` like CONCAT('%', #{wildcard}, '%')
+            ]]>
+            </if>
+            
+            <if test="remark != null  and remark != '' ">
+            <![CDATA[
+                and `remark` like CONCAT('%', #{remark}, '%')
+            ]]>
+            </if>
+            
+            <if test="operatorTime != null  and operatorTime != '' ">
+            <![CDATA[
+                and `operator_time` like CONCAT('%', #{operatorTime}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `wildcard` like CONCAT('%', #{search}, '%')
+				or `remark` like CONCAT('%', #{search}, '%')
+				or `operator_time` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="wildcard != null  and wildcard != '' ">
+            <![CDATA[
+                or `wildcard` like CONCAT('%', #{wildcard}, '%')
+            ]]>
+            </if>
+            
+            <if test="remark != null  and remark != '' ">
+            <![CDATA[
+                or `remark` like CONCAT('%', #{remark}, '%')
+            ]]>
+            </if>
+            
+            <if test="operatorTime != null  and operatorTime != '' ">
+            <![CDATA[
+                or `operator_time` like CONCAT('%', #{operatorTime}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+            
+            <if test="wildcard != null  and wildcard != '' ">
+            <![CDATA[
+                `wildcard` = #{wildcard},
+            ]]>
+            </if>
+            
+            <if test="remark != null  and remark != '' ">
+            <![CDATA[
+                `remark` = #{remark},
+            ]]>
+            </if>
+            
+            <if test="operatorTime != null  and operatorTime != '' ">
+            <![CDATA[
+                `operator_time` = #{operatorTime},
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

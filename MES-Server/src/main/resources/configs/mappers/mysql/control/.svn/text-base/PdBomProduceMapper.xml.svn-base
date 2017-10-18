@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-生产BOM管理 -->
+<mapper namespace="com.mes.control.mapper.PdBomProduceMapper">
+	<resultMap type="com.mes.entity.control.PdBomProduce" id="pdBomProduceResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="version" property="version" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="fn_id" property="fnId" jdbcType="VARCHAR"/>
+		<result column="pd_name" property="pdName" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="file_path" property="filePath" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdBomProduceResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdBomProduce">
+		insert into mes_pd_bom_produce (id,version,status,pd_id,fn_id,pd_name,code,`type`,create_date,file_path,`name`)
+		values (#{id},#{version},#{status},#{pdId},#{fnId},#{pdName},#{code},#{type},#{createDate},#{filePath},#{name})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdBomProduce">
+		update mes_pd_bom_produce s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_bom_produce where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_bom_produce t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdBomProduceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdBomProduceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdBomProduceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,version,status,pd_id,fn_id,pd_name,code,type,create_date,file_path from mes_pd_bom_produce s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				version like CONCAT('%', #{search}, '%')
+				or pd_name like CONCAT('%', #{search}, '%')
+				or code like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version = #{version}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					and pd_name = #{pdName}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code = #{code}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type = #{type}
+				]]>
+			</if>
+			<if test="filePath != null  and filePath != '' ">
+				<![CDATA[
+					and file_path = #{filePath}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version = #{version}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					or pd_name = #{pdName}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code = #{code}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type = #{type}
+				]]>
+			</if>
+			<if test="filePath != null  and filePath != '' ">
+				<![CDATA[
+					or file_path = #{filePath}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					and version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					and pd_name like CONCAT('%', #{pdName}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="filePath != null  and filePath != '' ">
+				<![CDATA[
+					and file_path like CONCAT('%', #{filePath}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					or version like CONCAT('%', #{version}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					or pd_name like CONCAT('%', #{pdName}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or type like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="filePath != null  and filePath != '' ">
+				<![CDATA[
+					or file_path like CONCAT('%', #{filePath}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="version != null  and version != '' ">
+				<![CDATA[
+					version = #{version},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="fnId != null">
+				<![CDATA[
+					fn_id = #{fnId},
+				]]>
+			</if>
+			<if test="pdName != null  and pdName != '' ">
+				<![CDATA[
+					pd_name = #{pdName},
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					code = #{code},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					type = #{type},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

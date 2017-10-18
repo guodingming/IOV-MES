@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-上料管理-上料 -->
+<mapper namespace="com.mes.control.mapper.DpMaterialsLoadMapper">
+    <resultMap type="com.mes.entity.control.DpMaterialsLoad" id="dpMaterialsLoadResultMap">
+        
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="batch_number" property="batchNumber" jdbcType="VARCHAR"/>
+
+        <result column="material_info_id" property="materialInfoId" jdbcType="VARCHAR"/>
+        
+        <result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+        
+        <result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+        
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        
+        <result column="remain_num" property="remainNum" jdbcType="BIGINT"/>
+        
+        <result column="load_num" property="loadNum" jdbcType="BIGINT"/>
+        
+        <result column="unit_num" property="unitNum" jdbcType="BIGINT"/>
+        
+        <result column="work_order_id" property="workOrderId" jdbcType="VARCHAR"/>
+        
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="dpMaterialsLoadResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpMaterialsLoad">
+        insert into mes_dp_materials_load
+        (`id`,`name`,`code`,`type`,`batch_number`,`material_info_id`,`produce_process_id`,`pd_line_id`,`pd_id`,`remain_num`,`load_num`,`unit_num`,`work_order_id`,`create_date`)
+        values
+        (#{id},#{name},#{code},#{type},#{batchNumber},#{materialInfoId},#{produceProcessId},#{pdLineId},#{pdId},#{remainNum},#{loadNum},#{unitNum},#{workOrderId},#{createDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpMaterialsLoad">
+        update mes_dp_materials_load s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_materials_load where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_materials_load t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="dpMaterialsLoadResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="dpMaterialsLoadResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="dpMaterialsLoadResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`name`,`code`,`type`,`batch_number`,`material_info_id`,`produce_process_id`,`pd_line_id`,`pd_id`,`remain_num`,`load_num`,`unit_num`,`work_order_id`,`create_date` from mes_dp_materials_load  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `material_info_id` like CONCAT('%', #{search}, '%')
+				or `produce_process_id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `remain_num` like CONCAT('%', #{search}, '%')
+				or `load_num` like CONCAT('%', #{search}, '%')
+				or `unit_num` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                and `name` = #{name}
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                and `code` = #{code}
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                and `type` = #{type}
+            ]]>
+            </if>
+            <if test="batchNumber != null  and batchNumber != '' ">
+            <![CDATA[
+                and `batch_number` = #{batchNumber}
+            ]]>
+            </if>
+            
+            <if test="materialInfoId != null  and materialInfoId != '' ">
+            <![CDATA[
+                and `material_info_id` = #{materialInfoId}
+            ]]>
+            </if>
+            
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+            <![CDATA[
+                and `produce_process_id` = #{produceProcessId}
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                and `pd_line_id` = #{pdLineId}
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                and `pd_id` = #{pdId}
+            ]]>
+            </if>
+            
+            <if test="remainNum != null  and remainNum != '' ">
+            <![CDATA[
+                and `remain_num` = #{remainNum}
+            ]]>
+            </if>
+            
+            <if test="loadNum != null  and loadNum != '' ">
+            <![CDATA[
+                and `load_num` = #{loadNum}
+            ]]>
+            </if>
+            
+            <if test="unitNum != null  and unitNum != '' ">
+            <![CDATA[
+                and `unit_num` = #{unitNum}
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                and `work_order_id` = #{workOrderId}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `material_info_id` like CONCAT('%', #{search}, '%')
+				or `produce_process_id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `remain_num` like CONCAT('%', #{search}, '%')
+				or `load_num` like CONCAT('%', #{search}, '%')
+				or `unit_num` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` = #{id}
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                or `name` = #{name}
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                or `code` = #{code}
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                or `type` = #{type}
+            ]]>
+            </if>
+            
+            <if test="materialInfoId != null  and materialInfoId != '' ">
+            <![CDATA[
+                or `material_info_id` = #{materialInfoId}
+            ]]>
+            </if>
+            
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+            <![CDATA[
+                or `produce_process_id` = #{produceProcessId}
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                or `pd_line_id` = #{pdLineId}
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                or `pd_id` = #{pdId}
+            ]]>
+            </if>
+            
+            <if test="remainNum != null  and remainNum != '' ">
+            <![CDATA[
+                or `remain_num` = #{remainNum}
+            ]]>
+            </if>
+            
+            <if test="loadNum != null  and loadNum != '' ">
+            <![CDATA[
+                or `load_num` = #{loadNum}
+            ]]>
+            </if>
+            
+            <if test="unitNum != null  and unitNum != '' ">
+            <![CDATA[
+                or `unit_num` = #{unitNum}
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                or `work_order_id` = #{workOrderId}
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` = #{createDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `material_info_id` like CONCAT('%', #{search}, '%')
+				or `produce_process_id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `remain_num` like CONCAT('%', #{search}, '%')
+				or `load_num` like CONCAT('%', #{search}, '%')
+				or `unit_num` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                and `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                and `name` like CONCAT('%', #{name}, '%')
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                and `code` like CONCAT('%', #{code}, '%')
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                and `type` like CONCAT('%', #{type}, '%')
+            ]]>
+            </if>
+            
+            <if test="materialInfoId != null  and materialInfoId != '' ">
+            <![CDATA[
+                and `material_info_id` like CONCAT('%', #{materialInfoId}, '%')
+            ]]>
+            </if>
+            
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+            <![CDATA[
+                and `produce_process_id` like CONCAT('%', #{produceProcessId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                and `pd_line_id` like CONCAT('%', #{pdLineId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                and `pd_id` like CONCAT('%', #{pdId}, '%')
+            ]]>
+            </if>
+            
+            <if test="remainNum != null  and remainNum != '' ">
+            <![CDATA[
+                and `remain_num` like CONCAT('%', #{remainNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="loadNum != null  and loadNum != '' ">
+            <![CDATA[
+                and `load_num` like CONCAT('%', #{loadNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="unitNum != null  and unitNum != '' ">
+            <![CDATA[
+                and `unit_num` like CONCAT('%', #{unitNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                and `work_order_id` like CONCAT('%', #{workOrderId}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                and `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `id` like CONCAT('%', #{search}, '%')
+				or `name` like CONCAT('%', #{search}, '%')
+				or `code` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				or `material_info_id` like CONCAT('%', #{search}, '%')
+				or `produce_process_id` like CONCAT('%', #{search}, '%')
+				or `pd_line_id` like CONCAT('%', #{search}, '%')
+				or `pd_id` like CONCAT('%', #{search}, '%')
+				or `remain_num` like CONCAT('%', #{search}, '%')
+				or `load_num` like CONCAT('%', #{search}, '%')
+				or `unit_num` like CONCAT('%', #{search}, '%')
+				or `work_order_id` like CONCAT('%', #{search}, '%')
+				or `create_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                or `id` like CONCAT('%', #{id}, '%')
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                or `name` like CONCAT('%', #{name}, '%')
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                or `code` like CONCAT('%', #{code}, '%')
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                or `type` like CONCAT('%', #{type}, '%')
+            ]]>
+            </if>
+            
+            <if test="materialInfoId != null  and materialInfoId != '' ">
+            <![CDATA[
+                or `material_info_id` like CONCAT('%', #{materialInfoId}, '%')
+            ]]>
+            </if>
+            
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+            <![CDATA[
+                or `produce_process_id` like CONCAT('%', #{produceProcessId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                or `pd_line_id` like CONCAT('%', #{pdLineId}, '%')
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                or `pd_id` like CONCAT('%', #{pdId}, '%')
+            ]]>
+            </if>
+            
+            <if test="remainNum != null  and remainNum != '' ">
+            <![CDATA[
+                or `remain_num` like CONCAT('%', #{remainNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="loadNum != null  and loadNum != '' ">
+            <![CDATA[
+                or `load_num` like CONCAT('%', #{loadNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="unitNum != null  and unitNum != '' ">
+            <![CDATA[
+                or `unit_num` like CONCAT('%', #{unitNum}, '%')
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                or `work_order_id` like CONCAT('%', #{workOrderId}, '%')
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                or `create_date` like CONCAT('%', #{createDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="id != null  and id != '' ">
+            <![CDATA[
+                `id` = #{id},
+            ]]>
+            </if>
+            
+            <if test="name != null  and name != '' ">
+            <![CDATA[
+                `name` = #{name},
+            ]]>
+            </if>
+            
+            <if test="code != null  and code != '' ">
+            <![CDATA[
+                `code` = #{code},
+            ]]>
+            </if>
+            
+            <if test="type != null  and type != '' ">
+            <![CDATA[
+                `type` = #{type},
+            ]]>
+            </if>
+
+            <if test="batchNumber != null  and batchNumber != '' ">
+                <![CDATA[
+                `batch_number` = #{batchNumber},
+            ]]>
+            </if>
+            <if test="materialInfoId != null  and materialInfoId != '' ">
+            <![CDATA[
+                `material_info_id` = #{materialInfoId},
+            ]]>
+            </if>
+            
+            <if test="produceProcessId != null  and produceProcessId != '' ">
+            <![CDATA[
+                `produce_process_id` = #{produceProcessId},
+            ]]>
+            </if>
+            
+            <if test="pdLineId != null  and pdLineId != '' ">
+            <![CDATA[
+                `pd_line_id` = #{pdLineId},
+            ]]>
+            </if>
+            
+            <if test="pdId != null  and pdId != '' ">
+            <![CDATA[
+                `pd_id` = #{pdId},
+            ]]>
+            </if>
+            
+            <if test="remainNum != null  and remainNum != '' ">
+            <![CDATA[
+                `remain_num` = #{remainNum},
+            ]]>
+            </if>
+            
+            <if test="loadNum != null  and loadNum != '' ">
+            <![CDATA[
+                `load_num` = #{loadNum},
+            ]]>
+            </if>
+            
+            <if test="unitNum != null  and unitNum != '' ">
+            <![CDATA[
+                `unit_num` = #{unitNum},
+            ]]>
+            </if>
+            
+            <if test="workOrderId != null  and workOrderId != '' ">
+            <![CDATA[
+                `work_order_id` = #{workOrderId},
+            ]]>
+            </if>
+            
+            <if test="createDate != null  and createDate != '' ">
+            <![CDATA[
+                `create_date` = #{createDate},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.MenuMapper">
+
+
+    <resultMap type="com.mes.entity.control.Menu" id="menuResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="item_order" property="itemOrder" jdbcType="INTEGER"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <collection column="id" property="subMenus" select="findSubMenus"/>
+    </resultMap>
+
+    <resultMap type="com.mes.entity.control.Menu" id="flattenMenuResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="item_order" property="itemOrder" jdbcType="INTEGER"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <association column="parent_id" property="parentName" select="getMenuName"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="menuResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="findSubMenus" resultMap="menuResultMap">
+        <include refid="sql_select"/>
+        where s.parent_id = #{value}
+    </select>
+
+    <select id="getMenuName" resultType="java.lang.String">
+        select s.name from mes_menu s where s.id=#{value}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.Menu">
+        insert into mes_menu
+            (id,parent_id,level,name,url,description,item_order,icon)
+        values
+            (#{id},#{parentId},#{level},#{name},#{url},#{description},#{itemOrder},#{icon})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.Menu">
+        update mes_menu s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_menu where id =#{id}
+    </delete>
+
+    <delete id="deleteAll">
+        delete from mes_menu
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_menu t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="flattenMenuResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.id
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="flattenMenuResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.id
+    </select>
+    <!--查询json格式菜单项数据-->
+    <select id="getMenuJson" parameterType="java.util.Map" resultMap="menuResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.id
+    </select>
+
+    <!--根据角色id查询菜单列表-->
+    <select id="getUserMenus" resultMap="flattenMenuResultMap">
+        SELECT m.*
+        FROM mes_menu m, mes_menu_auth a
+        WHERE m.id=a.`menu_id`
+        AND a.`role_id`=#{value}
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll" resultMap="flattenMenuResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.id
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT id,parent_id,level,name,url,description,item_order,icon
+        from mes_menu  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            1=1
+            <if test="search != null and search != '' ">
+                and (name like CONCAT('%', #{search}, '%')
+                or url like CONCAT('%', #{search}, '%')
+                or icon like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+					and parent_id = #{parentId}
+                   ]]>
+            </if>
+            <if test="level != null  and level != ''">
+                <![CDATA[
+					and level = #{level}
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					and name = #{name}
+				]]>
+            </if>
+            <if test="url != null  and url != '' ">
+                <![CDATA[
+					and url = #{url}
+				]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+					and description = #{description}
+				]]>
+            </if>
+            <if test="itemOrder != null">
+                <![CDATA[
+					and item_order = #{itemOrder}
+				]]>
+            </if>
+            <if test="icon != null  and icon != '' ">
+                <![CDATA[
+					and icon = #{icon}
+				]]>
+            </if>
+
+        </where>
+
+    </sql>
+    <sql id="sql_where_or_equal">
+        <where>
+            1=1
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+					or parent_id = #{parentId}
+                   ]]>
+            </if>
+            <if test="level != null  and level != ''">
+                <![CDATA[
+					or level = #{level}
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name = #{name}
+				]]>
+            </if>
+            <if test="url != null  and url != '' ">
+                <![CDATA[
+					or url = #{url}
+				]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+					or description = #{description}
+				]]>
+            </if>
+            <if test="itemOrder != null">
+                <![CDATA[
+					or item_order = #{itemOrder}
+				]]>
+            </if>
+            <if test="icon != null  and icon != '' ">
+                <![CDATA[
+					or icon = #{icon}
+				]]>
+            </if>
+
+        </where>
+
+    </sql>
+    <sql id="sql_where_and_like">
+        <where>
+            1=1
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+					and parent_id like CONCAT('%', #{parentId}, '%')
+                   ]]>
+            </if>
+            <if test="level != null  and level != ''">
+                <![CDATA[
+					and level like CONCAT('%', #{level}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="url != null  and url != '' ">
+                <![CDATA[
+					and url like CONCAT('%', #{url}, '%')
+				]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+            </if>
+            <if test="itemOrder != null">
+                <![CDATA[
+					and item_order like CONCAT('%', #{itemOrder}, '%')
+				]]>
+            </if>
+            <if test="icon != null  and icon != '' ">
+                <![CDATA[
+					and icon like CONCAT('%', #{icon}, '%')
+				]]>
+            </if>
+
+        </where>
+
+    </sql>
+    <sql id="sql_where_or_like">
+        <where>
+            1=1
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+					or parent_id like CONCAT('%', #{parentId}, '%')
+                   ]]>
+            </if>
+            <if test="level != null  and level != ''">
+                <![CDATA[
+					or level like CONCAT('%', #{level}, '%')
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+            </if>
+            <if test="url != null  and url != '' ">
+                <![CDATA[
+					or url like CONCAT('%', #{url}, '%')
+				]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+            </if>
+            <if test="itemOrder != null">
+                <![CDATA[
+					or item_order like CONCAT('%', #{itemOrder}, '%')
+				]]>
+            </if>
+            <if test="icon != null  and icon != '' ">
+                <![CDATA[
+					or icon like CONCAT('%', #{icon}, '%')
+				]]>
+            </if>
+
+        </where>
+
+    </sql>
+    <!--更新操作-->
+    <sql id="sql_update">
+
+        <set>
+            <if test="parentId != null  and parentId != '' ">
+                <![CDATA[
+					parent_id = #{parentId},
+                   ]]>
+            </if>
+            <if test="level != null  and level != ''">
+                <![CDATA[
+					level = #{level},
+				]]>
+            </if>
+            <if test="name != null  and name != '' ">
+                <![CDATA[
+					name = #{name},
+				]]>
+            </if>
+            <if test="url != null  and url != '' ">
+                <![CDATA[
+					url = #{url},
+				]]>
+            </if>
+            <if test="description != null  and description != '' ">
+                <![CDATA[
+					description = #{description},
+				]]>
+            </if>
+            <if test="itemOrder != null">
+                <![CDATA[
+					item_order = #{itemOrder},
+				]]>
+            </if>
+            <if test="icon != null  and icon != '' ">
+                <![CDATA[
+					icon = #{icon},
+				]]>
+            </if>
+
+        </set>
+    </sql>
+
+</mapper>

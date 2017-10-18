@@ -1,0 +1,827 @@
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control
+END
+PdBarcodeRuleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBarcodeRuleMapper.xml
+END
+DpBoxMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/16986/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBoxMapper.xml
+END
+DpSubassemblyMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16526/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpSubassemblyMapper.xml
+END
+DpMaterialsAssembleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16529/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialsAssembleMapper.xml
+END
+DpDataDictionaryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17047/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpDataDictionaryMapper.xml
+END
+DpProcessBaseConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProcessBaseConfigMapper.xml
+END
+DpProductTestLogHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProductTestLogHistoryMapper.xml
+END
+PdSchedulingDeviceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17246/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdSchedulingDeviceMapper.xml
+END
+PdProductInfoNumberMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoNumberMapper.xml
+END
+BaseSQLMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/13750/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/BaseSQLMapper.xml
+END
+DeptMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/17329/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DeptMapper.xml
+END
+FtyEnterpriseMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17117/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyEnterpriseMapper.xml
+END
+FtyDeviceAnnexMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/14813/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceAnnexMapper.xml
+END
+FtyDeviceFaultProcessMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16586/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceFaultProcessMapper.xml
+END
+UserMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/17300/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/UserMapper.xml
+END
+PdProductBarCodeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductBarCodeMapper.xml
+END
+PdAttributeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdAttributeMapper.xml
+END
+DpProduceChipMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16448/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceChipMapper.xml
+END
+FtyAreaMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/17129/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyAreaMapper.xml
+END
+DpServiceMonitorMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpServiceMonitorMapper.xml
+END
+MenuRestApiMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/MenuRestApiMapper.xml
+END
+DpProduceProcessDeviceAnnexMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessDeviceAnnexMapper.xml
+END
+PdBomMaterialsReplaceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomMaterialsReplaceMapper.xml
+END
+FtyProcessMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyProcessMapper.xml
+END
+PdBomMaterialsMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16960/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomMaterialsMapper.xml
+END
+PdMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdMapper.xml
+END
+MenuMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/16494/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/MenuMapper.xml
+END
+PdProductLabelMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductLabelMapper.xml
+END
+FtyDeviceProcessAnnexAssociationMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceProcessAnnexAssociationMapper.xml
+END
+FtyDeviceConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceConfigMapper.xml
+END
+FtyDeviceProcessAnnexMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceProcessAnnexMapper.xml
+END
+PdSchedulingTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17276/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdSchedulingTypeMapper.xml
+END
+DpFunctionTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpFunctionTypeMapper.xml
+END
+PdLineMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17218/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdLineMapper.xml
+END
+DpProduceProcessAnnexMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16708/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessAnnexMapper.xml
+END
+DpBoxPalletMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/15978/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBoxPalletMapper.xml
+END
+MetadataMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/15507/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/MetadataMapper.xml
+END
+FtyDeviceTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17138/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceTypeMapper.xml
+END
+DpMaterialTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialTypeMapper.xml
+END
+DpBarcodeTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBarcodeTypeMapper.xml
+END
+FtyDeviceFixtureMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15515/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceFixtureMapper.xml
+END
+DpRepairStationBadInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/16427/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpRepairStationBadInfoMapper.xml
+END
+FtyProcessConfigTypeDictMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyProcessConfigTypeDictMapper.xml
+END
+AgentMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/16777/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/AgentMapper.xml
+END
+PdFileResourcesMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16098/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdFileResourcesMapper.xml
+END
+PdProductInfoHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoHistoryMapper.xml
+END
+SerialRuleWorkOrderAssociationMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/SerialRuleWorkOrderAssociationMapper.xml
+END
+DpMaterialsLoadMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialsLoadMapper.xml
+END
+PdPreCodeWildcardTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdPreCodeWildcardTbMapper.xml
+END
+FtyWorkCenterMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/17132/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyWorkCenterMapper.xml
+END
+DpProduceStandardTestMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/16448/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceStandardTestMapper.xml
+END
+DpRepairStationMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpRepairStationMapper.xml
+END
+PdSchedulingWorkOrderMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdSchedulingWorkOrderMapper.xml
+END
+PdSchedulingMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/17276/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdSchedulingMapper.xml
+END
+DpFunctionMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16092/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpFunctionMapper.xml
+END
+PdWorkTestDeviceTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdWorkTestDeviceTbMapper.xml
+END
+ExpandTableConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15363/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/ExpandTableConfigMapper.xml
+END
+UserProcessMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16716/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/UserProcessMapper.xml
+END
+PdProductInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16512/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoMapper.xml
+END
+DpBarcodeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17274/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBarcodeMapper.xml
+END
+DpSampleInspectionDetailMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/16484/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpSampleInspectionDetailMapper.xml
+END
+DpFormTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpFormTypeMapper.xml
+END
+SerialRuleDetailMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/SerialRuleDetailMapper.xml
+END
+UserGroupMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/16114/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/UserGroupMapper.xml
+END
+PdBomProduceRulesMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomProduceRulesMapper.xml
+END
+PdSchedulingPersonnelMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdSchedulingPersonnelMapper.xml
+END
+DpTemplateTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpTemplateTypeMapper.xml
+END
+PdWorkOrderMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/17032/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdWorkOrderMapper.xml
+END
+DpMaterialsInfoHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialsInfoHistoryMapper.xml
+END
+PdWorkOrderBatchMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16121/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdWorkOrderBatchMapper.xml
+END
+PdProductInfoMaterialsHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoMaterialsHistoryMapper.xml
+END
+DpProductInfoLogHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProductInfoLogHistoryMapper.xml
+END
+DpLabelTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpLabelTypeMapper.xml
+END
+SerialRuleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17349/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/SerialRuleMapper.xml
+END
+PdBomAffiliatedMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17284/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomAffiliatedMapper.xml
+END
+FtyDeviceConsumablesMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceConsumablesMapper.xml
+END
+FtyProductionLineMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/17264/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyProductionLineMapper.xml
+END
+DpProduceProcessDateMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessDateMapper.xml
+END
+DpServiceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpServiceMapper.xml
+END
+DpFormMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/projectnew/IOV_PLATFORM/!svn/ver/17165/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpFormMapper.xml
+END
+PdProductPdLableMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductPdLableMapper.xml
+END
+DpBoxProductInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16444/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBoxProductInfoMapper.xml
+END
+FtyDeviceFaultInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17271/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceFaultInfoMapper.xml
+END
+DpProduceProcessDeviceConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessDeviceConfigMapper.xml
+END
+PdExecTransmitSetTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdExecTransmitSetTbMapper.xml
+END
+PdBarcodeWildcardMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBarcodeWildcardMapper.xml
+END
+DpTemplateMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpTemplateMapper.xml
+END
+PdOrderMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdOrderMapper.xml
+END
+RoleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/17347/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/RoleMapper.xml
+END
+DpProduceStandardTestOrderMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/16448/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceStandardTestOrderMapper.xml
+END
+DpLabelMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/17130/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpLabelMapper.xml
+END
+DpBoxRuleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17078/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBoxRuleMapper.xml
+END
+PdFileTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/17116/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdFileTypeMapper.xml
+END
+FtyWorkstationMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/17275/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyWorkstationMapper.xml
+END
+FtyDeviceConfigTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16626/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceConfigTypeMapper.xml
+END
+DpProduceProcessConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessConfigMapper.xml
+END
+PdExecSystemModuleCopyMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdExecSystemModuleCopyMapper.xml
+END
+DpMaterialsInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialsInfoMapper.xml
+END
+FtyDeviceProcessMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16708/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceProcessMapper.xml
+END
+PdBomProduceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/17037/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomProduceMapper.xml
+END
+PdBomWorkAmountMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17300/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomWorkAmountMapper.xml
+END
+DpProcessConfigMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProcessConfigMapper.xml
+END
+TableTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/TableTypeMapper.xml
+END
+FtyProcessConfigTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/17050/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyProcessConfigTypeMapper.xml
+END
+PdProductionLineInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/17032/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductionLineInfoMapper.xml
+END
+PdWorkTestMainTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16788/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdWorkTestMainTbMapper.xml
+END
+PdBomWorkMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomWorkMapper.xml
+END
+DpProduceProcessDeviceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessDeviceMapper.xml
+END
+FtyDeviceToolingMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15515/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceToolingMapper.xml
+END
+DpProductInfoLogMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProductInfoLogMapper.xml
+END
+PdProductInfoMaterialsMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoMaterialsMapper.xml
+END
+DpProduceProcessMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessMapper.xml
+END
+FtyWorkstationDeviceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyWorkstationDeviceMapper.xml
+END
+TableMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/TableMapper.xml
+END
+FtyDeviceAnnexInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/17221/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceAnnexInfoMapper.xml
+END
+DpProduceDemarcateMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16104/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceDemarcateMapper.xml
+END
+FtySiteInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/17119/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtySiteInfoMapper.xml
+END
+DpProductTestLogMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProductTestLogMapper.xml
+END
+PdBomProduceAmountMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16790/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBomProduceAmountMapper.xml
+END
+DpProduceProcessConfigWorkorderMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProduceProcessConfigWorkorderMapper.xml
+END
+PdProductInfoNumberHistoryMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 168
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdProductInfoNumberHistoryMapper.xml
+END
+PdBarcodeRuleTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBarcodeRuleTypeMapper.xml
+END
+FtyDeviceFaultMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16586/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceFaultMapper.xml
+END
+PdWorkTestDetailTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdWorkTestDetailTbMapper.xml
+END
+DpSubassemblyTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpSubassemblyTypeMapper.xml
+END
+PdBaseReplaceTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/17209/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdBaseReplaceTbMapper.xml
+END
+DpMaterialMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16526/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpMaterialMapper.xml
+END
+FtyDeviceMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/17324/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceMapper.xml
+END
+FtyDeviceConfigInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/17053/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/FtyDeviceConfigInfoMapper.xml
+END
+DpDataDictionaryTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/17049/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpDataDictionaryTypeMapper.xml
+END
+DpServiceLogMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpServiceLogMapper.xml
+END
+DpServiceTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpServiceTypeMapper.xml
+END
+PdExecSoftinjectTbMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16162/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/PdExecSoftinjectTbMapper.xml
+END
+DpProjectMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/16105/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpProjectMapper.xml
+END
+DpBoxPalletInfoMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/15952/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpBoxPalletInfoMapper.xml
+END
+DpSampleInspectionMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16658/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpSampleInspectionMapper.xml
+END
+DpRoutesMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/projectnew/IOV_PLATFORM/!svn/ver/16366/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/mappers/mysql/control/DpRoutesMapper.xml
+END

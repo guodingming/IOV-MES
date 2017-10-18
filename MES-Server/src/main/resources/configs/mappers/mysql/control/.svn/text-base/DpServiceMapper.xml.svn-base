@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-服务管理 -->
+<mapper namespace="com.mes.control.mapper.DpServiceMapper">
+	<resultMap type="com.mes.entity.control.DpService" id="dpServiceResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="code" property="code" jdbcType="VARCHAR"/>
+		<result column="url" property="url" jdbcType="VARCHAR"/>
+		<result column="method" property="method" jdbcType="VARCHAR"/>
+		<result column="method_name" property="methodName" jdbcType="VARCHAR"/>
+		<result column="template_parameter_content" property="templateParameterContent" jdbcType="VARCHAR"/>
+		<result column="template_result_content" property="templateResultContent" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="service_type_id" property="serviceTypeId" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<!--<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="table_type_id" property="tableTypeId" jdbcType="VARCHAR"/>
+		<result column="table_id" property="tableId" jdbcType="VARCHAR"/>
+		<result column="sql_type" property="sqlType" jdbcType="VARCHAR"/>
+		<result column="sql" property="sql" jdbcType="VARCHAR"/>-->
+		<result column="fn_type_id" property="fnTypeId" jdbcType="VARCHAR"/>
+		<result column="fn_id" property="fnId" jdbcType="VARCHAR"/>
+		<association column="fn_id" property="fnName" select="getFnName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpServiceResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!-- 查询函数名称 -->
+	<select id="getFnName" resultType="java.lang.String">
+		select t.name from mes_dp_function t where t.id=#{value}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpService">
+		insert into mes_dp_service (id,name,code,url,method,method_name,template_parameter_content,template_result_content,status,service_type_id,description,create_date,fn_type_id,fn_id)
+		values (#{id},#{name},#{code},#{url},#{method},#{methodName},#{templateParameterContent},#{templateResultContent},#{status},#{serviceTypeId},#{description},#{createDate},#{fnTypeId},#{fnId})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpService">
+		update mes_dp_service s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_service where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_service t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpServiceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpServiceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpServiceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,code,url,method,method_name,template_parameter_content,template_result_content,status,service_type_id,description,create_date,fn_type_id,fn_id from mes_dp_service s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or code like CONCAT('%', #{search}, '%')
+				or method like CONCAT('%', #{search}, '%')
+				or method_name like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code = #{code}
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					and url = #{url}
+				]]>
+			</if>
+			<if test="method != null  and method != '' ">
+				<![CDATA[
+					and method = #{method}
+				]]>
+			</if>
+			<if test="methodName != null  and methodName != '' ">
+				<![CDATA[
+					and method_name = #{methodName}
+				]]>
+			</if>
+			<if test="templateParameterContent != null  and templateParameterContent != '' ">
+				<![CDATA[
+					and template_parameter_content = #{templateParameterContent}
+				]]>
+			</if>
+			<if test="templateResultContent != null  and templateResultContent != '' ">
+				<![CDATA[
+					and template_result_content = #{templateResultContent}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="serviceTypeId != null  and serviceTypeId != '' ">
+				<![CDATA[
+					and service_type_id = #{serviceTypeId}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<!--<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` = #{type}
+				]]>
+			</if>
+			<if test="tableTypeId != null  and tableTypeId != '' ">
+				<![CDATA[
+					and table_type_id = #{tableTypeId}
+				]]>
+			</if>
+			<if test="tableId != null  and tableId != '' ">
+				<![CDATA[
+					and table_id = #{tableId}
+				]]>
+			</if>
+			<if test="sqlType != null  and sqlType != '' ">
+				<![CDATA[
+					and sql_type = #{sqlType}
+				]]>
+			</if>
+			<if test="sql != null  and sql != '' ">
+				<![CDATA[
+					and `sql` = #{sql}
+				]]>
+			</if>-->
+			<if test="fnTypeId != null  and fnTypeId != '' ">
+				<![CDATA[
+					and fn_type_id = #{fnTypeId}
+				]]>
+			</if>
+			<if test="fnId != null  and fnId != '' ">
+				<![CDATA[
+					and fn_id = #{fnId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code = #{code}
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					or url = #{url}
+				]]>
+			</if>
+			<if test="method != null  and method != '' ">
+				<![CDATA[
+					or method = #{method}
+				]]>
+			</if>
+			<if test="methodName != null  and methodName != '' ">
+				<![CDATA[
+					or method_name = #{methodName}
+				]]>
+			</if>
+			<if test="templateParameterContent != null  and templateParameterContent != '' ">
+				<![CDATA[
+					or template_parameter_content = #{templateParameterContent}
+				]]>
+			</if>
+			<if test="templateResultContent != null  and templateResultContent != '' ">
+				<![CDATA[
+					or template_result_content = #{templateResultContent}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="serviceTypeId != null  and serviceTypeId != '' ">
+				<![CDATA[
+					or service_type_id = #{serviceTypeId}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<!--<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` = #{type}
+				]]>
+			</if>
+			<if test="tableTypeId != null  and tableTypeId != '' ">
+				<![CDATA[
+					or table_type_id = #{tableTypeId}
+				]]>
+			</if>
+			<if test="tableId != null  and tableId != '' ">
+				<![CDATA[
+					or table_id = #{tableId}
+				]]>
+			</if>
+			<if test="sqlType != null  and sqlType != '' ">
+				<![CDATA[
+					or sql_type = #{sqlType}
+				]]>
+			</if>
+			<if test="sql != null  and sql != '' ">
+				<![CDATA[
+					or `sql` = #{sql}
+				]]>
+			</if>-->
+			<if test="fnTypeId != null  and fnTypeId != '' ">
+				<![CDATA[
+					or fn_type_id = #{fnTypeId}
+				]]>
+			</if>
+			<if test="fnId != null  and fnId != '' ">
+				<![CDATA[
+					or fn_id = #{fnId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					and code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					and url like CONCAT('%', #{url}, '%')
+				]]>
+			</if>
+			<if test="method != null  and method != '' ">
+				<![CDATA[
+					and method like CONCAT('%', #{method}, '%')
+				]]>
+			</if>
+			<if test="methodName != null  and methodName != '' ">
+				<![CDATA[
+					and method_name like CONCAT('%', #{methodName}, '%')
+				]]>
+			</if>
+			<if test="templateParameterContent != null  and templateParameterContent != '' ">
+				<![CDATA[
+					and template_parameter_content like CONCAT('%', #{templateParameterContent}, '%')
+				]]>
+			</if>
+			<if test="templateResultContent != null  and templateResultContent != '' ">
+				<![CDATA[
+					and template_result_content like CONCAT('%', #{templateResultContent}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="serviceTypeId != null  and serviceTypeId != '' ">
+				<![CDATA[
+					and service_type_id like CONCAT('%', #{serviceTypeId}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<!--<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="tableTypeId != null  and tableTypeId != '' ">
+				<![CDATA[
+					and table_type_id like CONCAT('%', #{tableTypeId}, '%')
+				]]>
+			</if>
+			<if test="tableId != null  and tableId != '' ">
+				<![CDATA[
+					and table_id like CONCAT('%', #{tableId}, '%')
+				]]>
+			</if>
+			<if test="sqlType != null  and sqlType != '' ">
+				<![CDATA[
+					and sql_type like CONCAT('%', #{sqlType}, '%')
+				]]>
+			</if>
+			<if test="sql != null  and sql != '' ">
+				<![CDATA[
+					and `sql` like CONCAT('%', #{sql}, '%')
+				]]>
+			</if>-->
+			<if test="fnTypeId != null  and fnTypeId != '' ">
+				<![CDATA[
+					and fn_type_id like CONCAT('%', #{fnTypeId}, '%')
+				]]>
+			</if>
+			<if test="fnId != null  and fnId != '' ">
+				<![CDATA[
+					and fn_id like CONCAT('%', #{fnId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="code != null  and code != '' ">
+				<![CDATA[
+					or code like CONCAT('%', #{code}, '%')
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					or url like CONCAT('%', #{url}, '%')
+				]]>
+			</if>
+			<if test="method != null  and method != '' ">
+				<![CDATA[
+					or method like CONCAT('%', #{method}, '%')
+				]]>
+			</if>
+			<if test="methodName != null  and methodName != '' ">
+				<![CDATA[
+					or method_name like CONCAT('%', #{methodName}, '%')
+				]]>
+			</if>
+			<if test="templateParameterContent != null  and templateParameterContent != '' ">
+				<![CDATA[
+					or template_parameter_content like CONCAT('%', #{templateParameterContent}, '%')
+				]]>
+			</if>
+			<if test="templateResultContent != null  and templateResultContent != '' ">
+				<![CDATA[
+					or template_result_content like CONCAT('%', #{templateResultContent}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="serviceTypeId != null  and serviceTypeId != '' ">
+				<![CDATA[
+					or service_type_id like CONCAT('%', #{serviceTypeId}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<!--<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="tableTypeId != null  and tableTypeId != '' ">
+				<![CDATA[
+					or table_type_id like CONCAT('%', #{tableTypeId}, '%')
+				]]>
+			</if>
+			<if test="tableId != null  and tableId != '' ">
+				<![CDATA[
+					or table_id like CONCAT('%', #{tableId}, '%')
+				]]>
+			</if>
+			<if test="sqlType != null  and sqlType != '' ">
+				<![CDATA[
+					or sql_type like CONCAT('%', #{sqlType}, '%')
+				]]>
+			</if>
+			<if test="sql != null  and sql != '' ">
+				<![CDATA[
+					or `sql` like CONCAT('%', #{sql}, '%')
+				]]>
+			</if>-->
+			<if test="fnTypeId != null  and fnTypeId != '' ">
+				<![CDATA[
+					or fn_type_id like CONCAT('%', #{fnTypeId}, '%')
+				]]>
+			</if>
+			<if test="fnId != null  and fnId != '' ">
+				<![CDATA[
+					or fn_id like CONCAT('%', #{fnId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					url = #{url},
+				]]>
+			</if>
+			<if test="methodName != null  and methodName != '' ">
+				<![CDATA[
+					method_name = #{methodName},
+				]]>
+			</if>
+			<if test="templateParameterContent != null  and templateParameterContent != '' ">
+				<![CDATA[
+					template_parameter_content = #{templateParameterContent},
+				]]>
+			</if>
+			<if test="templateResultContent != null  and templateResultContent != '' ">
+				<![CDATA[
+					template_result_content = #{templateResultContent},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					type = #{type},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="serviceTypeId != null  and serviceTypeId != '' ">
+				<![CDATA[
+					service_type_id = #{serviceTypeId},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<!--<if test="type != null  and type != '' ">
+				<![CDATA[
+					`type` = #{type},
+				]]>
+			</if>
+			<if test="tableTypeId != null  and tableTypeId != '' ">
+				<![CDATA[
+					table_type_id = #{tableTypeId},
+				]]>
+			</if>
+			<if test="tableId != null  and tableId != '' ">
+				<![CDATA[
+					table_id = #{tableId},
+				]]>
+			</if>
+			<if test="sqlType != null  and sqlType != '' ">
+				<![CDATA[
+					sql_type = #{sqlType},
+				]]>
+			</if>
+			<if test="sql != null  and sql != '' ">
+				<![CDATA[
+					`sql` = #{sql},
+				]]>
+			</if>-->
+			<if test="fnTypeId != null  and fnTypeId != '' ">
+				<![CDATA[
+					fn_type_id = #{fnTypeId},
+				]]>
+			</if>
+			<if test="fnId != null  and fnId != '' ">
+				<![CDATA[
+					fn_id = #{fnId},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

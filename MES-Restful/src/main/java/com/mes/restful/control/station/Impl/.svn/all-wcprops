@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl
+END
+LabelPrintRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/LabelPrintRestServer.java
+END
+RepairStationBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/projectnew/IOV_PLATFORM/!svn/ver/16862/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/RepairStationBaseRestServer.java
+END
+PCBAValidateLoadRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/17324/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/PCBAValidateLoadRestServer.java
+END
+ProductionBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/16991/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/ProductionBaseRestServer.java
+END
+CommonBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/projectnew/IOV_PLATFORM/!svn/ver/16888/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/CommonBaseRestServer.java
+END
+PackageBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/17350/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/PackageBaseRestServer.java
+END
+AssembleBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/projectnew/IOV_PLATFORM/!svn/ver/16933/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/AssembleBaseRestServer.java
+END
+SampleInspectionBaseRestServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/projectnew/IOV_PLATFORM/!svn/ver/17171/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/java/com/mes/restful/control/station/Impl/SampleInspectionBaseRestServer.java
+END

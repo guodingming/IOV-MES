@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 终端测试项结果 -->
+<mapper namespace="com.mes.control.mapper.PdWorkTestDetailTbMapper">
+    <resultMap type="com.mes.entity.control.PdWorkTestDetailTb" id="pdWorkTestDetailTbResultMap">
+        
+        <result column="work_test_id" property="workTestId" jdbcType="VARCHAR"/>
+        
+        <result column="work_procedure_id" property="workProcedureId" jdbcType="VARCHAR"/>
+        
+        <result column="item_id" property="itemId" jdbcType="VARCHAR"/>
+        
+        <result column="step_order" property="stepOrder" jdbcType="VARCHAR"/>
+        
+        <result column="item_data" property="itemData" jdbcType="VARCHAR"/>
+        
+        <result column="test_result" property="testResult" jdbcType="VARCHAR"/>
+        
+        <result column="step_lower" property="stepLower" jdbcType="VARCHAR"/>
+        
+        <result column="step_upper" property="stepUpper" jdbcType="VARCHAR"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdWorkTestDetailTbResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdWorkTestDetailTb">
+        insert into mes_pd_work_test_detail_tb
+        (`work_test_id`,`work_procedure_id`,`item_id`,`step_order`,`item_data`,`test_result`,`step_lower`,`step_upper`)
+        values
+        (#{workTestId},#{workProcedureId},#{itemId},#{stepOrder},#{itemData},#{testResult},#{stepLower},#{stepUpper})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdWorkTestDetailTb">
+        update mes_pd_work_test_detail_tb s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_work_test_detail_tb where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_work_test_detail_tb t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdWorkTestDetailTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdWorkTestDetailTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdWorkTestDetailTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `work_test_id`,`work_procedure_id`,`item_id`,`step_order`,`item_data`,`test_result`,`step_lower`,`step_upper` from mes_pd_work_test_detail_tb  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `work_test_id` like CONCAT('%', #{search}, '%')
+				or `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `item_id` like CONCAT('%', #{search}, '%')
+				or `step_order` like CONCAT('%', #{search}, '%')
+				or `item_data` like CONCAT('%', #{search}, '%')
+				or `test_result` like CONCAT('%', #{search}, '%')
+				or `step_lower` like CONCAT('%', #{search}, '%')
+				or `step_upper` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workTestId != null  and workTestId != '' ">
+            <![CDATA[
+                and `work_test_id` = #{workTestId}
+            ]]>
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                and `work_procedure_id` = #{workProcedureId}
+            ]]>
+            </if>
+            
+            <if test="itemId != null  and itemId != '' ">
+            <![CDATA[
+                and `item_id` = #{itemId}
+            ]]>
+            </if>
+            
+            <if test="stepOrder != null  and stepOrder != '' ">
+            <![CDATA[
+                and `step_order` = #{stepOrder}
+            ]]>
+            </if>
+            
+            <if test="itemData != null  and itemData != '' ">
+            <![CDATA[
+                and `item_data` = #{itemData}
+            ]]>
+            </if>
+            
+            <if test="testResult != null  and testResult != '' ">
+            <![CDATA[
+                and `test_result` = #{testResult}
+            ]]>
+            </if>
+            
+            <if test="stepLower != null  and stepLower != '' ">
+            <![CDATA[
+                and `step_lower` = #{stepLower}
+            ]]>
+            </if>
+            
+            <if test="stepUpper != null  and stepUpper != '' ">
+            <![CDATA[
+                and `step_upper` = #{stepUpper}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `work_test_id` like CONCAT('%', #{search}, '%')
+				or `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `item_id` like CONCAT('%', #{search}, '%')
+				or `step_order` like CONCAT('%', #{search}, '%')
+				or `item_data` like CONCAT('%', #{search}, '%')
+				or `test_result` like CONCAT('%', #{search}, '%')
+				or `step_lower` like CONCAT('%', #{search}, '%')
+				or `step_upper` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workTestId != null  and workTestId != '' ">
+            <![CDATA[
+                or `work_test_id` = #{workTestId}
+            ]]>
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                or `work_procedure_id` = #{workProcedureId}
+            ]]>
+            </if>
+            
+            <if test="itemId != null  and itemId != '' ">
+            <![CDATA[
+                or `item_id` = #{itemId}
+            ]]>
+            </if>
+            
+            <if test="stepOrder != null  and stepOrder != '' ">
+            <![CDATA[
+                or `step_order` = #{stepOrder}
+            ]]>
+            </if>
+            
+            <if test="itemData != null  and itemData != '' ">
+            <![CDATA[
+                or `item_data` = #{itemData}
+            ]]>
+            </if>
+            
+            <if test="testResult != null  and testResult != '' ">
+            <![CDATA[
+                or `test_result` = #{testResult}
+            ]]>
+            </if>
+            
+            <if test="stepLower != null  and stepLower != '' ">
+            <![CDATA[
+                or `step_lower` = #{stepLower}
+            ]]>
+            </if>
+            
+            <if test="stepUpper != null  and stepUpper != '' ">
+            <![CDATA[
+                or `step_upper` = #{stepUpper}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `work_test_id` like CONCAT('%', #{search}, '%')
+				or `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `item_id` like CONCAT('%', #{search}, '%')
+				or `step_order` like CONCAT('%', #{search}, '%')
+				or `item_data` like CONCAT('%', #{search}, '%')
+				or `test_result` like CONCAT('%', #{search}, '%')
+				or `step_lower` like CONCAT('%', #{search}, '%')
+				or `step_upper` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workTestId != null  and workTestId != '' ">
+            <![CDATA[
+                and `work_test_id` CONCAT('%', #{workTestId}, '%')
+            ]]>
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                and `work_procedure_id` CONCAT('%', #{workProcedureId}, '%')
+            ]]>
+            </if>
+            
+            <if test="itemId != null  and itemId != '' ">
+            <![CDATA[
+                and `item_id` CONCAT('%', #{itemId}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepOrder != null  and stepOrder != '' ">
+            <![CDATA[
+                and `step_order` CONCAT('%', #{stepOrder}, '%')
+            ]]>
+            </if>
+            
+            <if test="itemData != null  and itemData != '' ">
+            <![CDATA[
+                and `item_data` CONCAT('%', #{itemData}, '%')
+            ]]>
+            </if>
+            
+            <if test="testResult != null  and testResult != '' ">
+            <![CDATA[
+                and `test_result` CONCAT('%', #{testResult}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepLower != null  and stepLower != '' ">
+            <![CDATA[
+                and `step_lower` CONCAT('%', #{stepLower}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepUpper != null  and stepUpper != '' ">
+            <![CDATA[
+                and `step_upper` CONCAT('%', #{stepUpper}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `work_test_id` like CONCAT('%', #{search}, '%')
+				or `work_procedure_id` like CONCAT('%', #{search}, '%')
+				or `item_id` like CONCAT('%', #{search}, '%')
+				or `step_order` like CONCAT('%', #{search}, '%')
+				or `item_data` like CONCAT('%', #{search}, '%')
+				or `test_result` like CONCAT('%', #{search}, '%')
+				or `step_lower` like CONCAT('%', #{search}, '%')
+				or `step_upper` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="workTestId != null  and workTestId != '' ">
+            <![CDATA[
+                or `work_test_id` CONCAT('%', #{workTestId}, '%')
+            ]]>
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                or `work_procedure_id` CONCAT('%', #{workProcedureId}, '%')
+            ]]>
+            </if>
+            
+            <if test="itemId != null  and itemId != '' ">
+            <![CDATA[
+                or `item_id` CONCAT('%', #{itemId}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepOrder != null  and stepOrder != '' ">
+            <![CDATA[
+                or `step_order` CONCAT('%', #{stepOrder}, '%')
+            ]]>
+            </if>
+            
+            <if test="itemData != null  and itemData != '' ">
+            <![CDATA[
+                or `item_data` CONCAT('%', #{itemData}, '%')
+            ]]>
+            </if>
+            
+            <if test="testResult != null  and testResult != '' ">
+            <![CDATA[
+                or `test_result` CONCAT('%', #{testResult}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepLower != null  and stepLower != '' ">
+            <![CDATA[
+                or `step_lower` CONCAT('%', #{stepLower}, '%')
+            ]]>
+            </if>
+            
+            <if test="stepUpper != null  and stepUpper != '' ">
+            <![CDATA[
+                or `step_upper` CONCAT('%', #{stepUpper}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="workTestId != null  and workTestId != '' ">
+            <![CDATA[
+                `work_test_id` = #{workTestId},
+            ]]>
+            </if>
+            
+            <if test="workProcedureId != null  and workProcedureId != '' ">
+            <![CDATA[
+                `work_procedure_id` = #{workProcedureId},
+            ]]>
+            </if>
+            
+            <if test="itemId != null  and itemId != '' ">
+            <![CDATA[
+                `item_id` = #{itemId},
+            ]]>
+            </if>
+            
+            <if test="stepOrder != null  and stepOrder != '' ">
+            <![CDATA[
+                `step_order` = #{stepOrder},
+            ]]>
+            </if>
+            
+            <if test="itemData != null  and itemData != '' ">
+            <![CDATA[
+                `item_data` = #{itemData},
+            ]]>
+            </if>
+            
+            <if test="testResult != null  and testResult != '' ">
+            <![CDATA[
+                `test_result` = #{testResult},
+            ]]>
+            </if>
+            
+            <if test="stepLower != null  and stepLower != '' ">
+            <![CDATA[
+                `step_lower` = #{stepLower},
+            ]]>
+            </if>
+            
+            <if test="stepUpper != null  and stepUpper != '' ">
+            <![CDATA[
+                `step_upper` = #{stepUpper},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

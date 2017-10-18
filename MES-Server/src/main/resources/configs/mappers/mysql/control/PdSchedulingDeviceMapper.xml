@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-排班-设备 -->
+<mapper namespace="com.mes.control.mapper.PdSchedulingDeviceMapper">
+	<resultMap type="com.mes.entity.control.PdSchedulingDevice" id="pdSchedulingDeviceResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR"/>
+		<result column="site_id" property="siteId" jdbcType="VARCHAR"/>
+		<result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+		<result column="production_line_id" property="productionLineId" jdbcType="VARCHAR"/>
+		<result column="work_center_id" property="workCenterId" jdbcType="VARCHAR"/>
+		<result column="workstation_id" property="workstationId" jdbcType="VARCHAR"/>
+		<result column="scheduling_id" property="schedulingId" jdbcType="VARCHAR"/>
+		<result column="workstation_ids" property="workstationIds" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<association column="enterprise_id" property="enterpriseName" select="getEnterpriseName" javaType="java.lang.String"/>
+		<association column="site_id" property="siteName" select="getSiteName" javaType="java.lang.String"/>
+		<association column="area_id" property="areaName" select="getAreaName" javaType="java.lang.String"/>
+		<association column="production_line_id" property="productionLineName" select="getProductionLineName" javaType="java.lang.String"/>
+		<association column="work_center_id" property="workCenterName" select="getWorkCenterName" javaType="java.lang.String"/>
+		<association column="workstation_id" property="workstationName" select="getWorkstationName" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdSchedulingDeviceResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--获取未添加的workstation-->
+	<select id="getRestWorkstation" parameterType="java.util.Map" resultMap="pdSchedulingDeviceResultMap">
+		SELECT
+		w.id as workstation_id
+		FROM
+		mes_fty_workstation w
+		WHERE
+		w.work_center_id = #{workCenterId}
+		AND w.id NOT IN (
+		SELECT
+		s.workstation_id
+		FROM
+		mes_pd_scheduling_device s
+		WHERE
+		s.work_center_id = #{workCenterId}
+		AND s.scheduling_id = #{schedulingId}
+		)
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdSchedulingDevice">
+		insert into mes_pd_scheduling_device (id,enterprise_id,site_id,area_id,production_line_id,work_center_id,workstation_id,scheduling_id,create_date)
+		values (#{id},#{enterpriseId},#{siteId},#{areaId},#{productionLineId},#{workCenterId},#{workstationId},#{schedulingId},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdSchedulingDevice">
+		update mes_pd_scheduling_device s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_scheduling_device where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_scheduling_device s <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdSchedulingDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdSchedulingDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/>
+		order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdSchedulingDeviceResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.enterprise_id,s.site_id,s.area_id,s.production_line_id,s.work_center_id,s.workstation_id,s.scheduling_id,s.create_date
+		 from mes_pd_scheduling_device s
+	</sql>
+
+	<!--查询企业名称-->
+	<select id="getEnterpriseName" resultType="java.lang.String">
+		SELECT e.company FROM mes_fty_enterprise e where e.id = #{value}
+	</select>
+
+	<!--查询工厂名称-->
+	<select id="getSiteName" resultType="java.lang.String">
+		SELECT s.`name` FROM mes_fty_site_info s  where s.id = #{value}
+	</select>
+
+	<!--查询生产线名称-->
+	<select id="getProductionLineName" resultType="java.lang.String">
+		SELECT p.`name` FROM mes_fty_production_line p   where p.id = #{value}
+	</select>
+
+	<!--查询车间名称-->
+	<select id="getAreaName" resultType="java.lang.String">
+		SELECT a.`name` FROM mes_fty_area a  where a.id = #{value}
+	</select>
+
+	<!--查询加工中心名称-->
+	<select id="getWorkCenterName" resultType="java.lang.String">
+		SELECT wc.`name` FROM mes_fty_work_center wc  where wc.id = #{value}
+	</select>
+
+	<!--查询加工站名称-->
+	<select id="getWorkstationName" resultType="java.lang.String">
+		SELECT dic.cn_name FROM mes_fty_workstation ws,mes_dp_data_dictionary dic  where ws.dictionary_id = dic.id  and ws.id = #{value}
+	</select>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1=1
+			<if test="enterpriseId != null  and enterpriseId != '' ">
+				<![CDATA[
+					and s.enterprise_id = #{enterpriseId}
+				]]>
+			</if>
+			<if test="siteId != null  and siteId != '' ">
+				<![CDATA[
+					and s.site_id = #{siteId}
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					and s.area_id = #{areaId}
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					and s.production_line_id = #{productionLineId}
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					and s.work_center_id = #{workCenterId}
+				]]>
+			</if>
+			<if test="workstationId != null  and workstationId != '' ">
+				<![CDATA[
+					and s.workstation_id = #{workstationId}
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					and s.scheduling_id = #{schedulingId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					or area_id = #{areaId}
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					or production_line_id = #{productionLineId}
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					or work_center_id = #{workCenterId}
+				]]>
+			</if>
+			<if test="workstationId != null  and workstationId != '' ">
+				<![CDATA[
+					or workstation_id = #{workstationId}
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					or scheduling_id = #{schedulingId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					and area_id like CONCAT('%', #{areaId}, '%')
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					and production_line_id like CONCAT('%', #{productionLineId}, '%')
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					and work_center_id like CONCAT('%', #{workCenterId}, '%')
+				]]>
+			</if>
+			<if test="workstationId != null  and workstationId != '' ">
+				<![CDATA[
+					and workstation_id like CONCAT('%', #{workstationId}, '%')
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					and scheduling_id like CONCAT('%', #{schedulingId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					or area_id like CONCAT('%', #{areaId}, '%')
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					or production_line_id like CONCAT('%', #{productionLineId}, '%')
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					or work_center_id like CONCAT('%', #{workCenterId}, '%')
+				]]>
+			</if>
+			<if test="workstationId != null  and workstationId != '' ">
+				<![CDATA[
+					or workstation_id like CONCAT('%', #{workstationId}, '%')
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					or scheduling_id like CONCAT('%', #{schedulingId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="enterpriseId != null  and enterpriseId != '' ">
+				<![CDATA[
+					enterprise_id = #{enterpriseId},
+				]]>
+			</if>
+			<if test="siteId != null  and siteId != '' ">
+				<![CDATA[
+					site_id = #{siteId},
+				]]>
+			</if>
+			<if test="areaId != null  and areaId != '' ">
+				<![CDATA[
+					area_id = #{areaId},
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					production_line_id = #{productionLineId},
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					work_center_id = #{workCenterId},
+				]]>
+			</if>
+			<if test="workstationId != null  and workstationId != '' ">
+				<![CDATA[
+					workstation_id = #{workstationId},
+				]]>
+			</if>
+			<if test="schedulingId != null  and schedulingId != '' ">
+				<![CDATA[
+					scheduling_id = #{schedulingId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-包装箱-产品 -->
+<mapper namespace="com.mes.control.mapper.DpBoxProductInfoMapper">
+    <resultMap type="com.mes.entity.control.DpBoxProductInfo" id="dpBoxProductInfoResultMap">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="pd_product_info_id" property="pdProductInfoId" jdbcType="VARCHAR"/>
+        <result column="pd_name" property="pdName" jdbcType="VARCHAR"/>
+        <result column="soft_version" property="softVersion" jdbcType="VARCHAR"/>
+        <result column="hard_version" property="hardVersion" jdbcType="VARCHAR"/>
+        <result column="work_order_id" property="workOrderId" jdbcType="VARCHAR"/>
+        <result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+        <result column="work_order_batch_num" property="workOrderBatchNum" jdbcType="VARCHAR"/>
+        <result column="box_id" property="boxId" jdbcType="VARCHAR"/>
+        <result column="box_key" property="boxKey" jdbcType="VARCHAR"/>
+        <result column="number" property="number" jdbcType="VARCHAR"/>
+        <result column="work_order_num" property="workOrderNum" jdbcType="VARCHAR"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <!--根据id查询-->
+    <select id="findById" resultMap="dpBoxProductInfoResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="findByProIdAndBoxKey" resultMap="dpBoxProductInfoResultMap">
+        <include refid="sql_select"/>
+        where s.pd_product_info_id=#{0} and s.box_id=#{1}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.DpBoxProductInfo">
+        insert into mes_dp_box_product_info
+        (`id`,`pd_product_info_id`,`pd_name`,`soft_version`,`hard_version`,`work_order_id`,`pd_id`,`work_order_batch_num`,`box_id`,`create_date`)
+        values
+        (#{id},#{pdProductInfoId},#{pdName},#{softVersion},#{hardVersion},#{workOrderId},#{pdId},#{workOrderBatchNum},#{boxId},#{createDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.DpBoxProductInfo">
+        update mes_dp_box_product_info s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_dp_box_product_info where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_box_product_info s
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--获取数据条数-->
+    <select id="getProductBoxCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_dp_box_product_info s
+        join mes_dp_box mdb on mdb.id=s.box_id
+        left join mes_pd_product_info_number mppin on mppin.pd_product_info_id=s.pd_product_info_id and mppin.type='SN'
+        left join mes_pd_work_order mpwo on mpwo.id=s.work_order_id
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <select id="productBoxByPage" parameterType="java.util.Map" resultMap="dpBoxProductInfoResultMap">
+        SELECT s.*,mdb.box_key,mppin.number,mpwo.work_order_num from mes_dp_box_product_info  s
+        join mes_dp_box mdb on mdb.id=s.box_id
+        left join mes_pd_product_info_number mppin on mppin.pd_product_info_id=s.pd_product_info_id and mppin.type='SN'
+        left join mes_pd_work_order mpwo on mpwo.id=s.work_order_id
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+    <select id="productBoxByAll" parameterType="java.util.Map" resultMap="dpBoxProductInfoResultMap">
+        SELECT s.*,mdb.box_key,mppin.number,mpwo.work_order_num from mes_dp_box_product_info  s
+        join mes_dp_box mdb on mdb.id=s.box_id
+        left join mes_pd_product_info_number mppin on mppin.pd_product_info_id=s.pd_product_info_id and mppin.type='SN'
+        left join mes_pd_work_order mpwo on mpwo.id=s.work_order_id
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <select id="findByPage" parameterType="java.util.Map" resultMap="dpBoxProductInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+
+    <!--根据条件查询-->
+    <select id="findByMap" parameterType="java.util.Map" resultMap="dpBoxProductInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询所有-->
+    <select id="findAll" resultMap="dpBoxProductInfoResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `id`,`pd_product_info_id`,`pd_name`,`soft_version`,`hard_version`,`work_order_id`,`pd_id`,`work_order_batch_num`,`box_id`,`create_date` from mes_dp_box_product_info  s
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`pd_name` like CONCAT('%', #{search}, '%')
+                or `soft_version` like CONCAT('%', #{search}, '%')
+                or `hard_version` like CONCAT('%', #{search}, '%')
+                or `work_order_batch_num` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+            and `id` = #{id}
+            ]]>
+            </if>
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+            and `pd_product_info_id` = #{pdProductInfoId}
+            ]]>
+            </if>
+            <if test="pdName != null  and pdName != '' ">
+                <![CDATA[
+            and `pd_name` = #{pdName}
+            ]]>
+            </if>
+            <if test="softVersion != null  and softVersion != '' ">
+                <![CDATA[
+            and `soft_version` = #{softVersion}
+            ]]>
+            </if>
+            <if test="hardVersion != null  and hardVersion != '' ">
+                <![CDATA[
+            and `hard_version` = #{hardVersion}
+            ]]>
+            </if>
+            <if test="workOrderId != null  and workOrderId != '' ">
+                <![CDATA[
+            and `work_order_id` = #{workOrderId}
+            ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+            and `pd_id` = #{pdId}
+            ]]>
+            </if>
+            <if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+                <![CDATA[
+            and `work_order_batch_num` = #{workOrderBatchNum}
+            ]]>
+            </if>
+            <if test="boxId != null  and boxId != '' ">
+                <![CDATA[
+            and `box_id` = #{boxId}
+            ]]>
+            </if>
+            <if test="boxKey != null  and boxKey != '' ">
+                <![CDATA[
+            and mdb.`box_key` = #{boxKey}
+            ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+            and `create_date` = #{createDate}
+            ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (`pd_name` like CONCAT('%', #{search}, '%')
+                or `soft_version` like CONCAT('%', #{search}, '%')
+                or `hard_version` like CONCAT('%', #{search}, '%')
+                or `work_order_batch_num` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` = #{id}
+                ]]>
+            </if>
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                or `pd_product_info_id` = #{pdProductInfoId}
+                ]]>
+            </if>
+            <if test="pdName != null  and pdName != '' ">
+                <![CDATA[
+                or `pd_name` = #{pdName}
+                ]]>
+            </if>
+            <if test="softVersion != null  and softVersion != '' ">
+                <![CDATA[
+                or `soft_version` = #{softVersion}
+                ]]>
+            </if>
+            <if test="hardVersion != null  and hardVersion != '' ">
+                <![CDATA[
+                or `hard_version` = #{hardVersion}
+                ]]>
+            </if>
+            <if test="workOrderId != null  and workOrderId != '' ">
+                <![CDATA[
+                or `work_order_id` = #{workOrderId}
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` = #{pdId}
+                ]]>
+            </if>
+            <if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+                <![CDATA[
+                or `work_order_batch_num` = #{workOrderBatchNum}
+                ]]>
+            </if>
+            <if test="boxId != null  and boxId != '' ">
+                <![CDATA[
+                or `box_id` = #{boxId}
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` = #{createDate}
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (`pd_name` like CONCAT('%', #{search}, '%')
+                or `soft_version` like CONCAT('%', #{search}, '%')
+                or `hard_version` like CONCAT('%', #{search}, '%')
+                or `work_order_batch_num` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                and `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                and `pd_product_info_id` CONCAT('%', #{pdProductInfoId}, '%')
+                ]]>
+            </if>
+            <if test="pdName != null  and pdName != '' ">
+                <![CDATA[
+                and `pd_name` CONCAT('%', #{pdName}, '%')
+                ]]>
+            </if>
+            <if test="softVersion != null  and softVersion != '' ">
+                <![CDATA[
+                and `soft_version` CONCAT('%', #{softVersion}, '%')
+                ]]>
+            </if>
+            <if test="hardVersion != null  and hardVersion != '' ">
+                <![CDATA[
+                and `hard_version` CONCAT('%', #{hardVersion}, '%')
+                ]]>
+            </if>
+            <if test="workOrderId != null  and workOrderId != '' ">
+                <![CDATA[
+                and `work_order_id` CONCAT('%', #{workOrderId}, '%')
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                and `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+                <![CDATA[
+                and `work_order_batch_num` CONCAT('%', #{workOrderBatchNum}, '%')
+                ]]>
+            </if>
+            <if test="boxId != null  and boxId != '' ">
+                <![CDATA[
+                and `box_id` CONCAT('%', #{boxId}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                and `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (`pd_name` like CONCAT('%', #{search}, '%')
+                or `soft_version` like CONCAT('%', #{search}, '%')
+                or `hard_version` like CONCAT('%', #{search}, '%')
+                or `work_order_batch_num` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                or `id` CONCAT('%', #{id}, '%')
+                ]]>
+            </if>
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                or `pd_product_info_id` CONCAT('%', #{pdProductInfoId}, '%')
+                ]]>
+            </if>
+            <if test="pdName != null  and pdName != '' ">
+                <![CDATA[
+                or `pd_name` CONCAT('%', #{pdName}, '%')
+                ]]>
+            </if>
+            <if test="softVersion != null  and softVersion != '' ">
+                <![CDATA[
+                or `soft_version` CONCAT('%', #{softVersion}, '%')
+                ]]>
+            </if>
+            <if test="hardVersion != null  and hardVersion != '' ">
+                <![CDATA[
+                or `hard_version` CONCAT('%', #{hardVersion}, '%')
+                ]]>
+            </if>
+            <if test="workOrderId != null  and workOrderId != '' ">
+                <![CDATA[
+                or `work_order_id` CONCAT('%', #{workOrderId}, '%')
+                ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                or `pd_id` CONCAT('%', #{pdId}, '%')
+                ]]>
+            </if>
+            <if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+                <![CDATA[
+                or `work_order_batch_num` CONCAT('%', #{workOrderBatchNum}, '%')
+                ]]>
+            </if>
+            <if test="boxId != null  and boxId != '' ">
+                <![CDATA[
+                or `box_id` CONCAT('%', #{boxId}, '%')
+                ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                or `create_date` CONCAT('%', #{createDate}, '%')
+                ]]>
+            </if>
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            <if test="id != null  and id != '' ">
+                <![CDATA[
+                    `id` = #{id},
+                    ]]>
+            </if>
+            <if test="pdProductInfoId != null  and pdProductInfoId != '' ">
+                <![CDATA[
+                    `pd_product_info_id` = #{pdProductInfoId},
+                    ]]>
+            </if>
+            <if test="pdName != null  and pdName != '' ">
+                <![CDATA[
+                    `pd_name` = #{pdName},
+                    ]]>
+            </if>
+            <if test="softVersion != null  and softVersion != '' ">
+                <![CDATA[
+                    `soft_version` = #{softVersion},
+                    ]]>
+            </if>
+            <if test="hardVersion != null  and hardVersion != '' ">
+                <![CDATA[
+                    `hard_version` = #{hardVersion},
+                    ]]>
+            </if>
+            <if test="workOrderId != null  and workOrderId != '' ">
+                <![CDATA[
+                    `work_order_id` = #{workOrderId},
+                    ]]>
+            </if>
+            <if test="pdId != null  and pdId != '' ">
+                <![CDATA[
+                    `pd_id` = #{pdId},
+                    ]]>
+            </if>
+            <if test="workOrderBatchNum != null  and workOrderBatchNum != '' ">
+                <![CDATA[
+                    `work_order_batch_num` = #{workOrderBatchNum},
+                    ]]>
+            </if>
+            <if test="boxId != null  and boxId != '' ">
+                <![CDATA[
+                    `box_id` = #{boxId},
+                    ]]>
+            </if>
+            <if test="createDate != null  and createDate != '' ">
+                <![CDATA[
+                    `create_date` = #{createDate},
+                    ]]>
+            </if>
+        </set>
+    </sql>
+</mapper>

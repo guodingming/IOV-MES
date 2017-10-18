@@ -1,0 +1,11 @@
+Restful中添加了swagger支持，可以在界面上查看各个接口的说明，并对接口进行测试。
+
+Restful接口代码示例请查看com.mes.restful.control.DgClusterNodeRestServer：
+	1. 类需要添加@Api注解，如：@Api(value = "cluster node", description = "cluster node management")
+
+	2. 方法需要添加@ApiOperation注解，如：@ApiOperation(value = "find DgClusterNode by id -- description", notes = "find DgClusterNode by id -- detailed notes", response = DgClusterNode.class, produces = MediaType.APPLICATION_JSON, consumes = "")
+
+	3. 方法参数需要添加@ApiParam注解，如：@ApiParam(value = "the DgClusterNode id", required = true, defaultValue = "", example = "1")
+
+
+查看api说明的url为：http://127.0.0.1:5068/mes/swagger/index.html

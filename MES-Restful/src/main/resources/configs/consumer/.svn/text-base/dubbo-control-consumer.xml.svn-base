@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress SpringFacetInspection -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd        
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 文件传输，采用hessian协议 -->
+    <dubbo:reference id="fileTransferProvider" interface="com.mes.dubbo.interprovider.control.IFileTransferProvider" timeout="20000"/>
+
+    <!-- 平台管理-工作站Agent管理 -->
+    <dubbo:reference id="agentProvider" interface="com.mes.dubbo.interprovider.control.IAgentProvider" timeout="20000"/>
+
+    <!-- 用户操作日志 -->
+    <dubbo:reference id="userOpLogProvider" interface="com.mes.dubbo.interprovider.control.IUserOpLogProvider" timeout="20000"/>
+
+    <!-- 用户管理 -->
+    <dubbo:reference id="userProvider" interface="com.mes.dubbo.interprovider.control.IUserProvider" timeout="20000"/>
+
+    <!-- 用户管理-人员技能 -->
+    <dubbo:reference id="userProcessProvider" interface="com.mes.dubbo.interprovider.control.IUserProcessProvider" timeout="20000"/>
+
+    <!-- 角色管理 -->
+    <dubbo:reference id="roleProvider" interface="com.mes.dubbo.interprovider.control.IRoleProvider" timeout="20000"/>
+
+    <!-- 用户组管理 -->
+    <dubbo:reference id="userGroupProvider" interface="com.mes.dubbo.interprovider.control.IUserGroupProvider" timeout="20000"/>
+
+    <!-- 部门管理 -->
+    <dubbo:reference id="deptProvider" interface="com.mes.dubbo.interprovider.control.IDeptProvider" timeout="20000"/>
+
+    <!-- 菜单 -->
+    <dubbo:reference id="menuProvider" interface="com.mes.dubbo.interprovider.control.IMenuProvider" timeout="20000"/>
+
+    <!-- 系统管理-菜单rest接口 -->
+    <dubbo:reference id="menuRestApiProvider" interface="com.mes.dubbo.interprovider.control.IMenuRestApiProvider" timeout="20000"/>
+
+    <!-- 工厂管理-企业登记 -->
+    <dubbo:reference id="ftyEnterpriseProvider" interface="com.mes.dubbo.interprovider.control.IFtyEnterpriseProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工厂信息 -->
+    <dubbo:reference id="ftySiteInfoProvider" interface="com.mes.dubbo.interprovider.control.IFtySiteInfoProvider" timeout="20000"/>
+
+    <!-- 工厂管理-车间管理 -->
+    <dubbo:reference id="ftyAreaProvider" interface="com.mes.dubbo.interprovider.control.IFtyAreaProvider" timeout="20000"/>
+
+    <!-- 工作中心管理-（Work center） -->
+    <dubbo:reference id="ftyWorkCenterProvider" interface="com.mes.dubbo.interprovider.control.IFtyWorkCenterProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备管理 -->
+    <dubbo:reference id="ftyDeviceProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceProvider" timeout="20000"/>
+
+    <!-- 生产线管理-Production Line -->
+    <dubbo:reference id="ftyProductionLineProvider" interface="com.mes.dubbo.interprovider.control.IFtyProductionLineProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品 -->
+    <dubbo:reference id="pdProvider" interface="com.mes.dubbo.interprovider.control.IPdProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细（按工单移） -->
+    <dubbo:reference id="pdProductInfoProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoProvider" timeout="20000"/>
+
+    <!-- 开发平台-表单类型管理 -->
+    <dubbo:reference id="dpFormTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpFormTypeProvider" timeout="20000"/>
+
+    <!-- 元数据 -->
+    <dubbo:reference id="metadataProvider" interface="com.mes.dubbo.interprovider.control.IMetadataProvider" timeout="20000"/>
+
+    <!-- 开发平台-服务管理 -->
+    <dubbo:reference id="dpServiceProvider" interface="com.mes.dubbo.interprovider.control.IDpServiceProvider" timeout="20000"/>
+
+    <!-- 开发平台-条码规则分类 -->
+    <dubbo:reference id="pdBarcodeRuleTypeProvider" interface="com.mes.dubbo.interprovider.control.IPdBarcodeRuleTypeProvider" timeout="20000"/>
+
+    <!-- 产品管理-条码规则设置 -->
+    <dubbo:reference id="pdBarcodeRuleProvider" interface="com.mes.dubbo.interprovider.control.IPdBarcodeRuleProvider" timeout="20000"/>
+
+    <!-- 工作站管理-（workstation ） -->
+    <dubbo:reference id="ftyWorkstationProvider" interface="com.mes.dubbo.interprovider.control.IFtyWorkstationProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备附件 -->
+    <dubbo:reference id="ftyDeviceAnnexProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceAnnexProvider" timeout="20000"/>
+
+    <!-- 设备管理-设备-工序-附件 -->
+    <dubbo:reference id="ftyDeviceProcessAnnexAssociationProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessAnnexAssociationProvider" timeout="20000"/>
+
+    <!-- 工厂管理-（治具/工装/其他） -->
+    <dubbo:reference id="ftyDeviceAnnexInfoProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceAnnexInfoProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备耗品 -->
+    <dubbo:reference id="ftyDeviceConsumablesProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceConsumablesProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工序-设备 -->
+    <dubbo:reference id="ftyDeviceProcessProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessProvider" timeout="20000"/>
+
+    <!-- 扩展表配置 -->
+    <dubbo:reference id="expandTableConfigProvider" interface="com.mes.dubbo.interprovider.control.IExpandTableConfigProvider" timeout="20000"/>
+
+    <!-- 主表 -->
+    <dubbo:reference id="tableProvider" interface="com.mes.dubbo.interprovider.control.ITableProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品线 -->
+    <dubbo:reference id="pdLineProvider" interface="com.mes.dubbo.interprovider.control.IPdLineProvider" timeout="20000"/>
+
+    <dubbo:reference id="pdProductionLineInfoProvider" interface="com.mes.dubbo.interprovider.control.IPdProductionLineInfoProvider" timeout="20000"/>
+
+
+
+    <!-- 产品管理-产品订单管理 -->
+    <dubbo:reference id="pdOrderProvider" interface="com.mes.dubbo.interprovider.control.IPdOrderProvider" timeout="20000"/>
+
+    <!-- 产品管理-班次类型 -->
+    <dubbo:reference id="pdSchedulingTypeProvider" interface="com.mes.dubbo.interprovider.control.IPdSchedulingTypeProvider" timeout="20000"/>
+
+    <!-- 产品管理-排班-人员 -->
+    <dubbo:reference id="pdSchedulingProvider" interface="com.mes.dubbo.interprovider.control.IPdSchedulingProvider" timeout="20000"/>
+
+    <!-- 产品管理-工单管理 -->
+    <dubbo:reference id="pdWorkOrderProvider" interface="com.mes.dubbo.interprovider.control.IPdWorkOrderProvider" timeout="20000"/>
+
+    <!-- 产品管理-工单BOM管理用量 -->
+    <dubbo:reference id="pdBomWorkAmountProvider" interface="com.mes.dubbo.interprovider.control.IPdBomWorkAmountProvider" timeout="20000"/>
+
+    <!-- 产品管理-BOM替换料 -->
+    <dubbo:reference id="pdBomMaterialsReplaceProvider" interface="com.mes.dubbo.interprovider.control.IPdBomMaterialsReplaceProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品生产工序 -->
+    <dubbo:reference id="dpProduceProcessProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessProvider" timeout="20000"/>
+
+    <!-- 开发平台-工艺路径管理（Routes） -->
+    <dubbo:reference id="dpRoutesProvider" interface="com.mes.dubbo.interprovider.control.IDpRoutesProvider" timeout="20000"/>
+
+    <!-- 开发平台-表单 -->
+    <dubbo:reference id="dpFormProvider" interface="com.mes.dubbo.interprovider.control.IDpFormProvider" timeout="20000"/>
+
+    <!-- 开发平台-生产工序配置属性 -->
+    <dubbo:reference id="dpProduceProcessConfigProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessConfigProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品测试项 -->
+    <dubbo:reference id="dpProductTestLogProvider" interface="com.mes.dubbo.interprovider.control.IDpProductTestLogProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品生产工序记录 -->
+    <dubbo:reference id="dpProductInfoLogProvider" interface="com.mes.dubbo.interprovider.control.IDpProductInfoLogProvider" timeout="20000"/>
+
+    <!-- 开发平台-上料管理 -->
+    <dubbo:reference id="dpMaterialsInfoProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialsInfoProvider" timeout="20000"/>
+
+    <!-- 产品管理-生产BOM管理用量 -->
+    <dubbo:reference id="pdBomProduceAmountProvider" interface="com.mes.dubbo.interprovider.control.IPdBomProduceAmountProvider" timeout="20000"/>
+
+    <!-- 排班管理-班次人员 -->
+    <dubbo:reference id="pdSchedulingPersonnelProvider" interface="com.mes.dubbo.interprovider.control.IPdSchedulingPersonnelProvider" timeout="20000"/>
+
+    <!-- 文件分类管理 -->
+    <dubbo:reference id="pdFileTypeProvider" interface="com.mes.dubbo.interprovider.control.IPdFileTypeProvider" timeout="20000"/>
+
+    <!-- 资源文件管理 -->
+    <dubbo:reference id="pdFileResourcesProvider" interface="com.mes.dubbo.interprovider.control.IPdFileResourcesProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工序 -->
+    <dubbo:reference id="ftyProcessProvider" interface="com.mes.dubbo.interprovider.control.IFtyProcessProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工序-设备-附件 -->
+    <dubbo:reference id="ftyDeviceProcessAnnexProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceProcessAnnexProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备配置-字典分类 -->
+    <dubbo:reference id="ftyDeviceConfigTypeProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigTypeProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备配置信息详情 -->
+    <dubbo:reference id="ftyDeviceConfigInfoProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigInfoProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备配置设置 -->
+    <dubbo:reference id="ftyDeviceConfigProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceConfigProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备异常管理 -->
+    <dubbo:reference id="ftyDeviceFaultProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备异常管理-故障字典 -->
+    <dubbo:reference id="ftyDeviceFaultInfoProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultInfoProvider" timeout="20000"/>
+
+    <!-- 工厂管理-故障影响-工序 -->
+    <dubbo:reference id="ftyDeviceFaultProcessProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceFaultProcessProvider" timeout="20000"/>
+
+    <!-- 开发平台-工序基础配置 -->
+    <dubbo:reference id="dpProcessBaseConfigProvider" interface="com.mes.dubbo.interprovider.control.IDpProcessBaseConfigProvider" timeout="20000"/>
+
+    <!-- 开发平台-设备配置-工序-设备附件 -->
+    <dubbo:reference id="dpProduceProcessDeviceAnnexProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceAnnexProvider" timeout="20000"/>
+
+    <!-- 开发平台-设备配置信息 -->
+    <dubbo:reference id="dpProduceProcessDeviceConfigProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceConfigProvider" timeout="20000"/>
+
+    <!-- 开发平台-设备配置信息-工单 -->
+    <dubbo:reference id="dpProduceProcessConfigWorkorderProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessConfigWorkorderProvider" timeout="20000"/>
+
+    <!-- 开发平台-服务分类 -->
+    <dubbo:reference id="dpServiceTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpServiceTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-服务日志 -->
+    <dubbo:reference id="dpServiceLogProvider" interface="com.mes.dubbo.interprovider.control.IDpServiceLogProvider" timeout="20000"/>
+
+    <!-- 开发平台-函数分类 -->
+    <dubbo:reference id="dpFunctionTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpFunctionTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-脚本 -->
+    <dubbo:reference id="dpFunctionProvider" interface="com.mes.dubbo.interprovider.control.IDpFunctionProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备-工作站 -->
+    <dubbo:reference id="ftyWorkstationDeviceProvider" interface="com.mes.dubbo.interprovider.control.IFtyWorkstationDeviceProvider" timeout="20000"/>
+
+    <!-- 产品管理-物料清单 -->
+    <dubbo:reference id="pdBomMaterialsProvider" interface="com.mes.dubbo.interprovider.control.IPdBomMaterialsProvider" timeout="20000"/>
+
+    <!-- 工厂管理-设备分类 -->
+    <dubbo:reference id="ftyDeviceTypeProvider" interface="com.mes.dubbo.interprovider.control.IFtyDeviceTypeProvider" timeout="20000"/>
+
+    <!-- 产品管理-BOM-附属信息 -->
+    <dubbo:reference id="pdBomAffiliatedProvider" interface="com.mes.dubbo.interprovider.control.IPdBomAffiliatedProvider" timeout="20000"/>
+
+    <!-- 产品管理-生产BOM管理 -->
+    <dubbo:reference id="pdBomProduceProvider" interface="com.mes.dubbo.interprovider.control.IPdBomProduceProvider" timeout="2000000"/>
+
+    <!-- 产品管理-工单BOM管理 -->
+    <dubbo:reference id="pdBomWorkProvider" interface="com.mes.dubbo.interprovider.control.IPdBomWorkProvider" timeout="20000"/>
+
+    <!-- 产品管理-工单批次 -->
+    <dubbo:reference id="pdWorkOrderBatchProvider" interface="com.mes.dubbo.interprovider.control.IPdWorkOrderBatchProvider" timeout="20000"/>
+
+    <!-- 产品管理-排班-设备 -->
+    <dubbo:reference id="pdSchedulingDeviceProvider" interface="com.mes.dubbo.interprovider.control.IPdSchedulingDeviceProvider" timeout="20000"/>
+
+    <!-- 开发平台-开发工程 -->
+    <dubbo:reference id="dpProjectProvider" interface="com.mes.dubbo.interprovider.control.IDpProjectProvider" timeout="20000"/>
+
+    <!-- 生产工序-设备 -->
+    <dubbo:reference id="dpProduceProcessDeviceProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDeviceProvider" timeout="20000"/>
+
+    <!-- 开发平台-工序基础配置属性 -->
+    <dubbo:reference id="dpProcessConfigProvider" interface="com.mes.dubbo.interprovider.control.IDpProcessConfigProvider" timeout="20000"/>
+
+    <!-- 开发平台-数据字典类型 -->
+    <dubbo:reference id="dpDataDictionaryTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpDataDictionaryTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-数据字典表 -->
+    <dubbo:reference id="dpDataDictionaryProvider" interface="com.mes.dubbo.interprovider.control.IDpDataDictionaryProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品生产工序记录-历史表 -->
+    <dubbo:reference id="dpProductInfoLogHistoryProvider" interface="com.mes.dubbo.interprovider.control.IDpProductInfoLogHistoryProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细（按工单移）历史表 -->
+    <dubbo:reference id="pdProductInfoHistoryProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoHistoryProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品测试项-历史表 -->
+    <dubbo:reference id="dpProductTestLogHistoryProvider" interface="com.mes.dubbo.interprovider.control.IDpProductTestLogHistoryProvider" timeout="20000"/>
+
+    <!-- 开发平台-上料管理-历史包 -->
+    <dubbo:reference id="dpMaterialsInfoHistoryProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialsInfoHistoryProvider" timeout="20000"/>
+
+    <!-- 产品管理-工单班次 -->
+    <dubbo:reference id="pdSchedulingWorkOrderProvider" interface="com.mes.dubbo.interprovider.control.IPdSchedulingWorkOrderProvider" timeout="20000"/>
+
+    <!-- 开发平台-对象分类 -->
+    <dubbo:reference id="tableTypeProvider" interface="com.mes.dubbo.interprovider.control.ITableTypeProvider" timeout="20000"/>
+
+    <!-- 产品管理-生产BOM校验规则 -->
+    <dubbo:reference id="pdBomProduceRulesProvider" interface="com.mes.dubbo.interprovider.control.IPdBomProduceRulesProvider" timeout="20000"/>
+
+    <!-- 开发平台-标签管理 -->
+    <dubbo:reference id="dpLabelProvider" interface="com.mes.dubbo.interprovider.control.IDpLabelProvider" timeout="20000"/>
+
+    <!-- 开发平台-标签类别 -->
+    <dubbo:reference id="dpLabelTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpLabelTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-条码 -->
+    <dubbo:reference id="dpBarcodeProvider" interface="com.mes.dubbo.interprovider.control.IDpBarcodeProvider" timeout="20000"/>
+
+    <!-- 开发平台-条码类别 -->
+    <dubbo:reference id="dpBarcodeTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpBarcodeTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-素材管理 -->
+    <dubbo:reference id="dpMaterialProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialProvider" timeout="20000"/>
+
+    <!-- 开发平台-组件管理 -->
+    <dubbo:reference id="dpSubassemblyProvider" interface="com.mes.dubbo.interprovider.control.IDpSubassemblyProvider" timeout="20000"/>
+
+    <!-- 开发平台-模板管理 -->
+    <dubbo:reference id="dpTemplateProvider" interface="com.mes.dubbo.interprovider.control.IDpTemplateProvider" timeout="20000"/>
+
+    <!-- 开发平台-组件分类 -->
+    <dubbo:reference id="dpSubassemblyTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpSubassemblyTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-模板分类 -->
+    <dubbo:reference id="dpTemplateTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpTemplateTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-素材分类 -->
+    <dubbo:reference id="dpMaterialTypeProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialTypeProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细-产品编码 -->
+    <dubbo:reference id="pdProductInfoNumberProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoNumberProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细-产品编码(历史) -->
+    <dubbo:reference id="pdProductInfoNumberHistoryProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoNumberHistoryProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细-物料 -->
+    <dubbo:reference id="pdProductInfoMaterialsProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoMaterialsProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细-物料-历史 -->
+    <dubbo:reference id="pdProductInfoMaterialsHistoryProvider" interface="com.mes.dubbo.interprovider.control.IPdProductInfoMaterialsHistoryProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品属性管理 -->
+    <dubbo:reference id="pdAttributeProvider" interface="com.mes.dubbo.interprovider.control.IPdAttributeProvider" timeout="20000"/>
+
+    <!-- 服务调用监控 -->
+    <dubbo:reference id="dpServiceMonitorProvider" interface="com.mes.dubbo.interprovider.control.IDpServiceMonitorProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品测试标准 -->
+    <dubbo:reference id="dpProduceStandardTestProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceStandardTestProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品测试标准-测试顺序 -->
+    <dubbo:reference id="dpProduceStandardTestOrderProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceStandardTestOrderProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品芯片 -->
+    <dubbo:reference id="dpProduceChipProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceChipProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工序配置类型 -->
+    <dubbo:reference id="ftyProcessConfigTypeProvider" interface="com.mes.dubbo.interprovider.control.IFtyProcessConfigTypeProvider" timeout="20000"/>
+
+    <!-- 工厂管理-工序配置类型字典 -->
+    <dubbo:reference id="ftyProcessConfigTypeDictProvider" interface="com.mes.dubbo.interprovider.control.IFtyProcessConfigTypeDictProvider" timeout="20000"/>
+
+    <!-- 开发平台-栈板管理 -->
+    <dubbo:reference id="dpBoxPalletProvider" interface="com.mes.dubbo.interprovider.control.IDpBoxPalletProvider" timeout="20000"/>
+
+    <!-- 开发平台-包装箱管理 -->
+    <dubbo:reference id="dpBoxProvider" interface="com.mes.dubbo.interprovider.control.IDpBoxProvider" timeout="20000"/>
+
+    <dubbo:reference id="dpBoxRuleProvider" interface="com.mes.dubbo.interprovider.control.IDpBoxRuleProvider" timeout="20000"/>
+
+    <!-- 开发平台-包装箱-产品 -->
+    <dubbo:reference id="dpBoxProductInfoProvider" interface="com.mes.dubbo.interprovider.control.IDpBoxProductInfoProvider" timeout="20000"/>
+
+    <!-- 开发平台-栈板管理-包装箱 -->
+    <dubbo:reference id="dpBoxPalletInfoProvider" interface="com.mes.dubbo.interprovider.control.IDpBoxPalletInfoProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品维修站 -->
+    <dubbo:reference id="dpRepairStationProvider" interface="com.mes.dubbo.interprovider.control.IDpRepairStationProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品维修站-不良信息 -->
+    <dubbo:reference id="dpRepairStationBadInfoProvider" interface="com.mes.dubbo.interprovider.control.IDpRepairStationBadInfoProvider" timeout="20000"/>
+
+    <!-- 开发平台-生产工序配置-工序执行时间 -->
+    <dubbo:reference id="dpProduceProcessDateProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessDateProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品标定 -->
+    <dubbo:reference id="dpProduceDemarcateProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceDemarcateProvider" timeout="20000"/>
+
+    <!-- 软件注入结果记录 -->
+    <dubbo:reference id="pdExecSoftinjectTbProvider" interface="com.mes.dubbo.interprovider.control.IPdExecSoftinjectTbProvider" timeout="20000"/>
+
+    <!-- 终端测试项结果 -->
+    <dubbo:reference id="pdWorkTestDetailTbProvider" interface="com.mes.dubbo.interprovider.control.IPdWorkTestDetailTbProvider" timeout="20000"/>
+
+    <!-- 终端测试项设备状态 -->
+    <dubbo:reference id="pdWorkTestDeviceTbProvider" interface="com.mes.dubbo.interprovider.control.IPdWorkTestDeviceTbProvider" timeout="20000"/>
+
+    <!-- 终端测试结果 -->
+    <dubbo:reference id="pdWorkTestMainTbProvider" interface="com.mes.dubbo.interprovider.control.IPdWorkTestMainTbProvider" timeout="20000"/>
+
+    <!-- $table.description -->
+    <dubbo:reference id="pdExecSystemModuleCopyProvider" interface="com.mes.dubbo.interprovider.control.IPdExecSystemModuleCopyProvider" timeout="20000"/>
+
+    <!-- $table.description -->
+    <dubbo:reference id="pdExecTransmitSetTbProvider" interface="com.mes.dubbo.interprovider.control.IPdExecTransmitSetTbProvider" timeout="20000"/>
+
+    <!-- 产品管理-抽检管理 -->
+    <dubbo:reference id="dpSampleInspectionProvider" interface="com.mes.dubbo.interprovider.control.IDpSampleInspectionProvider" timeout="20000"/>
+
+    <!-- 产品管理-抽检管理-抽检详细 -->
+    <dubbo:reference id="dpSampleInspectionDetailProvider" interface="com.mes.dubbo.interprovider.control.IDpSampleInspectionDetailProvider" timeout="20000"/>
+
+    <!-- 开发平台-上料管理-组装 -->
+    <dubbo:reference id="dpMaterialsAssembleProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialsAssembleProvider" timeout="20000"/>
+
+    <!-- 开发平台-上料管理-上料 -->
+    <dubbo:reference id="dpMaterialsLoadProvider" interface="com.mes.dubbo.interprovider.control.IDpMaterialsLoadProvider" timeout="20000"/>
+
+    <!-- 开发平台-生产工序-工装配置信息 -->
+    <dubbo:reference id="dpProduceProcessAnnexProvider" interface="com.mes.dubbo.interprovider.control.IDpProduceProcessAnnexProvider" timeout="20000"/>
+
+    <!-- 开发平台-产品明细-产品标签 -->
+    <dubbo:reference id="pdProductPdLableProvider" interface="com.mes.dubbo.interprovider.control.IPdProductPdLableProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品条码 -->
+    <dubbo:reference id="pdProductBarCodeProvider" interface="com.mes.dubbo.interprovider.control.IPdProductBarCodeProvider" timeout="20000"/>
+
+    <!-- 产品管理-产品标签 -->
+    <dubbo:reference id="pdProductLabelProvider" interface="com.mes.dubbo.interprovider.control.IPdProductLabelProvider" timeout="20000"/>
+
+    <!-- 产品管理-条码通配符列表 -->
+    <dubbo:reference id="pdBarcodeWildcardProvider" interface="com.mes.dubbo.interprovider.control.IPdBarcodeWildcardProvider" timeout="20000"/>
+
+    <!-- 产品管理-条码通配符日期替换 -->
+    <dubbo:reference id="pdBaseReplaceTbProvider" interface="com.mes.dubbo.interprovider.control.IPdBaseReplaceTbProvider" timeout="20000"/>
+
+    <!-- 产品管理-条码扩展通配符 -->
+    <dubbo:reference id="pdPreCodeWildcardTbProvider" interface="com.mes.dubbo.interprovider.control.IPdPreCodeWildcardTbProvider" timeout="20000"/>
+
+    <!-- 开发平台-流水规则-规则 -->
+    <dubbo:reference id="serialRuleProvider" interface="com.mes.dubbo.interprovider.control.ISerialRuleProvider" timeout="20000"/>
+
+    <!-- 开发平台-流水规则-规则工单关联 -->
+    <dubbo:reference id="serialRuleWorkOrderAssociationProvider" interface="com.mes.dubbo.interprovider.control.ISerialRuleWorkOrderAssociationProvider" timeout="20000"/>
+
+    <!-- 开发平台-流水规则-明细 -->
+    <dubbo:reference id="serialRuleDetailProvider" interface="com.mes.dubbo.interprovider.control.ISerialRuleDetailProvider" timeout="20000"/>
+
+
+</beans>

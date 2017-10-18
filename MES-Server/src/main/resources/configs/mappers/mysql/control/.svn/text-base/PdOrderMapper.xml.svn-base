@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-产品订单管理 -->
+<mapper namespace="com.mes.control.mapper.PdOrderMapper">
+	<resultMap type="com.mes.entity.control.PdOrder" id="pdOrderResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="order_num" property="orderNum" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="pd_num" property="pdNum" jdbcType="VARCHAR"/>
+		<result column="customer" property="customer" jdbcType="VARCHAR"/>
+		<result column="warehouse" property="warehouse" jdbcType="VARCHAR"/>
+		<result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+		<result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdOrderResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdOrder">
+		insert into mes_pd_order (id,order_num,pd_num,customer,name,warehouse,delivery_time,status,order_time,start_time,end_time,pd_id,create_date,update_date)
+		values (#{id},#{orderNum},#{pdNum},#{customer},#{name},#{warehouse},#{deliveryTime},#{status},#{orderTime},#{startTime},#{endTime},#{pdId},#{createDate},#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdOrder">
+		update mes_pd_order s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_order where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_order t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdOrderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<select id="findByPdIdPage" parameterType="java.util.Map" resultMap="pdOrderResultMap">
+		<include refid="sql_select"/> WHERE pd_id = #{pdId} ORDER BY s.create_date DESC limit #{startRowNum},#{pageSize}
+	</select>
+
+	<select id="getCountByPdId" parameterType="java.util.Map" resultType="int">
+			SELECT count(1) FROM mes_pd_order  WHERE pd_id = #{pdId}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdOrderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdOrderResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,order_num,pd_num,customer,name,warehouse,delivery_time,status,order_time,start_time,end_time,pd_id,create_date,update_date from mes_pd_order s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				order_num like CONCAT('%', #{search}, '%')
+				or pd_num like CONCAT('%', #{search}, '%')
+				or customer like CONCAT('%', #{search}, '%')
+				or name like CONCAT('%', #{search}, '%')
+				or warehouse like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="orderNum != null  and orderNum != '' ">
+				<![CDATA[
+					and order_num = #{orderNum}
+				]]>
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					and pd_num = #{pdNum}
+				]]>
+			</if>
+			<if test="customer != null  and customer != '' ">
+				<![CDATA[
+					and customer = #{customer}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="warehouse != null  and warehouse != '' ">
+				<![CDATA[
+					and warehouse = #{warehouse}
+				]]>
+			</if>
+			<if test="deliveryTime != null  and deliveryTime != '' ">
+				<![CDATA[
+					and delivery_time = #{deliveryTime}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status = #{status}
+				]]>
+			</if>
+			<if test="orderTime != null  and orderTime != '' ">
+				<![CDATA[
+					and order_time = #{orderTime}
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					and start_time = #{startTime}
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					and end_time = #{endTime}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="orderNum != null  and orderNum != '' ">
+				<![CDATA[
+					or order_num = #{orderNum}
+				]]>
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					or pd_num = #{pdNum}
+				]]>
+			</if>
+			<if test="customer != null  and customer != '' ">
+				<![CDATA[
+					or customer = #{customer}
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="warehouse != null  and warehouse != '' ">
+				<![CDATA[
+					or warehouse = #{warehouse}
+				]]>
+			</if>
+			<if test="deliveryTime != null  and deliveryTime != '' ">
+				<![CDATA[
+					or delivery_time = #{deliveryTime}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="orderTime != null  and orderTime != '' ">
+				<![CDATA[
+					or order_time = #{orderTime}
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					or start_time = #{startTime}
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					or end_time = #{endTime}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="orderNum != null  and orderNum != '' ">
+				<![CDATA[
+					and order_num like CONCAT('%', #{orderNum}, '%')
+				]]>
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					and pd_num like CONCAT('%', #{pdNum}, '%')
+				]]>
+			</if>
+			<if test="customer != null  and customer != '' ">
+				<![CDATA[
+					and customer like CONCAT('%', #{customer}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="warehouse != null  and warehouse != '' ">
+				<![CDATA[
+					and warehouse like CONCAT('%', #{warehouse}, '%')
+				]]>
+			</if>
+			<if test="deliveryTime != null  and deliveryTime != '' ">
+				<![CDATA[
+					and delivery_time like binary  CONCAT('%', #{deliveryTime}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="orderTime != null  and orderTime != '' ">
+				<![CDATA[
+					and order_time like binary  CONCAT('%', #{orderTime}, '%')
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					and start_time like binary  CONCAT('%', #{startTime}, '%')
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					and end_time like binary  CONCAT('%', #{endTime}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like binary  CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like binary  CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="orderNum != null  and orderNum != '' ">
+				<![CDATA[
+					or order_num like CONCAT('%', #{orderNum}, '%')
+				]]>
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					or pd_num like CONCAT('%', #{pdNum}, '%')
+				]]>
+			</if>
+			<if test="customer != null  and customer != '' ">
+				<![CDATA[
+					or customer like CONCAT('%', #{customer}, '%')
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="warehouse != null  and warehouse != '' ">
+				<![CDATA[
+					or warehouse like CONCAT('%', #{warehouse}, '%')
+				]]>
+			</if>
+			<if test="deliveryTime != null  and deliveryTime != '' ">
+				<![CDATA[
+					or delivery_time like binary  CONCAT('%', #{deliveryTime}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="orderTime != null  and orderTime != '' ">
+				<![CDATA[
+					or order_time like binary  CONCAT('%', #{orderTime}, '%')
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					or start_time like binary  CONCAT('%', #{startTime}, '%')
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					or end_time like binary CONCAT('%', #{endTime}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like binary CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like binary CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="orderNum != null  and orderNum != '' ">
+				<![CDATA[
+					order_num = #{orderNum},
+				]]>
+			</if>
+			<if test="pdNum != null  and pdNum != '' ">
+				<![CDATA[
+					pd_num = #{pdNum},
+				]]>
+			</if>
+			<if test="customer != null  and customer != '' ">
+				<![CDATA[
+					customer = #{customer},
+				]]>
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="warehouse != null  and warehouse != '' ">
+				<![CDATA[
+					warehouse = #{warehouse},
+				]]>
+			</if>
+			<if test="deliveryTime != null  and deliveryTime != '' ">
+				<![CDATA[
+					delivery_time = #{deliveryTime},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="orderTime != null  and orderTime != '' ">
+				<![CDATA[
+					order_time = #{orderTime},
+				]]>
+			</if>
+			<if test="startTime != null  and startTime != '' ">
+				<![CDATA[
+					start_time = #{startTime},
+				]]>
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				<![CDATA[
+					end_time = #{endTime},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

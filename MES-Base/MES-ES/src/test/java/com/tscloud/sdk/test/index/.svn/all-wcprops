@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/test/java/com/tscloud/sdk/test/index
+END
+NewIndexTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/test/java/com/tscloud/sdk/test/index/NewIndexTest.java
+END
+IndexUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/test/java/com/tscloud/sdk/test/index/IndexUtil.java
+END
+ElasticSearchTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/test/java/com/tscloud/sdk/test/index/ElasticSearchTest.java
+END
+CloudIndexClientTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/projectnew/IOV_PLATFORM/!svn/ver/15170/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-ES/src/test/java/com/tscloud/sdk/test/index/CloudIndexClientTest.java
+END

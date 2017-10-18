@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/projectnew/IOV_PLATFORM/!svn/ver/17030/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop
+END
+byte-op-product-label-info.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16852/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-product-label-info.groovy
+END
+byte-op-inner-pcba-version.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16956/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-inner-pcba-version.groovy
+END
+byte-op-config-data-flag.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/16873/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-config-data-flag.groovy
+END
+byte-op-inner-version.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-inner-version.groovy
+END
+byte-op-erp-trace-no.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/projectnew/IOV_PLATFORM/!svn/ver/16852/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-erp-trace-no.groovy
+END
+byte-op-inalfa-inner-part-no.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/17030/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-inalfa-inner-part-no.groovy
+END
+byte-op-identity.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-identity.groovy
+END
+to-bcd.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/to-bcd.groovy
+END
+byte-op-inalfa-client-trace-no.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/projectnew/IOV_PLATFORM/!svn/ver/16443/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-inalfa-client-trace-no.groovy
+END
+byte-op-outer-version.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/16827/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/groovy/byteop/byte-op-outer-version.groovy
+END

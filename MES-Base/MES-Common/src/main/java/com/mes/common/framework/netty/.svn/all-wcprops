@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/projectnew/IOV_PLATFORM/!svn/ver/16691/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty
+END
+IBizHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/16608/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/IBizHandler.java
+END
+ClientHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/ClientHandler.java
+END
+MessageDecoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/16691/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/MessageDecoder.java
+END
+IMessageHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/projectnew/IOV_PLATFORM/!svn/ver/16608/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/IMessageHandler.java
+END
+MessageServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/MessageServer.java
+END
+Message.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/projectnew/IOV_PLATFORM/!svn/ver/16608/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/Message.java
+END
+ServerHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/ServerHandler.java
+END
+MessageEncoder.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/projectnew/IOV_PLATFORM/!svn/ver/13924/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/MessageEncoder.java
+END
+IExceptionHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/IExceptionHandler.java
+END
+MessageClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/MessageClient.java
+END
+ServerChannelInitializer.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/projectnew/IOV_PLATFORM/!svn/ver/15643/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/netty/ServerChannelInitializer.java
+END

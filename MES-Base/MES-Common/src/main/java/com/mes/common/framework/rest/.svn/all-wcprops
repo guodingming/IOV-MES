@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/projectnew/IOV_PLATFORM/!svn/ver/16029/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/rest
+END
+BaseRestServerInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/projectnew/IOV_PLATFORM/!svn/ver/15161/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/rest/BaseRestServerInterface.java
+END
+WSRestClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/rest/WSRestClient.java
+END
+MyValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/projectnew/IOV_PLATFORM/!svn/ver/14020/source/IOV-Mes5.0/trunk/IOV-MES/MES-Base/MES-Common/src/main/java/com/mes/common/framework/rest/MyValidator.java
+END

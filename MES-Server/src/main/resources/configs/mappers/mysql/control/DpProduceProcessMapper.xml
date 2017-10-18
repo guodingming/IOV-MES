@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-产品生产工序 -->
+<mapper namespace="com.mes.control.mapper.DpProduceProcessMapper">
+	<resultMap type="com.mes.entity.control.DpProduceProcess" id="dpProduceProcessResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="pd_line_id" property="pdLineId" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="process_id" property="processId" jdbcType="VARCHAR"/>
+		<result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+		<result column="form_type_id" property="formTypeId" jdbcType="VARCHAR"/>
+		<result column="form_id" property="formId" jdbcType="VARCHAR"/>
+		<result column="is_auto" property="isAuto" jdbcType="VARCHAR"/>
+		<result column="process_name" property="processName" jdbcType="VARCHAR"/>
+		<result column="process_code" property="processCode" jdbcType="VARCHAR"/>
+		<result column="process_description" property="processDescription" jdbcType="VARCHAR"/>
+		<result column="form_name" property="formName" jdbcType="VARCHAR"/>
+		<result column="bom_name" property="bomName" jdbcType="VARCHAR"/>
+		<result column="is_bom_materials" property="isBomMaterials" jdbcType="VARCHAR"/>
+		<result column="bom_produce_id" property="bomProduceId" jdbcType="VARCHAR"/>
+		<result column="sort" property="sort" jdbcType="INTEGER"/>
+		<result column="is_init" property="isInit" jdbcType="VARCHAR"/>
+		<result column="init_fn_type_id" property="initFnTypeId" jdbcType="VARCHAR"/>
+		<result column="init_fn_id" property="initFnId" jdbcType="VARCHAR"/>
+		<result column="is_custom" property="isCustom" jdbcType="VARCHAR"/>
+		<result column="custom_fn_type_id" property="customFnTypeId" jdbcType="VARCHAR"/>
+		<result column="custom_fn_id" property="customFnId" jdbcType="VARCHAR"/>
+		<result column="execute_time" property="executeTime" jdbcType="BIGINT"/>
+		<result column="is_custom_check" property="isCustomCheck" jdbcType="VARCHAR"/>
+		<result column="custom_check_fn_type_id" property="customCheckFnTypeId" jdbcType="VARCHAR"/>
+		<result column="custom_check_fn_id" property="customCheckFnId" jdbcType="VARCHAR"/>
+		<result column="is_validate_last_process" property="isValidateLastProcess" jdbcType="VARCHAR"/>
+		<result column="last_produce_process_id" property="lastProduceProcessId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpProduceProcessResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+		order by s.sort asc
+	</select>
+
+	<select id="getProduceProcesses" resultType="java.util.Map">
+		SELECT pp.`id` AS produceProcessId, pp.`process_id` AS processId,p.`name` AS `process_name`,p.code as process_code
+		FROM mes_dp_produce_process pp, mes_fty_process p
+		WHERE pp.`process_id`=p.`id`
+		AND pp.`is_auto`=#{isAuto}
+		AND pp.`pd_id`=#{pdId}
+		order by pp.sort ASC
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpProduceProcess">
+		insert into mes_dp_produce_process (id,pd_line_id,pd_id,process_id,project_id,form_type_id,form_id,is_auto,is_bom_materials,bom_produce_id,create_date,sort,is_init,init_fn_type_id,init_fn_id,is_custom,custom_fn_type_id,custom_fn_id,is_validate_last_process,last_produce_process_id,`execute_time`,`is_custom_check`,`custom_check_fn_type_id`,`custom_check_fn_id`)
+		values (#{id},#{pdLineId},#{pdId},#{processId},#{projectId},#{formTypeId},#{formId},#{isAuto},#{isBomMaterials},#{bomProduceId},#{createDate},#{sort},#{isInit},#{initFnTypeId},#{initFnId},#{isCustom},#{customFnTypeId},#{customFnId},#{isValidateLastProcess},#{lastProduceProcessId},#{executeTime},#{isCustomCheck},#{customCheckFnTypeId},#{customCheckFnId})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpProduceProcess">
+		update mes_dp_produce_process s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_produce_process where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1)
+		FROM mes_dp_produce_process s left join mes_fty_process p ON s.`process_id`=p.`id`
+		left join mes_dp_form f ON s.form_id=f.id
+		left join mes_pd_bom_produce bp ON s.bom_produce_id=bp.id
+		<include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpProduceProcessResultMap">
+		SELECT s.*, p.`name` as process_name, p.`code` as process_code, p.`description` as process_description, f.name as form_name, bp.name as bom_name
+		FROM mes_dp_produce_process s left join mes_fty_process p ON s.`process_id`=p.`id`
+		left join mes_dp_form f ON s.form_id=f.id
+		left join mes_pd_bom_produce bp ON s.bom_produce_id=bp.id
+		<include refid="sql_where_and_equal"/> order by s.sort asc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpProduceProcessResultMap">
+		SELECT s.*, p.`name` as process_name, p.`code` as process_code, p.`description` as process_description, f.name as form_name, bp.name as bom_name
+		FROM mes_dp_produce_process s
+		left join mes_fty_process p ON s.`process_id`=p.`id`
+		left join mes_dp_form f ON s.form_id=f.id
+		left join mes_pd_bom_produce bp ON s.bom_produce_id=bp.id
+		<include refid="sql_where_and_equal"/> order by s.sort asc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpProduceProcessResultMap">
+		SELECT s.*, p.`name` as process_name, p.`code` as process_code, p.`description` as process_description, f.name as form_name, bp.name as bom_name
+		FROM mes_dp_produce_process s left join mes_fty_process p ON s.`process_id`=p.`id`
+		left join mes_dp_form f ON s.form_id=f.id
+		left join mes_pd_bom_produce bp ON s.bom_produce_id=bp.id
+		<include refid="sql_where_and_equal"/>order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.pd_line_id,s.pd_id,s.process_id,s.project_id,s.form_type_id,s.form_id,s.is_auto,s.is_bom_materials,
+		s.bom_produce_id,s.create_date,s.sort,s.is_init,s.init_fn_type_id,s.init_fn_id,s.is_custom,s.custom_fn_type_id,
+		s.custom_fn_id,s.is_validate_last_process,s.last_produce_process_id,p.name as process_name,p.code as process_code,s.`execute_time`,s.`is_custom_check`,s.`custom_check_fn_type_id`,s.`custom_check_fn_id`
+		 from mes_dp_produce_process s
+		 left join  mes_fty_process p ON s.`process_id`=p.`id`
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (p.name like CONCAT('%', #{search}, '%')
+				or p.code like CONCAT('%', #{search}, '%')
+				or f.name like CONCAT('%', #{search}, '%')
+				or bp.name like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and s.pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					and process_id = #{processId}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and project_id = #{projectId}
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					and form_type_id = #{formTypeId}
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					and form_id = #{formId}
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					and is_auto = #{isAuto}
+				]]>
+			</if>
+			<if test="isBomMaterials != null  and isBomMaterials != '' ">
+				<![CDATA[
+					and is_bom_materials = #{isBomMaterials}
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					and bom_produce_id = #{bomProduceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+			<if test="isInit != null  and isInit != '' ">
+				<![CDATA[
+					and is_init = #{isInit}
+				]]>
+			</if>
+			<if test="initFnTypeId != null  and initFnTypeId != '' ">
+				<![CDATA[
+					and init_fn_type_id = #{initFnTypeId}
+				]]>
+			</if>
+			<if test="initFnId != null  and initFnId != '' ">
+				<![CDATA[
+					and init_fn_id = #{initFnId}
+				]]>
+			</if>
+			<if test="isCustom != null  and isCustom != '' ">
+				<![CDATA[
+					and is_custom = #{isCustom}
+				]]>
+			</if>
+			<if test="customFnTypeId != null  and customFnTypeId != '' ">
+				<![CDATA[
+					and custom_fn_type_id = #{customFnTypeId}
+				]]>
+			</if>
+			<if test="customFnId != null  and customFnId != '' ">
+				<![CDATA[
+					and custom_fn_id = #{customFnId}
+				]]>
+			</if>
+			<if test="sort != null">
+				<![CDATA[
+					and sort = #{sort}
+				]]>
+			</if>
+			<if test="isValidateLastProcess != null  and isValidateLastProcess != '' ">
+				<![CDATA[
+					and is_validate_last_process = #{isValidateLastProcess}
+				]]>
+			</if>
+			<if test="lastProduceProcessId != null and lastProduceProcessId != ''">
+				<![CDATA[
+					and last_produce_process_id = #{lastProduceProcessId}
+				]]>
+			</if>
+			<if test="executeTime != null  and executeTime != '' ">
+				<![CDATA[
+					and execute_time = #{executeTime}
+				]]>
+			</if>
+			<if test="isCustomCheck != null  and isCustomCheck != '' ">
+				<![CDATA[
+					and is_custom_check = #{isCustomCheck}
+				]]>
+			</if>
+			<if test="customCheckFnTypeId != null  and customCheckFnTypeId != '' ">
+				<![CDATA[
+					and custom_check_fn_type_id = #{customCheckFnTypeId}
+				]]>
+			</if>
+			<if test="customCheckFnId != null  and customCheckFnId != '' ">
+				<![CDATA[
+					and custom_check_fn_id = #{customCheckFnId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id = #{pdLineId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					or process_id = #{processId}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id = #{projectId}
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					or form_type_id = #{formTypeId}
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					or form_id = #{formId}
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					or is_auto = #{isAuto}
+				]]>
+			</if>
+			<if test="isBomMaterials != null  and isBomMaterials != '' ">
+				<![CDATA[
+					or is_bom_materials = #{isBomMaterials}
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					or bom_produce_id = #{bomProduceId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+
+			<if test="isInit != null  and isInit != '' ">
+				<![CDATA[
+					or is_init = #{isInit}
+				]]>
+			</if>
+			<if test="initFnTypeId != null  and initFnTypeId != '' ">
+				<![CDATA[
+					or init_fn_type_id = #{initFnTypeId}
+				]]>
+			</if>
+			<if test="initFnId != null  and initFnId != '' ">
+				<![CDATA[
+					or init_fn_id = #{initFnId}
+				]]>
+			</if>
+			<if test="isCustom != null  and isCustom != '' ">
+				<![CDATA[
+					or is_custom = #{isCustom}
+				]]>
+			</if>
+			<if test="customFnTypeId != null  and customFnTypeId != '' ">
+				<![CDATA[
+					or custom_fn_type_id = #{customFnTypeId}
+				]]>
+			</if>
+			<if test="customFnId != null  and customFnId != '' ">
+				<![CDATA[
+					or custom_fn_id = #{customFnId}
+				]]>
+			</if>
+			<if test="sort != null">
+				<![CDATA[
+					or sort = #{sort}
+				]]>
+			</if>
+			<if test="isValidateLastProcess != null  and isValidateLastProcess != '' ">
+				<![CDATA[
+					or is_validate_last_process = #{isValidateLastProcess}
+				]]>
+			</if>
+			<if test="lastProduceProcessId != null and lastProduceProcessId != ''">
+				<![CDATA[
+					or last_produce_process_id = #{lastProduceProcessId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					and pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					and process_id like CONCAT('%', #{processId}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					and form_type_id like CONCAT('%', #{formTypeId}, '%')
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					and form_id like CONCAT('%', #{formId}, '%')
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					and is_auto like CONCAT('%', #{isAuto}, '%')
+				]]>
+			</if>
+			<if test="isBomMaterials != null  and isBomMaterials != '' ">
+				<![CDATA[
+					and is_bom_materials like CONCAT('%', #{isBomMaterials}, '%')
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					and bom_produce_id like CONCAT('%', #{bomProduceId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					or pd_line_id like CONCAT('%', #{pdLineId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					or process_id like CONCAT('%', #{processId}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					or form_type_id like CONCAT('%', #{formTypeId}, '%')
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					or form_id like CONCAT('%', #{formId}, '%')
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					or is_auto like CONCAT('%', #{isAuto}, '%')
+				]]>
+			</if>
+			<if test="isBomMaterials != null  and isBomMaterials != '' ">
+				<![CDATA[
+					or is_bom_materials like CONCAT('%', #{isBomMaterials}, '%')
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					or bom_produce_id like CONCAT('%', #{bomProduceId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="pdLineId != null  and pdLineId != '' ">
+				<![CDATA[
+					pd_line_id = #{pdLineId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="processId != null  and processId != '' ">
+				<![CDATA[
+					process_id = #{processId},
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					project_id = #{projectId},
+				]]>
+			</if>
+			<if test="formTypeId != null  and formTypeId != '' ">
+				<![CDATA[
+					form_type_id = #{formTypeId},
+				]]>
+			</if>
+			<if test="formId != null  and formId != '' ">
+				<![CDATA[
+					form_id = #{formId},
+				]]>
+			</if>
+			<if test="isAuto != null  and isAuto != '' ">
+				<![CDATA[
+					is_auto = #{isAuto},
+				]]>
+			</if>
+			<if test="isBomMaterials != null  and isBomMaterials != '' ">
+				<![CDATA[
+					is_bom_materials = #{isBomMaterials},
+				]]>
+			</if>
+			<if test="bomProduceId != null  and bomProduceId != '' ">
+				<![CDATA[
+					bom_produce_id = #{bomProduceId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="isInit != null  and isInit != '' ">
+				<![CDATA[
+					is_init = #{isInit},
+				]]>
+			</if>
+			<if test="initFnTypeId != null  and initFnTypeId != '' ">
+				<![CDATA[
+					init_fn_type_id = #{initFnTypeId},
+				]]>
+			</if>
+			<if test="initFnId != null  and initFnId != '' ">
+				<![CDATA[
+					init_fn_id = #{initFnId},
+				]]>
+			</if>
+			<if test="isCustom != null  and isCustom != '' ">
+				<![CDATA[
+					is_custom = #{isCustom},
+				]]>
+			</if>
+			<if test="customFnTypeId != null  and customFnTypeId != '' ">
+				<![CDATA[
+					custom_fn_type_id = #{customFnTypeId},
+				]]>
+			</if>
+			<if test="customFnId != null  and customFnId != '' ">
+				<![CDATA[
+					custom_fn_id = #{customFnId},
+				]]>
+			</if>
+			<if test="sort != null">
+				<![CDATA[
+					sort = #{sort},
+				]]>
+			</if>
+			<if test="isValidateLastProcess != null  and isValidateLastProcess != '' ">
+				<![CDATA[
+					is_validate_last_process = #{isValidateLastProcess},
+				]]>
+			</if>
+			<if test="lastProduceProcessId != null and lastProduceProcessId != ''">
+				<![CDATA[
+					last_produce_process_id = #{lastProduceProcessId},
+				]]>
+			</if>
+			<if test="executeTime != null  and executeTime != '' ">
+				<![CDATA[
+					execute_time = #{executeTime},
+				]]>
+			</if>
+			<if test="isCustomCheck != null  and isCustomCheck != '' ">
+				<![CDATA[
+					is_custom_check = #{isCustomCheck},
+				]]>
+			</if>
+			<if test="customCheckFnTypeId != null  and customCheckFnTypeId != '' ">
+				<![CDATA[
+					custom_check_fn_type_id = #{customCheckFnTypeId},
+				]]>
+			</if>
+			<if test="customCheckFnId != null  and customCheckFnId != '' ">
+				<![CDATA[
+					custom_check_fn_id = #{customCheckFnId},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

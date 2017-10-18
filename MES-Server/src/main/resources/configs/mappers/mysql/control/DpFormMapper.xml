@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-表单 -->
+<mapper namespace="com.mes.control.mapper.DpFormMapper">
+	<resultMap type="com.mes.entity.control.DpForm" id="dpFormResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="url" property="url" jdbcType="VARCHAR"/>
+		<result column="html" property="html" jdbcType="VARCHAR"/>
+		<result column="width" property="width" jdbcType="VARCHAR"/>
+		<result column="height" property="height" jdbcType="VARCHAR"/>
+		<result column="javascript" property="javascript" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpFormResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpForm">
+		insert into mes_dp_form (id,name,pd_id,url,html,javascript,width,height,description,create_date)
+		values (#{id},#{name},#{pdId},#{url},#{html},#{javascript},#{width},#{height},#{description},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpForm">
+		update mes_dp_form s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_form where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_form t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpFormResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpFormResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpFormResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,name,pd_id,url,html,javascript,width,height,description,create_date from mes_dp_form s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1=1
+			<if test="search != null and search != '' ">
+				and (
+				name like CONCAT('%', #{search}, '%')
+				or url like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name = #{name}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					and url = #{url}
+				]]>
+			</if>
+			<if test="html != null  and html != '' ">
+				<![CDATA[
+					and html = #{html}
+				]]>
+			</if>
+			<if test="javascript != null  and javascript != '' ">
+				<![CDATA[
+					and javascript = #{javascript}
+				]]>
+			</if>
+			<if test="width != null  and width != '' ">
+				<![CDATA[
+					and width = #{width}
+				]]>
+			</if>
+			<if test="height != null  and height != '' ">
+				<![CDATA[
+					and height = #{height}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name = #{name}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					or url = #{url}
+				]]>
+			</if>
+			<if test="html != null  and html != '' ">
+				<![CDATA[
+					or html = #{html}
+				]]>
+			</if>
+			<if test="javascript != null  and javascript != '' ">
+				<![CDATA[
+					or javascript = #{javascript}
+				]]>
+			</if>
+			<if test="width != null  and width != '' ">
+				<![CDATA[
+					or width = #{width}
+				]]>
+			</if>
+			<if test="height != null  and height != '' ">
+				<![CDATA[
+					or height = #{height}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					and url like CONCAT('%', #{url}, '%')
+				]]>
+			</if>
+			<if test="html != null  and html != '' ">
+				<![CDATA[
+					and html like CONCAT('%', #{html}, '%')
+				]]>
+			</if>
+			<if test="javascript != null  and javascript != '' ">
+				<![CDATA[
+					and javascript like CONCAT('%', #{javascript}, '%')
+				]]>
+			</if>
+			<if test="width != null  and width != '' ">
+				<![CDATA[
+					and width like CONCAT('%', #{width}, '%')
+				]]>
+			</if>
+			<if test="height != null  and height != '' ">
+				<![CDATA[
+					and height like CONCAT('%', #{height}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					or url like CONCAT('%', #{url}, '%')
+				]]>
+			</if>
+			<if test="html != null  and html != '' ">
+				<![CDATA[
+					or html like CONCAT('%', #{html}, '%')
+				]]>
+			</if>
+			<if test="javascript != null  and javascript != '' ">
+				<![CDATA[
+					or javascript like CONCAT('%', #{javascript}, '%')
+				]]>
+			</if>
+			<if test="width != null  and width != '' ">
+				<![CDATA[
+					or width like CONCAT('%', #{width}, '%')
+				]]>
+			</if>
+			<if test="height != null  and height != '' ">
+				<![CDATA[
+					or height like CONCAT('%', #{height}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					name = #{name},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="url != null  and url != '' ">
+				<![CDATA[
+					url = #{url},
+				]]>
+			</if>
+			<if test="html != null">
+				<![CDATA[
+				    html = #{html},
+				]]>
+			</if>
+			<if test="javascript != null">
+				<![CDATA[
+				   javascript = #{javascript},
+				]]>
+			</if>
+			<if test="width != null  and width != '' ">
+				<![CDATA[
+					width = #{width},
+				]]>
+			</if>
+			<if test="height != null  and height != '' ">
+				<![CDATA[
+					height = #{height},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					 create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

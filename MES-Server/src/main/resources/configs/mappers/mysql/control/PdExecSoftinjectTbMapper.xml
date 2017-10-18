@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 软件注入结果记录 -->
+<mapper namespace="com.mes.control.mapper.PdExecSoftinjectTbMapper">
+    <resultMap type="com.mes.entity.control.PdExecSoftinjectTb" id="pdExecSoftinjectTbResultMap">
+        
+        <result column="serial_id" property="serialId" jdbcType="VARCHAR"/>
+        
+        <result column="product_serial_id" property="productSerialId" jdbcType="VARCHAR"/>
+        
+        <result column="addr" property="addr" jdbcType="VARCHAR"/>
+        
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        
+        <result column="pre_content" property="preContent" jdbcType="VARCHAR"/>
+        
+        <result column="oper_date" property="operDate" jdbcType="TIMESTAMP"/>
+        
+    </resultMap>
+
+    <!--根据id查询-->
+    <select id="findById"  resultMap="pdExecSoftinjectTbResultMap">
+        <include refid="sql_select"/>
+        where s.id = #{id}
+    </select>
+
+    <!--新增操作 -->
+    <insert id="save" parameterType="com.mes.entity.control.PdExecSoftinjectTb">
+        insert into mes_pd_exec_softinject_tb
+        (`serial_id`,`product_serial_id`,`addr`,`content`,`pre_content`,`oper_date`)
+        values
+        (#{serialId},#{productSerialId},#{addr},#{content},#{preContent},#{operDate})
+    </insert>
+
+    <!--更新操作-->
+    <update id="update" parameterType="com.mes.entity.control.PdExecSoftinjectTb">
+        update mes_pd_exec_softinject_tb s
+        <include refid="sql_update"/>
+        where s.id = #{id}
+    </update>
+
+    <!--根据id删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from mes_pd_exec_softinject_tb where id =#{id}
+    </delete>
+
+    <!--获取数据条数-->
+    <select id="getCount" parameterType="java.util.Map" resultType="int">
+        select count(1) from mes_pd_exec_softinject_tb t
+        <include refid="sql_where_and_equal"/>
+    </select>
+
+    <!--分页查询记录-->
+    <select id="findByPage"  parameterType="java.util.Map" resultMap="pdExecSoftinjectTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+        limit #{startRowNum},#{pageSize}
+    </select>
+
+    <!--根据条件查询-->
+    <select id="findByMap"  parameterType="java.util.Map" resultMap="pdExecSoftinjectTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询所有-->
+    <select id="findAll"  resultMap="pdExecSoftinjectTbResultMap">
+        <include refid="sql_select"/>
+        <include refid="sql_where_and_equal"/>
+        order by s.create_date desc
+    </select>
+
+    <!--查询字段-->
+    <sql id="sql_select">
+        SELECT `serial_id`,`product_serial_id`,`addr`,`content`,`pre_content`,`oper_date` from mes_pd_exec_softinject_tb  s
+    </sql>
+
+        <!--查询条件-->
+    <sql id="sql_where_and_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `serial_id` like CONCAT('%', #{search}, '%')
+				or `product_serial_id` like CONCAT('%', #{search}, '%')
+				or `addr` like CONCAT('%', #{search}, '%')
+				or `content` like CONCAT('%', #{search}, '%')
+				or `pre_content` like CONCAT('%', #{search}, '%')
+				or `oper_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="serialId != null  and serialId != '' ">
+            <![CDATA[
+                and `serial_id` = #{serialId}
+            ]]>
+            </if>
+            
+            <if test="productSerialId != null  and productSerialId != '' ">
+            <![CDATA[
+                and `product_serial_id` = #{productSerialId}
+            ]]>
+            </if>
+            
+            <if test="addr != null  and addr != '' ">
+            <![CDATA[
+                and `addr` = #{addr}
+            ]]>
+            </if>
+            
+            <if test="content != null  and content != '' ">
+            <![CDATA[
+                and `content` = #{content}
+            ]]>
+            </if>
+            
+            <if test="preContent != null  and preContent != '' ">
+            <![CDATA[
+                and `pre_content` = #{preContent}
+            ]]>
+            </if>
+            
+            <if test="operDate != null  and operDate != '' ">
+            <![CDATA[
+                and `oper_date` = #{operDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_equal">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `serial_id` like CONCAT('%', #{search}, '%')
+				or `product_serial_id` like CONCAT('%', #{search}, '%')
+				or `addr` like CONCAT('%', #{search}, '%')
+				or `content` like CONCAT('%', #{search}, '%')
+				or `pre_content` like CONCAT('%', #{search}, '%')
+				or `oper_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="serialId != null  and serialId != '' ">
+            <![CDATA[
+                or `serial_id` = #{serialId}
+            ]]>
+            </if>
+            
+            <if test="productSerialId != null  and productSerialId != '' ">
+            <![CDATA[
+                or `product_serial_id` = #{productSerialId}
+            ]]>
+            </if>
+            
+            <if test="addr != null  and addr != '' ">
+            <![CDATA[
+                or `addr` = #{addr}
+            ]]>
+            </if>
+            
+            <if test="content != null  and content != '' ">
+            <![CDATA[
+                or `content` = #{content}
+            ]]>
+            </if>
+            
+            <if test="preContent != null  and preContent != '' ">
+            <![CDATA[
+                or `pre_content` = #{preContent}
+            ]]>
+            </if>
+            
+            <if test="operDate != null  and operDate != '' ">
+            <![CDATA[
+                or `oper_date` = #{operDate}
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_and_like">
+        <where>
+            <if test="search != null and search != '' ">
+                and (
+                `serial_id` like CONCAT('%', #{search}, '%')
+				or `product_serial_id` like CONCAT('%', #{search}, '%')
+				or `addr` like CONCAT('%', #{search}, '%')
+				or `content` like CONCAT('%', #{search}, '%')
+				or `pre_content` like CONCAT('%', #{search}, '%')
+				or `oper_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="serialId != null  and serialId != '' ">
+            <![CDATA[
+                and `serial_id` CONCAT('%', #{serialId}, '%')
+            ]]>
+            </if>
+            
+            <if test="productSerialId != null  and productSerialId != '' ">
+            <![CDATA[
+                and `product_serial_id` CONCAT('%', #{productSerialId}, '%')
+            ]]>
+            </if>
+            
+            <if test="addr != null  and addr != '' ">
+            <![CDATA[
+                and `addr` CONCAT('%', #{addr}, '%')
+            ]]>
+            </if>
+            
+            <if test="content != null  and content != '' ">
+            <![CDATA[
+                and `content` CONCAT('%', #{content}, '%')
+            ]]>
+            </if>
+            
+            <if test="preContent != null  and preContent != '' ">
+            <![CDATA[
+                and `pre_content` CONCAT('%', #{preContent}, '%')
+            ]]>
+            </if>
+            
+            <if test="operDate != null  and operDate != '' ">
+            <![CDATA[
+                and `oper_date` CONCAT('%', #{operDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--查询条件-->
+    <sql id="sql_where_or_like">
+        <where>
+            <if test="search != null and search != '' ">
+                or (
+                `serial_id` like CONCAT('%', #{search}, '%')
+				or `product_serial_id` like CONCAT('%', #{search}, '%')
+				or `addr` like CONCAT('%', #{search}, '%')
+				or `content` like CONCAT('%', #{search}, '%')
+				or `pre_content` like CONCAT('%', #{search}, '%')
+				or `oper_date` like CONCAT('%', #{search}, '%')
+                )
+            </if>
+            
+            <if test="serialId != null  and serialId != '' ">
+            <![CDATA[
+                or `serial_id` CONCAT('%', #{serialId}, '%')
+            ]]>
+            </if>
+            
+            <if test="productSerialId != null  and productSerialId != '' ">
+            <![CDATA[
+                or `product_serial_id` CONCAT('%', #{productSerialId}, '%')
+            ]]>
+            </if>
+            
+            <if test="addr != null  and addr != '' ">
+            <![CDATA[
+                or `addr` CONCAT('%', #{addr}, '%')
+            ]]>
+            </if>
+            
+            <if test="content != null  and content != '' ">
+            <![CDATA[
+                or `content` CONCAT('%', #{content}, '%')
+            ]]>
+            </if>
+            
+            <if test="preContent != null  and preContent != '' ">
+            <![CDATA[
+                or `pre_content` CONCAT('%', #{preContent}, '%')
+            ]]>
+            </if>
+            
+            <if test="operDate != null  and operDate != '' ">
+            <![CDATA[
+                or `oper_date` CONCAT('%', #{operDate}, '%')
+            ]]>
+            </if>
+            
+        </where>
+    </sql>
+
+    <!--更新操作-->
+    <sql id="sql_update">
+        <set>
+            
+            <if test="serialId != null  and serialId != '' ">
+            <![CDATA[
+                `serial_id` = #{serialId},
+            ]]>
+            </if>
+            
+            <if test="productSerialId != null  and productSerialId != '' ">
+            <![CDATA[
+                `product_serial_id` = #{productSerialId},
+            ]]>
+            </if>
+            
+            <if test="addr != null  and addr != '' ">
+            <![CDATA[
+                `addr` = #{addr},
+            ]]>
+            </if>
+            
+            <if test="content != null  and content != '' ">
+            <![CDATA[
+                `content` = #{content},
+            ]]>
+            </if>
+            
+            <if test="preContent != null  and preContent != '' ">
+            <![CDATA[
+                `pre_content` = #{preContent},
+            ]]>
+            </if>
+            
+            <if test="operDate != null  and operDate != '' ">
+            <![CDATA[
+                `oper_date` = #{operDate},
+            ]]>
+            </if>
+            
+        </set>
+    </sql>
+</mapper>

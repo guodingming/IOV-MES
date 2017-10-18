@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/projectnew/IOV_PLATFORM/!svn/ver/17264/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin
+END
+rest-server
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/projectnew/IOV_PLATFORM/!svn/ver/17264/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/rest-server
+END
+stopServer.sh
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/projectnew/IOV_PLATFORM/!svn/ver/13982/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/stopServer.sh
+END
+setEnv.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/setEnv.cmd
+END
+startServer.bat
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/startServer.bat
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/projectnew/IOV_PLATFORM/!svn/ver/13652/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/README.txt
+END
+startServer.sh
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/projectnew/IOV_PLATFORM/!svn/ver/13989/source/IOV-Mes5.0/trunk/IOV-MES/MES-Restful/src/main/resources/bin/startServer.sh
+END

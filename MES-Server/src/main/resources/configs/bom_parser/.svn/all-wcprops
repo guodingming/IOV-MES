@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/projectnew/IOV_PLATFORM/!svn/ver/17076/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/bom_parser
+END
+t-box_bom_parser.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/projectnew/IOV_PLATFORM/!svn/ver/17054/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/bom_parser/t-box_bom_parser.groovy
+END
+cd4_bom_parser.groovy
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/projectnew/IOV_PLATFORM/!svn/ver/17076/source/IOV-Mes5.0/trunk/IOV-MES/MES-Server/src/main/resources/configs/bom_parser/cd4_bom_parser.groovy
+END

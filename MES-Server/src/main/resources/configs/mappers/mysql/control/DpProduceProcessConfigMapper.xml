@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 开发平台-生产工序配置属性 -->
+<mapper namespace="com.mes.control.mapper.DpProduceProcessConfigMapper">
+	<resultMap type="com.mes.entity.control.DpProduceProcessConfig" id="dpProduceProcessConfigResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="produce_process_id" property="produceProcessId" jdbcType="VARCHAR"/>
+		<result column="value" property="value" jdbcType="VARCHAR"/>
+		<result column="cn_name" property="dictionaryCnName" jdbcType="VARCHAR"/>
+		<result column="dictionary_id" property="dictionaryId" jdbcType="VARCHAR"/>
+		<result column="dictionary_type_id" property="dictionaryTypeId" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<select id="findById" resultMap="dpProduceProcessConfigResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="getConfig" resultMap="dpProduceProcessConfigResultMap">
+		SELECT c.*
+		FROM mes_dp_data_dictionary d, mes_dp_produce_process_config c
+		WHERE d.`key_k`=#{key}
+		AND d.`id`=c.`dictionary_id`
+		AND c.`produce_process_id`=#{produceProcessId}
+		limit 1
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.DpProduceProcessConfig">
+		insert into mes_dp_produce_process_config (id,produce_process_id,`value`,dictionary_id,dictionary_type_id,`type`,description,create_date)
+		values (#{id},#{produceProcessId},#{value},#{dictionaryId},#{dictionaryTypeId},#{type},#{description},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.DpProduceProcessConfig">
+		update mes_dp_produce_process_config s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_dp_produce_process_config where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_dp_produce_process_config t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="dpProduceProcessConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="dpProduceProcessConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="dpProduceProcessConfigResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT s.id,s.produce_process_id,s.value,s.dictionary_id,s.dictionary_type_id,s.type,s.description,s.create_date,d.cn_name from mes_dp_produce_process_config s join mes_dp_data_dictionary d on s.dictionary_id=d.id
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (`value` like CONCAT('%', #{search}, '%')
+				or `type` like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					and produce_process_id = #{produceProcessId}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and `value` = #{value}
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					and dictionary_id = #{dictionaryId}
+				]]>
+			</if>
+			<if test="dictionaryTypeId != null  and dictionaryTypeId != '' ">
+				<![CDATA[
+					and dictionary_type_id = #{dictionaryTypeId}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` = #{type}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					or produce_process_id = #{produceProcessId}
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or `value` = #{value}
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					or dictionary_id = #{dictionaryId}
+				]]>
+			</if>
+			<if test="dictionaryTypeId != null  and dictionaryTypeId != '' ">
+				<![CDATA[
+					or dictionary_type_id = #{dictionaryTypeId}
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` = #{type}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description = #{description}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					and produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					and `value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					and dictionary_id like CONCAT('%', #{dictionaryId}, '%')
+				]]>
+			</if>
+			<if test="dictionaryTypeId != null  and dictionaryTypeId != '' ">
+				<![CDATA[
+					and dictionary_type_id like CONCAT('%', #{dictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					and `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like binary CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					or produce_process_id like CONCAT('%', #{produceProcessId}, '%')
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					or `value` like CONCAT('%', #{value}, '%')
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					or dictionary_id like CONCAT('%', #{dictionaryId}, '%')
+				]]>
+			</if>
+			<if test="dictionaryTypeId != null  and dictionaryTypeId != '' ">
+				<![CDATA[
+					or dictionary_type_id like CONCAT('%', #{dictionaryTypeId}, '%')
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					or `type` like CONCAT('%', #{type}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like binary CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="produceProcessId != null  and produceProcessId != '' ">
+				<![CDATA[
+					produce_process_id = #{produceProcessId},
+				]]>
+			</if>
+			<if test="value != null  and value != '' ">
+				<![CDATA[
+					`value` = #{value},
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					dictionary_id = #{dictionaryId},
+				]]>
+			</if>
+			<if test="dictionaryTypeId != null  and dictionaryTypeId != '' ">
+				<![CDATA[
+					dictionary_type_id = #{dictionaryTypeId},
+				]]>
+			</if>
+			<if test="type != null  and type != '' ">
+				<![CDATA[
+					`type` = #{type},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					description = #{description},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mes.control.mapper.FtyWorkstationMapper">
+	<resultMap type="com.mes.entity.control.FtyWorkstation" id="ftyWorkstationResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="dictionary_id"  property="dictionaryId" jdbcType="VARCHAR"/>
+		<result column="work_center_id" property="workCenterId" jdbcType="VARCHAR"/>
+		<result column="location" property="location" jdbcType="VARCHAR"/>
+		<result column="description" property="description" jdbcType="VARCHAR"/>
+		<result column="category" property="category" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR"/>
+		<result column="device_name" property="deviceName" jdbcType="VARCHAR"/>
+		<result column="work_center_name" property="workCenterName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="ftyWorkstationResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.FtyWorkstation">
+		insert into mes_fty_workstation (id,name,dictionary_id,work_center_id,location,description,category,create_date,update_date)
+		values (#{id},#{name},#{dictionaryId},#{workCenterId},#{location},#{description},#{category},now(),#{updateDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.FtyWorkstation">
+		update mes_fty_workstation s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_fty_workstation where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from (<include refid="sql_select"/>) t  <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="ftyWorkstationResultMap">
+		select * from (<include refid="sql_select"/>) t
+		<include refid="sql_where_and_equal"/> order by t.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="ftyWorkstationResultMap">
+		select * from (<include refid="sql_select"/> ) t <include refid="sql_where_and_equal"/> order by t.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="ftyWorkstationResultMap">
+		select * from (<include refid="sql_select"/>) t <include refid="sql_where_and_equal"/> order by t.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT
+		d.`name` as device_name,
+		w.`name` as work_center_name,
+		dic.cn_name as name,
+		s.id,
+		s.work_center_id,
+		s.location,
+		s.description,
+		s.category,
+		s.create_date,
+		s.update_date,
+		s.device_id
+		FROM
+		mes_fty_workstation s
+		LEFT JOIN  mes_fty_work_center w  on s.work_center_id = w.id
+		LEFT JOIN  mes_fty_device d on s.device_id = d.id
+		LEFT JOIN mes_dp_data_dictionary dic on s.dictionary_id = dic.id
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				t.name  like CONCAT('%', #{search}, '%')
+				or t.location like CONCAT('%', #{search}, '%')
+				or t.category like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and t.name = #{name}
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					and t.dictionary_id = #{dictionaryId}
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					and t.work_center_id = #{workCenterId}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and t.location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and t.description = #{description}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and s.category = #{category}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and t.create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and t.update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or s.name = #{name}
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					or s.dictionary_id = #{dictionaryId}
+				]]>
+			</if>
+
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					or s.work_center_id = #{workCenterId}
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or s.location = #{location}
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or s.description = #{description}
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or s.category = #{category}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or s.create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or s.update_date = #{updateDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					and s.name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					and s.dictionary_id like CONCAT('%', #{dictionaryId}, '%')
+				]]>
+			</if>
+
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					and s.work_center_id like CONCAT('%', #{workCenterId}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					and s.location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					and s.description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					and s.category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and s.update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					or s.name like CONCAT('%', #{name}, '%')
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					or s.dictionary_id like CONCAT('%', #{dictionaryId}, '%')
+				]]>
+			</if>
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					or s.work_center_id like CONCAT('%', #{workCenterId}, '%')
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					or s.location like CONCAT('%', #{location}, '%')
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					or s.description like CONCAT('%', #{description}, '%')
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					or s.category like CONCAT('%', #{category}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or s.create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or s.update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="name != null  and name != '' ">
+				<![CDATA[
+					s.name = #{name},
+				]]>
+			</if>
+			<if test="dictionaryId != null  and dictionaryId != '' ">
+				<![CDATA[
+					s.dictionary_id = #{dictionaryId},
+				]]>
+			</if>
+
+			<if test="workCenterId != null  and workCenterId != '' ">
+				<![CDATA[
+					s.work_center_id = #{workCenterId},
+				]]>
+			</if>
+			<if test="location != null  and location != '' ">
+				<![CDATA[
+					s.location = #{location},
+				]]>
+			</if>
+			<if test="description != null  and description != '' ">
+				<![CDATA[
+					s.description = #{description},
+				]]>
+			</if>
+			<if test="category != null  and category != '' ">
+				<![CDATA[
+					s.category = #{category},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					s.create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					s.update_date = #{updateDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

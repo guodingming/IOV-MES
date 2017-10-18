@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-排班-人员 -->
+<mapper namespace="com.mes.control.mapper.PdSchedulingMapper">
+	<resultMap type="com.mes.entity.control.PdScheduling" id="pdSchedulingResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="scheduling_type_id" property="schedulingTypeId" jdbcType="VARCHAR"/>
+		<result column="is_start" property="isStart" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+
+		<result column="user_group_id" property="userGroupId" jdbcType="VARCHAR"/>
+		<result column="user_ids" property="userIds" jdbcType="VARCHAR"/>
+		<result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+		<result column="user_names" property="userNames" jdbcType="VARCHAR"/>
+
+		<result column="enterprise_id" property="enterpriseId" jdbcType="VARCHAR"/>
+		<result column="site_id" property="siteId" jdbcType="VARCHAR"/>
+		<result column="area_id" property="areaId" jdbcType="VARCHAR"/>
+		<result column="production_line_id" property="productionLineId" jdbcType="VARCHAR"/>
+		<result column="work_center_id" property="workCenterId" jdbcType="VARCHAR"/>
+		<result column="workstation_ids" property="workstationIds" jdbcType="VARCHAR"/>
+		<result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR"/>
+		<result column="site_name" property="siteName" jdbcType="VARCHAR"/>
+		<result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+		<result column="production_line_name" property="productionLineName" jdbcType="VARCHAR"/>
+		<result column="work_center_name" property="workCenterName" jdbcType="VARCHAR"/>
+		<result column="workstation_names" property="workstationNames" jdbcType="VARCHAR"/>
+		<association column="scheduling_type_id" property="schedulingTypeName" select="getTypeName" javaType="java.lang.String"/>
+		<association column="pd_id" property="pdName" select="getPdName" javaType="java.lang.String"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdSchedulingResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<!--查询班次类型名称-->
+	<select id="getTypeName" resultType="java.lang.String">
+		select t.`name` FROM mes_pd_scheduling_type t where t.id = #{value}
+	</select>
+	<!--查询产品名称-->
+	<select id="getPdName" resultType="java.lang.String">
+		SELECT p.`name` FROM mes_pd p  where p.id = #{value}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdScheduling">
+		insert into mes_pd_scheduling (id,scheduling_type_id,is_start,pd_id,create_date)
+		values (#{id},#{schedulingTypeId},#{isStart},#{pdId},#{createDate})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdScheduling">
+		update mes_pd_scheduling s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_scheduling where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1) from mes_pd_scheduling t <include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdSchedulingResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdSchedulingResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdSchedulingResultMap">
+		<include refid="sql_select"/> <include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT id,scheduling_type_id,is_start,pd_id,create_date from mes_pd_scheduling s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			1=1
+			<if test="schedulingTypeId != null  and schedulingTypeId != '' ">
+				<![CDATA[
+					and scheduling_type_id = #{schedulingTypeId}
+				]]>
+			</if>
+			<if test="isStart != null  and isStart != '' ">
+				<![CDATA[
+					and is_start = #{isStart}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="schedulingTypeId != null  and schedulingTypeId != '' ">
+				<![CDATA[
+					or scheduling_type_id = #{schedulingTypeId}
+				]]>
+			</if>
+
+			<if test="isStart != null  and isStart != '' ">
+				<![CDATA[
+					or is_start = #{isStart}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="schedulingTypeId != null  and schedulingTypeId != '' ">
+				<![CDATA[
+					and scheduling_type_id like CONCAT('%', #{schedulingTypeId}, '%')
+				]]>
+			</if>
+
+			<if test="isStart != null  and isStart != '' ">
+				<![CDATA[
+					and is_start like CONCAT('%', #{isStart}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="schedulingTypeId != null  and schedulingTypeId != '' ">
+				<![CDATA[
+					or scheduling_type_id like CONCAT('%', #{schedulingTypeId}, '%')
+				]]>
+			</if>
+
+			<if test="isStart != null  and isStart != '' ">
+				<![CDATA[
+					or is_start like CONCAT('%', #{isStart}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="schedulingTypeId != null  and schedulingTypeId != '' ">
+				<![CDATA[
+					scheduling_type_id = #{schedulingTypeId},
+				]]>
+			</if>
+
+			<if test="isStart != null  and isStart != '' ">
+				<![CDATA[
+					is_start = #{isStart},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>

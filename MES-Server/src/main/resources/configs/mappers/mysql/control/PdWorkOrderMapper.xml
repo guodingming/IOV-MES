@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 产品管理-工单管理 -->
+<mapper namespace="com.mes.control.mapper.PdWorkOrderMapper">
+	<resultMap type="com.mes.entity.control.PdWorkOrder" id="pdWorkOrderResultMap">
+		<result column="id" property="id" jdbcType="VARCHAR"/>
+		<result column="order_id" property="orderId" jdbcType="VARCHAR"/>
+		<result column="order_name" property="orderName" jdbcType="VARCHAR"/>
+		<result column="pd_id" property="pdId" jdbcType="VARCHAR"/>
+		<result column="parent_id" property="parentId" jdbcType="VARCHAR"/>
+		<result column="work_order_total" property="workOrderTotal" jdbcType="BIGINT"/>
+		<result column="num" property="num" jdbcType="BIGINT"/>
+		<result column="plan_start_time" property="planStartTime" jdbcType="TIMESTAMP"/>
+		<result column="plan_end_time" property="planEndTime" jdbcType="TIMESTAMP"/>
+		<result column="real_start_time" property="realStartTime" jdbcType="TIMESTAMP"/>
+		<result column="real_end_time" property="realEndTime" jdbcType="TIMESTAMP"/>
+		<result column="status" property="status" jdbcType="VARCHAR"/>
+		<result column="deploy_status" property="deployStatus" jdbcType="VARCHAR"/>
+		<result column="barcode_rules_id" property="barcodeRulesId" jdbcType="VARCHAR"/>
+		<result column="barcode_rules_type_id" property="barcodeRulesTypeId" jdbcType="VARCHAR"/>
+		<result column="bom_work_id" property="bomWorkId" jdbcType="VARCHAR"/>
+		<result column="bom_name" property="bomName" jdbcType="VARCHAR"/>
+		<result column="work_order_rules_id" property="workOrderRulesId" jdbcType="VARCHAR"/>
+		<result column="work_order_rules_type_id" property="workOrderRulesTypeId" jdbcType="VARCHAR"/>
+		<result column="work_order_num" property="workOrderNum" jdbcType="VARCHAR"/>
+		<result column="project_id" property="projectId" jdbcType="VARCHAR"/>
+		<result column="route_id" property="routeId" jdbcType="VARCHAR"/>
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+		<result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+		<result column="trace_code_rules_id" property="traceCodeRulesId" jdbcType="VARCHAR"/>
+		<result column="production_line_id" property="productionLineId" jdbcType="VARCHAR"/>
+		<result column="shift_id" property="shiftId" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="findById" resultMap="pdWorkOrderResultMap">
+		<include refid="sql_select"/>
+		where s.id = #{id}
+	</select>
+
+	<select id="findByWorkOrderNum" resultMap="pdWorkOrderResultMap">
+		<include refid="sql_select"/>
+		WHERE s.work_order_num = #{workOrderNum}
+	</select>
+
+	<!--新增操作 -->
+	<insert id="save" parameterType="com.mes.entity.control.PdWorkOrder">
+		insert into mes_pd_work_order
+		(id,shift_id,order_id,pd_id,parent_id,work_order_total,plan_start_time,plan_end_time,real_start_time,real_end_time,status,barcode_rules_id,barcode_rules_type_id,bom_work_id,work_order_rules_id,work_order_rules_type_id,work_order_num,project_id,create_date,update_date,trace_code_rules_id,num,production_line_id)
+		values
+		(#{id},#{shiftId},#{orderId},#{pdId},#{parentId},#{workOrderTotal},#{planStartTime},#{planEndTime},#{realStartTime},#{realEndTime},#{status},#{barcodeRulesId},#{barcodeRulesTypeId},#{bomWorkId},#{workOrderRulesId},#{workOrderRulesTypeId},#{workOrderNum},#{projectId},#{createDate},#{updateDate},#{traceCodeRulesId},#{num},#{productionLineId})
+	</insert>
+
+	<!--更新操作-->
+	<update id="update" parameterType="com.mes.entity.control.PdWorkOrder">
+		update mes_pd_work_order s <include refid="sql_update"/> where s.id = #{id}
+	</update>
+
+	<!--根据id删除-->
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from mes_pd_work_order where id =#{id}
+	</delete>
+
+	<!--获取数据条数-->
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(1)
+		FROM mes_pd_work_order s
+		JOIN mes_pd_bom_work bw ON s.`bom_work_id`=bw.`id`
+		JOIN mes_pd_bom_produce bp ON bw.`bom_produce_id`=bp.`id`
+		left JOIN mes_dp_routes mdr on mdr.work_order_id = s.id
+		left JOIN mes_pd_order mpo on mpo.id = s.order_id
+		<include refid="sql_where_and_equal"/>
+	</select>
+
+	<!--分页查询-->
+	<select id="findByPage" parameterType="java.util.Map" resultMap="pdWorkOrderResultMap">
+		SELECT s.*, bp.`name` AS bom_name,mdr.status as deploy_status,mpo.name as order_name,mdr.id as route_id
+		FROM mes_pd_work_order s
+		JOIN mes_pd_bom_work bw ON s.`bom_work_id`=bw.`id`
+		JOIN mes_pd_bom_produce bp ON bw.`bom_produce_id`=bp.`id`
+		left JOIN mes_dp_routes mdr on mdr.work_order_id = s.id
+		left JOIN mes_pd_order mpo on mpo.id = s.order_id
+		<include refid="sql_where_and_equal"/> order by s.create_date desc limit #{startRowNum},#{pageSize}
+	</select>
+
+	<!--根据条件查询-->
+	<select id="findByMap" parameterType="java.util.Map" resultMap="pdWorkOrderResultMap">
+		SELECT s.*, bp.`name` AS bom_name,mdr.status as deploy_status,mpo.name as order_name,mdr.id as route_id
+		FROM mes_pd_work_order s
+		JOIN mes_pd_bom_work bw ON s.`bom_work_id`=bw.`id`
+		JOIN mes_pd_bom_produce bp ON bw.`bom_produce_id`=bp.`id`
+		left JOIN mes_dp_routes mdr on mdr.work_order_id = s.id
+		left JOIN mes_pd_order mpo on mpo.id = s.order_id
+		<include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询所有-->
+	<select id="findAll" resultMap="pdWorkOrderResultMap">
+		SELECT s.*, bp.`name` AS bom_name,mdr.status as deploy_status,mpo.name as order_name,mdr.id as route_id
+		FROM mes_pd_work_order s JOIN mes_pd_bom_work bw ON s.`bom_work_id`=bw.`id`
+		JOIN mes_pd_bom_produce bp ON bw.`bom_produce_id`=bp.`id`
+		left JOIN mes_dp_routes mdr on mdr.work_order_id = s.id
+		left JOIN mes_pd_order mpo on mpo.id = s.order_id
+		<include refid="sql_where_and_equal"/> order by s.create_date desc
+	</select>
+
+	<!--查询字段-->
+	<sql id="sql_select">
+		SELECT
+		id,shift_id,production_line_id,order_id,pd_id,parent_id,work_order_total,plan_start_time,plan_end_time,real_start_time,real_end_time,status,barcode_rules_id,barcode_rules_type_id,bom_work_id,work_order_rules_id,work_order_num,project_id,create_date,update_date,trace_code_rules_id,num
+		from mes_pd_work_order s
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_equal">
+		<where>
+			<if test="search != null and search != '' ">
+				and (
+				work_order_total like CONCAT('%', #{search}, '%')
+				or work_order_num like CONCAT('%', #{search}, '%')
+				or bw.`name` like CONCAT('%', #{search}, '%')
+				or plan_start_time like CONCAT('%', #{search}, '%')
+				or plan_end_time like CONCAT('%', #{search}, '%')
+				or real_start_time like CONCAT('%', #{search}, '%')
+				or real_end_time like CONCAT('%', #{search}, '%')
+				)
+			</if>
+			<if test="orderId != null  and orderId != '' ">
+				<![CDATA[
+					and s.order_id = #{orderId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and s.pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					and s.parent_id = #{parentId}
+				]]>
+			</if>
+			<if test="workOrderTotal != null">
+				<![CDATA[
+					and s.work_order_total = #{workOrderTotal}
+				]]>
+			</if>
+			<if test="planStartTime != null  and planStartTime != '' ">
+				<![CDATA[
+					and s.plan_start_time = #{planStartTime}
+				]]>
+			</if>
+			<if test="planEndTime != null  and planEndTime != '' ">
+				<![CDATA[
+					and s.plan_end_time = #{planEndTime}
+				]]>
+			</if>
+			<if test="realStartTime != null  and realStartTime != '' ">
+				<![CDATA[
+					and s.real_start_time = #{realStartTime}
+				]]>
+			</if>
+			<if test="realEndTime != null  and realEndTime != '' ">
+				<![CDATA[
+					and s.real_end_time = #{realEndTime}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and s.status = #{status}
+				]]>
+			</if>
+			<if test="barcodeRulesId != null  and barcodeRulesId != '' ">
+				<![CDATA[
+					and s.barcode_rules_id = #{barcodeRulesId}
+				]]>
+			</if>
+			<if test="barcodeRulesTypeId != null  and barcodeRulesTypeId != '' ">
+				<![CDATA[
+					and s.barcode_rules_type_id = #{barcodeRulesTypeId}
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					and s.bom_work_id = #{bomWorkId}
+				]]>
+			</if>
+			<if test="workOrderRulesId != null  and workOrderRulesId != '' ">
+				<![CDATA[
+					and s.work_order_rules_id = #{workOrderRulesId}
+				]]>
+			</if>
+			<if test="workOrderRulesTypeId != null  and workOrderRulesTypeId != '' ">
+				<![CDATA[
+					and s.work_order_rules_type_id = #{workOrderRulesTypeId}
+				]]>
+			</if>
+			<if test="workOrderNum != null  and workOrderNum != '' ">
+				<![CDATA[
+					and s.work_order_num = #{workOrderNum}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and s.project_id = #{projectId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and s.create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and s.update_date = #{updateDate}
+				]]>
+			</if>
+			<if test="traceCodeRulesId != null  and traceCodeRulesId != '' ">
+				<![CDATA[
+					and s.trace_code_rules_id = #{traceCodeRulesId}
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					and s.production_line_id = #{productionLineId}
+				]]>
+			</if>
+			<if test="shiftId != null  and shiftId != '' ">
+				<![CDATA[
+					and s.shift_id = #{shiftId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_equal">
+		<where>
+			<if test="orderId != null  and orderId != '' ">
+				<![CDATA[
+					or order_id = #{orderId}
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id = #{pdId}
+				]]>
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					or parent_id = #{parentId}
+				]]>
+			</if>
+			<if test="workOrderTotal != null">
+				<![CDATA[
+					or work_order_total = #{workOrderTotal}
+				]]>
+			</if>
+			<if test="planStartTime != null  and planStartTime != '' ">
+				<![CDATA[
+					or plan_start_time = #{planStartTime}
+				]]>
+			</if>
+			<if test="planEndTime != null  and planEndTime != '' ">
+				<![CDATA[
+					or plan_end_time = #{planEndTime}
+				]]>
+			</if>
+			<if test="realStartTime != null  and realStartTime != '' ">
+				<![CDATA[
+					or real_start_time = #{realStartTime}
+				]]>
+			</if>
+			<if test="realEndTime != null  and realEndTime != '' ">
+				<![CDATA[
+					or real_end_time = #{realEndTime}
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status = #{status}
+				]]>
+			</if>
+			<if test="barcodeRulesId != null  and barcodeRulesId != '' ">
+				<![CDATA[
+					or barcode_rules_id = #{barcodeRulesId}
+				]]>
+			</if>
+			<if test="barcodeRulesTypeId != null  and barcodeRulesTypeId != '' ">
+				<![CDATA[
+					or barcode_rules_type_id = #{barcodeRulesTypeId}
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					or bom_work_id = #{bomWorkId}
+				]]>
+			</if>
+			<if test="workOrderRulesId != null  and workOrderRulesId != '' ">
+				<![CDATA[
+					or work_order_rules_id = #{workOrderRulesId}
+				]]>
+			</if>
+			<if test="workOrderRulesTypeId != null  and workOrderRulesTypeId != '' ">
+				<![CDATA[
+					or work_order_rules_type_id = #{workOrderRulesTypeId}
+				]]>
+			</if>
+			<if test="workOrderNum != null  and workOrderNum != '' ">
+				<![CDATA[
+					or work_order_num = #{workOrderNum}
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id = #{projectId}
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date = #{createDate}
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date = #{updateDate}
+				]]>
+			</if>
+			<if test="traceCodeRulesId != null  and traceCodeRulesId != '' ">
+				<![CDATA[
+					or trace_code_rules_id = #{traceCodeRulesId}
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_and_like">
+		<where>
+			<if test="orderId != null  and orderId != '' ">
+				<![CDATA[
+					and order_id like CONCAT('%', #{orderId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					and pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					and parent_id like CONCAT('%', #{parentId}, '%')
+				]]>
+			</if>
+			<if test="workOrderTotal != null">
+				<![CDATA[
+					and work_order_total like CONCAT('%', #{workOrderTotal}, '%')
+				]]>
+			</if>
+			<if test="planStartTime != null  and planStartTime != '' ">
+				<![CDATA[
+					and plan_start_time like CONCAT('%', #{planStartTime}, '%')
+				]]>
+			</if>
+			<if test="planEndTime != null  and planEndTime != '' ">
+				<![CDATA[
+					and plan_end_time like CONCAT('%', #{planEndTime}, '%')
+				]]>
+			</if>
+			<if test="realStartTime != null  and realStartTime != '' ">
+				<![CDATA[
+					and real_start_time like CONCAT('%', #{realStartTime}, '%')
+				]]>
+			</if>
+			<if test="realEndTime != null  and realEndTime != '' ">
+				<![CDATA[
+					and real_end_time like CONCAT('%', #{realEndTime}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					and status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="barcodeRulesId != null  and barcodeRulesId != '' ">
+				<![CDATA[
+					and barcode_rules_id like CONCAT('%', #{barcodeRulesId}, '%')
+				]]>
+			</if>
+			<if test="barcodeRulesTypeId != null  and barcodeRulesTypeId != '' ">
+				<![CDATA[
+					and barcode_rules_type_id like CONCAT('%', #{barcodeRulesTypeId}, '%')
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					and bom_work_id like CONCAT('%', #{bomWorkId}, '%')
+				]]>
+			</if>
+			<if test="workOrderRulesId != null  and workOrderRulesId != '' ">
+				<![CDATA[
+					and work_order_rules_id like CONCAT('%', #{workOrderRulesId}, '%')
+				]]>
+			</if>
+			<if test="workOrderRulesTypeId != null  and workOrderRulesTypeId != '' ">
+				<![CDATA[
+					and work_order_rules_type_id like CONCAT('%', #{workOrderRulesTypeId}, '%')
+				]]>
+			</if>
+			<if test="workOrderNum != null  and workOrderNum != '' ">
+				<![CDATA[
+					and work_order_num like CONCAT('%', #{workOrderNum}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					and project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					and create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					and update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="traceCodeRulesId != null  and traceCodeRulesId != '' ">
+				<![CDATA[
+					and trace_code_rules_id like CONCAT('%', #{traceCodeRulesId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--查询条件-->
+	<sql id="sql_where_or_like">
+		<where>
+			<if test="orderId != null  and orderId != '' ">
+				<![CDATA[
+					or order_id like CONCAT('%', #{orderId}, '%')
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					or pd_id like CONCAT('%', #{pdId}, '%')
+				]]>
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					or parent_id like CONCAT('%', #{parentId}, '%')
+				]]>
+			</if>
+			<if test="workOrderTotal != null">
+				<![CDATA[
+					or work_order_total like CONCAT('%', #{workOrderTotal}, '%')
+				]]>
+			</if>
+			<if test="planStartTime != null  and planStartTime != '' ">
+				<![CDATA[
+					or plan_start_time like CONCAT('%', #{planStartTime}, '%')
+				]]>
+			</if>
+			<if test="planEndTime != null  and planEndTime != '' ">
+				<![CDATA[
+					or plan_end_time like CONCAT('%', #{planEndTime}, '%')
+				]]>
+			</if>
+			<if test="realStartTime != null  and realStartTime != '' ">
+				<![CDATA[
+					or real_start_time like CONCAT('%', #{realStartTime}, '%')
+				]]>
+			</if>
+			<if test="realEndTime != null  and realEndTime != '' ">
+				<![CDATA[
+					or real_end_time like CONCAT('%', #{realEndTime}, '%')
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					or status like CONCAT('%', #{status}, '%')
+				]]>
+			</if>
+			<if test="barcodeRulesId != null  and barcodeRulesId != '' ">
+				<![CDATA[
+					or barcode_rules_id like CONCAT('%', #{barcodeRulesId}, '%')
+				]]>
+			</if>
+			<if test="barcodeRulesTypeId != null  and barcodeRulesTypeId != '' ">
+				<![CDATA[
+					or barcode_rules_type_id like CONCAT('%', #{barcodeRulesTypeId}, '%')
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					or bom_work_id like CONCAT('%', #{bomWorkId}, '%')
+				]]>
+			</if>
+			<if test="workOrderRulesId != null  and workOrderRulesId != '' ">
+				<![CDATA[
+					or work_order_rules_id like CONCAT('%', #{workOrderRulesId}, '%')
+				]]>
+			</if>
+			<if test="workOrderRulesTypeId != null  and workOrderRulesTypeId != '' ">
+				<![CDATA[
+					or work_order_rules_type_id like CONCAT('%', #{workOrderRulesTypeId}, '%')
+				]]>
+			</if>
+			<if test="workOrderNum != null  and workOrderNum != '' ">
+				<![CDATA[
+					or work_order_num like CONCAT('%', #{workOrderNum}, '%')
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					or project_id like CONCAT('%', #{projectId}, '%')
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					or create_date like CONCAT('%', #{createDate}, '%')
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					or update_date like CONCAT('%', #{updateDate}, '%')
+				]]>
+			</if>
+			<if test="traceCodeRulesId != null  and traceCodeRulesId != '' ">
+				<![CDATA[
+					or trace_code_rules_id like CONCAT('%', #{traceCodeRulesId}, '%')
+				]]>
+			</if>
+		</where>
+	</sql>
+
+	<!--更新操作-->
+	<sql id="sql_update">
+		<set>
+			<if test="orderId != null  and orderId != '' ">
+				<![CDATA[
+					order_id = #{orderId},
+				]]>
+			</if>
+			<if test="pdId != null  and pdId != '' ">
+				<![CDATA[
+					pd_id = #{pdId},
+				]]>
+			</if>
+			<if test="parentId != null  and parentId != '' ">
+				<![CDATA[
+					parent_id = #{parentId},
+				]]>
+			</if>
+			<if test="workOrderTotal != null">
+				<![CDATA[
+					work_order_total = #{workOrderTotal},
+				]]>
+			</if>
+			<if test="planStartTime != null  and planStartTime != '' ">
+				<![CDATA[
+					plan_start_time = #{planStartTime},
+				]]>
+			</if>
+			<if test="planEndTime != null  and planEndTime != '' ">
+				<![CDATA[
+					plan_end_time = #{planEndTime},
+				]]>
+			</if>
+			<if test="realStartTime != null  and realStartTime != '' ">
+				<![CDATA[
+					real_start_time = #{realStartTime},
+				]]>
+			</if>
+			<if test="realEndTime != null  and realEndTime != '' ">
+				<![CDATA[
+					real_end_time = #{realEndTime},
+				]]>
+			</if>
+			<if test="status != null  and status != '' ">
+				<![CDATA[
+					status = #{status},
+				]]>
+			</if>
+			<if test="barcodeRulesId != null  and barcodeRulesId != '' ">
+				<![CDATA[
+					barcode_rules_id = #{barcodeRulesId},
+				]]>
+			</if>
+			<if test="barcodeRulesTypeId != null  and barcodeRulesTypeId != '' ">
+				<![CDATA[
+					barcode_rules_type_id = #{barcodeRulesTypeId},
+				]]>
+			</if>
+			<if test="bomWorkId != null  and bomWorkId != '' ">
+				<![CDATA[
+					bom_work_id = #{bomWorkId},
+				]]>
+			</if>
+			<if test="workOrderRulesId != null  and workOrderRulesId != '' ">
+				<![CDATA[
+					work_order_rules_id = #{workOrderRulesId},
+				]]>
+			</if>
+			<if test="workOrderRulesTypeId != null  and workOrderRulesTypeId != '' ">
+				<![CDATA[
+					work_order_rules_type_id = #{workOrderRulesTypeId},
+				]]>
+			</if>
+			<if test="workOrderNum != null  and workOrderNum != '' ">
+				<![CDATA[
+					work_order_num = #{workOrderNum},
+				]]>
+			</if>
+			<if test="projectId != null  and projectId != '' ">
+				<![CDATA[
+					project_id = #{projectId},
+				]]>
+			</if>
+			<if test="createDate != null  and createDate != '' ">
+				<![CDATA[
+					create_date = #{createDate},
+				]]>
+			</if>
+			<if test="updateDate != null  and updateDate != '' ">
+				<![CDATA[
+					update_date = #{updateDate},
+				]]>
+			</if>
+			<if test="traceCodeRulesId != null  and traceCodeRulesId != '' ">
+				<![CDATA[
+					trace_code_rules_id = #{traceCodeRulesId},
+				]]>
+			</if>
+			<if test="num != null  and num != '' ">
+				<![CDATA[
+					num = #{num},
+				]]>
+			</if>
+			<if test="productionLineId != null  and productionLineId != '' ">
+				<![CDATA[
+					s.production_line_id = #{productionLineId},
+				]]>
+			</if>
+			<if test="shiftId != null  and shiftId != '' ">
+				<![CDATA[
+					s.shift_id = #{shiftId},
+				]]>
+			</if>
+		</set>
+	</sql>
+</mapper>
